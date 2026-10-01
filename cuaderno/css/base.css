@@ -1,0 +1,141 @@
+/* ===================================================
+   CUADERNO DE APRENDIZAJE - PALETA CÁLIDA Y AESTHETIC
+   =================================================== */
+
+:root {
+  --bg-crema: #f6f3ed;
+  --card-bg: #ffffff;
+  --card-subtle: #f0ebe1;
+  --text-dark: #1a1918;
+  --text-muted: #6e6d6a;
+  --accent-amber: #d97706;
+  --border-color: #e5e0d8;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-hand: 'Caveat', cursive;
+
+  --radius-card: 24px;
+  --radius-pill: 999px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-crema);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible { outline: 2px solid var(--accent-amber); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { width: min(900px, calc(100% - 3rem)); margin-inline: auto; }
+.text-center { text-align: center; }
+
+/* Barra de progreso de lectura */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 4px; width: 0%;
+  background: var(--accent-amber); z-index: 1000; transition: width 0.1s ease-out;
+}
+
+/* Botón flotante regresar */
+.back-float {
+  position: fixed; top: 1.5rem; left: 1.5rem; z-index: 900;
+  background: var(--card-bg); color: var(--text-dark);
+  padding: 0.6rem 1.2rem; border-radius: var(--radius-pill);
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+  border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+.back-float:hover { background: var(--text-dark); color: #ffffff; transform: translateY(-2px); }
+
+/* Hero */
+.notebook-hero { padding: 5rem 0 3rem; text-align: center; }
+
+.badge-pill {
+  background: var(--card-subtle); padding: 0.3rem 0.9rem; border-radius: var(--radius-pill);
+  font-size: 0.75rem; font-weight: 700; color: var(--text-muted);
+  display: inline-block; margin-bottom: 1rem; letter-spacing: 0.08em;
+}
+
+.hero-title { font-family: var(--font-serif); font-size: clamp(2.6rem, 7vw, 3.5rem); line-height: 1.1; margin-bottom: 0.5rem; }
+.hero-title span { color: var(--accent-amber); }
+
+.hero-subtitle { font-family: var(--font-serif); font-size: 1.3rem; font-style: italic; color: var(--accent-amber); margin-bottom: 1rem; }
+.hero-desc { color: var(--text-muted); font-size: 0.95rem; max-width: 600px; margin: 0 auto 1.5rem; }
+.author-tag { font-size: 0.85rem; color: var(--text-dark); }
+
+/* Timeline */
+.timeline {
+  list-style: none; margin: 3rem 0; padding-left: 2rem;
+  border-left: 2px dashed var(--border-color);
+  display: flex; flex-direction: column; gap: 3.5rem;
+}
+
+/* Animación Scroll / Fade In */
+.week-card { position: relative; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.week-card.is-visible { opacity: 1; transform: translateY(0); }
+
+.week-marker {
+  position: absolute; left: -3.2rem; top: 1.5rem; width: 2.4rem; height: 2.4rem;
+  border-radius: 50%; background: var(--card-bg); border: 2px solid var(--accent-amber);
+  color: var(--accent-amber); display: grid; place-items: center;
+  font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card-body {
+  background: var(--card-bg); border-radius: var(--radius-card); padding: 2.2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03); border: 1px solid var(--border-color);
+}
+
+.card-header { border-bottom: 1px solid var(--border-color); padding-bottom: 0.8rem; margin-bottom: 1.5rem; }
+.week-label { font-size: 0.72rem; letter-spacing: 0.12em; font-weight: 700; color: var(--accent-amber); }
+.card-header h2 { font-family: var(--font-serif); font-size: 1.8rem; }
+
+/* Bloques de la Semana */
+.section-block { margin-bottom: 2rem; }
+.section-block:last-child { margin-bottom: 0; }
+.section-block h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+.hint { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+
+.placeholder-box {
+  background: var(--bg-crema); padding: 1rem 1.2rem; border-radius: 12px;
+  font-size: 0.9rem; color: var(--text-muted); border: 1px dashed var(--border-color);
+}
+
+/* Grilla de Laboratorios */
+.lab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 0.8rem; }
+.lab-item { background: var(--bg-crema); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); }
+.lab-item.span-full { grid-column: 1 / -1; }
+
+dt { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--accent-amber); margin-bottom: 0.3rem; }
+dd { font-size: 0.88rem; color: var(--text-dark); }
+
+pre {
+  background: #1e1e1e; color: #38bdf8; padding: 1rem; border-radius: 8px;
+  overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.82rem; margin-top: 0.5rem;
+}
+
+.add-note { font-size: 0.85rem; color: var(--text-muted); margin: 3rem 0; background: var(--card-subtle); padding: 1rem; border-radius: 12px; }
+
+/* Footer */
+.site-footer { padding: 2.5rem 0; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .week-card { opacity: 1; transform: none; transition: none; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline { padding-left: 1.5rem; }
+  .card-body { padding: 1.5rem 1.2rem; }
+  .week-marker { left: -2.3rem; width: 2rem; height: 2rem; font-size: 0.8rem; }
+  .back-float { top: auto; bottom: 1.5rem; left: 50%; transform: translateX(-50%); }
+  .back-float:hover { transform: translateX(-50%) translateY(-2px); }
+}
