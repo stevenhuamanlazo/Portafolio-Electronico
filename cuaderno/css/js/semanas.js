@@ -175,8 +175,10 @@
   if (!timeline || !cards.length) return;
 
   const isPending = (block) => {
-    const texts = [...block.querySelectorAll(".placeholder-box, dd")].filter((el) => !el.querySelector("pre"));
-    const placeholder = texts.some((el) => el.textContent.trim().startsWith("["));
+    const texts = [...block.querySelectorAll(".placeholder-box, .entry, dd")].filter((el) => !el.querySelector("pre"));
+    // Pendiente si queda algún texto tipo [Escribe aquí…] / [Pega aquí…]
+    const marker = /\[(escribe|pega|describe|anota|inserta|agrega)[^\]]*\]/i;
+    const placeholder = texts.some((el) => el.textContent.trim().startsWith("[") || marker.test(el.textContent));
     const code = block.querySelector("pre code");
     const codePending = !!code && /Pega aqu[ií]/i.test(code.textContent);
     return placeholder || codePending;
@@ -408,4 +410,68 @@
       }
     });
   });
+
+  /* ---------- Capturas: aviso si falta la imagen + ampliación accesible ---------- */
+  const shotLinks = [...document.querySelectorAll(".shot-link")];
+  shotLinks.forEach((a) => {
+    const img = a.querySelector("img");
+    if (!img) return;
+    const markMissing = () => { a.classList.add("is-missing"); a.dataset.path = img.getAttribute("src") || ""; };
+    if (img.complete && img.naturalWidth === 0) markMissing();
+    img.addEventListener("error", markMissing);
+    img.addEventListener("load", () => a.classList.remove("is-missing"));
+  });
+
+  if (shotLinks.length) {
+    const dlg = document.createElement("dialog");
+    dlg.className = "lightbox";
+    dlg.setAttribute("aria-label", "Vista ampliada de la captura");
+    dlg.innerHTML =
+      '<div class="lb-inner">' +
+      '<img class="lb-img" alt="">' +
+      '<div class="lb-bar">' +
+      '<button type="button" class="lb-btn" data-d="-1" aria-label="Captura anterior">←</button>' +
+      '<p class="lb-cap" aria-live="polite"></p>' +
+      '<button type="button" class="lb-btn" data-d="1" aria-label="Captura siguiente">→</button>' +
+      '<button type="button" class="lb-btn lb-close" aria-label="Cerrar vista ampliada">✕</button>' +
+      "</div></div>";
+    document.body.appendChild(dlg);
+
+    const lbImg = dlg.querySelector(".lb-img");
+    const lbCap = dlg.querySelector(".lb-cap");
+    let current = 0;
+    let opener = null;
+
+    const show = (i) => {
+      current = (i + shotLinks.length) % shotLinks.length;
+      const a = shotLinks[current];
+      const fig = a.closest("figure");
+      const caption = fig && fig.querySelector("figcaption") ? fig.querySelector("figcaption").textContent.trim() : "";
+      lbImg.src = a.getAttribute("href");
+      lbImg.alt = a.querySelector("img") ? a.querySelector("img").alt : "";
+      lbCap.textContent = (current + 1) + " de " + shotLinks.length + ": " + caption;
+    };
+
+    shotLinks.forEach((a, i) => {
+      a.addEventListener("click", (e) => {
+        if (a.classList.contains("is-missing")) { e.preventDefault(); return; }
+        if (typeof dlg.showModal !== "function") return; // sin soporte: se abre la imagen en otra pestaña
+        e.preventDefault();
+        opener = a;
+        show(i);
+        dlg.showModal();
+      });
+    });
+
+    dlg.querySelectorAll("[data-d]").forEach((b) =>
+      b.addEventListener("click", () => show(current + Number(b.dataset.d)))
+    );
+    dlg.querySelector(".lb-close").addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
+    });
+    dlg.addEventListener("close", () => { if (opener) opener.focus(); });
+  }
 })();
