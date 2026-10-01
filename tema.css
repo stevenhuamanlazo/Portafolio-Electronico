@@ -1,0 +1,225 @@
+/* ==========================================================================
+   TEMA — modo oscuro, fondos por sección y animaciones del nombre
+   Se carga DESPUÉS de styles.css y extras.css
+   ========================================================================== */
+
+:root { --net-rgb: 200, 109, 81; }
+
+/* ---------- Botón de tema ---------- */
+.theme-toggle {
+  width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+  background: #ffffff; border: 1px solid var(--border); color: var(--text-dark);
+  display: grid; place-items: center; transition: transform 0.3s ease, background 0.3s ease;
+}
+.theme-toggle:hover { transform: rotate(18deg) scale(1.06); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .i-sun { display: none; }
+html[data-theme="dark"] .theme-toggle .i-sun { display: block; }
+html[data-theme="dark"] .theme-toggle .i-moon { display: none; }
+
+/* Transición suave al cambiar de tema */
+html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, fill 0.4s ease !important;
+}
+
+/* ==========================================================================
+   MODO OSCURO
+   ========================================================================== */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-crema: #0e1014;
+  --bg-card: #171a21;
+  --bg-card-subtle: #1d212a;
+  --text-dark: #eceff4;
+  --text-muted: #9aa3b2;
+  --terracota: #e9957b;
+  --accent-amber: #f2a93b;
+  --cta-green: #15251f;
+  --border: #282d38;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 18px 40px rgba(0, 0, 0, 0.55);
+  --net-rgb: 233, 149, 123;
+}
+
+/* Superficies que tenían blanco fijo */
+html[data-theme="dark"] .main-nav,
+html[data-theme="dark"] .badge-sub,
+html[data-theme="dark"] .btn-outline-circle,
+html[data-theme="dark"] .social-row a,
+html[data-theme="dark"] .footer-socials a,
+html[data-theme="dark"] .tech-pill,
+html[data-theme="dark"] .bento-about-container,
+html[data-theme="dark"] .projects-section,
+html[data-theme="dark"] .nav-toggle,
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .badge-float,
+html[data-theme="dark"] .service-arrow,
+html[data-theme="dark"] .project-arrow,
+html[data-theme="dark"] .project-tags span,
+html[data-theme="dark"] .reflect-card,
+html[data-theme="dark"] .biblio-card,
+html[data-theme="dark"] .arch-card,
+html[data-theme="dark"] .area-chip {
+  background: var(--bg-card);
+  border-color: var(--border);
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] .stat-box,
+html[data-theme="dark"] .project-card,
+html[data-theme="dark"] .arch-node { border-color: var(--border); }
+
+html[data-theme="dark"] .site-header { background: rgba(14, 16, 20, 0.78); }
+html[data-theme="dark"] .site-header.scrolled { box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45); }
+html[data-theme="dark"] .site-footer { border-top-color: var(--border); }
+html[data-theme="dark"] .biblio-card li::before { background: var(--bg-crema); border-color: var(--border); color: var(--text-dark); }
+
+/* Botones negros → claros en oscuro */
+html[data-theme="dark"] .btn-black,
+html[data-theme="dark"] .btn-pill-dark,
+html[data-theme="dark"] .btn-black-pill { background: #eceff4; color: #0e1014; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); }
+html[data-theme="dark"] .btn-black:hover,
+html[data-theme="dark"] .btn-pill-dark:hover,
+html[data-theme="dark"] .btn-black-pill:hover { background: #ffffff; }
+html[data-theme="dark"] .btn-outline-circle:hover,
+html[data-theme="dark"] .social-row a:hover,
+html[data-theme="dark"] .footer-socials a:hover,
+html[data-theme="dark"] .area-chip:hover,
+html[data-theme="dark"] .service-card:hover .service-arrow,
+html[data-theme="dark"] .project-card:hover .project-arrow { background: #eceff4; color: #0e1014; border-color: #eceff4; }
+
+/* Textos con color fijo */
+html[data-theme="dark"] .hero-subtitle { color: var(--text-dark); }
+html[data-theme="dark"] .badge-float strong { color: var(--text-dark); }
+html[data-theme="dark"] .badge-float span { color: var(--text-muted); }
+html[data-theme="dark"] .doodle-text { color: #e8e2d8; }
+html[data-theme="dark"] .cta-content p { color: var(--text-muted); }
+html[data-theme="dark"] .service-card p { color: #b7bfcc; }
+html[data-theme="dark"] .status-indicator { background: rgba(80, 200, 120, 0.14); color: #7ddc9a; }
+html[data-theme="dark"] .status-indicator .dot { background: #7ddc9a; }
+
+/* Tarjetas pastel → tintes translúcidos */
+html[data-theme="dark"] .card-orange { background-color: rgba(233, 149, 123, 0.13); }
+html[data-theme="dark"] .card-blue { background-color: rgba(96, 165, 250, 0.13); }
+html[data-theme="dark"] .card-green { background-color: rgba(74, 200, 140, 0.13); }
+html[data-theme="dark"] .card-pink { background-color: rgba(240, 110, 170, 0.13); }
+html[data-theme="dark"] .service-card { border-color: rgba(255, 255, 255, 0.06); }
+html[data-theme="dark"] .service-icon,
+html[data-theme="dark"] .arch-node .arch-ico { background: rgba(255, 255, 255, 0.08); }
+html[data-theme="dark"] .ic-orange { background: rgba(233, 149, 123, 0.18); }
+html[data-theme="dark"] .ic-blue { background: rgba(96, 165, 250, 0.18); }
+html[data-theme="dark"] .ic-green { background: rgba(74, 200, 140, 0.18); }
+
+html[data-theme="dark"] .hero-photo-card { background: #1d212a; box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5); }
+html[data-theme="dark"] .blob { background: radial-gradient(circle at 30% 30%, rgba(74, 200, 140, 0.35), rgba(40, 120, 90, 0.25)); }
+html[data-theme="dark"] .project-thumb { background: #1d212a; }
+html[data-theme="dark"] .cta-banner::before { background: rgba(255, 255, 255, 0.04); }
+html[data-theme="dark"] .bg-glow { opacity: 0.35; }
+html[data-theme="dark"] .bg-glow-1 { background: #7a3a28; }
+html[data-theme="dark"] .bg-glow-2 { background: #1f4a6b; }
+html[data-theme="dark"] .terminal { border-color: #2b2b31; box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6); }
+
+/* ==========================================================================
+   FONDOS — cuadrícula de puntos, red de nodos y franjas por sección
+   ========================================================================== */
+
+/* Red de nodos: ahora cubre toda la ventana */
+.net-canvas {
+  position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none;
+  -webkit-mask-image: none; mask-image: none;
+}
+
+/* Cuadrícula de puntos */
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(60, 40, 30, 0.12) 1px, transparent 1.3px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 25%, transparent 90%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 25%, transparent 90%);
+}
+html[data-theme="dark"] .bg-grid { background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.3px); }
+
+/* Franjas de color por sección */
+.section, .tech-stack-strip { position: relative; isolation: isolate; }
+.section::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+
+.services-section::before {
+  background: linear-gradient(180deg, transparent, rgba(200, 109, 81, 0.08) 50%, transparent);
+}
+.projects-wrapper::before {
+  background: radial-gradient(ellipse 60% 50% at 85% 40%, rgba(217, 119, 6, 0.09), transparent 70%);
+}
+.reflection-section::before {
+  background: radial-gradient(ellipse 55% 55% at 12% 50%, rgba(74, 160, 120, 0.11), transparent 70%),
+              radial-gradient(ellipse 45% 45% at 90% 60%, rgba(200, 109, 81, 0.08), transparent 70%);
+}
+.biblio-section::before {
+  background: linear-gradient(180deg, transparent, rgba(96, 150, 220, 0.08) 50%, transparent);
+}
+.cta-section::before {
+  background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(74, 160, 120, 0.1), transparent 70%);
+}
+.about-section::before {
+  background: radial-gradient(ellipse 50% 60% at 10% 50%, rgba(200, 109, 81, 0.07), transparent 70%);
+}
+
+/* Plano técnico (cuadrícula) detrás de la sección de sistemas */
+.systems-section::before {
+  background-image:
+    linear-gradient(rgba(200, 109, 81, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 109, 81, 0.09) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+}
+html[data-theme="dark"] .systems-section::before {
+  background-image:
+    linear-gradient(rgba(233, 149, 123, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 149, 123, 0.1) 1px, transparent 1px);
+}
+
+/* Ajustes del hero (el texto manuscrito superior quedaba bajo el menú) */
+.hero-section { padding: 4rem 0 4.5rem; }
+.text-top { top: -36px; }
+.cf-2 { top: 50%; left: 47%; }
+.cf-3 { top: 88%; left: 56%; }
+
+/* ==========================================================================
+   ANIMACIÓN DEL NOMBRE (descifrado → se desvanece → vuelve)
+   ========================================================================== */
+.nm { display: inline-block; white-space: nowrap; }
+.nm .scr {
+  font-family: 'Consolas', 'Courier New', monospace; font-style: normal; font-weight: 500;
+  color: var(--terracota); opacity: 0.8;
+}
+html.js:not(.nm-ready) .nm { opacity: 0; }
+
+.js .squiggle path {
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.js .squiggle.on path { stroke-dashoffset: 0; }
+
+/* ---------- Toast estilo terminal/commit ---------- */
+.dev-toast {
+  position: absolute; left: 50%; bottom: -28px; transform: translateX(-50%);
+  z-index: 12; display: flex; align-items: center; gap: 0.6rem;
+  background: #1b1b1f; color: #d7dae0; padding: 0.6rem 1rem; border-radius: 12px;
+  font-family: 'Consolas', 'Courier New', monospace; font-size: 0.74rem; white-space: nowrap;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22); border: 1px solid #2b2b31;
+}
+.dev-toast .dt-dot { width: 8px; height: 8px; border-radius: 50%; background: #28c840; flex-shrink: 0; animation: pulse 2s ease-out infinite; }
+.dev-toast .dt-text { display: inline-block; transition: opacity 0.35s ease, transform 0.35s ease; }
+.dev-toast .dt-text.swap { opacity: 0; transform: translateY(6px); }
+
+/* Inclinación 3D de tarjetas de proyecto */
+.project-card { transform-style: preserve-3d; will-change: transform; }
+
+@media (max-width: 880px) {
+  .dev-toast { font-size: 0.68rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .squiggle path { stroke-dashoffset: 0; transition: none; }
+  html.js:not(.nm-ready) .nm { opacity: 1; }
+}

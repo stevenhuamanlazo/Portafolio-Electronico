@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steven Huamanlazo — Portafolio Profesional</title>
+  <meta name="description" content="Portafolio de Steven Huamanlazo Pariona: desarrollo Frontend, diseño UI/UX y accesibilidad web. Estudiante de Ingeniería de Sistemas (UNCP)." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="extras.css" />
+  <link rel="stylesheet" href="tema.css" />
+  <link rel="stylesheet" href="tech.css" />
+  <script>
+    /* Aplica el tema guardado antes de pintar para evitar parpadeo */
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = "dark";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- Fondo animado: red de nodos + cuadrícula de puntos -->
+  <canvas class="net-canvas" id="net-canvas" aria-hidden="true"></canvas>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Luces ambientales de fondo -->
+  <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+
+  <!-- NAVEGACIÓN -->
+  <header class="site-header" id="site-header">
+    <div class="wrap nav-wrap">
+      <a href="#inicio" class="brand-logo">Portafolio<span>.</span></a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Trabajos</a>
+        <a href="#reflexion">Reflexión</a>
+        <a href="#bibliografia">Bibliografía</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Modo oscuro" aria-pressed="false" title="Cambiar a modo oscuro">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <a href="#contacto" class="btn btn-pill-dark btn-cta">Hablemos ↗</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- HERO -->
+    <section class="hero-section" id="inicio">
+      <span class="code-float cf-1" aria-hidden="true">&lt;/&gt;</span>
+      <span class="code-float cf-2" aria-hidden="true">{ }</span>
+      <span class="code-float cf-3" aria-hidden="true">SELECT *</span>
+      <span class="code-float cf-4" aria-hidden="true">01101</span>
+      <div class="wrap hero-grid">
+        <div class="hero-left">
+          <span class="badge-sub">HOLA, SOY —</span>
+
+          <h1 class="hero-title" aria-label="Steven Huamanlazo">
+            <span class="nm" data-text="Steven" aria-hidden="true">Steven</span>
+            <em class="underlined"><span class="nm" data-text="Huamanlazo" aria-hidden="true">Huamanlazo</span>
+              <svg class="squiggle" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
+                <path pathLength="1" d="M3 8 C 28 1, 55 13, 100 6 S 168 2, 197 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </em>
+          </h1>
+
+          <p class="hero-role">
+            <span class="role-dash">—</span>
+            <strong id="typed-name">Desarrollador Frontend</strong><span class="cursor" aria-hidden="true">|</span>
+          </p>
+
+          <h2 class="hero-subtitle">
+            Un diseñador y desarrollador creativo que construye <em>experiencias digitales</em> que a la gente le encantan.
+          </h2>
+
+          <p class="hero-desc">
+            Ayudo a marcas, proyectos y empresas a transformar ideas en productos digitales hermosos, intuitivos y de alto rendimiento.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#proyectos" class="btn btn-black">Ver mi trabajo →</a>
+            <a href="cuaderno.html" class="btn btn-outline-circle"><span class="play-dot">▶</span> Abrir Cuaderno</a>
+          </div>
+
+          <div class="hero-social-status">
+            <div class="social-row">
+              <a href="mailto:e_2021101343L@uncp.edu.pe" aria-label="Correo institucional" title="Correo institucional">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </a>
+              <a href="https://github.com/stevenhuamanlazo" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/steven-huamanlazo/" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+            </div>
+            <span class="status-indicator"><span class="dot"></span> Disponible para nuevos proyectos</span>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-photo-wrap">
+            <span class="blob" aria-hidden="true"></span>
+            <div class="hero-photo-card">
+              <img src="assets/foto.jpg" alt="Retrato de Steven Huamanlazo" class="hero-img" />
+            </div>
+
+            <div class="badge-float badge-experience float-1">
+              <strong>IX</strong>
+              <span>Ciclo UNCP</span>
+            </div>
+            <div class="badge-float badge-clients float-2">
+              <strong>100%</strong>
+              <span>Código limpio &amp; UX</span>
+            </div>
+
+            <div class="dev-toast" aria-hidden="true"><span class="dt-dot"></span><span class="dt-text" id="dev-toast-text"></span></div>
+            <div class="doodle-text text-top" aria-hidden="true">Buen diseño<br>brilla mañana</div>
+            <div class="doodle-text text-bottom" aria-hidden="true">Ideas<br>Diseño<br>Crear<br>Código &lt;/&gt; ♡</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECNOLOGÍAS -->
+    <section class="tech-stack-strip reveal" aria-label="Tecnologías">
+      <div class="wrap text-center">
+        <span class="tech-label">HERRAMIENTAS &amp; TECNOLOGÍAS CON LAS QUE TRABAJO</span>
+        <div class="tech-icons-grid">
+          <div class="tech-pill"><span aria-hidden="true">⚛️</span> React</div>
+          <div class="tech-pill"><span aria-hidden="true">🟨</span> JavaScript</div>
+          <div class="tech-pill"><span aria-hidden="true">🎨</span> Figma / UI/UX</div>
+          <div class="tech-pill"><span aria-hidden="true">🌐</span> HTML5 &amp; CSS3</div>
+          <div class="tech-pill"><span aria-hidden="true">♿</span> WCAG Accesibilidad</div>
+          <div class="tech-pill"><span aria-hidden="true">☁️</span> Azure / SQL</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INGENIERÍA DE SISTEMAS -->
+    <section class="section systems-section" id="sistemas">
+      <div class="wrap text-center">
+        <span class="section-tag">— INGENIERÍA DE SISTEMAS —</span>
+        <h2 class="section-title">Pienso en <em>sistemas</em>, no solo en pantallas <span class="spark" aria-hidden="true">✦</span></h2>
+
+        <div class="systems-grid">
+          <div class="terminal reveal" role="img" aria-label="Terminal simulada con datos del perfil de Steven">
+            <div class="terminal-bar">
+              <i></i><i></i><i></i>
+              <span class="terminal-title">steven@uncp: ~/perfil</span>
+            </div>
+            <div class="terminal-body" id="terminal-body"></div>
+          </div>
+
+          <div class="arch-card reveal">
+            <h3>Anatomía de un sistema web</h3>
+            <p class="arch-sub">Así viaja una petición, de la persona usuaria a la nube.</p>
+            <ol class="arch-flow">
+              <li class="arch-node"><span class="arch-ico" aria-hidden="true">👤</span><div><strong>Usuario</strong><small>Navegador · móvil · teclado y lector de pantalla</small></div></li>
+              <li class="arch-link" aria-hidden="true"></li>
+              <li class="arch-node"><span class="arch-ico" aria-hidden="true">🖥️</span><div><strong>Frontend</strong><small>HTML5 · CSS3 · JavaScript · React</small></div></li>
+              <li class="arch-link" aria-hidden="true"></li>
+              <li class="arch-node"><span class="arch-ico" aria-hidden="true">⚙️</span><div><strong>Lógica / API</strong><small>Reglas de negocio y servicios</small></div></li>
+              <li class="arch-link" aria-hidden="true"></li>
+              <li class="arch-node"><span class="arch-ico" aria-hidden="true">🗄️</span><div><strong>Base de datos</strong><small>SQL · gestión documental</small></div></li>
+              <li class="arch-link" aria-hidden="true"></li>
+              <li class="arch-node"><span class="arch-ico" aria-hidden="true">☁️</span><div><strong>Nube</strong><small>Azure · despliegue y Azure ML</small></div></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="areas-row reveal" aria-label="Áreas de la carrera">
+          <span class="area-chip">Ingeniería de software</span>
+          <span class="area-chip">Bases de datos</span>
+          <span class="area-chip">Computación en la nube</span>
+          <span class="area-chip">Inteligencia artificial</span>
+          <span class="area-chip">Gestión documental</span>
+          <span class="area-chip">Accesibilidad web</span>
+          <span class="area-chip">UX / UI</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="section about-section" id="sobre-mi">
+      <div class="wrap">
+        <div class="bento-about-container reveal">
+          <div class="bento-photo">
+            <img src="assets/foto.jpg" alt="Steven Huamanlazo" />
+          </div>
+
+          <div class="bento-content">
+            <span class="section-tag">— SOBRE MÍ —</span>
+            <h2>Transformando ideas en <em>experiencias significativas</em></h2>
+            <p>
+              Soy Steven, estudiante de IX ciclo de Ingeniería de Sistemas en la UNCP. Me apasiona el desarrollo Frontend,
+              el diseño de experiencia de usuario y la accesibilidad web. Combino estrategia, arquitectura limpia y
+              usabilidad para resolver problemas reales.
+            </p>
+            <div class="bento-cta-group">
+              <a href="https://www.linkedin.com/in/steven-huamanlazo/" target="_blank" rel="noopener" class="btn btn-black-pill">↓ Ver LinkedIn / CV</a>
+              <a href="#servicios" class="link-secondary-btn">Ver habilidades ↴</a>
+            </div>
+          </div>
+
+          <div class="bento-stats">
+            <div class="stat-box">
+              <span class="stat-icon ic-orange" aria-hidden="true">🚀</span>
+              <div>
+                <div class="stat-num" data-count="3" data-suffix="+">3+</div>
+                <div class="stat-label">Proyectos clave</div>
+              </div>
+            </div>
+            <div class="stat-box">
+              <span class="stat-icon ic-blue" aria-hidden="true">🤝</span>
+              <div>
+                <div class="stat-num" data-count="50" data-suffix="+">50+</div>
+                <div class="stat-label">Usuarios impactados</div>
+              </div>
+            </div>
+            <div class="stat-box">
+              <span class="stat-icon ic-green" aria-hidden="true">🎓</span>
+              <div>
+                <div class="stat-num">IX</div>
+                <div class="stat-label">Ciclo UNCP</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES Y SERVICIOS -->
+    <section class="section services-section" id="servicios">
+      <div class="wrap text-center">
+        <span class="section-tag">— LO QUE HAGO —</span>
+        <h2 class="section-title">Habilidades &amp; Servicios <span class="spark" aria-hidden="true">✦</span></h2>
+
+        <div class="services-grid">
+          <article class="service-card card-orange reveal">
+            <div class="service-icon" aria-hidden="true">✏️</div>
+            <h3>Diseño UI/UX</h3>
+            <p>Interfaces accesibles, prototipado intuitivo y flujos de usuario enfocados en la simplicidad.</p>
+            <a href="#contacto" class="service-arrow" aria-label="Consultar sobre Diseño UI/UX">→</a>
+          </article>
+          <article class="service-card card-blue reveal">
+            <div class="service-icon" aria-hidden="true">💻</div>
+            <h3>Desarrollo Web</h3>
+            <p>Aplicaciones web rápidas con HTML5, CSS3, JavaScript y arquitectura modular.</p>
+            <a href="#contacto" class="service-arrow" aria-label="Consultar sobre Desarrollo Web">→</a>
+          </article>
+          <article class="service-card card-green reveal">
+            <div class="service-icon" aria-hidden="true">♿</div>
+            <h3>Accesibilidad Web</h3>
+            <p>Cumplimiento de estándares WCAG, navegación por teclado y alto contraste.</p>
+            <a href="#contacto" class="service-arrow" aria-label="Consultar sobre Accesibilidad Web">→</a>
+          </article>
+          <article class="service-card card-pink reveal">
+            <div class="service-icon" aria-hidden="true">🗄️</div>
+            <h3>Sistemas &amp; Datos</h3>
+            <p>Integración de bases de datos, gestión documental y dashboards informativos.</p>
+            <a href="#contacto" class="service-arrow" aria-label="Consultar sobre Sistemas y Datos">→</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section class="section projects-wrapper" id="proyectos">
+      <div class="wrap">
+        <div class="projects-section reveal">
+          <div class="section-header-flex">
+            <div>
+              <span class="section-tag">— TRABAJO DESTACADO —</span>
+              <h2 class="section-title">Proyectos <em>seleccionados</em> <span class="spark" aria-hidden="true">✦</span></h2>
+            </div>
+            <a href="cuaderno.html" class="link-all">Ver Cuaderno de Campo →</a>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="project-thumb">
+                <img src="assets/Mikunaigen.png" alt="Captura del proyecto Mikunaigen IA" loading="lazy" />
+              </div>
+              <div class="project-details">
+                <div>
+                  <h3>Mikunaigen IA</h3>
+                  <p>Superalimentos &amp; Azure ML</p>
+                  <div class="project-tags"><span>Azure</span><span>ML</span><span>Web</span></div>
+                </div>
+                <a href="https://icy-plant-07513d80f7.azurestaticapps.net/presentacion" target="_blank" rel="noopener" class="project-arrow" aria-label="Abrir proyecto Mikunaigen IA">→</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-thumb">
+                <img src="assets/Oficri.png" alt="Captura del proyecto OFICRI Huancayo" loading="lazy" />
+              </div>
+              <div class="project-details">
+                <div>
+                  <h3>OFICRI Huancayo</h3>
+                  <p>Gestión documental pericial PNP</p>
+                  <div class="project-tags"><span>Gestión documental</span><span>SQL</span></div>
+                </div>
+                <a href="#contacto" class="project-arrow" aria-label="Consultar sobre OFICRI Huancayo">→</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-thumb">
+                <img src="assets/Hospital-priale.png" alt="Captura del proyecto Hospital Ramiro Prialé" loading="lazy" />
+              </div>
+              <div class="project-details">
+                <div>
+                  <h3>Hospital Ramiro Prialé</h3>
+                  <p>Optimización en emergencias</p>
+                  <div class="project-tags"><span>Procesos</span><span>UX</span></div>
+                </div>
+                <a href="#contacto" class="project-arrow" aria-label="Consultar sobre Hospital Ramiro Prialé">→</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFLEXIÓN FINAL -->
+    <section class="section reflection-section" id="reflexion">
+      <div class="wrap text-center">
+        <span class="section-tag">— METACOGNICIÓN —</span>
+        <h2 class="section-title">Reflexión <em>final</em> <span class="spark" aria-hidden="true">✦</span></h2>
+
+        <div class="reflect-grid">
+          <article class="reflect-card reveal">
+            <span class="reflect-num" aria-hidden="true">1</span>
+            <h3>¿Qué aprendí?</h3>
+            <p>[Escribe aquí los conocimientos y habilidades que desarrollaste en el curso: HTML, CSS, JavaScript, control de versiones, publicación en GitHub, accesibilidad…]</p>
+          </article>
+          <article class="reflect-card reveal">
+            <span class="reflect-num" aria-hidden="true">2</span>
+            <h3>¿Cómo aprendí?</h3>
+            <p>[Describe tu proceso: práctica en los laboratorios, documentación, pruebas y errores, revisión con compañeros, ajustes del diseño…]</p>
+          </article>
+          <article class="reflect-card reveal">
+            <span class="reflect-num" aria-hidden="true">3</span>
+            <h3>Dificultades y cómo las superé</h3>
+            <p>[Cuenta qué te costó más y qué estrategia usaste para resolverlo.]</p>
+          </article>
+        </div>
+
+        <div class="reflect-cta reveal">
+          <a href="cuaderno.html" class="btn btn-black">Ver reflexión por semana en el Cuaderno →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIBLIOGRAFÍA -->
+    <section class="section biblio-section" id="bibliografia">
+      <div class="wrap text-center">
+        <span class="section-tag">— REFERENCIAS —</span>
+        <h2 class="section-title">Bibliografía <span class="spark" aria-hidden="true">✦</span></h2>
+
+        <div class="biblio-grid">
+          <div class="biblio-card reveal">
+            <h3><span aria-hidden="true">📚</span> Libros</h3>
+            <!-- REEMPLAZA estas referencias por los libros que realmente usaste (formato APA) -->
+            <ol>
+              <li>Sommerville, I. (2011). <cite>Ingeniería de software</cite> (9.ª ed.). Pearson Educación.</li>
+              <li>Martin, R. C. (2008). <cite>Clean Code: A Handbook of Agile Software Craftsmanship</cite>. Prentice Hall.</li>
+              <li>[Agrega aquí otro libro de tu curso]</li>
+            </ol>
+          </div>
+
+          <div class="biblio-card reveal">
+            <h3><span aria-hidden="true">🔗</span> Sitios web</h3>
+            <!-- REEMPLAZA o agrega las URLs que realmente consultaste (no videos) -->
+            <ol>
+              <li>MDN Web Docs. <a href="https://developer.mozilla.org/es/" target="_blank" rel="noopener">developer.mozilla.org/es</a></li>
+              <li>W3C. Pautas de Accesibilidad para el Contenido Web (WCAG). <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener">w3.org/WAI/standards-guidelines/wcag</a></li>
+              <li>Microsoft Learn. Documentación de Azure. <a href="https://learn.microsoft.com/es-es/azure/" target="_blank" rel="noopener">learn.microsoft.com/es-es/azure</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section" id="contacto">
+      <div class="wrap">
+        <div class="cta-banner reveal">
+          <div class="cta-content">
+            <span class="section-tag">— TRABAJEMOS JUNTOS —</span>
+            <h2>¿Tienes un proyecto en mente?</h2>
+            <p>Escríbeme directamente o contáctame a través de mis perfiles profesionales.</p>
+            <div class="cta-links-group">
+              <a href="mailto:e_2021101343L@uncp.edu.pe" class="btn btn-black">✉ Correo institucional</a>
+              <a href="https://github.com/stevenhuamanlazo" class="btn btn-outline-circle" target="_blank" rel="noopener">GitHub ↗</a>
+              <a href="https://www.linkedin.com/in/steven-huamanlazo/" class="btn btn-outline-circle" target="_blank" rel="noopener">LinkedIn ↗</a>
+            </div>
+          </div>
+          <div class="doodle-text cta-doodle" aria-hidden="true">Las grandes ideas<br>empiezan con una conversación ♡</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap footer-wrap">
+      <div class="footer-col-left">
+        <a href="#inicio" class="brand-logo">Steven<span>.</span></a>
+        <p>Diseñando un mejor mañana digital.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Navegación del pie">
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Trabajos</a>
+        <a href="#reflexion">Reflexión</a>
+        <a href="#bibliografia">Bibliografía</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="footer-socials">
+        <a href="mailto:e_2021101343L@uncp.edu.pe" aria-label="Correo" title="Correo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </a>
+        <a href="https://github.com/stevenhuamanlazo" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/steven-huamanlazo/" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="copyright text-center">
+      <small>© 2026 Steven Huamanlazo Pariona. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="extras.js"></script>
+</body>
+</html>

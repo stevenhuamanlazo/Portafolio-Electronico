@@ -1,0 +1,189 @@
+/* ==========================================================================
+   CUADERNO — estilo tecnológico, modo oscuro y fondos animados
+   Se carga DESPUÉS de styles-cuaderno.css
+   ========================================================================== */
+
+/* ---------- Variables: modo claro ---------- */
+:root {
+  --font-serif: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+
+  --bg-crema: #edf1f7;
+  --card-bg: #ffffff;
+  --card-subtle: #e4eaf3;
+  --text-dark: #0a1020;
+  --text-muted: #566179;
+  --accent-amber: #2563eb;
+  --accent-2: #7c3aed;
+  --border-color: #d8e0ec;
+  --net-rgb: 37, 99, 235;
+  --net-rgb2: 124, 58, 237;
+}
+
+/* ---------- Variables: modo oscuro ---------- */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-crema: #070b14;
+  --card-bg: #0e1524;
+  --card-subtle: #131c30;
+  --text-dark: #e8eefc;
+  --text-muted: #8b98b5;
+  --accent-amber: #38bdf8;
+  --accent-2: #a78bfa;
+  --border-color: #1c2842;
+  --net-rgb: 56, 189, 248;
+  --net-rgb2: 167, 139, 250;
+}
+
+html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease !important;
+}
+
+/* ---------- Capas: fondo detrás, contenido encima ---------- */
+.notebook-hero, main, .site-footer { position: relative; z-index: 1; }
+
+.net-canvas {
+  position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none;
+}
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(20, 40, 90, 0.14) 1px, transparent 1.3px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, #000 25%, transparent 90%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, #000 25%, transparent 90%);
+}
+html[data-theme="dark"] .bg-grid { background-image: radial-gradient(rgba(130, 175, 255, 0.13) 1px, transparent 1.3px); }
+
+.bg-glow { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; opacity: 0.5; }
+.bg-glow-1 { width: 420px; height: 420px; background: #b9ccff; top: -120px; right: -100px; }
+.bg-glow-2 { width: 380px; height: 380px; background: #b6ecff; bottom: -120px; left: -120px; }
+html[data-theme="dark"] .bg-glow { opacity: 0.3; }
+html[data-theme="dark"] .bg-glow-1 { background: #1d3a8a; }
+html[data-theme="dark"] .bg-glow-2 { background: #4c1d95; }
+
+/* ---------- Botón de tema (arriba a la derecha) ---------- */
+.theme-toggle {
+  position: fixed; top: 1.5rem; right: 1.5rem; z-index: 900;
+  width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+  background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-dark);
+  display: grid; place-items: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+.theme-toggle:hover { transform: rotate(18deg) scale(1.06); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .i-sun { display: none; }
+html[data-theme="dark"] .theme-toggle .i-sun { display: block; }
+html[data-theme="dark"] .theme-toggle .i-moon { display: none; }
+
+/* Botón "volver" legible en ambos temas */
+.back-float:hover { background: var(--text-dark); color: var(--bg-crema); }
+
+/* ---------- Encabezado ---------- */
+.hero-title { font-weight: 700; letter-spacing: -0.03em; }
+.hero-title span { color: inherit; }
+.hero-title .dot { color: var(--accent-amber); display: inline-block; animation: dotpulse 1.6s ease-in-out infinite; }
+@keyframes dotpulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.8); } }
+
+.hero-subtitle {
+  font-family: var(--font-mono); font-style: normal; font-size: 1rem; font-weight: 500;
+  color: var(--accent-amber);
+}
+.hero-subtitle::before { content: "// "; opacity: 0.6; }
+
+.notebook-hero::after {
+  content: ""; position: absolute; left: 50%; bottom: 0; width: min(640px, 80%); height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--accent-amber), var(--accent-2), transparent);
+  opacity: 0.5;
+}
+
+/* ---------- Título animado ---------- */
+.underlined { position: relative; display: inline-block; }
+.squiggle {
+  position: absolute; left: 0; bottom: -4px; width: 100%; height: 10px;
+  color: var(--accent-amber); opacity: 0.9;
+}
+.js .squiggle path {
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.js .squiggle.on path { stroke-dashoffset: 0; }
+
+.nm { display: inline-block; white-space: nowrap; }
+html.js:not(.nm-ready) .nm { opacity: 0; }
+
+.hero-title .nm {
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-2), #22d3ee, var(--accent-amber));
+  background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: sweep 5s linear infinite;
+}
+@keyframes sweep { to { background-position: -250% 0; } }
+
+.nm .scr {
+  font-family: var(--font-mono); font-weight: 500; opacity: 0.85;
+  -webkit-text-fill-color: currentColor; color: var(--accent-amber);
+}
+
+.hero-title.glitch .nm { animation: glitch 0.4s steps(2, end) 1, sweep 5s linear infinite; }
+@keyframes glitch {
+  0%   { transform: translate(0, 0); text-shadow: none; }
+  20%  { transform: translate(-3px, 1px); text-shadow: 3px 0 #22d3ee, -3px 0 #a78bfa; }
+  40%  { transform: translate(3px, -1px); text-shadow: -3px 0 #22d3ee, 3px 0 #a78bfa; }
+  60%  { transform: translate(-2px, 0); text-shadow: 2px 1px #22d3ee, -2px -1px #a78bfa; }
+  80%  { transform: translate(2px, 1px); text-shadow: -2px 0 #22d3ee, 2px 0 #a78bfa; }
+  100% { transform: translate(0, 0); text-shadow: none; }
+}
+
+/* ---------- Chip de terminal ---------- */
+.dev-toast {
+  display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.4rem;
+  background: #0b1220; color: #d7e3f7; padding: 0.6rem 1rem; border-radius: 12px;
+  font-family: var(--font-mono); font-size: 0.76rem; white-space: nowrap;
+  border: 1px solid #1c2842; box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+.dev-toast .dt-dot { width: 8px; height: 8px; border-radius: 50%; background: #28c840; animation: pulse 2s ease-out infinite; }
+.dev-toast .dt-text { display: inline-block; transition: opacity 0.35s ease, transform 0.35s ease; }
+.dev-toast .dt-text.swap { opacity: 0; transform: translateY(6px); }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(40, 200, 64, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(40, 200, 64, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(40, 200, 64, 0); }
+}
+
+/* ---------- Tarjetas y línea de tiempo ---------- */
+.timeline { border-left-color: color-mix(in srgb, var(--accent-amber) 40%, var(--border-color)); }
+.card-body { transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+.card-body:hover {
+  transform: translateY(-3px); border-color: var(--accent-amber);
+  box-shadow: 0 16px 36px color-mix(in srgb, var(--accent-amber) 14%, transparent);
+}
+html[data-theme="dark"] .card-body { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); }
+
+.week-marker { font-family: var(--font-mono); }
+.week-card.is-visible .week-marker { animation: ping 1.6s ease-out 1; }
+@keyframes ping {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-amber) 55%, transparent); }
+  100% { box-shadow: 0 0 0 16px transparent; }
+}
+
+.week-label, dt { font-family: var(--font-mono); }
+pre {
+  background: #0b1220; color: #7dd3fc; border: 1px solid #1c2842;
+  font-family: var(--font-mono);
+}
+.placeholder-box { border-color: color-mix(in srgb, var(--accent-amber) 30%, var(--border-color)); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .theme-toggle { top: 1rem; right: 1rem; }
+  .back-float { top: auto; }
+  .dev-toast { font-size: 0.68rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .nm, .hero-title.glitch .nm, .hero-title .dot, .week-card.is-visible .week-marker { animation: none; }
+  .js .squiggle path { stroke-dashoffset: 0; transition: none; }
+  html.js:not(.nm-ready) .nm { opacity: 1; }
+}

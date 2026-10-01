@@ -1,0 +1,198 @@
+/* ==========================================================================
+   TECH — paleta tecnológica (azul / cian / violeta sobre grafito)
+   Se carga AL FINAL, después de styles.css, extras.css y tema.css
+   ========================================================================== */
+
+/* ---------- Tipografía ---------- */
+:root {
+  --font-serif: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+}
+
+h1, h2, h3, h4 { letter-spacing: -0.02em; }
+
+/* El énfasis deja de ser serif cursiva: ahora es tipográfico y de color */
+em {
+  font-style: normal;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  color: var(--terracota);
+}
+.hero-subtitle em, .bento-content em, .section-title em { font-weight: 600; }
+.underlined { font-weight: 700; }
+.hero-title { font-weight: 700; letter-spacing: -0.03em; }
+
+/* Notas manuscritas → comentarios de código */
+.doodle-text {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--terracota);
+  font-weight: 500;
+}
+.cta-doodle { font-size: 0.82rem; }
+
+/* Monoespaciada coherente */
+.terminal-body, .terminal-title, .dev-toast, .nm .scr, .code-float {
+  font-family: var(--font-mono);
+}
+.t-prompt { color: #38bdf8; }
+.t-caret { background: #38bdf8; }
+.t-out { color: #7ee7c1; }
+
+/* ==========================================================================
+   MODO CLARO — gris azulado, acento azul eléctrico
+   ========================================================================== */
+:root {
+  --bg-crema: #edf1f7;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #e4eaf3;
+  --text-dark: #0a1020;
+  --text-muted: #566179;
+  --terracota: #2563eb;
+  --accent-amber: #7c3aed;
+  --cta-green: #dbe8ff;
+  --border: #d8e0ec;
+  --net-rgb: 37, 99, 235;
+  --net-rgb2: 124, 58, 237;
+}
+
+.site-header { background: rgba(237, 241, 247, 0.82); }
+.btn-black, .btn-pill-dark, .btn-black-pill { background-color: #0a1020; }
+.btn-black:hover, .btn-pill-dark:hover, .btn-black-pill:hover { background-color: #1b2a4a; }
+
+.hero-photo-card, .project-thumb { background: #d3deee; }
+.blob { background: radial-gradient(circle at 30% 30%, #cfe0ff, #b9d8f5); }
+.bg-glow-1 { background: #b9ccff; }
+.bg-glow-2 { background: #b6ecff; }
+.bg-grid { background-image: radial-gradient(rgba(20, 40, 90, 0.14) 1px, transparent 1.3px); }
+
+/* Tarjetas de servicios */
+.card-orange { background-color: #e0eaff; }
+.card-blue { background-color: #ddf4ff; }
+.card-green { background-color: #daf8ee; }
+.card-pink { background-color: #ebe6ff; }
+.ic-orange { background: #e0eaff; }
+.ic-blue { background: #ddf4ff; }
+.ic-green { background: #daf8ee; }
+
+/* Íconos de la arquitectura */
+.arch-flow .arch-node:nth-child(1) .arch-ico { background: #e0eaff; }
+.arch-flow .arch-node:nth-child(3) .arch-ico { background: #ddf4ff; }
+.arch-flow .arch-node:nth-child(5) .arch-ico { background: #ebe6ff; }
+.arch-flow .arch-node:nth-child(7) .arch-ico { background: #daf8ee; }
+.arch-flow .arch-node:nth-child(9) .arch-ico { background: #e3e8ff; }
+.arch-link { background: repeating-linear-gradient(to bottom, #bfcbe0 0 4px, transparent 4px 8px); }
+.arch-link::after { box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18); }
+
+/* Franjas por sección */
+.services-section::before { background: linear-gradient(180deg, transparent, rgba(37, 99, 235, 0.07) 50%, transparent); }
+.projects-wrapper::before { background: radial-gradient(ellipse 60% 50% at 85% 40%, rgba(124, 58, 237, 0.08), transparent 70%); }
+.reflection-section::before {
+  background: radial-gradient(ellipse 55% 55% at 12% 50%, rgba(14, 165, 233, 0.1), transparent 70%),
+              radial-gradient(ellipse 45% 45% at 90% 60%, rgba(124, 58, 237, 0.07), transparent 70%);
+}
+.biblio-section::before { background: linear-gradient(180deg, transparent, rgba(14, 165, 233, 0.07) 50%, transparent); }
+.cta-section::before { background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(37, 99, 235, 0.1), transparent 70%); }
+.about-section::before { background: radial-gradient(ellipse 50% 60% at 10% 50%, rgba(37, 99, 235, 0.07), transparent 70%); }
+.systems-section::before {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
+}
+
+/* ==========================================================================
+   MODO OSCURO — grafito azulado, acento cian + violeta
+   ========================================================================== */
+html[data-theme="dark"] {
+  --bg-crema: #070b14;
+  --bg-card: #0e1524;
+  --bg-card-subtle: #131c30;
+  --text-dark: #e8eefc;
+  --text-muted: #8b98b5;
+  --terracota: #38bdf8;
+  --accent-amber: #a78bfa;
+  --cta-green: #0c2036;
+  --border: #1c2842;
+  --net-rgb: 56, 189, 248;
+  --net-rgb2: 167, 139, 250;
+}
+
+html[data-theme="dark"] .site-header { background: rgba(7, 11, 20, 0.78); }
+html[data-theme="dark"] .hero-photo-card, html[data-theme="dark"] .project-thumb { background: #131c30; }
+html[data-theme="dark"] .blob { background: radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.28), rgba(124, 58, 237, 0.22)); }
+html[data-theme="dark"] .bg-glow-1 { background: #1d3a8a; }
+html[data-theme="dark"] .bg-glow-2 { background: #4c1d95; }
+html[data-theme="dark"] .bg-glow { opacity: 0.32; }
+html[data-theme="dark"] .bg-grid { background-image: radial-gradient(rgba(130, 175, 255, 0.13) 1px, transparent 1.3px); }
+
+html[data-theme="dark"] .card-orange { background-color: rgba(37, 99, 235, 0.17); }
+html[data-theme="dark"] .card-blue { background-color: rgba(14, 165, 233, 0.15); }
+html[data-theme="dark"] .card-green { background-color: rgba(20, 184, 166, 0.14); }
+html[data-theme="dark"] .card-pink { background-color: rgba(139, 92, 246, 0.16); }
+html[data-theme="dark"] .ic-orange { background: rgba(37, 99, 235, 0.22); }
+html[data-theme="dark"] .ic-blue { background: rgba(14, 165, 233, 0.2); }
+html[data-theme="dark"] .ic-green { background: rgba(20, 184, 166, 0.2); }
+
+html[data-theme="dark"] .arch-flow .arch-node:nth-child(1) .arch-ico { background: rgba(37, 99, 235, 0.25); }
+html[data-theme="dark"] .arch-flow .arch-node:nth-child(3) .arch-ico { background: rgba(14, 165, 233, 0.22); }
+html[data-theme="dark"] .arch-flow .arch-node:nth-child(5) .arch-ico { background: rgba(139, 92, 246, 0.24); }
+html[data-theme="dark"] .arch-flow .arch-node:nth-child(7) .arch-ico { background: rgba(20, 184, 166, 0.22); }
+html[data-theme="dark"] .arch-flow .arch-node:nth-child(9) .arch-ico { background: rgba(99, 102, 241, 0.25); }
+html[data-theme="dark"] .arch-link { background: repeating-linear-gradient(to bottom, #2a3a5e 0 4px, transparent 4px 8px); }
+html[data-theme="dark"] .arch-link::after { box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2); }
+
+html[data-theme="dark"] .services-section::before { background: linear-gradient(180deg, transparent, rgba(56, 189, 248, 0.06) 50%, transparent); }
+html[data-theme="dark"] .projects-wrapper::before { background: radial-gradient(ellipse 60% 50% at 85% 40%, rgba(139, 92, 246, 0.12), transparent 70%); }
+html[data-theme="dark"] .reflection-section::before {
+  background: radial-gradient(ellipse 55% 55% at 12% 50%, rgba(56, 189, 248, 0.1), transparent 70%),
+              radial-gradient(ellipse 45% 45% at 90% 60%, rgba(139, 92, 246, 0.1), transparent 70%);
+}
+html[data-theme="dark"] .biblio-section::before { background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.09) 50%, transparent); }
+html[data-theme="dark"] .cta-section::before { background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(56, 189, 248, 0.1), transparent 70%); }
+html[data-theme="dark"] .about-section::before { background: radial-gradient(ellipse 50% 60% at 10% 50%, rgba(56, 189, 248, 0.07), transparent 70%); }
+html[data-theme="dark"] .systems-section::before {
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.1) 1px, transparent 1px);
+}
+
+/* ==========================================================================
+   NOMBRE ANIMADO — degradado que recorre las letras + glitch
+   ========================================================================== */
+.underlined .nm {
+  background: linear-gradient(90deg, var(--terracota), var(--accent-amber), #22d3ee, var(--terracota));
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: sweep 5s linear infinite;
+}
+@keyframes sweep { to { background-position: -250% 0; } }
+
+.nm .scr { -webkit-text-fill-color: currentColor; }
+
+/* Glitch: división RGB breve, lo dispara el JS cada pocos segundos */
+.hero-title.glitch .nm { animation: glitch 0.4s steps(2, end) 1, sweep 5s linear infinite; }
+@keyframes glitch {
+  0%   { transform: translate(0, 0); text-shadow: none; }
+  20%  { transform: translate(-3px, 1px); text-shadow: 3px 0 #22d3ee, -3px 0 #a78bfa; }
+  40%  { transform: translate(3px, -1px); text-shadow: -3px 0 #22d3ee, 3px 0 #a78bfa; }
+  60%  { transform: translate(-2px, 0); text-shadow: 2px 1px #22d3ee, -2px -1px #a78bfa; }
+  80%  { transform: translate(2px, 1px); text-shadow: -2px 0 #22d3ee, 2px 0 #a78bfa; }
+  100% { transform: translate(0, 0); text-shadow: none; }
+}
+
+/* Cursor de bloque al final del nombre, como en un editor */
+.hero-title::after {
+  content: ""; display: inline-block; width: 0.5ch; height: 0.85em; margin-left: 0.15em;
+  background: var(--terracota); vertical-align: -0.05em; border-radius: 2px;
+  animation: blink 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .underlined .nm { animation: none; }
+  .hero-title.glitch .nm { animation: none; }
+  .hero-title::after { animation: none; }
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuaderno de Aprendizaje - Steven Huamanlazo</title>
+  <meta name="description" content="Bitácora de aprendizaje de Steven Luis Huamanlazo Pariona: registro semanal de temas, laboratorios y reflexiones." />
+
+  <!-- Fuentes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-cuaderno.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cuaderno-tech.css" />
+  <link rel="stylesheet" href="cuaderno-semanas.css" />
+  <script>
+    /* Aplica tema y preferencias de accesibilidad guardadas antes de pintar */
+    (function () {
+      var d = document.documentElement;
+      var g = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+      d.setAttribute("data-theme", g("theme") || "dark");
+      var m = g("a11y-motion"); if (m) d.setAttribute("data-motion", m);
+      if (g("a11y-contrast") === "high") d.setAttribute("data-contrast", "high");
+      if (g("a11y-font") === "legible") d.setAttribute("data-font", "legible");
+      var s = g("a11y-size"); if (s) d.style.fontSize = s + "%";
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <!-- Fondo animado: red de nodos + cuadrícula + luces -->
+  <canvas class="net-canvas" id="net-canvas" aria-hidden="true"></canvas>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+
+  <!-- Barra de progreso -->
+  <div class="scroll-progress" id="scroll-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+  <!-- Botón flotante volver -->
+  <a class="back-float" href="index.html">← Volver al Portafolio</a>
+
+  <!-- Botón modo oscuro -->
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Modo oscuro" aria-pressed="false" title="Cambiar a modo oscuro">
+    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+
+  <!-- Encabezado del Cuaderno -->
+  <header class="notebook-hero">
+    <div class="wrap">
+      <span class="badge-pill">PORTAFOLIO ELECTRÓNICO</span>
+      <h1 class="hero-title" aria-label="Cuaderno">
+        <span class="underlined"><span class="nm" data-text="Cuaderno" aria-hidden="true">Cuaderno</span>
+          <svg class="squiggle" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
+            <path pathLength="1" d="M3 8 C 28 1, 55 13, 100 6 S 168 2, 197 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span><span class="dot" aria-hidden="true">.</span>
+      </h1>
+      <p class="hero-subtitle">Bitácora de Aprendizaje</p>
+      <p class="hero-desc">
+        Registro sistemático de mi proceso de aprendizaje, laboratorios prácticos, código, evidencias y reflexiones durante el ciclo académico.
+      </p>
+      <div class="author-tag">
+        <strong>Steven Luis Huamanlazo Pariona</strong> · Ingeniería de Sistemas (UNCP)
+      </div>
+      <div class="dev-toast" aria-hidden="true"><span class="dt-dot"></span><span class="dt-text" id="dev-toast-text"></span></div>
+    </div>
+  </header>
+
+  <main id="contenido" class="wrap" tabindex="-1">
+    <ol class="timeline" aria-label="Registro semanal">
+
+      <!-- Semana 1 -->
+      <li class="week-card" id="semana-1">
+        <div class="week-marker" aria-hidden="true">1</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 1</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Definiciones y procedimientos)</p>
+            <div class="placeholder-box">
+              [Escribe aquí los temas aprendidos durante esta semana con tus propias palabras.]
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item"><dt>Ejercicio</dt><dd>[Describe el ejercicio realizado.]</dd></div>
+              <div class="lab-item"><dt>Procedimiento</dt><dd>[Describe el procedimiento seguido.]</dd></div>
+              <div class="lab-item"><dt>Resultado</dt><dd>[Describe el resultado obtenido.]</dd></div>
+              <div class="lab-item"><dt>Observaciones</dt><dd>[Anota observaciones relevantes.]</dd></div>
+              <div class="lab-item"><dt>Evidencia</dt><dd>[Enlace, archivo o descripción de la evidencia.]</dd></div>
+              <div class="lab-item"><dt>Captura</dt><dd>[Inserta aquí una captura de pantalla cuando la tengas.]</dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+<pre><code>// Pega aquí el código relevante de la práctica
+console.log("Laboratorio Semana 1 listo");</code></pre>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="placeholder-box">
+              [Escribe aquí qué aprendiste, cómo aprendiste, qué dificultad encontraste y cómo la solucionaste.]
+            </div>
+          </section>
+        </article>
+      </li>
+
+      <!-- Semana 2 -->
+      <li class="week-card" id="semana-2">
+        <div class="week-marker" aria-hidden="true">2</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 2</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Definiciones y procedimientos)</p>
+            <div class="placeholder-box">
+              [Escribe aquí los temas aprendidos durante esta semana con tus propias palabras.]
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item"><dt>Ejercicio</dt><dd>[Describe el ejercicio realizado.]</dd></div>
+              <div class="lab-item"><dt>Procedimiento</dt><dd>[Describe el procedimiento seguido.]</dd></div>
+              <div class="lab-item"><dt>Resultado</dt><dd>[Describe el resultado obtenido.]</dd></div>
+              <div class="lab-item"><dt>Observaciones</dt><dd>[Anota observaciones relevantes.]</dd></div>
+              <div class="lab-item"><dt>Evidencia</dt><dd>[Enlace, archivo o descripción de la evidencia.]</dd></div>
+              <div class="lab-item"><dt>Captura</dt><dd>[Inserta aquí una captura de pantalla cuando la tengas.]</dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+<pre><code>// Pega aquí el código relevante de la práctica</code></pre>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="placeholder-box">
+              [Escribe aquí qué aprendiste, cómo aprendiste, qué dificultad encontraste y cómo la solucionaste.]
+            </div>
+          </section>
+        </article>
+      </li>
+
+      <!-- Semana 3 -->
+      <li class="week-card" id="semana-3">
+        <div class="week-marker" aria-hidden="true">3</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 3</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Definiciones y procedimientos)</p>
+            <div class="placeholder-box">
+              [Escribe aquí los temas aprendidos durante esta semana con tus propias palabras.]
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item"><dt>Ejercicio</dt><dd>[Describe el ejercicio realizado.]</dd></div>
+              <div class="lab-item"><dt>Procedimiento</dt><dd>[Describe el procedimiento seguido.]</dd></div>
+              <div class="lab-item"><dt>Resultado</dt><dd>[Describe el resultado obtenido.]</dd></div>
+              <div class="lab-item"><dt>Observaciones</dt><dd>[Anota observaciones relevantes.]</dd></div>
+              <div class="lab-item"><dt>Evidencia</dt><dd>[Enlace, archivo o descripción de la evidencia.]</dd></div>
+              <div class="lab-item"><dt>Captura</dt><dd>[Inserta aquí una captura de pantalla cuando la tengas.]</dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+<pre><code>// Pega aquí el código relevante de la práctica</code></pre>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="placeholder-box">
+              [Escribe aquí qué aprendiste, cómo aprendiste, qué dificultad encontraste y cómo la solucionaste.]
+            </div>
+          </section>
+        </article>
+      </li>
+
+    </ol>
+
+    <div class="add-note text-center">
+      💡 Para agregar la Semana 4, 5 o 6, duplica un bloque <code>&lt;li class="week-card"&gt;</code> y cambia el número.
+    </div>
+  </main>
+
+  <footer class="site-footer text-center">
+    <div class="wrap">
+      <p><strong>Steven Luis Huamanlazo Pariona</strong> · Ingeniería de Sistemas UNCP</p>
+      <small>© 2026 Huancayo, Perú</small>
+    </div>
+  </footer>
+
+  <script src="script-cuaderno.js"></script>
+  <script src="cuaderno-extras.js"></script>
+  <script src="cuaderno-semanas.js"></script>
+</body>
+</html>
