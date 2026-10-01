@@ -327,7 +327,7 @@ kbd {
 .reflect-block h4 { font-family: var(--font-serif); font-size: 0.98rem; margin-bottom: 0.25rem; color: var(--accent-amber); }
 
 /* Galería de capturas */
-.shots {
+.lab-item .shots, .shots {
   list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem; counter-reset: shot; padding: 0 !important; margin-top: 0.4rem;
 }
