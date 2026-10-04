@@ -44,6 +44,12 @@
                   <p>En la práctica de Desarrollo de Aplicaciones Web aprendí a trabajar en equipo con Git: el líder crea el repositorio y una rama por integrante con sus apellidos, cada quien trabaja en la suya y al final se hace el <em>merge</em> a <code>main</code>. Con HTML y CSS puro practiqué la etiqueta flotante de un campo de texto con <code>:focus</code> y <code>:valid</code>, y el arrastrar y soltar un archivo con los eventos <code>dragover</code>, <code>dragleave</code> y <code>drop</code>.</p>
                 </div>
               </details>
+              <details class="topic">
+                <summary>HTML semántico, accesibilidad y diseño responsivo</summary>
+                <div class="topic-body">
+                  <p>Aprendí que usar las etiquetas semánticas (<code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>footer</code>) ayuda tanto a los lectores de pantalla como al SEO, igual que el atributo <code>lang</code>, la <em>meta description</em> y el texto alternativo de las imágenes. Para el diseño usé <code>clamp()</code> y <code>calc()</code> en la tipografía fluida, Grid para la estructura de la página y Flexbox para las tarjetas. Las <strong>media queries</strong> responden al ancho de la pantalla, mientras que las <strong>container queries</strong> responden al ancho del contenedor. Y para comprobar la calidad usé el validador <strong>W3C</strong> (sintaxis), <strong>WAVE</strong> (accesibilidad) y <strong>Lighthouse</strong> (rendimiento, accesibilidad, buenas prácticas y SEO).</p>
+                </div>
+              </details>
             </div>
           </section>
 
@@ -53,6 +59,7 @@
               <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
                 <p><strong>Ejercicio 1:</strong> Práctica Calificada 1 del curso Desarrollo de Aplicaciones Web, en equipo de 4 personas, con HTML y CSS puro y repositorio en GitHub con una rama por integrante. Mi parte fue <code>page01.html</code>: una ventana con 4 iconos SVG que contiene un formulario con 3 campos de texto con etiqueta animada, 1 checkbox, 2 botones y un campo de imagen de 50 px de alto que responde a arrastrar y soltar y muestra la ruta del archivo.</p>
                 <p><strong>Ejercicio 2:</strong> Guía Práctica de la Semana 2 del curso Metodología de Desarrollo de Software (IS055B): elicitación y análisis de requerimientos para el caso "MediSalud", un sistema de gestión de citas médicas.</p>
+                <p><strong>Ejercicio 3:</strong> Práctica de la Semana 02 del curso Desarrollo de Aplicaciones Web, en pareja (repositorio <code>PracticaSemana02</code>). Parte 1: una página con HTML5 semántico, tipografía fluida, layout híbrido con Grid y Flexbox, y diseño responsivo. Parte 2: una galería responsiva de proyectos técnicos. Ambas se validaron con W3C, WAVE y Lighthouse.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
                 <h4>Ejercicio 1</h4>
@@ -72,6 +79,18 @@
                   <li><strong>Parte 3:</strong> redacté 8 requerimientos funcionales con verbo de acción, prioridad y stakeholder.</li>
                   <li><strong>Parte 4:</strong> redacté 6 requerimientos no funcionales con categoría, métrica y valor esperado.</li>
                   <li><strong>Parte 5:</strong> construí la matriz de elicitación con técnica, stakeholder, prioridad y estado de cada requerimiento.</li>
+                </ol>
+                <h4>Ejercicio 3</h4>
+                <ol>
+                  <li>Hicimos un boceto del layout a mano (encabezado, menú, contenido y pie).</li>
+                  <li><strong>Parte 1, estructura:</strong> HTML5 semántico (<code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>footer</code>), <code>lang</code>, <code>meta description</code> y un enlace para saltar al contenido.</li>
+                  <li><strong>Tipografía fluida:</strong> variables CSS con <code>clamp()</code> y <code>calc()</code>.</li>
+                  <li><strong>Layout híbrido:</strong> Grid para la estructura general y Flexbox para las tarjetas.</li>
+                  <li><strong>Responsivo:</strong> media query para pantallas de hasta 480 px y container query para que las tarjetas se acomoden según el ancho de su contenedor.</li>
+                  <li><strong>Validación de la Parte 1:</strong> el validador W3C dio 2 advertencias; las corregí quitando el <code>role="navigation"</code> redundante del <code>nav</code> y agregando un <code>h2</code> a la sección de tarjetas. Luego pasé WAVE y Lighthouse.</li>
+                  <li><strong>Parte 2:</strong> galería de 6 proyectos en 3 categorías (Hardware, Software e Inteligencia artificial) con tarjetas de distinta altura en Flexbox, sin JavaScript, imágenes con <code>width</code>, <code>height</code> y <code>loading="lazy"</code>, tema claro y oscuro con <code>prefers-color-scheme</code>.</li>
+                  <li>En WAVE la primera ejecución dio 4 alertas por texto alternativo largo; se acortaron los textos y la segunda ejecución quedó en 0 alertas.</li>
+                  <li>Documenté todo en <code>DEBUG_LOG.md</code> de cada parte y pasé Lighthouse en móvil emulado.</li>
                 </ol>
               </dd></div>
               <div class="lab-item span-full"><dt>Resultado</dt><dd>
@@ -97,55 +116,99 @@
                   <li><strong>RNF005</strong> · Capacidad: Hasta 1,000 usuarios concurrentes <em>(Media)</em></li>
                   <li><strong>RNF006</strong> · Portabilidad: Chrome, Edge, Safari y Firefox sin extensiones <em>(Baja)</em></li>
                 </ul>
+                <h4>Ejercicio 3: resultados de validación</h4>
+                <ul>
+                  <li><strong>Parte 1:</strong> W3C con 0 errores y 0 advertencias (tras corregir 2), WAVE con 0 errores, 0 contrastes fallidos y 0 alertas (AIM 10/10), y Lighthouse con 100 en las 4 categorías.</li>
+                  <li><strong>Parte 2:</strong> WAVE pasó de 4 alertas a 0 (AIM 10/10, 21 elementos estructurales). Lighthouse: Accesibilidad 100, Buenas prácticas 100, SEO 100 y Rendimiento 88.</li>
+                  <li>Se cumple el requisito de la guía: 90 o más en Accesibilidad y SEO, 0 errores de contraste y 0 errores de estructura.</li>
+                </ul>
               </dd></div>
               <div class="lab-item span-full"><dt>Observaciones</dt><dd>
                 <p>Al soltar la imagen, el navegador solo muestra la ruta como <code>C:\fakepath\nombre.png</code> por seguridad, y mi primera versión no conservaba el archivo. Lo resolví guardándolo en el <code>input</code> oculto con <code>DataTransfer</code>, y mostrando el valor que expone el navegador. Trabajar con una rama por persona permite que cada uno avance sin tocar los archivos de los demás, y el líder une todo al final con el merge.</p>
                 <p>En la guía de elicitación noté que escribir requerimientos medibles obliga a pensar en cómo se van a verificar, y que la matriz ayuda a rastrear quién pidió cada requerimiento.</p>
+                <p>En la Práctica Semana 02 trabajamos en pareja: la maquetación en HTML y CSS la hizo mi compañero y yo documenté las validaciones (<code>DEBUG_LOG.md</code> de las dos partes) y aporté capturas e imágenes de la galería. Aprendí que una advertencia del validador no es un error de sintaxis, pero igual conviene corregirla. En la Parte 2 el Rendimiento quedó en 88: una mejora pendiente es optimizar el peso de las imágenes (la de aprendizaje mide 2560 × 1280 px).</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Evidencia</dt><dd>
                 <ul>
                   <li>Repositorio GitHub de la práctica: <a href="https://github.com/E5gar/PracticaCalificada01" target="_blank" rel="noopener">github.com/E5gar/PracticaCalificada01</a> (mi rama: <code>Huamanlazo-Pariona</code>)</li>
                   <li>Guía resuelta (PDF): <a href="assets/Sem02/practica02_elicitacion_requerimientos.pdf" target="_blank" rel="noopener">Elicitación y análisis de requerimientos, MediSalud</a></li>
+                  <li>Repositorio de la Práctica Semana 02: <a href="https://github.com/E5gar/PracticaSemana02" target="_blank" rel="noopener">github.com/E5gar/PracticaSemana02</a> (mi rama: <code>Huamanlazo-Pariona</code>)</li>
                   <li>Archivos de evidencia: carpeta <code>assets/Sem02/</code></li>
                 </ul>
               </dd></div>
               <div class="lab-item span-full"><dt>Captura</dt><dd>
                 <ol class="shots" aria-label="Capturas de la Semana 2">
                   <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem02/s2_01_git_terminal.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_01_git_terminal.png" alt="Terminal de VS Code: git pull origin main para traer el proyecto integrado y git branch con las ramas Huamanlazo-Pariona y main." loading="lazy" /></a>
-                    <figcaption>Terminal de VS Code: git pull origin main para traer el proyecto integrado y git branch con las ramas Huamanlazo-Pariona y main.</figcaption>
+                    <a class="shot-link" href="assets/Sem02/s2_01_git_terminal.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_01_git_terminal.png" alt="Ejercicio 1: Terminal de VS Code: git pull origin main para traer el proyecto integrado y git branch con las ramas Huamanlazo-Pariona y main." loading="lazy" /></a>
+                    <figcaption>Ejercicio 1: Terminal de VS Code: git pull origin main para traer el proyecto integrado y git branch con las ramas Huamanlazo-Pariona y main.</figcaption>
                   </figure></li>
                   <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem02/s2_02_page01_formulario.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_02_page01_formulario.png" alt="page01 (mi parte): ventana con 4 iconos SVG, 3 campos, campo de imagen con drag and drop, checkbox y 2 botones." loading="lazy" /></a>
-                    <figcaption>page01 (mi parte): ventana con 4 iconos SVG, 3 campos, campo de imagen con drag and drop, checkbox y 2 botones.</figcaption>
+                    <a class="shot-link" href="assets/Sem02/s2_02_page01_formulario.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_02_page01_formulario.png" alt="Ejercicio 1: page01 (mi parte): ventana con 4 iconos SVG, 3 campos, campo de imagen con drag and drop, checkbox y 2 botones." loading="lazy" /></a>
+                    <figcaption>Ejercicio 1: page01 (mi parte): ventana con 4 iconos SVG, 3 campos, campo de imagen con drag and drop, checkbox y 2 botones.</figcaption>
                   </figure></li>
                   <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem02/s2_03_page02_wizard_color.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_03_page02_wizard_color.png" alt="page02 (equipo): ventana con radio buttons y pestañas, y card con selector de color RGB." loading="lazy" /></a>
-                    <figcaption>page02 (equipo): ventana con radio buttons y pestañas, y card con selector de color RGB.</figcaption>
+                    <a class="shot-link" href="assets/Sem02/s2_03_page02_wizard_color.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_03_page02_wizard_color.png" alt="Ejercicio 1: page02 (equipo): ventana con radio buttons y pestañas, y card con selector de color RGB." loading="lazy" /></a>
+                    <figcaption>Ejercicio 1: page02 (equipo): ventana con radio buttons y pestañas, y card con selector de color RGB.</figcaption>
                   </figure></li>
                   <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem02/s2_04_page03_tienda.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_04_page03_tienda.png" alt="page03 (equipo): página de tienda de calzado con diseño responsivo." loading="lazy" /></a>
-                    <figcaption>page03 (equipo): página de tienda de calzado con diseño responsivo.</figcaption>
+                    <a class="shot-link" href="assets/Sem02/s2_04_page03_tienda.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_04_page03_tienda.png" alt="Ejercicio 1: page03 (equipo): página de tienda de calzado con diseño responsivo." loading="lazy" /></a>
+                    <figcaption>Ejercicio 1: page03 (equipo): página de tienda de calzado con diseño responsivo.</figcaption>
                   </figure></li>
                   <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem02/s2_05_elicitacion_stakeholders.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_05_elicitacion_stakeholders.jpg" alt="Guía de Metodología: Parte 1, identificación de stakeholders del sistema MediSalud." loading="lazy" /></a>
-                    <figcaption>Guía de Metodología: Parte 1, identificación de stakeholders del sistema MediSalud.</figcaption>
+                    <a class="shot-link" href="assets/Sem02/s2_05_elicitacion_stakeholders.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_05_elicitacion_stakeholders.jpg" alt="Ejercicio 2: Guía de Metodología: Parte 1, identificación de stakeholders del sistema MediSalud." loading="lazy" /></a>
+                    <figcaption>Ejercicio 2: Guía de Metodología: Parte 1, identificación de stakeholders del sistema MediSalud.</figcaption>
                   </figure></li>
                   <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem02/s2_06_elicitacion_tecnicas_rf.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_06_elicitacion_tecnicas_rf.jpg" alt="Parte 2, técnicas de elicitación por stakeholder, y Parte 3, requerimientos funcionales RF-001 a RF-004." loading="lazy" /></a>
-                    <figcaption>Parte 2, técnicas de elicitación por stakeholder, y Parte 3, requerimientos funcionales RF-001 a RF-004.</figcaption>
+                    <a class="shot-link" href="assets/Sem02/s2_06_elicitacion_tecnicas_rf.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_06_elicitacion_tecnicas_rf.jpg" alt="Ejercicio 2: Parte 2, técnicas de elicitación por stakeholder, y Parte 3, requerimientos funcionales RF-001 a RF-004." loading="lazy" /></a>
+                    <figcaption>Ejercicio 2: Parte 2, técnicas de elicitación por stakeholder, y Parte 3, requerimientos funcionales RF-001 a RF-004.</figcaption>
                   </figure></li>
                   <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem02/s2_07_elicitacion_rf_rnf.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_07_elicitacion_rf_rnf.jpg" alt="Requerimientos funcionales RF-005 a RF-008 y requerimientos no funcionales RNF001 a RNF003." loading="lazy" /></a>
-                    <figcaption>Requerimientos funcionales RF-005 a RF-008 y requerimientos no funcionales RNF001 a RNF003.</figcaption>
+                    <a class="shot-link" href="assets/Sem02/s2_07_elicitacion_rf_rnf.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_07_elicitacion_rf_rnf.jpg" alt="Ejercicio 2: Requerimientos funcionales RF-005 a RF-008 y requerimientos no funcionales RNF001 a RNF003." loading="lazy" /></a>
+                    <figcaption>Ejercicio 2: Requerimientos funcionales RF-005 a RF-008 y requerimientos no funcionales RNF001 a RNF003.</figcaption>
                   </figure></li>
                   <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem02/s2_08_elicitacion_rnf_matriz.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_08_elicitacion_rnf_matriz.jpg" alt="Requerimientos no funcionales RNF003 a RNF006 e inicio de la matriz de elicitación." loading="lazy" /></a>
-                    <figcaption>Requerimientos no funcionales RNF003 a RNF006 e inicio de la matriz de elicitación.</figcaption>
+                    <a class="shot-link" href="assets/Sem02/s2_08_elicitacion_rnf_matriz.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_08_elicitacion_rnf_matriz.jpg" alt="Ejercicio 2: Requerimientos no funcionales RNF003 a RNF006 e inicio de la matriz de elicitación." loading="lazy" /></a>
+                    <figcaption>Ejercicio 2: Requerimientos no funcionales RNF003 a RNF006 e inicio de la matriz de elicitación.</figcaption>
                   </figure></li>
                   <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem02/s2_09_elicitacion_matriz.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_09_elicitacion_matriz.jpg" alt="Matriz de elicitación completa con técnica, stakeholder, prioridad y estado." loading="lazy" /></a>
-                    <figcaption>Matriz de elicitación completa con técnica, stakeholder, prioridad y estado.</figcaption>
+                    <a class="shot-link" href="assets/Sem02/s2_09_elicitacion_matriz.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_09_elicitacion_matriz.jpg" alt="Ejercicio 2: Matriz de elicitación completa con técnica, stakeholder, prioridad y estado." loading="lazy" /></a>
+                    <figcaption>Ejercicio 2: Matriz de elicitación completa con técnica, stakeholder, prioridad y estado.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_10_p3_boceto_layout.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_10_p3_boceto_layout.jpg" alt="Ejercicio 3: boceto del layout dibujado a mano antes de maquetar." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3: boceto del layout dibujado a mano antes de maquetar.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_11_p3_parte1_lighthouse.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_11_p3_parte1_lighthouse.png" alt="Ejercicio 3, Parte 1: página con Lighthouse en 100 en las 4 categorías." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3, Parte 1: página con Lighthouse en 100 en las 4 categorías.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_12_p3_parte1_wave.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_12_p3_parte1_wave.png" alt="Ejercicio 3, Parte 1: WAVE con 0 errores, 0 contrastes fallidos y AIM 10/10." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3, Parte 1: WAVE con 0 errores, 0 contrastes fallidos y AIM 10/10.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_13_p3_parte1_w3c_advertencias.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_13_p3_parte1_w3c_advertencias.png" alt="Ejercicio 3, Parte 1: validador W3C con 2 advertencias (role redundante en nav y sección sin encabezado)." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3, Parte 1: validador W3C con 2 advertencias (role redundante en nav y sección sin encabezado).</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_14_p3_parte1_w3c_correcto.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_14_p3_parte1_w3c_correcto.png" alt="Ejercicio 3, Parte 1: validador W3C sin errores ni advertencias tras corregir." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3, Parte 1: validador W3C sin errores ni advertencias tras corregir.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_15_p3_parte1_pagina_final.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_15_p3_parte1_pagina_final.png" alt="Ejercicio 3, Parte 1: página final con las 5 tarjetas de los pasos." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3, Parte 1: página final con las 5 tarjetas de los pasos.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_16_p3_parte2_wave_antes.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_16_p3_parte2_wave_antes.png" alt="Ejercicio 3, Parte 2: WAVE antes, con 4 alertas por texto alternativo largo." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3, Parte 2: WAVE antes, con 4 alertas por texto alternativo largo.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_17_p3_parte2_wave_despues.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_17_p3_parte2_wave_despues.png" alt="Ejercicio 3, Parte 2: WAVE después, con 0 alertas y AIM 10/10." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3, Parte 2: WAVE después, con 0 alertas y AIM 10/10.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_18_p3_parte2_lighthouse.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_18_p3_parte2_lighthouse.png" alt="Ejercicio 3, Parte 2: Lighthouse con Accesibilidad, Buenas prácticas y SEO en 100 y Rendimiento en 88." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3, Parte 2: Lighthouse con Accesibilidad, Buenas prácticas y SEO en 100 y Rendimiento en 88.</figcaption>
                   </figure></li>
                 </ol>
               </dd></div>
@@ -313,6 +376,136 @@
   stroke: currentColor;
   stroke-width: 2;
 }</code></pre>
+                  <h4>Ejercicio 3</h4>
+                  <p class="file-name">parte1/index.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="description" content="Practica de laboratorio N2 del curso Desarrollo de Aplicaciones Web sobre HTML5, CSS3, diseño responsivo y SEO."&gt;
+  &lt;title&gt;Practica Semana 02 - Desarrollo Web Frontend&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;a href="#contenido" class="skip-link"&gt;Saltar al contenido&lt;/a&gt;
+
+  &lt;header data-category="encabezado"&gt;
+    &lt;h1&gt;Practica Semana 02: HTML5, CSS3 y Diseño Responsivo&lt;/h1&gt;
+    &lt;nav aria-label="Menu principal"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#contenido"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#tarjetas"&gt;Actividades&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#pie"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main id="contenido" data-source="xml-simulado" data-category="practica-semana-02"&gt;
+
+    &lt;section class="hero"&gt;
+      &lt;h2&gt;Objetivo de la practica&lt;/h2&gt;
+      &lt;p&gt;Crear una pagina con estructura HTML5 semantica, layout combinando Grid y Flexbox,
+        tipografia que se adapte al tamaño de pantalla, y validar todo con Lighthouse y WAVE.&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section id="tarjetas"&gt;
+      &lt;h2 class="sr-only"&gt;Actividades de la práctica&lt;/h2&gt;
+      &lt;article class="card" data-category="html"&gt;
+        &lt;h3&gt;Paso 1: Estructura HTML&lt;/h3&gt;
+        &lt;p&gt;Etiquetas semanticas y separacion entre contenido y estilo.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="card" data-category="css"&gt;
+        &lt;h3&gt;Paso 2: Tipografia fluida&lt;/h3&gt;
+        &lt;p&gt;Uso de variables CSS, clamp() y calc().&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="card" data-category="layout"&gt;
+        &lt;h3&gt;Paso 3: Layout hibrido&lt;/h3&gt;
+        &lt;p&gt;Grid para la estructura general y Flexbox para las tarjetas.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="card" data-category="responsivo"&gt;
+        &lt;h3&gt;Paso 4: Responsivo&lt;/h3&gt;
+        &lt;p&gt;Media queries y container queries.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="card" data-category="validacion"&gt;
+        &lt;h3&gt;Paso 5: Validacion&lt;/h3&gt;
+        &lt;p&gt;Correccion de errores con Lighthouse, WAVE y W3C.&lt;/p&gt;
+      &lt;/article&gt;
+    &lt;/section&gt;
+
+  &lt;/main&gt;
+
+  &lt;footer id="pie"&gt;
+    &lt;p&gt;&amp;copy; 2026 UNCP - Facultad de Ingenieria de Sistemas&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  <p class="file-name">parte1/styles.css</p>
+<pre><code>/* parte1/styles.css (extracto) */
+/* Variables generales del sitio */
+:root {
+  --color-primario: #1f3a5f;
+  --color-secundario: #f2a900;
+  --color-fondo: #ffffff;
+  --color-texto: #1a1a1a;
+
+  /* Tipografia fluida: crece entre 320px y 1200px de pantalla */
+  --fs-h1: clamp(1.5rem, 4vw, 2.5rem);
+  --fs-h2: clamp(1.25rem, 3vw, 1.85rem);
+  --fs-base: clamp(1rem, 1.5vw, 1.125rem);
+
+  --espacio: 1rem;
+  --espacio-lg: calc(var(--espacio) * 2);
+}
+
+/* Layout general con Grid */
+main {
+  display: grid;
+  grid-template-areas:
+    "hero"
+    "tarjetas";
+  gap: var(--espacio-lg);
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-block: var(--espacio-lg);
+}
+
+.hero { grid-area: hero; }
+
+/* Tarjetas con Flexbox */
+#tarjetas {
+  grid-area: tarjetas;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio);
+  container-type: inline-size;
+}
+
+.card {
+  background: #f5f7fa;
+  border: 1px solid #dce3ea;
+  border-radius: 8px;
+  flex: 1 1 250px;
+}
+
+/* Media query: pantallas pequeñas */
+@media (max-width: 480px) {
+  header { text-align: center; }
+  header nav ul { justify-content: center; flex-wrap: wrap; }
+}
+
+/* Container query: las tarjetas se acomodan según el ancho de su contenedor */
+@container (min-width: 600px) {
+  .card {
+    flex: 1 1 45%;
+  }
+}</code></pre>
                 </dd>
               </div>
             </dl>
@@ -321,9 +514,9 @@
           <section class="section-block">
             <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
             <div class="entry">
-              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a distinguir lo que el sistema hace (requerimientos funcionales) de cómo debe comportarse (no funcionales), a elegir la técnica de elicitación que mejor encaja con cada stakeholder y a documentar todo en una matriz para poder rastrearlo. En la parte práctica de web aprendí a trabajar con ramas por integrante y a hacer que un formulario responda a animaciones y a arrastrar y soltar con HTML, CSS y un poco de JavaScript.</p></div>
-              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>Con la teoría de la guía (definiciones, tablas de ejemplo y plantillas) y aplicándola al caso MediSalud, parte por parte, hasta completar la matriz. En la práctica de web aprendí probando en Live Server, viendo cómo cambiaba el formulario y corrigiendo hasta que se comportara como pedía el enunciado.</p></div>
-              <div class="reflect-block"><h4>Dificultad y solución</h4><p>Mi dificultad fue que el campo de imagen mostraba la ruta pero perdía el archivo. Entendí que arrastrar un archivo no lo guarda por sí solo en el formulario, así que lo asigné a un <code>input</code> oculto con <code>DataTransfer</code>. Eso me ayudó a entender mejor cómo maneja el navegador los archivos.</p></div>
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a distinguir lo que el sistema hace (requerimientos funcionales) de cómo debe comportarse (no funcionales), a elegir la técnica de elicitación que mejor encaja con cada stakeholder y a documentar todo en una matriz para poder rastrearlo. En la parte práctica de web aprendí a trabajar con ramas por integrante, a hacer que un formulario responda a animaciones y a arrastrar y soltar, y a maquetar páginas responsivas y accesibles que pasan la validación del W3C, WAVE y Lighthouse.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>Con la teoría de la guía (definiciones, tablas de ejemplo y plantillas) y aplicándola al caso MediSalud, parte por parte, hasta completar la matriz. En la práctica de web aprendí probando en Live Server, viendo cómo cambiaba el formulario y corrigiendo hasta que se comportara como pedía el enunciado. En la Práctica Semana 02 aprendí validando: leía cada reporte, corregía lo que señalaba y volvía a medir.</p></div>
+              <div class="reflect-block"><h4>Dificultad y solución</h4><p>Mi dificultad fue que el campo de imagen mostraba la ruta pero perdía el archivo. Entendí que arrastrar un archivo no lo guarda por sí solo en el formulario, así que lo asigné a un <code>input</code> oculto con <code>DataTransfer</code>. Eso me ayudó a entender mejor cómo maneja el navegador los archivos. En la Práctica Semana 02 los validadores me mostraron advertencias que no eran errores (un <code>role</code> redundante y una sección sin encabezado) y alertas de WAVE por textos alternativos muy largos; aprendí que pasar la validación exige corregir también esos detalles.</p></div>
             </div>
           </section>
         </article>
