@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="extras.css" />
   <link rel="stylesheet" href="tema.css" />
   <link rel="stylesheet" href="tech.css" />
+  <link rel="stylesheet" href="componentes.css" />
   <script>
     /* Aplica el tema guardado antes de pintar para evitar parpadeo */
     (function () {
@@ -44,8 +45,9 @@
       <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
         <a href="#inicio" class="active">Inicio</a>
         <a href="#sobre-mi">Sobre mí</a>
-        <a href="#servicios">Servicios</a>
+        <a href="#trayectoria">Trayectoria</a>
         <a href="#proyectos">Trabajos</a>
+        <a href="#cuaderno">Cuaderno</a>
         <a href="#reflexion">Reflexión</a>
         <a href="#bibliografia">Bibliografía</a>
         <a href="#contacto">Contacto</a>
@@ -96,6 +98,12 @@
           <p class="hero-desc">
             Ayudo a marcas, proyectos y empresas a transformar ideas en productos digitales hermosos, intuitivos y de alto rendimiento.
           </p>
+
+          <ul class="hero-meta" aria-label="Datos breves">
+            <li><span aria-hidden="true">🎓</span> UNCP · Ingeniería de Sistemas · IX ciclo</li>
+            <li><span aria-hidden="true">📍</span> Huancayo, Perú</li>
+            <li><span aria-hidden="true">📓</span> Cuaderno: 5 de 16 semanas</li>
+          </ul>
 
           <div class="hero-cta-group">
             <a href="#proyectos" class="btn btn-black">Ver mi trabajo →</a>
@@ -218,8 +226,8 @@
               usabilidad para resolver problemas reales.
             </p>
             <div class="bento-cta-group">
-              <a href="https://www.linkedin.com/in/steven-huamanlazo/" target="_blank" rel="noopener" class="btn btn-black-pill">↓ Ver LinkedIn / CV</a>
-              <a href="#servicios" class="link-secondary-btn">Ver habilidades ↴</a>
+              <a href="https://www.linkedin.com/in/steven-huamanlazo/" target="_blank" rel="noopener" class="btn btn-black-pill">Ver LinkedIn ↗</a>
+              <a href="#trayectoria" class="link-secondary-btn">Ver mi trayectoria ↴</a>
             </div>
           </div>
 
@@ -244,6 +252,103 @@
                 <div class="stat-num">IX</div>
                 <div class="stat-label">Ciclo UNCP</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAYECTORIA: CV COMPACTO -->
+    <section class="section cv-section" id="trayectoria">
+      <div class="wrap text-center">
+        <span class="section-tag">— TRAYECTORIA —</span>
+        <h2 class="section-title">Mi CV en <em>un vistazo</em> <span class="spark" aria-hidden="true">✦</span></h2>
+
+        <div class="cv-card reveal">
+          <aside class="cv-side" aria-label="Datos personales">
+            <div class="cv-id">
+              <img src="assets/foto.jpg" alt="" width="56" height="56" />
+              <div><strong>Steven Huamanlazo</strong><span>Estudiante de Ingeniería de Sistemas</span></div>
+            </div>
+            <dl class="cv-facts">
+              <div><dt>Universidad</dt><dd>UNCP · Huancayo</dd></div>
+              <div><dt>Ciclo</dt><dd>IX · 2026-II</dd></div>
+              <div><dt>Enfoque</dt><dd>Frontend, UX/UI y accesibilidad</dd></div>
+              <div><dt>Correo</dt><dd><a href="mailto:e_2021101343L@uncp.edu.pe">e_2021101343L@uncp.edu.pe</a></dd></div>
+            </dl>
+            <div class="cv-actions">
+              <a class="btn btn-black-pill" id="cv-download" href="assets/CV-Steven-Huamanlazo.pdf" download hidden>↓ Descargar CV</a>
+              <a class="btn btn-outline-circle" href="https://www.linkedin.com/in/steven-huamanlazo/" target="_blank" rel="noopener">LinkedIn ↗</a>
+              <a class="btn btn-outline-circle" href="https://github.com/stevenhuamanlazo" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </aside>
+
+          <div class="cv-main" data-tabs>
+            <div class="cv-tabs" role="tablist" aria-label="Secciones del CV">
+              <button class="cv-tab" role="tab" id="cvt-1" aria-controls="cvp-1" aria-selected="true">Formación</button>
+              <button class="cv-tab" role="tab" id="cvt-2" aria-controls="cvp-2" aria-selected="false" tabindex="-1">Proyectos</button>
+              <button class="cv-tab" role="tab" id="cvt-3" aria-controls="cvp-3" aria-selected="false" tabindex="-1">Habilidades</button>
+              <button class="cv-tab" role="tab" id="cvt-4" aria-controls="cvp-4" aria-selected="false" tabindex="-1">En el curso</button>
+            </div>
+
+            <div class="cv-panel" role="tabpanel" id="cvp-1" aria-labelledby="cvt-1" tabindex="0">
+              <ul class="cv-list">
+                <li class="cv-item" style="--c: var(--pl-a)">
+                  <span class="cv-ico" aria-hidden="true">🎓</span>
+                  <div><h3>Ingeniería de Sistemas</h3><p>Universidad Nacional del Centro del Perú · Facultad de Ingeniería de Sistemas</p></div>
+                  <span class="cv-when">IX CICLO · EN CURSO</span>
+                </li>
+                <li class="cv-item" style="--c: var(--pl-b)">
+                  <span class="cv-ico" aria-hidden="true">💻</span>
+                  <div><h3>Desarrollo de Aplicaciones Web (IS093A)</h3><p>Portafolio electrónico con 5 semanas documentadas: prácticas, código y reflexión.</p></div>
+                  <a class="cv-go" href="cuaderno.html">Ver cuaderno</a>
+                </li>
+              </ul>
+              <div class="cv-areas">
+                <small>Énfasis de la carrera</small>
+                <div class="cv-chips" style="--c: var(--pl-d)">
+                  <span>Ingeniería de software</span><span>Bases de datos</span><span>Computación en la nube</span><span>Inteligencia artificial</span><span>Gestión documental</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cv-panel" role="tabpanel" id="cvp-2" aria-labelledby="cvt-2" tabindex="0" hidden>
+              <ul class="cv-list">
+                <li class="cv-item" style="--c: var(--pl-c)">
+                  <span class="cv-ico" aria-hidden="true">🥑</span>
+                  <div><h3>Mikunaigen IA</h3><p>Superalimentos y Azure ML · Azure, ML, Web</p></div>
+                  <a class="cv-go" href="https://icy-plant-07513d80f7.azurestaticapps.net/presentacion" target="_blank" rel="noopener">Abrir</a>
+                </li>
+                <li class="cv-item" style="--c: var(--pl-b)">
+                  <span class="cv-ico" aria-hidden="true">🗂️</span>
+                  <div><h3>OFICRI Huancayo</h3><p>Gestión documental pericial PNP · SQL</p></div>
+                  <a class="cv-go" href="#proyectos">Ver</a>
+                </li>
+                <li class="cv-item" style="--c: var(--pl-a)">
+                  <span class="cv-ico" aria-hidden="true">🏥</span>
+                  <div><h3>Hospital Ramiro Prialé</h3><p>Optimización de procesos en emergencias · UX</p></div>
+                  <a class="cv-go" href="#proyectos">Ver</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="cv-panel" role="tabpanel" id="cvp-3" aria-labelledby="cvt-3" tabindex="0" hidden>
+              <div class="cv-skills">
+                <div class="cv-skill-group" style="--c: var(--pl-a)"><h3>Frontend</h3><div class="cv-chips"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Bootstrap 5</span><span>Tailwind CSS</span><span>React (inicial)</span></div></div>
+                <div class="cv-skill-group" style="--c: var(--pl-c)"><h3>Calidad y accesibilidad</h3><div class="cv-chips"><span>WCAG</span><span>WAVE</span><span>Lighthouse</span><span>Validador W3C</span></div></div>
+                <div class="cv-skill-group" style="--c: var(--pl-b)"><h3>Herramientas</h3><div class="cv-chips"><span>Git y GitHub</span><span>VS Code</span><span>Figma</span><span>Canva</span><span>DevTools</span></div></div>
+                <div class="cv-skill-group" style="--c: var(--pl-d)"><h3>Datos y nube</h3><div class="cv-chips"><span>SQL</span><span>Azure</span><span>Canvas API</span><span>Node.js y NPM</span></div></div>
+              </div>
+            </div>
+
+            <div class="cv-panel" role="tabpanel" id="cvp-4" aria-labelledby="cvt-4" tabindex="0" hidden>
+              <ol class="cv-weeks">
+                <li><a href="cuaderno.html#semana-1"><span class="wk">1</span><span><strong>Fundamentos del desarrollo web</strong><small>Petición web, estándares, Git y GitHub, hosting</small></span><span class="ok">✓</span></a></li>
+                <li><a href="cuaderno.html#semana-2"><span class="wk">2</span><span><strong>Requerimientos y HTML5/CSS3</strong><small>Elicitación, página responsiva y validación</small></span><span class="ok">✓</span></a></li>
+                <li><a href="cuaderno.html#semana-3"><span class="wk">3</span><span><strong>Bootstrap y Tailwind</strong><small>Grilla, componentes y formularios</small></span><span class="ok">✓</span></a></li>
+                <li><a href="cuaderno.html#semana-4"><span class="wk">4</span><span><strong>DOM, closures y Canvas</strong><small>Ruleta, sorteo y simulador orbital</small></span><span class="ok">✓</span></a></li>
+                <li><a href="cuaderno.html#semana-5"><span class="wk">5</span><span><strong>React y su entorno</strong><small>Create React App, Vite y Next.js</small></span><span class="ok">✓</span></a></li>
+              </ol>
             </div>
           </div>
         </div>
@@ -297,9 +402,16 @@
             <a href="cuaderno.html" class="link-all">Ver Cuaderno de Campo →</a>
           </div>
 
+          <div class="proj-filters" role="group" aria-label="Filtrar proyectos">
+            <button type="button" class="proj-filter" data-cat="todos" aria-pressed="true">Todos <span></span></button>
+            <button type="button" class="proj-filter" data-cat="clave" aria-pressed="false">Proyectos clave <span></span></button>
+            <button type="button" class="proj-filter" data-cat="curso" aria-pressed="false">Prácticas del curso <span></span></button>
+          </div>
+          <p class="sr-only" id="proj-live" aria-live="polite"></p>
+
           <div class="projects-grid">
-            <article class="project-card">
-              <div class="project-thumb">
+            <article class="project-card" data-cat="clave">
+              <div class="project-thumb"><span class="project-kind">Clave</span>
                 <img src="assets/Mikunaigen.png" alt="Captura del proyecto Mikunaigen IA" loading="lazy" />
               </div>
               <div class="project-details">
@@ -312,8 +424,8 @@
               </div>
             </article>
 
-            <article class="project-card">
-              <div class="project-thumb">
+            <article class="project-card" data-cat="clave">
+              <div class="project-thumb"><span class="project-kind">Clave</span>
                 <img src="assets/Oficri.png" alt="Captura del proyecto OFICRI Huancayo" loading="lazy" />
               </div>
               <div class="project-details">
@@ -326,8 +438,8 @@
               </div>
             </article>
 
-            <article class="project-card">
-              <div class="project-thumb">
+            <article class="project-card" data-cat="clave">
+              <div class="project-thumb"><span class="project-kind">Clave</span>
                 <img src="assets/Hospital-priale.png" alt="Captura del proyecto Hospital Ramiro Prialé" loading="lazy" />
               </div>
               <div class="project-details">
@@ -339,7 +451,79 @@
                 <a href="#contacto" class="project-arrow" aria-label="Consultar sobre Hospital Ramiro Prialé">→</a>
               </div>
             </article>
+
+            <article class="project-card" data-cat="curso">
+              <div class="project-thumb"><span class="project-kind">Curso</span>
+                <img src="assets/Sem04/s4_p2_00_inicio.png" alt="Captura del Simulador Orbital Interactivo" loading="lazy" />
+              </div>
+              <div class="project-details">
+                <div>
+                  <h3>Simulador orbital</h3>
+                  <p>Canvas, closures y delta time · Semana 4</p>
+                  <div class="project-tags"><span>JavaScript</span><span>Canvas</span></div>
+                </div>
+                <a href="https://stevenhuamanlazo.github.io/practica-semana-04-dom-canvas/" target="_blank" rel="noopener" class="project-arrow" aria-label="Abrir el simulador orbital">→</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-cat="curso">
+              <div class="project-thumb"><span class="project-kind">Curso</span>
+                <img src="assets/Sem04/s4_p1_01_inicio.png" alt="Captura del aula virtual con ruleta y sorteo de equipos" loading="lazy" />
+              </div>
+              <div class="project-details">
+                <div>
+                  <h3>Aula virtual</h3>
+                  <p>Ruleta y sorteo de equipos · Semana 4</p>
+                  <div class="project-tags"><span>JavaScript</span><span>Equipo</span></div>
+                </div>
+                <a href="https://e5gar.github.io/PracticaCalificada03/" target="_blank" rel="noopener" class="project-arrow" aria-label="Abrir el aula virtual">→</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-cat="curso">
+              <div class="project-thumb"><span class="project-kind">Curso</span>
+                <img src="assets/Sem03/s3_p3_07_web_desktop.jpg" alt="Captura de la tienda de mascotas Huellitas" loading="lazy" />
+              </div>
+              <div class="project-details">
+                <div>
+                  <h3>Huellitas</h3>
+                  <p>Tienda de mascotas con Bootstrap y Tailwind · Semana 3</p>
+                  <div class="project-tags"><span>Bootstrap</span><span>Tailwind</span></div>
+                </div>
+                <a href="https://e5gar.github.io/grupo-Gago-Huamanlazo-semana3-web-mascotas/" target="_blank" rel="noopener" class="project-arrow" aria-label="Abrir Huellitas">→</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-cat="curso">
+              <div class="project-thumb"><span class="project-kind">Curso</span>
+                <img src="assets/Sem03/s3_p2_04_hero.jpg" alt="Captura de PatitasHogar, página de adopción de perritos" loading="lazy" />
+              </div>
+              <div class="project-details">
+                <div>
+                  <h3>PatitasHogar</h3>
+                  <p>Adopción de perritos con Bootstrap y Tailwind · Semana 3</p>
+                  <div class="project-tags"><span>Bootstrap</span><span>Tailwind</span></div>
+                </div>
+                <a href="https://github.com/stevenhuamanlazo/PRACTICA3-PETSHOP" target="_blank" rel="noopener" class="project-arrow" aria-label="Ver el repositorio de PatitasHogar">→</a>
+              </div>
+            </article>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUADERNO: AVANCE -->
+    <section class="section notebook-section" id="cuaderno">
+      <div class="wrap text-center">
+        <span class="section-tag">— CUADERNO DE LA ASIGNATURA —</span>
+        <h2 class="section-title">Mi avance <em>semana a semana</em> <span class="spark" aria-hidden="true">✦</span></h2>
+        <div class="nb-card reveal">
+          <div class="nb-top">
+            <div class="nb-count"><span id="nb-done">5</span><small id="nb-total">de 16 semanas</small></div>
+            <a href="cuaderno.html" class="btn btn-black">Abrir el cuaderno →</a>
+          </div>
+          <div class="nb-bar" role="progressbar" aria-label="Avance del cuaderno" aria-valuemin="0" aria-valuemax="100" aria-valuenow="31"><i></i></div>
+          <div class="nb-grid" id="nb-grid"></div>
         </div>
       </div>
     </section>
@@ -354,18 +538,29 @@
           <article class="reflect-card reveal">
             <span class="reflect-num" aria-hidden="true">1</span>
             <h3>¿Qué aprendí?</h3>
-            <p>[Escribe aquí los conocimientos y habilidades que desarrollaste en el curso: HTML, CSS, JavaScript, control de versiones, publicación en GitHub, accesibilidad…]</p>
+            <p>Pasé de entender cómo viaja una petición web a construir interfaces con HTML5, CSS3 y JavaScript, usar Bootstrap y Tailwind, manipular el DOM, dibujar en Canvas y crear proyectos con React. También aprendí a comprobar la calidad con el validador W3C, WAVE y Lighthouse, y a trabajar con Git y GitHub usando ramas y pull requests.</p>
           </article>
           <article class="reflect-card reveal">
             <span class="reflect-num" aria-hidden="true">2</span>
             <h3>¿Cómo aprendí?</h3>
-            <p>[Describe tu proceso: práctica en los laboratorios, documentación, pruebas y errores, revisión con compañeros, ajustes del diseño…]</p>
+            <p>Aprendí haciendo: cada semana combiné la teoría con una práctica, probé los cambios en Live Server y documenté el proceso en este cuaderno. Trabajar en equipo con una rama por integrante y comparar resultados, como los tres proyectos React con herramientas distintas, me ayudó a entender qué aporta cada una.</p>
           </article>
           <article class="reflect-card reveal">
             <span class="reflect-num" aria-hidden="true">3</span>
             <h3>Dificultades y cómo las superé</h3>
-            <p>[Cuenta qué te costó más y qué estrategia usaste para resolverlo.]</p>
+            <p>Lo más difícil fue que cada herramienta tiene sus propias reglas. En la Semana 3, Bootstrap y Tailwind competían por la misma propiedad y tuvimos que repartir qué controlaba cada uno. En la Semana 4 entendí que una animación debe depender del tiempo (delta time) y no del número de cuadros.</p>
           </article>
+        </div>
+
+        <div class="reflect-weeks reveal">
+          <h3>Reflexión por semana</h3>
+          <ol>
+            <li><span class="wk">1</span><p><strong>Fundamentos.</strong> Entendí el recorrido de una petición web y por qué importan los estándares, Git y el hosting. <a href="cuaderno.html#semana-1">Leer →</a></p></li>
+            <li><span class="wk">2</span><p><strong>Requerimientos y HTML5.</strong> Aprendí que un requerimiento debe poder medirse y que una página accesible se valida con herramientas. <a href="cuaderno.html#semana-2">Leer →</a></p></li>
+            <li><span class="wk">3</span><p><strong>Frameworks CSS.</strong> Aprendí a combinar Bootstrap y Tailwind sin que se pisen. <a href="cuaderno.html#semana-3">Leer →</a></p></li>
+            <li><span class="wk">4</span><p><strong>DOM y Canvas.</strong> Aprendí a guardar estado con closures y a animar con requestAnimationFrame. <a href="cuaderno.html#semana-4">Leer →</a></p></li>
+            <li><span class="wk">5</span><p><strong>React.</strong> Comprendí la diferencia entre librería y framework y cómo cada herramienta organiza un proyecto. <a href="cuaderno.html#semana-5">Leer →</a></p></li>
+          </ol>
         </div>
 
         <div class="reflect-cta reveal">
@@ -387,7 +582,6 @@
             <ol>
               <li>Sommerville, I. (2011). <cite>Ingeniería de software</cite> (9.ª ed.). Pearson Educación.</li>
               <li>Martin, R. C. (2008). <cite>Clean Code: A Handbook of Agile Software Craftsmanship</cite>. Prentice Hall.</li>
-              <li>[Agrega aquí otro libro de tu curso]</li>
             </ol>
           </div>
 
@@ -396,6 +590,13 @@
             <!-- REEMPLAZA o agrega las URLs que realmente consultaste (no videos) -->
             <ol>
               <li>MDN Web Docs. <a href="https://developer.mozilla.org/es/" target="_blank" rel="noopener">developer.mozilla.org/es</a></li>
+              <li>Bootstrap. Documentación de la versión 5.3. <a href="https://getbootstrap.com/docs/5.3/" target="_blank" rel="noopener">getbootstrap.com/docs/5.3</a></li>
+              <li>Tailwind CSS. Documentación. <a href="https://tailwindcss.com/docs" target="_blank" rel="noopener">tailwindcss.com/docs</a></li>
+              <li>React. Documentación oficial. <a href="https://react.dev/" target="_blank" rel="noopener">react.dev</a></li>
+              <li>Vite. Guía oficial. <a href="https://vite.dev/guide/" target="_blank" rel="noopener">vite.dev/guide</a></li>
+              <li>Next.js. Documentación. <a href="https://nextjs.org/docs" target="_blank" rel="noopener">nextjs.org/docs</a></li>
+              <li>W3C. Servicio de validación de marcado. <a href="https://validator.w3.org/" target="_blank" rel="noopener">validator.w3.org</a></li>
+              <li>WebAIM. WAVE, herramienta de evaluación de accesibilidad. <a href="https://wave.webaim.org/" target="_blank" rel="noopener">wave.webaim.org</a></li>
               <li>W3C. Pautas de Accesibilidad para el Contenido Web (WCAG). <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener">w3.org/WAI/standards-guidelines/wcag</a></li>
               <li>Microsoft Learn. Documentación de Azure. <a href="https://learn.microsoft.com/es-es/azure/" target="_blank" rel="noopener">learn.microsoft.com/es-es/azure</a></li>
             </ol>
@@ -435,8 +636,9 @@
       <nav class="footer-nav" aria-label="Navegación del pie">
         <a href="#inicio">Inicio</a>
         <a href="#sobre-mi">Sobre mí</a>
-        <a href="#servicios">Servicios</a>
+        <a href="#trayectoria">Trayectoria</a>
         <a href="#proyectos">Trabajos</a>
+        <a href="#cuaderno">Cuaderno</a>
         <a href="#reflexion">Reflexión</a>
         <a href="#bibliografia">Bibliografía</a>
         <a href="#contacto">Contacto</a>
@@ -461,5 +663,6 @@
 
   <script src="script.js"></script>
   <script src="extras.js"></script>
+  <script src="componentes.js"></script>
 </body>
 </html>
