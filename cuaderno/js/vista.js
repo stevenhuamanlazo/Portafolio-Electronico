@@ -154,4 +154,77 @@
       select(0, false);
     });
   });
+  /* ---------- 3. Filtro por ejercicio (capturas y código) ---------- */
+  document.querySelectorAll(".subgroups").forEach((wrap) => {
+    const groups = [...wrap.querySelectorAll(":scope > .subgroup")];
+    if (groups.length < 2) return;
+
+    const bar = document.createElement("div");
+    bar.className = "seg";
+    bar.setAttribute("role", "group");
+    bar.setAttribute("aria-label", wrap.dataset.label || "Filtrar por ejercicio");
+
+    const count = (g) => g.querySelectorAll(".shot-card, .code-file").length;
+    const make = (key, text, num, ex) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "seg-btn";
+      b.dataset.key = key;
+      if (ex) b.dataset.ex = ex;
+      b.setAttribute("aria-pressed", "false");
+      b.innerHTML = '<span class="seg-dot" aria-hidden="true"></span>' + text + '<span class="seg-num">' + num + "</span>";
+      bar.appendChild(b);
+      return b;
+    };
+
+    const showAll = wrap.dataset.default === "all";
+    if (showAll) make("all", "Todas", groups.reduce((n, g) => n + count(g), 0), "");
+    groups.forEach((g, i) => make(String(i), g.dataset.short || "Grupo " + (i + 1), count(g), g.dataset.ex));
+
+    const select = (key) => {
+      [...bar.children].forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.key === key)));
+      groups.forEach((g, i) => { g.hidden = !(key === "all" || key === String(i)); });
+    };
+    bar.addEventListener("click", (e) => {
+      const b = e.target.closest(".seg-btn");
+      if (!b) return;
+      select(b.dataset.key);
+      const g = b.dataset.key === "all" ? null : groups[Number(b.dataset.key)];
+      live(g ? g.dataset.label + " seleccionado" : "Mostrando todos los ejercicios");
+    });
+    wrap.parentNode.insertBefore(bar, wrap);
+    select(showAll ? "all" : "0");
+  });
+
+  /* ---------- 4. Código: archivos recortados con "Ver código completo" ---------- */
+  document.querySelectorAll(".code-file").forEach((file) => {
+    const pre = file.querySelector("pre");
+    const name = file.querySelector(".file-name");
+    if (!pre || !name) return;
+    const lines = (pre.textContent.replace(/\n$/, "").match(/\n/g) || []).length + 1;
+
+    const head = document.createElement("div");
+    head.className = "file-head";
+    name.parentNode.insertBefore(head, name);
+    head.appendChild(name);
+    const meta = document.createElement("span");
+    meta.className = "file-meta";
+    meta.textContent = lines + " líneas";
+    head.appendChild(meta);
+
+    if (lines <= 16) return;
+    file.classList.add("is-collapsed");
+    const more = document.createElement("button");
+    more.type = "button";
+    more.className = "code-more";
+    more.setAttribute("aria-expanded", "false");
+    more.textContent = "Ver código completo (" + lines + " líneas)";
+    file.appendChild(more);
+    more.addEventListener("click", () => {
+      const open = file.classList.toggle("is-collapsed") === false;
+      more.setAttribute("aria-expanded", String(open));
+      more.textContent = open ? "Ver menos" : "Ver código completo (" + lines + " líneas)";
+      if (!open) file.scrollIntoView({ block: "nearest", behavior: reduced() ? "auto" : "smooth" });
+    });
+  });
 })();

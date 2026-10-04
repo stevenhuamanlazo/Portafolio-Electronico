@@ -445,24 +445,28 @@
     const lbCap = dlg.querySelector(".lb-cap");
     let current = 0;
     let opener = null;
+    let set = shotLinks; // el visor recorre solo las capturas del mismo ejercicio
 
     const show = (i) => {
-      current = (i + shotLinks.length) % shotLinks.length;
-      const a = shotLinks[current];
+      current = (i + set.length) % set.length;
+      const a = set[current];
       const fig = a.closest("figure");
+      const grp = a.closest(".subgroup");
       const caption = fig && fig.querySelector("figcaption") ? fig.querySelector("figcaption").textContent.trim() : "";
       lbImg.src = a.getAttribute("href");
       lbImg.alt = a.querySelector("img") ? a.querySelector("img").alt : "";
-      lbCap.textContent = (current + 1) + " de " + shotLinks.length + ": " + caption;
+      lbCap.textContent = (grp ? grp.dataset.label + " · " : "") + (current + 1) + " de " + set.length + ": " + caption;
     };
 
-    shotLinks.forEach((a, i) => {
+    shotLinks.forEach((a) => {
       a.addEventListener("click", (e) => {
         if (a.classList.contains("is-missing")) { e.preventDefault(); return; }
         if (typeof dlg.showModal !== "function") return; // sin soporte: se abre la imagen en otra pestaña
         e.preventDefault();
         opener = a;
-        show(i);
+        const box = a.closest(".subgroup") || a.closest(".lab-item") || document;
+        set = [...box.querySelectorAll(".shot-link")];
+        show(set.indexOf(a));
         dlg.showModal();
       });
     });
