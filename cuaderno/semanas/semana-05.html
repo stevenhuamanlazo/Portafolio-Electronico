@@ -1,0 +1,211 @@
+<!-- Semana 5: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-5">
+        <div class="week-marker" aria-hidden="true">5</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 5</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Desarrollar una aplicación frontend con un framework JavaScript)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>React, SPA y diferencia entre librería y framework</summary>
+                <div class="topic-body">
+                  <p><strong>React</strong> es una librería de JavaScript para crear interfaces de usuario con componentes reutilizables. Una <strong>SPA</strong> (aplicación de página única) carga una sola página y actualiza el contenido sin recargar el navegador. Una librería la uso yo cuando la necesito, y un framework define la estructura y es quien llama a mi código (<strong>inversión de control</strong>). React es técnicamente una librería, pero con sus herramientas se usa como framework.</p><div class="table-wrap"><table><caption>Diferencia entre librería y framework</caption><thead><tr><th scope="col">Aspecto</th><th scope="col">Librería</th><th scope="col">Framework</th></tr></thead><tbody><tr><td>Control del flujo</td><td>Lo tiene el desarrollador</td><td>Lo tiene el framework</td></tr><tr><td>Estructura</td><td>Libre</td><td>Definida por el framework</td></tr><tr><td>Ejemplo</td><td>React</td><td>Next.js y Angular</td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Client Side Rendering y Server Side Rendering</summary>
+                <div class="topic-body">
+                  <p>En el <strong>Client Side Rendering</strong> el servidor entrega un HTML casi vacío y un archivo JavaScript, y el navegador construye la interfaz. Después de la carga inicial la navegación es más rápida y el servidor trabaja menos, pero el primer acceso es más lento y el SEO se ve afectado. En el <strong>Server Side Rendering</strong>, como en Next.js, el HTML lo construye el servidor.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Node.js, NPM y gestión de dependencias</summary>
+                <div class="topic-body">
+                  <p><strong>Node.js</strong> permite ejecutar JavaScript fuera del navegador; se recomienda la versión LTS y se comprueba con <code>node -v</code>. <strong>NPM</strong> viene con Node.js e instala, actualiza y elimina las dependencias de un proyecto. Estas se registran en <code>package.json</code> y sus archivos se descargan en <code>node_modules</code>. La gestión de dependencias es controlar de qué librerías depende el proyecto.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Herramientas del entorno de desarrollo</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>Una herramienta para cada etapa</caption><thead><tr><th scope="col">Etapa</th><th scope="col">Función</th><th scope="col">Herramienta</th></tr></thead><tbody><tr><td>Inicialización</td><td>Crea el package.json e instala las librerías</td><td>Create React App, Vite</td></tr><tr><td>Compilación</td><td>Agrupa el código fuente en archivos listos para distribuir</td><td>Webpack, Turbopack, Rollup</td></tr><tr><td>Transpilación</td><td>Pasa JS y JSX modernos a código compatible con cualquier navegador</td><td>Babel, SWC</td></tr><tr><td>Calidad de código</td><td>Analiza el código y le da formato</td><td>ESLint, Prettier</td></tr><tr><td>Control de versiones</td><td>Automatizar procesos</td><td>Git, Husky</td></tr></tbody></table></div><p>El compilador (Webpack, Turbopack, Rollup) junta JSX, TSX, JS e imágenes en archivos JS y CSS optimizados, y Babel transpila. <strong>ESLint</strong> busca errores y malas prácticas y se complementa con Prettier. <strong>SASS</strong> es un metalenguaje de estilos con variables y anidamiento que se compila a CSS. Como complementos están el <em>favicon</em> (32x32 o 16x16 px), Font Awesome y los servicios de Google (Maps, Fonts, Analytics).</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Herramientas para crear proyectos y sus comandos</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>Herramientas para crear un proyecto React</caption><thead><tr><th scope="col">Herramienta</th><th scope="col">Descripción</th></tr></thead><tbody><tr><td>Create React App</td><td>Actualmente obsoleta</td></tr><tr><td>Vite</td><td>Rápida y la más usada actualmente</td></tr><tr><td>Next.js</td><td>Framework con renderizado en servidor</td></tr><tr><td>Gatsby</td><td>Generador de sitios estáticos</td></tr><tr><td>Blitz.js</td><td>Framework full-stack basado en Next.js</td></tr><tr><td>Remix Run</td><td>Framework full-stack centrado en rutas y carga de datos</td></tr><tr><td>Hydrogen</td><td>Framework de Shopify para tiendas en línea</td></tr></tbody></table></div><div class="table-wrap"><table><caption>Comandos de creación</caption><thead><tr><th scope="col">Herramienta</th><th scope="col">Comandos</th></tr></thead><tbody><tr><td>Create React App</td><td><code>npx create-react-app nombre-proyecto</code>, luego <code>cd nombre-proyecto</code> y <code>npm start</code></td></tr><tr><td>Vite</td><td><code>npm create vite@latest nombre-proyecto</code>, luego <code>cd</code>, <code>npm install</code> y <code>npm run dev</code></td></tr><tr><td>Next.js</td><td><code>npx create-next-app@latest nombre-proyecto</code>, luego <code>cd</code> y <code>npm run dev</code></td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Estructura de un proyecto con Vite</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>Archivos principales</caption><thead><tr><th scope="col">Elemento</th><th scope="col">Función</th></tr></thead><tbody><tr><td>node_modules</td><td>Carpeta donde están los archivos de las dependencias</td></tr><tr><td>package.json</td><td>Tiene el nombre, los scripts y las dependencias</td></tr><tr><td>index.html</td><td>Contiene el único div con id <code>root</code></td></tr><tr><td>src/main.jsx</td><td>Entrada que renderiza el componente App dentro del root</td></tr><tr><td>src/App.jsx</td><td>Componente principal de la aplicación</td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Componentes, JSX, props y children</summary>
+                <div class="topic-body">
+                  <p>El desarrollo basado en <strong>componentes</strong> divide la interfaz en piezas independientes y reutilizables. En React un componente es una función de JavaScript con nombre en mayúscula que retorna JSX, y se anidan formando un árbol que parte de <code>App</code>. <strong>JSX</strong> permite escribir estructuras tipo HTML dentro de JavaScript; el navegador no lo entiende, así que lo transpilan Babel o SWC. Debe devolver un único elemento raíz y los valores se insertan con llaves. Las <strong>props</strong> son los datos que el componente padre envía al hijo; el hijo no puede modificarlas, por eso el flujo de datos es de padre a hijo. <strong>Children</strong> es una prop especial con lo que va entre la etiqueta de apertura y cierre, útil para tarjetas o layouts.</p><div class="table-wrap"><table><caption>Diferencias entre HTML y JSX</caption><thead><tr><th scope="col">HTML</th><th scope="col">JSX</th></tr></thead><tbody><tr><td><code>class</code></td><td><code>className</code></td></tr><tr><td><code>for</code></td><td><code>htmlFor</code></td></tr><tr><td><code>onclick</code></td><td><code>onClick</code></td></tr><tr><td><code>style="color: red"</code></td><td><code>style={{ color: "red" }}</code></td></tr><tr><td><code>&lt;img&gt;</code> sin cierre</td><td><code>&lt;img /&gt;</code> con cierre</td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Estilos en React</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>Formas de aplicar estilos</caption><thead><tr><th scope="col">Estilo</th><th scope="col">Alcance</th><th scope="col">Característica</th></tr></thead><tbody><tr><td>Inline</td><td>Un solo elemento</td><td>Objeto JS (camelCase); sin pseudoclases ni media queries</td></tr><tr><td>Style Sheet</td><td>Global</td><td>CSS normal; las clases de distintos componentes pueden solaparse</td></tr><tr><td>Style Module</td><td>Local al componente</td><td>Archivos <code>.module.css</code> con nombres únicos</td></tr><tr><td>Styled Components</td><td>Local al componente</td><td>CSS dentro de JS, cambia según las props</td></tr><tr><td>Framework CSS</td><td>Global por clases</td><td>Bootstrap o Tailwind, con NPM o CDN</td></tr></tbody></table></div>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1:</strong> Práctica individual del curso práctico: crear 3 proyectos React desde la terminal, cada uno con una herramienta distinta (<strong>Create React App</strong>, <strong>Vite</strong> y <strong>Next.js</strong>), ejecutarlos en local y comparar la estructura de carpetas que genera cada una.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <ol>
+                  <li>Desarrollo de las clases en la hora de teoría y en la hora de práctica.</li>
+                  <li>Instalación de Node.js en su versión LTS y comprobación con <code>node -v</code>.</li>
+                  <li>Creación de los tres proyectos con sus comandos: <code>npx create-react-app</code>, <code>npm create vite@latest</code> y <code>npx create-next-app@latest</code>.</li>
+                  <li>Ejecución de cada proyecto en local para verificar que funciona, y compilación del proyecto de Next.js con el comando de build.</li>
+                  <li>Revisión de las carpetas y archivos de cada proyecto en Visual Studio Code.</li>
+                  <li>Actualización del cuaderno de la asignatura.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p>Los tres proyectos se ejecutaron correctamente en local. Create React App tiene las carpetas <code>node_modules</code>, <code>public</code> y <code>src</code>, y su <code>index.html</code> está dentro de <code>public</code>. Vite pone el <code>index.html</code> en la raíz y agrega <code>vite.config.js</code> y <code>eslint.config.js</code>. Next.js organiza la aplicación en la carpeta <code>app</code>, genera la carpeta <code>.next</code> al compilar y, durante la instalación, permite elegir opciones como Tailwind CSS.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>Los tres proyectos usan React 19: Create React App con <code>react-scripts</code> 5.0.1, Vite con su servidor de desarrollo y Next.js 16 con TypeScript y Tailwind CSS 4.</p>
+                <p>En la estructura comparada se nota que Create React App y Vite usan <code>src</code> como carpeta de código, mientras que Next.js usa <code>app</code>, y que solo Vite lleva el <code>index.html</code> en la raíz.</p>
+                <p>El proyecto de Next.js generó además los archivos <code>AGENTS.md</code> y <code>CLAUDE.md</code>.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Repositorio de la práctica: <a href="https://github.com/stevenhuamanlazo/DAW_PRACTICA_SEM05" target="_blank" rel="noopener">github.com/stevenhuamanlazo/DAW_PRACTICA_SEM05</a> (carpetas <code>proyecto01</code>, <code>proyecto02</code> y <code>proyecto03</code>)</li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem05/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+                  <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica individual · Tres proyectos React con distintas herramientas</span><span class="ex-count">4 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 1">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_01_create_react_app.png" target="_blank" rel="noopener"><img src="assets/Sem05/s5_01_create_react_app.png" alt="Proyecto 1, Create React App, ejecutándose en local con npm start: página de inicio con el logo de React." loading="lazy" /></a>
+                    <figcaption>Proyecto 1, Create React App, ejecutándose en local con npm start: página de inicio con el logo de React.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_02_vite.png" target="_blank" rel="noopener"><img src="assets/Sem05/s5_02_vite.png" alt="Proyecto 2, Vite, ejecutándose con npm run dev: página Get started con el contador." loading="lazy" /></a>
+                    <figcaption>Proyecto 2, Vite, ejecutándose con npm run dev: página Get started con el contador.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_03_nextjs.png" target="_blank" rel="noopener"><img src="assets/Sem05/s5_03_nextjs.png" alt="Proyecto 3, Next.js, ejecutándose con npm run dev: página inicial generada por create-next-app." loading="lazy" /></a>
+                    <figcaption>Proyecto 3, Next.js, ejecutándose con npm run dev: página inicial generada por create-next-app.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_04_estructuras.png" target="_blank" rel="noopener"><img src="assets/Sem05/s5_04_estructuras.png" alt="Comparación de las carpetas y archivos que generó cada herramienta (sin node_modules ni .next)." loading="lazy" /></a>
+                    <figcaption>Comparación de las carpetas y archivos que generó cada herramienta (sin node_modules ni .next).</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                </div>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+                    <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Archivos de entrada de cada proyecto (generados por las herramientas)</span><span class="ex-count">4 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">proyecto01/src/index.js (Create React App)</p>
+<pre><code>import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();</code></pre></figure><figure class="code-file"><p class="file-name">proyecto02/src/main.jsx (Vite)</p>
+<pre><code>import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;
+)</code></pre></figure><figure class="code-file"><p class="file-name">proyecto02/index.html (Vite, div root)</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;link rel="icon" type="image/svg+xml" href="/favicon.svg" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;proyecto02&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="root"&gt;&lt;/div&gt;
+    &lt;script type="module" src="/src/main.jsx"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></figure><figure class="code-file"><p class="file-name">proyecto03/app/layout.tsx (Next.js)</p>
+<pre><code>import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({ children }: LayoutProps&lt;"/"&gt;) {
+  return (
+    &lt;html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    &gt;
+      &lt;body className="min-h-full flex flex-col"&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}</code></pre></figure>
+                  </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a diferenciar una librería de un framework a partir de la inversión de control, y entendí que React es técnicamente una librería pero con sus herramientas se emplea como un framework. Comprendí cómo funciona el Client Side Rendering, donde el navegador construye la interfaz a partir de un HTML con un único div root, y su diferencia con el Server Side Rendering de Next.js. Conocí el rol de Node.js y NPM en la gestión de dependencias con <code>package.json</code> y <code>node_modules</code>, y las herramientas de cada etapa: Babel para transpilar, Webpack para compilar y ESLint para la calidad del código. Entendí cómo los componentes dividen la interfaz en piezas reutilizables escritas en JSX, y cómo las props y children pasan datos y contenido del padre al hijo. También aprendí a crear 3 proyectos con Create React App, Vite y Next.js comparando sus estructuras, y las formas de aplicar estilos en React: inline, style sheets, style modules, styled components y frameworks CSS.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>En la hora de teoría se explicaron los fundamentos de React, las herramientas del entorno y los conceptos de componentes, JSX, props, children y estilos. En la hora de práctica instalé Node.js LTS y comprobé que funcionara desde la terminal. Luego creé los 3 proyectos con sus respectivos comandos, los ejecuté en local para verificar su funcionamiento y, finalmente, revisé las carpetas y archivos de cada uno en Visual Studio Code.</p></div>
+            </div>
+          </section>
+        </article>
+      </li>
