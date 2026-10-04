@@ -1,0 +1,527 @@
+<!-- Semana 3: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-3">
+        <div class="week-marker" aria-hidden="true">3</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 3</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Definiciones y procedimientos)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>Bootstrap y Tailwind: dos formas de maquetar</summary>
+                <div class="topic-body">
+                  <p><strong>Bootstrap 5</strong> trabaja con <strong>componentes</strong> ya armados: una clase como <code>navbar</code> o <code>card</code> te da el bloque completo con su estilo. <strong>Tailwind CSS</strong> es <strong>utility-first</strong>: no trae componentes, sino clases pequeñas (<code>rounded-xl</code>, <code>shadow-lg</code>, <code>hover:scale-105</code>) que se combinan directamente en el HTML. Entendí que Bootstrap avanza más rápido para estructuras comunes y Tailwind da más control sobre el detalle visual.</p>
+                  <ol class="flow" aria-label="Cómo combinar los frameworks">
+                    <li>Bootstrap: estructura</li><li>Tailwind: detalle visual</li><li>Sin pisarse</li>
+                  </ol>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Grilla de 12 columnas y breakpoints</summary>
+                <div class="topic-body">
+                  <p>En Bootstrap la fila (<code>row</code>) se divide en 12 columnas y cada <code>col-md-4</code> ocupa 4 de ellas desde el breakpoint <em>md</em>; por debajo se apilan solas. La guía pedía no escribir <code>@media</code> a mano y confiar en los breakpoints nativos de ambos frameworks, y con eso las tarjetas pasaron de 3 columnas a 1 sin código extra.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Tipografía adaptativa y componentes UI</summary>
+                <div class="topic-body">
+                  <p>Para el título del hero usé las clases <code>display-*</code> y <code>lead</code> de Bootstrap, y <code>text-balance</code> y <code>max-w-3xl</code> de Tailwind, que reparten mejor las líneas del texto. También practiqué componentes de interfaz: <em>badges</em>, <em>navbar</em> con menú colapsable, <em>cards</em> y <em>forms</em>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Conflictos de especificidad entre frameworks</summary>
+                <div class="topic-body">
+                  <p>Cuando ambos frameworks definen la misma propiedad sobre un mismo elemento, gana el que tenga más especificidad o el que se cargue después. Por ejemplo, <code>.btn-primary</code> de Bootstrap trae su propio color de fondo y chocaba con <code>bg-emerald-700</code> de Tailwind. La regla que adoptamos fue que Bootstrap controla la estructura y Tailwind el color, la sombra y los efectos, para que nunca decidan los dos la misma propiedad.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Validación de formularios y accesibilidad</summary>
+                <div class="topic-body">
+                  <p>Un formulario debe mostrar el estado de cada campo. Con Bootstrap se añade la clase <code>was-validated</code> al enviar y se muestran los mensajes de <code>invalid-feedback</code> y <code>valid-feedback</code>. Para que sea accesible cada <code>label</code> se vincula con su campo (<code>for</code> e <code>id</code>), los errores se conectan con <code>aria-describedby</code> y el contraste del texto debe ser de al menos 4.5:1. Después lo comprobé con <strong>Lighthouse</strong> y <strong>WAVE</strong>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>JavaScript y Git en la práctica de teoría</summary>
+                <div class="topic-body">
+                  <p>En la Práctica Calificada 03 trabajé el sorteo de equipos con JavaScript: reparto los participantes en grupos y mezclo la lista con un algoritmo de intercambio aleatorio (tipo Fisher-Yates). También vimos que el equipo trabaja con una rama por integrante y que el líder integra los cambios con <em>pull requests</em>.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1:</strong> Práctica Calificada 03 del curso de teoría, en equipo de 4 personas con una rama por integrante: una página de inicio con tarjetas que cargan en un <code>iframe</code> la página de la <strong>ruleta</strong> y la del <strong>sorteo de equipos</strong>. Mi parte fue el sorteo de equipos.</p>
+                <p><strong>Ejercicio 2:</strong> Práctica 3 individual del curso práctico (guía de Frameworks CSS): <strong>PatitasHogar</strong>, una página de adopción y venta de perritos con Bootstrap 5 y Tailwind, con un panel que activa y desactiva cada paso de la guía.</p>
+                <p><strong>Ejercicio 3:</strong> Práctica grupal del curso práctico, en pareja: <strong>Huellitas</strong>, tienda virtual de mascotas con HTML5 semántico, Bootstrap 5.3.3 y Tailwind (Play CDN). Yo hice los pasos 4 al 6: grid de tarjetas, formulario con validación y auditoría.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <h4>Ejercicio 1</h4>
+                <ol>
+                  <li>Creé el sorteo en mi rama <code>Huamanlazo-Pariona</code>: un textarea de participantes (hasta 100) con contador y guardado local.</li>
+                  <li>Programé las dos formas de dividir: por cantidad de equipos o por participantes por equipo, con <code>calcularTamanosEquipos</code>.</li>
+                  <li>Mezclé la lista con <code>mezclarArreglo</code> y la repartí en equipos con <code>generarEquipos</code>.</li>
+                  <li>Agregué las acciones sobre el resultado: descargar JPG y copiar al portapapeles (en lista o en columnas).</li>
+                </ol>
+                <h4>Ejercicio 2</h4>
+                <ol>
+                  <li>Creé <code>index.html</code> con los CDN de Bootstrap 5.3.3 y Tailwind, y los badges de la tecnología usada.</li>
+                  <li>Armé la navbar con <code>navbar-expand-lg</code>, el hero con <code>display-3</code> y el catálogo con <code>row</code> y <code>col-md-4</code>.</li>
+                  <li>A las tarjetas les puse <code>rounded-xl</code>, <code>shadow-lg</code> y <code>hover:scale-105</code> de Tailwind, y construí el formulario de adopción.</li>
+                  <li>Con <code>script.js</code> hice el panel Control de Pasos: cada botón muestra u oculta su sección, y hay botones para activar o desactivar todo.</li>
+                </ol>
+                <h4>Ejercicio 3</h4>
+                <ol>
+                  <li>El integrante 1 hizo los pasos 1 al 3 en <code>dev/Gago-Uribe</code> (setup SEO, navbar y hero); yo hice los pasos 4 al 6 en <code>dev/Huamanlazo-Pariona</code>.</li>
+                  <li>Paso 4: grid de servicios con <code>row g-4</code>, <code>col-md-4</code> y, para el hover, <code>hover:scale-105 transition-transform</code>.</li>
+                  <li>Paso 5: formulario con <code>needs-validation</code>, <code>aria-describedby</code>, mensajes <code>invalid-feedback</code> y <code>valid-feedback</code> y un script que añade <code>was-validated</code>.</li>
+                  <li>Paso 6: auditoría con Lighthouse y WAVE, y luego correcciones de contraste, orden de encabezados y textos alternativos.</li>
+                  <li>El líder integró las ramas con pull requests hacia <code>main</code>.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p><strong>Ejercicio 1:</strong> el sorteo reparte a los participantes en equipos aleatorios, muestra cada equipo en una tarjeta y permite descargar el resultado como imagen o copiarlo.</p>
+                <p><strong>Ejercicio 2:</strong> PatitasHogar funciona con los 5 pasos de la guía, que se pueden encender y apagar desde el panel.</p>
+                <p><strong>Ejercicio 3:</strong> Huellitas es responsiva (menú hamburguesa en mobile, grid que pasa de 3 columnas a 1) y su formulario muestra estados de error y de éxito.</p>
+                <h4>Auditoría del Ejercicio 3</h4>
+                <ul>
+                  <li><strong>Lighthouse:</strong> Performance 98, Accessibility 100, Best Practices 100 y SEO 100.</li>
+                  <li><strong>WAVE:</strong> 0 errores, 0 errores de contraste y 0 alertas (10 features, 12 de estructura y 11 de ARIA).</li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>En Huellitas el choque entre frameworks apareció en los botones: la clase <code>.btn-primary</code> de Bootstrap ya trae color de fondo y competía con <code>bg-emerald-700</code> de Tailwind, y el resultado dependía del orden de carga. Lo resolvimos usando solo la clase base <code>.btn</code> y dejando el color a Tailwind.</p>
+                <p>También me quedó claro que <code>img-fluid</code> de Bootstrap (altura automática) pelea con una altura fija de Tailwind, así que cada imagen debe estar a cargo de un solo framework.</p>
+                <p>Los pasos del panel de PatitasHogar se activan al hacer clic, por eso al abrir la página solo se ve el paso 1.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Práctica Calificada 03 (teoría): <a href="https://github.com/E5gar/PracticaCalificada03" target="_blank" rel="noopener">github.com/E5gar/PracticaCalificada03</a> (mi rama: <code>Huamanlazo-Pariona</code>)</li>
+                  <li>Práctica 3 individual, PatitasHogar: <a href="https://github.com/stevenhuamanlazo/PRACTICA3-PETSHOP" target="_blank" rel="noopener">github.com/stevenhuamanlazo/PRACTICA3-PETSHOP</a></li>
+                  <li>Práctica grupal, Huellitas: <a href="https://github.com/E5gar/grupo-Gago-Huamanlazo-semana3-web-mascotas" target="_blank" rel="noopener">github.com/E5gar/grupo-Gago-Huamanlazo-semana3-web-mascotas</a> (mi rama: <code>dev/Huamanlazo-Pariona</code>)</li>
+                  <li>Sitio publicado de la práctica grupal: <a href="https://e5gar.github.io/grupo-Gago-Huamanlazo-semana3-web-mascotas/" target="_blank" rel="noopener">GitHub Pages</a></li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem03/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+                  <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica Calificada 03 · Ruleta y sorteo de equipos (teoría)</span><span class="ex-count">5 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 1">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p1_01_inicio.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_01_inicio.png" alt="Página de inicio de la práctica: cabecera institucional, integrantes del equipo y dos tarjetas que abren la ruleta y el sorteo de equipos." loading="lazy" /></a>
+                    <figcaption>Página de inicio de la práctica: cabecera institucional, integrantes del equipo y dos tarjetas que abren la ruleta y el sorteo de equipos.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p1_02_ruleta.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_02_ruleta.png" alt="Página 01, ruleta del aula: lienzo con sectores de colores, lista de elementos editable y atajos de teclado." loading="lazy" /></a>
+                    <figcaption>Página 01, ruleta del aula: lienzo con sectores de colores, lista de elementos editable y atajos de teclado.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p1_03_ruleta_resultado.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_03_ruleta_resultado.png" alt="Ruleta después de girar con la tecla Espacio: el sector que queda bajo la flecha roja se muestra en el recuadro RESPUESTA." loading="lazy" /></a>
+                    <figcaption>Ruleta después de girar con la tecla Espacio: el sector que queda bajo la flecha roja se muestra en el recuadro RESPUESTA.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p1_04_sorteo.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_04_sorteo.png" alt="Página 02 (mi parte), sorteo de equipos: textarea de participantes con contador, modo de división, selector y título." loading="lazy" /></a>
+                    <figcaption>Página 02 (mi parte), sorteo de equipos: textarea de participantes con contador, modo de división, selector y título.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p1_05_sorteo_resultado.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_05_sorteo_resultado.png" alt="Sorteo de equipos generado con 8 participantes de prueba: los equipos aparecen en tarjetas con botones para descargar o copiar." loading="lazy" /></a>
+                    <figcaption>Sorteo de equipos generado con 8 participantes de prueba: los equipos aparecen en tarjetas con botones para descargar o copiar.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica 3 individual · PatitasHogar con Bootstrap y Tailwind</span><span class="ex-count">4 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 2">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p2_01_setup.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p2_01_setup.png" alt="Estado inicial de PatitasHogar: solo se ve la franja de badges (HTML5, CSS3, Bootstrap, Tailwind), el pie y el panel Control de Pasos con el paso 1 activo." loading="lazy" /></a>
+                    <figcaption>Estado inicial de PatitasHogar: solo se ve la franja de badges (HTML5, CSS3, Bootstrap, Tailwind), el pie y el panel Control de Pasos con el paso 1 activo.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p2_02_formulario.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p2_02_formulario.png" alt="Paso 5 activado: formulario de adopción con etiquetas, campos redondeados, select de razas, fecha y botón con degradado." loading="lazy" /></a>
+                    <figcaption>Paso 5 activado: formulario de adopción con etiquetas, campos redondeados, select de razas, fecha y botón con degradado.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p2_03_catalogo.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p2_03_catalogo.jpg" alt="Paso 4 activado: grid de tarjetas de perritos con badge Disponible y botón Reservar; el panel muestra los pasos 1 al 4 activos." loading="lazy" /></a>
+                    <figcaption>Paso 4 activado: grid de tarjetas de perritos con badge Disponible y botón Reservar; el panel muestra los pasos 1 al 4 activos.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p2_04_hero.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p2_04_hero.jpg" alt="Paso 3 activado: hero con degradado rosa, título display, botones y la imagen del grupo de perros sobre una forma animada." loading="lazy" /></a>
+                    <figcaption>Paso 3 activado: hero con degradado rosa, título display, botones y la imagen del grupo de perros sobre una forma animada.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                  <div class="subgroup" data-ex="3" data-label="Ejercicio 3" data-short="Ej. 3">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 3</span><span class="ex-title">Práctica grupal · Huellitas, tienda de mascotas</span><span class="ex-count">14 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 3">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_01_paso1_setup_seo.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_01_paso1_setup_seo.jpg" alt="Paso 1 en VS Code: setup inicial, meta tags SEO y CDNs de Bootstrap y Tailwind (rama del integrante 1)." loading="lazy" /></a>
+                    <figcaption>Paso 1 en VS Code: setup inicial, meta tags SEO y CDNs de Bootstrap y Tailwind (rama del integrante 1).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_02_paso2_navbar.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_02_paso2_navbar.jpg" alt="Paso 2 en VS Code: navbar responsivo con navbar-expand-lg y utilidades de Tailwind." loading="lazy" /></a>
+                    <figcaption>Paso 2 en VS Code: navbar responsivo con navbar-expand-lg y utilidades de Tailwind.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_03_paso3_hero.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_03_paso3_hero.jpg" alt="Paso 3 en VS Code: hero section con tipografía fluida y composición híbrida." loading="lazy" /></a>
+                    <figcaption>Paso 3 en VS Code: hero section con tipografía fluida y composición híbrida.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_04_paso4_grid.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_04_paso4_grid.jpg" alt="Paso 4 en VS Code (mi parte): grid de tarjetas con row, col-md-4 y utilidades de Tailwind para sombra y hover." loading="lazy" /></a>
+                    <figcaption>Paso 4 en VS Code (mi parte): grid de tarjetas con row, col-md-4 y utilidades de Tailwind para sombra y hover.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_05_paso5_formulario.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_05_paso5_formulario.jpg" alt="Paso 5 en VS Code (mi parte): formulario con validación de Bootstrap, aria-describedby y el script de validación." loading="lazy" /></a>
+                    <figcaption>Paso 5 en VS Code (mi parte): formulario con validación de Bootstrap, aria-describedby y el script de validación.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_06_paso6_auditoria.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_06_paso6_auditoria.jpg" alt="Paso 6 (mi parte): auditoría de la página en Lighthouse junto con la vista de la página." loading="lazy" /></a>
+                    <figcaption>Paso 6 (mi parte): auditoría de la página en Lighthouse junto con la vista de la página.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_07_web_desktop.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_07_web_desktop.jpg" alt="Vista desktop de la navbar y el hero de Huellitas." loading="lazy" /></a>
+                    <figcaption>Vista desktop de la navbar y el hero de Huellitas.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_08_web_mobile.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_08_web_mobile.jpg" alt="Vista mobile con DevTools: el menú se colapsa en el botón hamburguesa y el hero se apila en una columna." loading="lazy" /></a>
+                    <figcaption>Vista mobile con DevTools: el menú se colapsa en el botón hamburguesa y el hero se apila en una columna.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_09_grid_hover.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_09_grid_hover.jpg" alt="Grid de tarjetas de servicios con el efecto hover (scale) activado en una tarjeta." loading="lazy" /></a>
+                    <figcaption>Grid de tarjetas de servicios con el efecto hover (scale) activado en una tarjeta.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_10_form_error_exito.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_10_form_error_exito.jpg" alt="Formulario Reserva tu cita mostrando campos válidos en verde y campos inválidos en rojo con su mensaje." loading="lazy" /></a>
+                    <figcaption>Formulario Reserva tu cita mostrando campos válidos en verde y campos inválidos en rojo con su mensaje.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_11_lighthouse.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_11_lighthouse.jpg" alt="Lighthouse: Performance 98, Accessibility 100, Best Practices 100 y SEO 100." loading="lazy" /></a>
+                    <figcaption>Lighthouse: Performance 98, Accessibility 100, Best Practices 100 y SEO 100.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_12_wave.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_12_wave.jpg" alt="WAVE: 0 errores, 0 errores de contraste y 0 alertas; 10 features, 12 elementos de estructura y 11 de ARIA." loading="lazy" /></a>
+                    <figcaption>WAVE: 0 errores, 0 errores de contraste y 0 alertas; 10 features, 12 elementos de estructura y 11 de ARIA.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_13_git_ramas.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_13_git_ramas.jpg" alt="Repositorio en GitHub con las ramas main, dev/Gago-Uribe y dev/Huamanlazo-Pariona." loading="lazy" /></a>
+                    <figcaption>Repositorio en GitHub con las ramas main, dev/Gago-Uribe y dev/Huamanlazo-Pariona.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p3_14_git_pull_requests.jpg" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p3_14_git_pull_requests.jpg" alt="Pull requests del repositorio, fusionados desde las ramas de cada integrante." loading="lazy" /></a>
+                    <figcaption>Pull requests del repositorio, fusionados desde las ramas de cada integrante.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                </div>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+                    <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Sorteo de equipos · reparto, mezcla y generación</span><span class="ex-count">1 archivo</span></div>
+                    <figure class="code-file"><p class="file-name">sorteoequipos/main.js</p>
+<pre><code>function calcularTamanosEquipos(total, modo, valor) {
+  const tamanos = [];
+
+  if (modo === 'cantidadEquipos') {
+    const numeroEquipos = Math.max(1, Math.min(valor, total));
+    const base = Math.floor(total / numeroEquipos);
+    let resto = total % numeroEquipos;
+    for (let i = 0; i &lt; numeroEquipos; i++) {
+      tamanos.push(base + (resto &gt; 0 ? 1 : 0));
+      if (resto &gt; 0) resto--;
+    }
+  } else {
+    const tamanoEquipo = Math.max(1, Math.min(valor, total));
+    let restante = total;
+    while (restante &gt; 0) {
+      const actual = Math.min(tamanoEquipo, restante);
+      tamanos.push(actual);
+      restante -= actual;
+    }
+  }
+
+  return tamanos;
+}
+
+function mezclarArreglo(arreglo) {
+  const copia = [...arreglo];
+  for (let i = copia.length - 1; i &gt; 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
+}
+
+function generarEquipos() {
+  const participantes = obtenerListaParticipantes();
+  const validacion = validarParticipantes(participantes);
+  if (!validacion.valido) {
+    alert(validacion.mensaje);
+    return;
+  }
+
+  const modo = obtenerModoDivision();
+  const valor = parseInt(selectValorDivision.value, 10);
+  const tamanos = calcularTamanosEquipos(participantes.length, modo, valor);
+  const mezclados = mezclarArreglo(participantes);
+
+  const equipos = [];
+  let indice = 0;
+  for (const tamano of tamanos) {
+    equipos.push(mezclados.slice(indice, indice + tamano));
+    indice += tamano;
+  }
+
+  equiposGenerados = equipos;
+  mostrarPantallaResultados(equipos);
+}</code></pre></figure>
+                  </div>
+                    <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">PatitasHogar · Bootstrap + Tailwind</span><span class="ex-count">3 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">index.html (extracto: navbar, hero, tarjeta y formulario)</p>
+<pre><code>&lt;nav id="seccion-navbar" class="paso navbar navbar-expand-lg bg-white shadow-md px-4"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand fw-bold" href="#"&gt;🐾 PatitasHogar&lt;/a&gt;
+    &lt;button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navMenu"&gt;
+      &lt;ul class="navbar-nav ms-auto gap-3"&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#inicio"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#catalogo"&gt;Catálogo&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#formulario"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+...
+    &lt;section id="inicio" class="paso text-white py-5 position-relative overflow-hidden"&gt;
+  &lt;span class="paw" style="top:10%; left:5%;"&gt;🐾&lt;/span&gt;
+  &lt;span class="paw" style="top:75%; left:15%; font-size:1.4rem;"&gt;🐾&lt;/span&gt;
+  &lt;span class="paw" style="top:20%; left:45%; font-size:1.2rem;"&gt;🐾&lt;/span&gt;
+
+  &lt;div class="container py-5"&gt;
+    &lt;div class="row align-items-center g-5"&gt;
+      &lt;div class="col-lg-6 text-center text-lg-start"&gt;
+        &lt;h1 class="display-3 fw-bold text-balance"&gt;Encuentra a tu nuevo compañero peludo&lt;/h1&gt;
+        &lt;p class="lead mt-3"&gt;Perritos en adopción y venta, esperando un hogar responsable.&lt;/p&gt;
+        &lt;div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4 flex-wrap"&gt;
+          &lt;a href="#catalogo" class="btn btn-light btn-lg"&gt;Explorar catálogo&lt;/a&gt;
+          &lt;a href="#formulario" class="btn btn-outline-light btn-lg"&gt;Adoptar / Reservar&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="col-lg-6"&gt;
+        &lt;div class="position-relative"&gt;
+          &lt;div class="blob"&gt;&lt;/div&gt;
+          &lt;img src="Perros-grupo.jpg" class="img-fluid rounded-4 shadow-2xl position-relative" alt="Grupo de perritos en adopción" style="z-index:2;"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+...
+&lt;section id="catalogo" class="paso container py-16"&gt;
+  &lt;h2 class="text-center fw-bold mb-5"&gt;Nuestros Peluditos&lt;/h2&gt;
+  &lt;div class="row g-4"&gt;
+    &lt;div class="col-md-4"&gt;
+  &lt;div class="rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 bg-white"&gt;
+    &lt;img src="Bulldog_Frances.jpg" class="w-100" alt="Bulldog Francés"&gt;
+    &lt;div class="p-4"&gt;
+      &lt;h5 class="fw-bold"&gt;Bulldog Francés &lt;span class="badge bg-success ms-2"&gt;Disponible&lt;/span&gt;&lt;/h5&gt;
+      &lt;p class="text-muted mb-1"&gt;Raza: Bulldog Francés&lt;/p&gt;
+      &lt;p class="text-muted mb-3"&gt;Edad: 3 meses&lt;/p&gt;
+      &lt;a href="#formulario" class="btn btn-outline-dark w-100"&gt;Reservar&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+...
+&lt;section id="formulario" class="paso container py-16"&gt;
+  &lt;h2 class="text-center fw-bold mb-4 text-rose-600"&gt;Formulario de Adopción / Reserva&lt;/h2&gt;
+  &lt;form class="mx-auto bg-white rounded-2xl shadow-xl p-4 p-md-5" style="max-width:520px; border-top:4px solid #f472b6;" novalidate&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label for="nombre" class="form-label fw-semibold text-rose-700"&gt;Nombre completo&lt;/label&gt;
+      &lt;input type="text" class="form-control rounded-lg" id="nombre" required aria-describedby="nombreHelp"&gt;
+      &lt;div id="nombreHelp" class="invalid-feedback"&gt;Ingresa tu nombre.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label for="telefono" class="form-label fw-semibold text-rose-700"&gt;Teléfono&lt;/label&gt;
+      &lt;input type="tel" class="form-control rounded-lg" id="telefono" required aria-describedby="telHelp"&gt;
+      &lt;div id="telHelp" class="invalid-feedback"&gt;Ingresa un teléfono válido.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label for="raza" class="form-label fw-semibold text-rose-700"&gt;Raza de interés&lt;/label&gt;
+      &lt;select class="form-control rounded-lg" id="raza" required&gt;
+        &lt;option value=""&gt;Selecciona...&lt;/option&gt;
+...
+  &lt;/form&gt;
+&lt;/section&gt;</code></pre></figure><figure class="code-file"><p class="file-name">script.js</p>
+<pre><code>const botones = document.querySelectorAll('.paso-btn');
+
+botones.forEach(btn =&gt; {
+  btn.addEventListener('click', () =&gt; {
+    const target = document.getElementById(btn.dataset.target);
+    const activo = target.classList.toggle('mostrar');
+    btn.classList.toggle('btn-success', activo);
+    btn.classList.toggle('btn-outline-success', !activo);
+  });
+});
+
+document.getElementById('btnActivarTodos').addEventListener('click', () =&gt; {
+  document.querySelectorAll('.paso').forEach(sec =&gt; sec.classList.add('mostrar'));
+  botones.forEach(b =&gt; { b.classList.add('btn-success'); b.classList.remove('btn-outline-success'); });
+});
+
+document.getElementById('btnDesactivarTodos').addEventListener('click', () =&gt; {
+  document.querySelectorAll('.paso').forEach(sec =&gt; sec.classList.remove('mostrar'));
+  botones.forEach(b =&gt; { b.classList.remove('btn-success'); b.classList.add('btn-outline-success'); });
+});</code></pre></figure><figure class="code-file"><p class="file-name">style.css</p>
+<pre><code>.paso:not(.mostrar) { display: none; }
+
+.paso.mostrar {
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #f472b6;
+  box-shadow: 0 0 0 0.25rem rgba(244, 114, 182, 0.35);
+}
+#inicio {
+  background: linear-gradient(135deg, #db2777, #f43f5e);
+}
+
+.blob {
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.18);
+  border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%;
+  animation: blobMove 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes blobMove {
+  0%, 100% { border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%; transform: rotate(0deg); }
+  50%      { border-radius: 60% 40% 45% 55% / 55% 60% 40% 45%; transform: rotate(8deg); }
+}
+
+.paw {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.25;
+  pointer-events: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-20px) rotate(10deg); }
+}</code></pre></figure>
+                  </div>
+                    <div class="subgroup" data-ex="3" data-label="Ejercicio 3" data-short="Ej. 3">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 3</span><span class="ex-title">Huellitas · mi parte: grid, formulario y validación</span><span class="ex-count">3 fragmentos</span></div>
+                    <figure class="code-file"><p class="file-name">index.html (extracto: tarjeta del grid)</p>
+<pre><code>            &lt;div class="col-md-4"&gt;
+              &lt;div
+                class="card h-100 border-0 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
+              &gt;
+                &lt;img
+                  src="assets/images/veterinaria.jpg"
+                  class="card-img-top rounded-t-xl"
+                  alt="Consulta veterinaria a un perro"
+                  width="400"
+                  height="250"
+                  loading="lazy"
+                  decoding="async"
+                /&gt;
+                &lt;div class="card-body"&gt;
+                  &lt;h3 class="card-title h5 fw-bold text-emerald-700"&gt;Veterinaria&lt;/h3&gt;
+                  &lt;p class="card-text text-slate-600"&gt;
+                    Consultas, vacunas y atención de emergencias con profesionales certificados.
+                  &lt;/p&gt;
+                  &lt;a
+                    href="#contacto"
+                    class="btn bg-emerald-700 text-white hover:bg-emerald-800 transition-colors"
+                  &gt;
+                    Reservar cita
+                  &lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Tarjeta 2 --&gt;
+            &lt;div class="col-md-4"&gt;
+              &lt;div
+                class="card h-100 border-0 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"</code></pre></figure><figure class="code-file"><p class="file-name">index.html (extracto: campo del formulario)</p>
+<pre><code>          &lt;form class="needs-validation row g-3" novalidate&gt;
+            &lt;span class="badge bg-emerald-100 text-emerald-800 fs-6" style="width: fit-content"&gt;
+              Contáctanos
+            &lt;/span&gt;
+            &lt;h2 class="display-5 fw-bold text-balance w-100"&gt;Reserva tu cita&lt;/h2&gt;
+
+            &lt;!-- Nombre --&gt;
+            &lt;div class="col-md-6"&gt;
+              &lt;label for="nombre" class="form-label"&gt;Nombre completo&lt;/label&gt;
+              &lt;input
+                type="text"
+                class="form-control"
+                id="nombre"
+                name="nombre"
+                required
+                aria-describedby="nombreError"
+              /&gt;
+              &lt;div id="nombreError" class="invalid-feedback"&gt;Por favor ingresa tu nombre.&lt;/div&gt;
+              &lt;div class="valid-feedback"&gt;¡Se ve bien!&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Correo --&gt;
+            &lt;div class="col-md-6"&gt;</code></pre></figure><figure class="code-file"><p class="file-name">index.html (script de validación)</p>
+<pre><code>    &lt;script&gt;
+      (() =&gt; {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach((form) =&gt; {
+          form.addEventListener(
+            'submit',
+            (event) =&gt; {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            },
+            false
+          );
+        });
+      })();</code></pre></figure>
+                  </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí que Bootstrap y Tailwind se pueden usar juntos si cada uno tiene su papel: Bootstrap para la estructura (grilla, navbar, formulario) y Tailwind para color, sombras y efectos. También aprendí a validar un formulario con estados de error y éxito, y a medir la calidad de una página con Lighthouse y WAVE.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>Siguiendo los pasos de la guía y probando cada cambio en Live Server. Hice la misma idea de tres maneras (sorteo, PatitasHogar y Huellitas), y comparar los resultados me ayudó a entender mejor cada herramienta. Trabajar con ramas por integrante y pull requests me mostró cómo se integra el trabajo en equipo.</p></div>
+              <div class="reflect-block"><h4>Dificultad y solución</h4><p>La dificultad fue la especificidad: una clase de Tailwind no siempre ganaba a una de Bootstrap. La solución fue repartir las propiedades, de modo que un framework controle estructura y el otro estilo, y no usar ambos sobre lo mismo.</p></div>
+            </div>
+          </section>
+        </article>
+      </li>
