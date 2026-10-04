@@ -2,7 +2,7 @@
    Bitácora de Aprendizaje — Script Interactivo
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+const iniciarProgreso = () => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // 1. Barra de progreso de lectura
@@ -44,4 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     weekCards.forEach((card) => observer.observe(card));
   }
-});
+};
+
+// Este script se carga después de traer las semanas, así que el DOM puede estar listo ya
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciarProgreso);
+else iniciarProgreso();

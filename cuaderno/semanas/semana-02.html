@@ -1,0 +1,330 @@
+<!-- Semana 2: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-2">
+        <div class="week-marker" aria-hidden="true">2</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 2</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Definiciones y procedimientos)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>Elicitación de requerimientos</summary>
+                <div class="topic-body">
+                  <p>Esta semana aprendí que la <strong>elicitación de requerimientos</strong> es el proceso de descubrir, extraer y documentar lo que un sistema necesita y qué restricciones tiene, conversando con los <strong>stakeholders</strong>, es decir, las personas interesadas en el sistema. No se trata de preguntar una sola vez: el proceso va de identificar stakeholders, elegir técnicas, obtener requerimientos y validarlos.</p>
+                  <ol class="flow" aria-label="Proceso de elicitación">
+                <li>Stakeholders</li><li>Técnicas</li><li>Requerimientos</li><li>Validación</li>
+              </ol>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Técnicas de elicitación</summary>
+                <div class="topic-body">
+                  <p>Cada técnica sirve para algo distinto. Las <strong>entrevistas</strong> dan información profunda de expertos o usuarios clave; los <strong>talleres (JAD)</strong> permiten llegar a consensos rápido en grupo; la <strong>observación</strong> descubre necesidades que el usuario no sabe explicar; las <strong>encuestas</strong> llegan a muchas personas y dan datos cuantitativos; y los <strong>prototipos</strong> dan retroalimentación temprana cuando los requisitos son confusos o cambian.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Requerimientos funcionales y no funcionales</summary>
+                <div class="topic-body">
+                  <p>Los <strong>requerimientos funcionales (RF)</strong> dicen <em>qué</em> debe hacer el sistema. Deben ser específicos, verificables con pruebas y empezar con un verbo de acción, con la estructura <code>RF-XXX: verbo + objeto + condición o propósito</code>. Los <strong>no funcionales (RNF)</strong> dicen <em>cómo</em> debe comportarse: rendimiento, seguridad, usabilidad, confiabilidad, portabilidad y mantenibilidad. Entendí que un RNF debe medirse; no basta con decir que el sistema sea rápido, hay que decir que responda en menos de 2 segundos.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Matriz de elicitación y catálogo de calidad</summary>
+                <div class="topic-body">
+                  <p>Para no perder el rastro de cada requerimiento aprendí a usar la <strong>matriz de elicitación</strong>, que relaciona ID, descripción, técnica, stakeholder, prioridad (Alta, Media o Baja) y estado (Pendiente, En revisión, Aprobado o Rechazado). También el <strong>catálogo de requerimientos de calidad</strong>, que añade métrica, valor esperado y método de verificación.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Práctica de web: Git, etiqueta flotante y arrastrar y soltar</summary>
+                <div class="topic-body">
+                  <p>En la práctica de Desarrollo de Aplicaciones Web aprendí a trabajar en equipo con Git: el líder crea el repositorio y una rama por integrante con sus apellidos, cada quien trabaja en la suya y al final se hace el <em>merge</em> a <code>main</code>. Con HTML y CSS puro practiqué la etiqueta flotante de un campo de texto con <code>:focus</code> y <code>:valid</code>, y el arrastrar y soltar un archivo con los eventos <code>dragover</code>, <code>dragleave</code> y <code>drop</code>.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1:</strong> Práctica Calificada 1 del curso Desarrollo de Aplicaciones Web, en equipo de 4 personas, con HTML y CSS puro y repositorio en GitHub con una rama por integrante. Mi parte fue <code>page01.html</code>: una ventana con 4 iconos SVG que contiene un formulario con 3 campos de texto con etiqueta animada, 1 checkbox, 2 botones y un campo de imagen de 50 px de alto que responde a arrastrar y soltar y muestra la ruta del archivo.</p>
+                <p><strong>Ejercicio 2:</strong> Guía Práctica de la Semana 2 del curso Metodología de Desarrollo de Software (IS055B): elicitación y análisis de requerimientos para el caso "MediSalud", un sistema de gestión de citas médicas.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <h4>Ejercicio 1</h4>
+                <ol>
+                  <li>El líder creó el repositorio y las 4 ramas con los apellidos del equipo; yo trabajé en la rama <code>Huamanlazo-Pariona</code>.</li>
+                  <li>Armé <code>page01.html</code> y <code>page01.css</code>: ventana oscura con una barra superior de 4 iconos SVG (sol, documento, copiar y código).</li>
+                  <li>En cada campo coloqué el <code>label</code> sobre el <code>input</code>; con <code>input:focus + label</code> y <code>input:valid + label</code> el texto sube y pasa de blanco a celeste agua (<code>#40C4FF</code>), igual que la línea inferior.</li>
+                  <li>Agregué el campo de imagen (50 px de alto, icono SVG centrado) y programé <code>dragover</code>, <code>dragleave</code> y <code>drop</code> para resaltar la zona y mostrar el pathname.</li>
+                  <li>Con <code>DataTransfer</code> asigné el archivo soltado a un <code>input type="file"</code> oculto para conservarlo en el formulario.</li>
+                  <li>Hice commit y push a mi rama; el líder unió las ramas en <code>main</code>.</li>
+                  <li>Ejecuté <code>git pull origin main</code> para traer el proyecto integrado y <code>git branch</code> para verificar mis ramas, y lo probé desde <code>index.html</code> con Live Server.</li>
+                </ol>
+                <h4>Ejercicio 2</h4>
+                <ol>
+                  <li><strong>Parte 1:</strong> identifiqué 6 stakeholders (paciente, médico, recepcionista, administrador de la clínica, responsable de TI y aseguradora) con su rol e interés.</li>
+                  <li><strong>Parte 2:</strong> elegí una técnica por stakeholder y la justifiqué (encuestas, entrevista semiestructurada, observación directa, taller grupal, entrevista técnica y reunión técnica de integración).</li>
+                  <li><strong>Parte 3:</strong> redacté 8 requerimientos funcionales con verbo de acción, prioridad y stakeholder.</li>
+                  <li><strong>Parte 4:</strong> redacté 6 requerimientos no funcionales con categoría, métrica y valor esperado.</li>
+                  <li><strong>Parte 5:</strong> construí la matriz de elicitación con técnica, stakeholder, prioridad y estado de cada requerimiento.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p><strong>Ejercicio 1:</strong> <code>page01</code> funciona: las etiquetas suben y cambian a celeste al escribir, la zona de imagen se resalta al arrastrar y muestra la ruta del archivo. El equipo integró <code>page01</code>, <code>page02</code> (radio buttons y selector de color RGB) y <code>page03</code> (tienda responsiva) en <code>main</code>, con un <code>index.html</code> con acceso y menú.</p>
+                <p><strong>Ejercicio 2:</strong> 6 stakeholders, 6 técnicas justificadas, 8 RF, 6 RNF y una matriz de elicitación de 12 filas (8 RF y 4 RNF).</p>
+                <h4>Requerimientos funcionales</h4>
+                <ul>
+                  <li><strong>RF-001</strong> Permitir al paciente registrarse e iniciar sesión con su DNI y una contraseña personal. <em>(Alta)</em></li>
+                  <li><strong>RF-002</strong> Registrar la reserva de citas médicas según especialidad, médico, fecha y hora disponible. <em>(Alta)</em></li>
+                  <li><strong>RF-003</strong> Visualizar la agenda de atenciones diarias del médico en tiempo real. <em>(Alta)</em></li>
+                  <li><strong>RF-004</strong> Enviar recordatorios automáticos por WhatsApp y correo con 24 horas de anticipación. <em>(Alta)</em></li>
+                  <li><strong>RF-005</strong> Permitir al médico registrar diagnósticos, recetas y notas en el historial clínico digital. <em>(Alta)</em></li>
+                  <li><strong>RF-006</strong> Consultar en tiempo real la cobertura y el copago del paciente con la aseguradora. <em>(Media)</em></li>
+                  <li><strong>RF-007</strong> Procesar pagos en línea de la reserva con tarjeta o billeteras digitales. <em>(Media)</em></li>
+                  <li><strong>RF-008</strong> Generar reportes mensuales en PDF y Excel sobre ausentismo y especialidades más demandadas. <em>(Baja)</em></li>
+                </ul>
+                <h4>Requerimientos no funcionales</h4>
+                <ul>
+                  <li><strong>RNF001</strong> · Rendimiento: Consulta de disponibilidad en ≤ 2 segundos <em>(Alta)</em></li>
+                  <li><strong>RNF002</strong> · Seguridad: Información clínica transmitida por HTTPS <em>(Alta)</em></li>
+                  <li><strong>RNF003</strong> · Usabilidad: Interfaz responsive de 360 px a 1920 px <em>(Media)</em></li>
+                  <li><strong>RNF004</strong> · Disponibilidad: Plataforma operativa 99.5 % (24/7) <em>(Alta)</em></li>
+                  <li><strong>RNF005</strong> · Capacidad: Hasta 1,000 usuarios concurrentes <em>(Media)</em></li>
+                  <li><strong>RNF006</strong> · Portabilidad: Chrome, Edge, Safari y Firefox sin extensiones <em>(Baja)</em></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>Al soltar la imagen, el navegador solo muestra la ruta como <code>C:\fakepath\nombre.png</code> por seguridad, y mi primera versión no conservaba el archivo. Lo resolví guardándolo en el <code>input</code> oculto con <code>DataTransfer</code>, y mostrando el valor que expone el navegador. Trabajar con una rama por persona permite que cada uno avance sin tocar los archivos de los demás, y el líder une todo al final con el merge.</p>
+                <p>En la guía de elicitación noté que escribir requerimientos medibles obliga a pensar en cómo se van a verificar, y que la matriz ayuda a rastrear quién pidió cada requerimiento.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Repositorio GitHub de la práctica: <a href="https://github.com/E5gar/PracticaCalificada01" target="_blank" rel="noopener">github.com/E5gar/PracticaCalificada01</a> (mi rama: <code>Huamanlazo-Pariona</code>)</li>
+                  <li>Guía resuelta (PDF): <a href="assets/Sem02/practica02_elicitacion_requerimientos.pdf" target="_blank" rel="noopener">Elicitación y análisis de requerimientos, MediSalud</a></li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem02/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <ol class="shots" aria-label="Capturas de la Semana 2">
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_01_git_terminal.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_01_git_terminal.png" alt="Terminal de VS Code: git pull origin main para traer el proyecto integrado y git branch con las ramas Huamanlazo-Pariona y main." loading="lazy" /></a>
+                    <figcaption>Terminal de VS Code: git pull origin main para traer el proyecto integrado y git branch con las ramas Huamanlazo-Pariona y main.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_02_page01_formulario.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_02_page01_formulario.png" alt="page01 (mi parte): ventana con 4 iconos SVG, 3 campos, campo de imagen con drag and drop, checkbox y 2 botones." loading="lazy" /></a>
+                    <figcaption>page01 (mi parte): ventana con 4 iconos SVG, 3 campos, campo de imagen con drag and drop, checkbox y 2 botones.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_03_page02_wizard_color.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_03_page02_wizard_color.png" alt="page02 (equipo): ventana con radio buttons y pestañas, y card con selector de color RGB." loading="lazy" /></a>
+                    <figcaption>page02 (equipo): ventana con radio buttons y pestañas, y card con selector de color RGB.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_04_page03_tienda.png" target="_blank" rel="noopener"><img src="assets/Sem02/s2_04_page03_tienda.png" alt="page03 (equipo): página de tienda de calzado con diseño responsivo." loading="lazy" /></a>
+                    <figcaption>page03 (equipo): página de tienda de calzado con diseño responsivo.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_05_elicitacion_stakeholders.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_05_elicitacion_stakeholders.jpg" alt="Guía de Metodología: Parte 1, identificación de stakeholders del sistema MediSalud." loading="lazy" /></a>
+                    <figcaption>Guía de Metodología: Parte 1, identificación de stakeholders del sistema MediSalud.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_06_elicitacion_tecnicas_rf.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_06_elicitacion_tecnicas_rf.jpg" alt="Parte 2, técnicas de elicitación por stakeholder, y Parte 3, requerimientos funcionales RF-001 a RF-004." loading="lazy" /></a>
+                    <figcaption>Parte 2, técnicas de elicitación por stakeholder, y Parte 3, requerimientos funcionales RF-001 a RF-004.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_07_elicitacion_rf_rnf.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_07_elicitacion_rf_rnf.jpg" alt="Requerimientos funcionales RF-005 a RF-008 y requerimientos no funcionales RNF001 a RNF003." loading="lazy" /></a>
+                    <figcaption>Requerimientos funcionales RF-005 a RF-008 y requerimientos no funcionales RNF001 a RNF003.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_08_elicitacion_rnf_matriz.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_08_elicitacion_rnf_matriz.jpg" alt="Requerimientos no funcionales RNF003 a RNF006 e inicio de la matriz de elicitación." loading="lazy" /></a>
+                    <figcaption>Requerimientos no funcionales RNF003 a RNF006 e inicio de la matriz de elicitación.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem02/s2_09_elicitacion_matriz.jpg" target="_blank" rel="noopener"><img src="assets/Sem02/s2_09_elicitacion_matriz.jpg" alt="Matriz de elicitación completa con técnica, stakeholder, prioridad y estado." loading="lazy" /></a>
+                    <figcaption>Matriz de elicitación completa con técnica, stakeholder, prioridad y estado.</figcaption>
+                  </figure></li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <p class="file-name">page01/page01.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Page 01&lt;/title&gt;
+  &lt;link rel="stylesheet" href="page01.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div class="ventana"&gt;
+    &lt;!-- Barra superior con 4 iconos SVG --&gt;
+    &lt;div class="barra"&gt;
+      &lt;svg class="icono" viewBox="0 0 24 24"&gt;&lt;circle cx="12" cy="12" r="5"/&gt;&lt;line x1="12" y1="1" x2="12" y2="3"/&gt;&lt;line x1="12" y1="21" x2="12" y2="23"/&gt;&lt;line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/&gt;&lt;line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/&gt;&lt;line x1="1" y1="12" x2="3" y2="12"/&gt;&lt;line x1="21" y1="12" x2="23" y2="12"/&gt;&lt;/svg&gt;
+      &lt;svg class="icono" viewBox="0 0 24 24"&gt;&lt;path d="M4 22V4a2 2 0 0 1 2-2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/&gt;&lt;/svg&gt;
+      &lt;svg class="icono" viewBox="0 0 24 24"&gt;&lt;rect x="9" y="9" width="13" height="13" rx="2"/&gt;&lt;path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/&gt;&lt;/svg&gt;
+      &lt;svg class="icono" viewBox="0 0 24 24"&gt;&lt;polyline points="16 18 22 12 16 6"/&gt;&lt;polyline points="8 6 2 12 8 18"/&gt;&lt;/svg&gt;
+    &lt;/div&gt;
+
+    &lt;form class="formulario"&gt;
+      &lt;!-- 2a: text fields con floating label --&gt;
+      &lt;div class="campo"&gt;
+        &lt;input type="text" id="name" required&gt;
+        &lt;label for="name"&gt;Name&lt;/label&gt;
+      &lt;/div&gt;
+
+      &lt;div class="campo"&gt;
+        &lt;input type="email" id="email" required&gt;
+        &lt;label for="email"&gt;E-mail&lt;/label&gt;
+      &lt;/div&gt;
+
+      &lt;div class="campo"&gt;
+        &lt;input type="text" id="item" required&gt;
+        &lt;label for="item"&gt;Item&lt;/label&gt;
+      &lt;/div&gt;
+
+      &lt;!-- 2c: campo de imagen con drag &amp; drop --&gt;
+      &lt;div class="campo-imagen" id="dropZone"&gt;
+        &lt;svg class="icono-imagen" viewBox="0 0 24 24"&gt;
+          &lt;rect x="3" y="3" width="18" height="18" rx="2"/&gt;
+          &lt;circle cx="8.5" cy="8.5" r="1.5"/&gt;
+          &lt;polyline points="21 15 16 10 5 21"/&gt;
+        &lt;/svg&gt;
+        &lt;span id="fileName"&gt;Arrastra una imagen aquí&lt;/span&gt;
+        &lt;input type="file" id="fileInput" accept="image/*" hidden&gt;
+      &lt;/div&gt;
+
+      &lt;!-- checkbox --&gt;
+      &lt;label class="checkbox-container"&gt;
+        &lt;input type="checkbox" id="agree"&gt;
+        Do you agree?
+      &lt;/label&gt;
+
+      &lt;!-- 2 botones --&gt;
+      &lt;div class="botones"&gt;
+        &lt;button type="submit" class="btn btn-submit"&gt;SUBMIT&lt;/button&gt;
+        &lt;button type="reset" class="btn btn-clear"&gt;CLEAR&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+  const dropZone = document.getElementById('dropZone');
+  const fileName = document.getElementById('fileName');
+  const fileInput = document.getElementById('fileInput'); // nuevo
+
+  dropZone.addEventListener('dragover', (e) =&gt; {
+    e.preventDefault();
+    dropZone.classList.add('dragover');
+  });
+
+  dropZone.addEventListener('dragleave', () =&gt; {
+    dropZone.classList.remove('dragover');
+  });
+
+  dropZone.addEventListener('drop', (e) =&gt; {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      // Asigna el archivo al input oculto para conservarlo y enviarlo en el submit
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      fileInput.files = dataTransfer.files;
+
+      // Muestra el pathname tal como lo expone el navegador (ej: C:\fakepath\foto.png)
+      fileName.textContent = fileInput.value;
+    }
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  <p class="file-name">page01/page01.css</p>
+<pre><code>/* page01.css (extracto: etiqueta flotante y campo de imagen) */
+/* 2a: floating label */
+.campo {
+  position: relative;
+}
+
+.campo input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px 0;
+  outline: none;
+}
+
+.campo label {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  color: #fff;
+  font-size: 16px;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.campo input:focus + label,
+.campo input:valid + label {
+  top: -14px;
+  font-size: 12px;
+  color: #40C4FF; /* celeste agua */
+}
+
+.campo input:focus {
+  border-bottom: 1px solid #40C4FF; /* celeste agua */
+}
+
+/* 2c: campo imagen drag &amp; drop */
+.campo-imagen {
+  width: 100%;
+  height: 50px;
+  border: 2px dashed #666;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #aaa;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.campo-imagen.dragover {
+  border-color: #7fffd4;
+  background: rgba(127,255,212,0.08);
+  color: #7fffd4;
+}
+
+.icono-imagen {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}</code></pre>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a distinguir lo que el sistema hace (requerimientos funcionales) de cómo debe comportarse (no funcionales), a elegir la técnica de elicitación que mejor encaja con cada stakeholder y a documentar todo en una matriz para poder rastrearlo. En la parte práctica de web aprendí a trabajar con ramas por integrante y a hacer que un formulario responda a animaciones y a arrastrar y soltar con HTML, CSS y un poco de JavaScript.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>Con la teoría de la guía (definiciones, tablas de ejemplo y plantillas) y aplicándola al caso MediSalud, parte por parte, hasta completar la matriz. En la práctica de web aprendí probando en Live Server, viendo cómo cambiaba el formulario y corrigiendo hasta que se comportara como pedía el enunciado.</p></div>
+              <div class="reflect-block"><h4>Dificultad y solución</h4><p>Mi dificultad fue que el campo de imagen mostraba la ruta pero perdía el archivo. Entendí que arrastrar un archivo no lo guarda por sí solo en el formulario, así que lo asigné a un <code>input</code> oculto con <code>DataTransfer</code>. Eso me ayudó a entender mejor cómo maneja el navegador los archivos.</p></div>
+            </div>
+          </section>
+        </article>
+      </li>

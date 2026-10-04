@@ -337,7 +337,11 @@
 
   // Estado inicial: solo la primera abierta (o la del enlace #semana-N)
   const hashIdx = cards.findIndex((c) => "#" + c.id === location.hash);
-  model.forEach((m, i) => setOpen(i, i === (hashIdx >= 0 ? hashIdx : 0), false));
+  // Sin enlace directo: se abre la última semana que ya tiene contenido (con 16 semanas, la más reciente)
+  let lastActive = 0;
+  model.forEach((m, i) => { if (m.state !== "pending") lastActive = i; });
+  const startIdx = hashIdx >= 0 ? hashIdx : lastActive;
+  model.forEach((m, i) => setOpen(i, i === startIdx, false));
   if (hashIdx >= 0) setTimeout(() => goTo(hashIdx, { focus: false }), 250);
   window.addEventListener("hashchange", () => {
     const idx = cards.findIndex((c) => "#" + c.id === location.hash);

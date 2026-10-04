@@ -1,0 +1,155 @@
+/* ==========================================================================
+   CUADERNO — paleta profesional, lectura por temas y scroll limpio
+   Se carga al FINAL (después de vista.css) y sobrescribe colores y scroll
+   ========================================================================== */
+
+/* ---------- Paleta: modo claro (índigo + verde azulado + ámbar) ---------- */
+:root {
+  --bg-crema: #f3f5fb;
+  --card-bg: #ffffff;
+  --card-subtle: #e7ecf8;
+  --text-dark: #111827;
+  --text-muted: #4b5563;
+  --border-color: #d9e0ee;
+  --accent-amber: #4338ca;   /* principal: índigo */
+  --accent-2: #0f766e;       /* secundario: verde azulado */
+  --net-rgb: 67, 56, 202;
+  --net-rgb2: 15, 118, 110;
+
+  /* un color por columna para reconocerlas de un vistazo */
+  --c-temas: #4f46e5;
+  --c-lab: #0f766e;
+  --c-ref: #b45309;
+  --col-on: #ffffff;
+}
+html[data-theme="dark"] {
+  --bg-crema: #0b1120;
+  --card-bg: #111a2e;
+  --card-subtle: #172238;
+  --text-dark: #e8ecf5;
+  --text-muted: #a3afc4;
+  --border-color: #223050;
+  --accent-amber: #818cf8;
+  --accent-2: #2dd4bf;
+  --net-rgb: 129, 140, 248;
+  --net-rgb2: 45, 212, 191;
+
+  --c-temas: #818cf8;
+  --c-lab: #2dd4bf;
+  --c-ref: #fbbf24;
+  --col-on: #0b1120;
+}
+.bg-glow-1 { background: #c7d2fe; }
+.bg-glow-2 { background: #99f6e4; }
+html[data-theme="dark"] .bg-glow-1 { background: #312e81; }
+html[data-theme="dark"] .bg-glow-2 { background: #134e4a; }
+.bg-grid { background-image: radial-gradient(rgba(67, 56, 202, 0.13) 1px, transparent 1.3px); }
+html[data-theme="dark"] .bg-grid { background-image: radial-gradient(rgba(165, 180, 252, 0.12) 1px, transparent 1.3px); }
+
+/* ---------- Scroll: solo se mueve la página, sin cajas con scroll propio ---------- */
+html { scroll-behavior: smooth; scroll-padding-top: 6.2rem; }
+.week-card { scroll-margin-top: 6.2rem; }
+body { overflow-x: clip; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+html[data-motion="reduce"] { scroll-behavior: auto; }
+
+@media (min-width: 1100px) {
+  .week-panel-inner > .section-block {
+    max-height: none; overflow: visible;
+  }
+  .week-panel-inner > .section-block.is-zoom { grid-column: 1 / -1; }
+}
+.col-head { position: static; background: none; }
+
+/* ---------- Barra superior: ancho completo, opaca, sin que el contenido se cuele ---------- */
+@media (min-width: 769px) {
+  .back-float, .theme-toggle, .a11y-toggle { top: 0.9rem; }
+  .week-nav {
+    top: 0; flex-wrap: nowrap; min-height: 4.6rem;
+    width: 100vw; margin-inline: calc(50% - 50vw); border-radius: 0; border-width: 0 0 1px;
+    padding: 0.5rem max(1rem, calc(50vw - 640px)) 0.5rem max(13.5rem, calc(50vw - 640px));
+    padding-right: max(9rem, calc(50vw - 640px));
+    background: var(--card-bg); backdrop-filter: none; -webkit-backdrop-filter: none;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  }
+}
+@media (max-width: 768px) {
+  /* En móvil la barra no se pega: así no tapa el contenido */
+  .week-nav { position: static; background: var(--card-bg); backdrop-filter: none; }
+}
+.wn-chip[aria-current="true"] { background: var(--accent-amber); border-color: var(--accent-amber); color: #ffffff; }
+html[data-theme="dark"] .wn-chip[aria-current="true"] { color: #0b1120; }
+
+/* ---------- Columnas con identidad de color ---------- */
+.week-panel-inner > .section-block:nth-child(1) { --col: var(--c-temas); }
+.week-panel-inner > .section-block:nth-child(2) { --col: var(--c-lab); }
+.week-panel-inner > .section-block:nth-child(3) { --col: var(--c-ref); }
+
+.week-panel-inner > .section-block {
+  background: color-mix(in srgb, var(--col) 5%, var(--card-bg));
+  border: 1px solid color-mix(in srgb, var(--col) 24%, var(--border-color));
+  border-top: 4px solid var(--col);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+}
+.col-head { border-bottom: 1px dashed color-mix(in srgb, var(--col) 35%, var(--border-color)); }
+.col-head h3 { color: var(--text-dark); font-size: 0.95rem; }
+.col-num { background: var(--col); color: var(--col-on); }
+.col-zoom[aria-pressed="true"], .col-zoom:hover { color: var(--col); }
+.week-panel-inner dt, .week-panel-inner .lab-item h4 { color: var(--col); }
+.lab-tab:hover { border-color: var(--col); color: var(--text-dark); }
+.lab-tab[aria-selected="true"] { background: var(--col); border-color: var(--col); color: var(--col-on); }
+.week-panel-inner a { color: var(--col); }
+html[data-theme="dark"] .week-panel-inner > .section-block { box-shadow: none; }
+
+/* ---------- Lectura más cómoda ---------- */
+.week-panel-inner .entry { font-size: 0.9rem; line-height: 1.72; }
+.week-panel-inner dd { font-size: 0.88rem; line-height: 1.7; }
+.week-panel-inner .entry p + p { margin-top: 0.75rem; }
+.week-panel-inner pre { white-space: pre-wrap; word-break: break-word; overflow-x: visible; font-size: 0.76rem; line-height: 1.55; }
+.week-panel-inner .lab-item ol, .week-panel-inner .lab-item ul { gap: 0.4rem; }
+
+/* Temas como tarjetas desplegables (el primer tema viene abierto) */
+.topic-tools { display: flex; gap: 0.4rem; margin: 0.1rem 0 0.7rem; }
+.topic-tools button {
+  min-height: 44px; padding: 0 0.8rem; border-radius: 10px; cursor: pointer;
+  background: none; border: 1px dashed color-mix(in srgb, var(--col) 45%, var(--border-color));
+  color: var(--text-muted); font: 700 0.74rem var(--font-mono);
+}
+.topic-tools button:hover { color: var(--col); border-color: var(--col); }
+
+.topic {
+  background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.topic + .topic { margin-top: 0.55rem; }
+.topic[open] { border-color: color-mix(in srgb, var(--col) 50%, var(--border-color)); box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06); }
+.topic > summary {
+  display: flex; align-items: center; gap: 0.6rem; min-height: 44px; padding: 0.55rem 0.85rem;
+  cursor: pointer; list-style: none; font-weight: 700; font-size: 0.88rem; line-height: 1.35; color: var(--text-dark);
+}
+.topic > summary::-webkit-details-marker { display: none; }
+.topic > summary::before {
+  content: ""; flex-shrink: 0; width: 0.55rem; height: 0.55rem; margin-right: 0.15rem;
+  border-right: 2px solid var(--col); border-bottom: 2px solid var(--col);
+  transform: rotate(-45deg); transition: transform 0.2s ease;
+}
+.topic[open] > summary::before { transform: rotate(45deg); }
+.topic > summary:hover { color: var(--col); }
+.topic-body { padding: 0 0.95rem 0.95rem 2.1rem; }
+.topic-body > p { margin: 0; }
+html[data-motion="reduce"] .topic > summary::before { transition: none; }
+
+/* Reflexión: tres tarjetas con borde de color */
+.reflect-block {
+  background: var(--card-bg); border: 1px solid var(--border-color); border-left: 4px solid var(--col);
+  border-radius: 10px; padding: 0.75rem 0.95rem;
+}
+.week-panel-inner .reflect-block h4 { color: var(--col); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+.week-panel-inner .reflect-block p { margin: 0; }
+
+/* Cadena de la petición / proceso: más visible */
+.week-panel-inner .flow li { background: color-mix(in srgb, var(--col) 10%, var(--card-bg)); border-color: color-mix(in srgb, var(--col) 35%, var(--border-color)); }
+.week-panel-inner .flow li:not(:last-child)::after { color: var(--col); }
+
+html[data-contrast="high"] .week-panel-inner > .section-block { border-top-width: 4px; }
+@media print { .topic > .topic-body, .topic:not([open]) .topic-body { display: block !important; } .topic-tools { display: none !important; } }

@@ -67,6 +67,25 @@
       });
     });
 
+    /* ---------- 1b. Temas desplegables: abrir / cerrar todos ---------- */
+    blocks.forEach((block) => {
+      const topics = [...block.querySelectorAll("details.topic")];
+      if (topics.length < 2) return;
+      const bar = document.createElement("div");
+      bar.className = "topic-tools";
+      bar.innerHTML =
+        '<button type="button" data-open="1">Abrir todos</button>' +
+        '<button type="button" data-open="0">Cerrar todos</button>';
+      bar.addEventListener("click", (e) => {
+        const b = e.target.closest("button");
+        if (!b) return;
+        const open = b.dataset.open === "1";
+        topics.forEach((t) => { t.open = open; });
+        live(open ? "Todos los temas abiertos" : "Todos los temas cerrados");
+      });
+      topics[0].parentNode.insertBefore(bar, topics[0]);
+    });
+
     /* ---------- 2. Pestañas en el laboratorio ---------- */
     card.querySelectorAll(".lab-grid").forEach((grid, gi) => {
       const items = [...grid.querySelectorAll(":scope > .lab-item")];

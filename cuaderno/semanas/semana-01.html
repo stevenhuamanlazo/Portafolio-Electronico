@@ -1,0 +1,165 @@
+<!-- Semana 1: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-1">
+        <div class="week-marker" aria-hidden="true">1</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 1</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Definiciones y procedimientos)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>Página, sitio, aplicación y sistema web</summary>
+                <div class="topic-body">
+                  <p>Esta semana aprendí que no todo lo que está en internet es lo mismo. Una <strong>página web</strong> es un documento al que se entra con una URL; un <strong>sitio web</strong> es un conjunto de páginas conectadas bajo un mismo dominio; una <strong>aplicación web</strong> corre en un servidor y reacciona a lo que hace el usuario (por ejemplo Gmail); y un <strong>sistema web</strong> junta varias aplicaciones, servicios y bases de datos para resolver un problema grande, como el sistema de matrícula de la UNCP.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Recorrido de una petición</summary>
+                <div class="topic-body">
+                  <p>También entendí el recorrido de una petición: el <strong>DNS</strong> traduce el nombre del dominio a una dirección IP, <strong>TCP/IP</strong> divide la información en paquetes y la envía por la red, y <strong>HTTP/HTTPS</strong> organiza la conversación: el navegador envía un <em>Request</em> (GET o POST) y el servidor responde con un <em>Response</em> (200 OK, 404 Not Found).</p>
+                  <ol class="flow" aria-label="Recorrido de una petición">
+                <li>Navegador</li><li>DNS</li><li>TCP/IP</li><li>HTTP/HTTPS Request</li><li>Servidor</li><li>Response</li>
+              </ol>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Estándares web y tipos de desarrollo</summary>
+                <div class="topic-body">
+                  <p>La web se basa en estándares abiertos: <strong>HTML</strong> da la estructura, <strong>CSS</strong> el aspecto y <strong>JavaScript</strong> la interactividad, y organizaciones como el W3C los mantienen para que ninguna empresa controle la web. El desarrollo se divide en <strong>Frontend</strong> (lo que se ve y se ejecuta en el navegador), <strong>Backend</strong> (la lógica, las APIs y la base de datos en el servidor) y <strong>Fullstack</strong> (dominar ambas capas).</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Git y GitHub</summary>
+                <div class="topic-body">
+                  <p>Aprendí también que <strong>Git</strong> es un sistema de control de versiones y <strong>GitHub</strong> el lugar donde se aloja el repositorio, lo que permite guardar el historial de cambios y publicar el código.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Cómo elegir un hosting</summary>
+                <div class="topic-body">
+                  <p>Finalmente, con la infografía aprendí a elegir un hosting según las necesidades del proyecto. Los planes gratuitos (Vercel, Render, Supabase) sirven para practicar, pero tienen límites: poca memoria, servidores que se duermen por inactividad y restricciones de uso comercial. Los planes de pago (Vercel Pro, Heroku, PlanetScale) ofrecen dominio personalizado, HTTPS/SSL, CDN, despliegue automático, escalabilidad y soporte.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1:</strong> Laboratorio 01A, configuración de Visual Studio Code y creación de mi tarjeta de presentación web publicada en GitHub.</p>
+                <p><strong>Ejercicio 2:</strong> Infografía grupal con la recomendación de hosting para la empresa "Textiles Andinos" S.A.C.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <h4>Ejercicio 1</h4>
+                <ol>
+                  <li>Instalé Visual Studio Code y abrí la carpeta <code>Laboratorio01_Web</code>.</li>
+                  <li>Identifiqué las áreas de la interfaz: barra de actividad, barra lateral, editor, panel y barra de estado.</li>
+                  <li>Instalé las extensiones Live Server, Prettier, Material Icon Theme y ES7+ React snippets.</li>
+                  <li>Practiqué atajos de teclado: <kbd>Ctrl</kbd>+<kbd>P</kbd>, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, <kbd>Ctrl</kbd>+<kbd>D</kbd>, <kbd>Alt</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>, <kbd>Ctrl</kbd>+<kbd>/</kbd> y <kbd>!</kbd> + <kbd>Tab</kbd> (Emmet).</li>
+                  <li>Creé <code>index.html</code> con la estructura base y agregué mi foto, nombre, carrera, un párrafo sobre el rol que me interesa y mis enlaces.</li>
+                  <li>Lo abrí con Live Server para ver los cambios en tiempo real.</li>
+                  <li>Ejecuté <code>git init</code>, <code>git add .</code>, <code>git commit -m "Práctica 01: Fundamentos y VSC"</code> y <code>git push</code> al repositorio público <code>portafolio-web-uncp</code>.</li>
+                </ol>
+                <h4>Ejercicio 2</h4>
+                <ol>
+                  <li>Analicé el caso: la empresa necesita un sitio web administrable (CMS) con galerías de alta resolución, blogs y cotizaciones B2B, con contrato de 3 años.</li>
+                  <li>Investigamos servicios gratuitos (Vercel, Render, Supabase) y de pago (Vercel Pro, Heroku, PlanetScale).</li>
+                  <li>Comparamos según disponibilidad, rendimiento, seguridad, escalabilidad y facilidad de administración.</li>
+                  <li>Calculamos el costo total y diseñamos la infografía en Canva.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p><strong>Ejercicio 1:</strong> Una tarjeta de presentación que se visualiza en el navegador con Live Server, y un repositorio público en GitHub con los archivos <code>index.html</code> y <code>foto.jpg</code>.</p>
+                <p><strong>Ejercicio 2:</strong> Una infografía que recomienda un hosting de pago, porque los planes gratuitos no permiten uso comercial y se duermen por inactividad. Costo estimado: US$600 al año, US$1800 por los 3 años.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>Al enlazar el repositorio apareció el error <code>remote origin already exists</code>, porque el remoto ya estaba configurado. Lo resolví continuando con <code>git branch -M main</code> y <code>git push -u origin main</code>, y el envío funcionó. Noté que Live Server actualiza el navegador automáticamente sin recargar. En la infografía trabajamos en equipo de 6 integrantes y vimos que el hosting gratuito no sirve para una empresa que necesita estar siempre disponible.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Repositorio GitHub: <a href="https://github.com/stevenhuamanlazo/portafolio-web-uncp" target="_blank" rel="noopener">github.com/stevenhuamanlazo/portafolio-web-uncp</a></li>
+                  <li>Infografía grupal en Canva: ver la captura 8 en la pestaña Capturas</li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem01/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <ol class="shots" aria-label="Capturas de la Semana 1">
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem01/s1_01_extensiones_vsc.png" target="_blank" rel="noopener"><img src="assets/Sem01/s1_01_extensiones_vsc.png" alt="Extensiones instaladas: Live Server, Prettier, Material Icon Theme y ES7+ React snippets." loading="lazy" /></a>
+                    <figcaption>Extensiones instaladas: Live Server, Prettier, Material Icon Theme y ES7+ React snippets.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem01/s1_02_interfaz_vsc.png" target="_blank" rel="noopener"><img src="assets/Sem01/s1_02_interfaz_vsc.png" alt="Interfaz de VSC: barra de actividad, barra lateral, editor, panel y barra de estado." loading="lazy" /></a>
+                    <figcaption>Interfaz de VSC: barra de actividad, barra lateral, editor, panel y barra de estado.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem01/s1_03_atajos.png" target="_blank" rel="noopener"><img src="assets/Sem01/s1_03_atajos.png" alt="Atajos de teclado: ! + Tab (Emmet) y Ctrl+Shift+P." loading="lazy" /></a>
+                    <figcaption>Atajos de teclado: ! + Tab (Emmet) y Ctrl+Shift+P.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem01/s1_04_tarjeta_live_server.png" target="_blank" rel="noopener"><img src="assets/Sem01/s1_04_tarjeta_live_server.png" alt="Tarjeta de presentación visualizada con Live Server." loading="lazy" /></a>
+                    <figcaption>Tarjeta de presentación visualizada con Live Server.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem01/s1_05_git_terminal.png" target="_blank" rel="noopener"><img src="assets/Sem01/s1_05_git_terminal.png" alt="Terminal integrada con git init, add, commit y push." loading="lazy" /></a>
+                    <figcaption>Terminal integrada con git init, add, commit y push.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem01/s1_06_repositorio_github.png" target="_blank" rel="noopener"><img src="assets/Sem01/s1_06_repositorio_github.png" alt="Repositorio público portafolio-web-uncp en GitHub." loading="lazy" /></a>
+                    <figcaption>Repositorio público portafolio-web-uncp en GitHub.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem01/s1_07_evidencia_combinada.png" target="_blank" rel="noopener"><img src="assets/Sem01/s1_07_evidencia_combinada.png" alt="Evidencia combinada: código HTML, terminal con Git y vista previa en el navegador." loading="lazy" /></a>
+                    <figcaption>Evidencia combinada: código HTML, terminal con Git y vista previa en el navegador.</figcaption>
+                  </figure></li>
+                  <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem01/s1_08_infografia_hosting.png" target="_blank" rel="noopener"><img src="assets/Sem01/s1_08_infografia_hosting.png" alt="Infografía grupal: recomendación de hosting para Textiles Andinos S.A.C." loading="lazy" /></a>
+                    <figcaption>Infografía grupal: recomendación de hosting para Textiles Andinos S.A.C.</figcaption>
+                  </figure></li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <p class="file-name">Laboratorio01_Web/index.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Mi Primera Página&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;img src="foto.jpg" alt="Mi foto" width="200" /&gt;
+    &lt;h1&gt;Steven Luis Huamanlazo Pariona&lt;/h1&gt;
+    &lt;h2&gt;Ingeniería de Sistemas - UNCP&lt;/h2&gt;
+    &lt;p&gt;
+      Me interesa el desarrollo Frontend porque disfruto crear interfaces web
+      intuitivas, interactivas y funcionales que faciliten la experiencia de
+      los usuarios.
+    &lt;/p&gt;
+    &lt;a href="https://github.com/stevenhuamanlazo"&gt;Mi GitHub&lt;/a&gt;
+    &lt;a href="https://www.linkedin.com/in/steven-huamanlazo/"&gt;Mi LinkedIn&lt;/a&gt;
+    &lt;a href="mailto:e_2021101343L@uncp.edu.pe"&gt;Mi correo institucional&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a diferenciar página, sitio, aplicación y sistema web, y a entender cómo viaja una petición desde que escribo una dirección hasta que el servidor responde. También aprendí a configurar mi entorno de trabajo en VSC, a publicar mi código con Git y GitHub, y a elegir un hosting pensando en disponibilidad, rendimiento, seguridad y crecimiento del proyecto, no solo en el precio.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>Primero con la clase teórica, que me dio los conceptos, y luego aplicándolos: configuré el entorno, practiqué los atajos sin usar el ratón y construí mi tarjeta paso a paso. En la infografía aprendí investigando en equipo las características de cada servicio y justificando la recomendación con números.</p></div>
+              <div class="reflect-block"><h4>Dificultad y solución</h4><p>Me apareció el error <code>remote origin already exists</code> al conectar con GitHub. Entendí que el repositorio remoto ya estaba enlazado, así que bastó con hacer el push a la rama main. Eso me ayudó a comprender mejor cómo se relacionan el repositorio local y el remoto.</p></div>
+            </div>
+          </section>
+        </article>
+      </li>
