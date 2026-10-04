@@ -1,0 +1,448 @@
+<!-- Semana 4: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-4">
+        <div class="week-marker" aria-hidden="true">4</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 4</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Definiciones y procedimientos)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>Manipulación del DOM y eventos</summary>
+                <div class="topic-body">
+                  <p>El <strong>DOM</strong> es el árbol de elementos de la página y JavaScript puede leerlo y cambiarlo. Con <code>querySelector</code> o <code>getElementById</code> obtengo un elemento y con <code>addEventListener</code> reacciono a sus eventos (clic, teclado, <code>input</code>). La guía pedía evitar el <code>style</code> en línea y usar <code>classList.toggle()</code>, porque cambiar una clase es más ordenado y deja el diseño en el CSS.</p>
+                  <ol class="flow" aria-label="Ciclo de una interacción">
+                    <li>Evento</li><li>Handler</li><li>Cambio en el DOM</li><li>Repintado</li>
+                  </ol>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Funciones flecha, IIFE y closures</summary>
+                <div class="topic-body">
+                  <p>Una <strong>función flecha</strong> es una forma corta de escribir funciones y no cambia el <code>this</code>. Una <strong>IIFE</strong> es una función que se ejecuta al definirla y sirve para aislar el scope y no llenar el espacio global. Un <strong>closure</strong> ocurre cuando una función recuerda las variables del lugar donde nació; así, el estado de la animación (ángulo, velocidad, contadores) queda privado y solo se cambia con los métodos que devuelvo.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Canvas API</summary>
+                <div class="topic-body">
+                  <p>El <code>&lt;canvas&gt;</code> es un lienzo donde se dibuja con JavaScript. Se pide el contexto con <code>getContext('2d')</code> y se dibuja con métodos como <code>arc</code>, <code>fillRect</code>, <code>stroke</code> o <code>fillText</code>. A diferencia del DOM, lo dibujado no son elementos: para animar hay que borrar y volver a dibujar todo en cada cuadro.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>requestAnimationFrame y delta time</summary>
+                <div class="topic-body">
+                  <p><code>requestAnimationFrame</code> le pide al navegador que ejecute mi función justo antes de pintar el siguiente cuadro, así la animación va al ritmo de la pantalla; por eso la guía prohibía <code>setInterval</code>. El <strong>delta time</strong> (<code>dt</code>) es el tiempo entre dos cuadros: si muevo los objetos multiplicando por <code>dt</code>, la velocidad es la misma en una pantalla de 60 Hz o de 144 Hz.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Event Loop y rendimiento</summary>
+                <div class="topic-body">
+                  <p>JavaScript ejecuta una cosa a la vez y el <strong>Event Loop</strong> decide qué tarea sigue (eventos, temporizadores, cuadros de animación). Si una tarea tarda mucho (<em>long task</em>), la página se congela. Para cuidar el rendimiento miro los <strong>FPS</strong>, la memoria <em>heap</em> y los nodos DOM desprendidos (<em>detached nodes</em>), y cancelo con <code>cancelAnimationFrame</code> lo que ya no uso. Una <strong>fuga de memoria</strong> aparece cuando se siguen guardando referencias que ya no hacen falta.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>localStorage y estado de una aplicación</summary>
+                <div class="topic-body">
+                  <p>En la Práctica Calificada 3 usamos <code>localStorage</code> para que la lista de la ruleta y la de participantes del sorteo se recuperen al recargar la página. Solo guarda texto, por lo que los datos más complejos se convierten con <code>JSON.stringify</code>. También aprendí a nombrar las funciones y variables en español con nombres descriptivos, como pedía el examen.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1:</strong> Práctica Calificada 3 del curso de teoría (Dr. Jaime Suasnabar Terrel), en equipo de 4 con HTML, CSS y JavaScript puro, sin librerías. Se pidió un aula virtual con una <strong>ruleta</strong> que gira y elige un elemento al azar (F1 a F9) y un <strong>sorteo de equipos</strong> (F1 a F4). Mi parte fue el sorteo de equipos.</p>
+                <p><strong>Ejercicio 2:</strong> Práctica Semana 04 del curso práctico (guía de DOM, closures y Canvas): un <strong>simulador orbital interactivo</strong> que cubre los 5 pasos de la guía, con repositorio y sitio publicado en GitHub Pages.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <h4>Ejercicio 1</h4>
+                <ol>
+                  <li>En mi rama <code>Huamanlazo-Pariona</code> hice la pantalla de configuración del sorteo: un textarea con hasta 100 participantes (50 caracteres cada uno), contador y guardado en <code>localStorage</code> (F1).</li>
+                  <li>Agregué el modo de división, por cantidad de equipos o por participantes por equipo, con una lista desplegable y un campo de título (F2).</li>
+                  <li>Con el botón Generar, mezclo la lista, la reparto en equipos y muestro una segunda pantalla donde los integrantes aparecen uno a uno dentro de un rectángulo con el subtítulo de cada equipo (F3).</li>
+                  <li>En la parte inferior puse tres botones: descargar en JPG, copiar al portapapeles y copiar los equipos en columnas (F4).</li>
+                  <li>El líder integró las ramas con pull requests hacia <code>main</code>.</li>
+                </ol>
+                <h4>Ejercicio 2</h4>
+                <ol>
+                  <li>Paso 1: creé <code>index.html</code>, <code>styles.css</code> y <code>app.js</code> (con <code>defer</code>), con los controles y el <code>&lt;canvas&gt;</code>.</li>
+                  <li>Paso 2: encapsulé el estado en una IIFE <code>OrbitEngine</code> y comenté cómo el closure conserva el estado entre cuadros.</li>
+                  <li>Paso 3: conecté los botones y el input con <code>addEventListener</code> y cambié estilos con <code>classList.toggle</code>.</li>
+                  <li>Paso 4: dibujé el sol, las órbitas y los planetas con la Canvas API y los animé con <code>requestAnimationFrame</code> y delta time, sin <code>setInterval</code>.</li>
+                  <li>Paso 5: agregué un monitor de FPS, heap, listeners y fugas, con botones para simular y limpiar una fuga de memoria, y registré las métricas en el <code>README.md</code>.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p><strong>Ejercicio 1:</strong> la ruleta gira con clic, tecla Espacio o botón Iniciar y muestra el elemento elegido; con S oculta el último sorteado, con E se edita, con R se reinicia y con F pasa a pantalla completa. El sorteo reparte a los participantes en equipos aleatorios, los muestra uno a uno y permite descargar o copiar el resultado.</p>
+                <p><strong>Ejercicio 2:</strong> el simulador funciona sin librerías externas: se puede pausar, cambiar la velocidad y el nombre del astro, añadir satélites y aplicar impulsos, y el monitor del paso 5 muestra FPS, memoria y fugas.</p>
+                <h4>Métricas del Ejercicio 2 (según el README del repositorio)</h4>
+                <ul>
+                  <li><strong>FPS promedio:</strong> entre 60 y 144 en DevTools Performance.</li>
+                  <li><strong>Long tasks:</strong> 0 (ninguna tarea de más de 50 ms).</li>
+                  <li><strong>Heap:</strong> unos 8.5 MB al inicio y unos 12.4 MB tras 60 segundos de animación.</li>
+                  <li><strong>Detached DOM nodes:</strong> 0.</li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>En el simulador, el estado (ángulo, velocidad, contadores) vive dentro del closure y solo se modifica con métodos como <code>applyBoost</code> y <code>addSatellite</code>, lo que evita variables globales sueltas.</p>
+                <p>Con delta time el movimiento no depende de los FPS de la pantalla. Además, usé <code>requestAnimationFrame</code> en lugar de <code>setInterval</code>, como pedía la guía.</p>
+                <p>En el sorteo, cuando los participantes no se dividen exactos entre los equipos, los primeros equipos reciben un integrante más (se reparte el resto de la división).</p>
+                <p>Declaré el uso de IA en el README del repositorio, como pedía la guía: estructura inicial, orientación sobre closures, sugerencias para el cálculo con delta time e interpretación de las métricas.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Práctica Calificada 3 (teoría): <a href="https://github.com/E5gar/PracticaCalificada03" target="_blank" rel="noopener">github.com/E5gar/PracticaCalificada03</a> (mi rama: <code>Huamanlazo-Pariona</code>)</li>
+                  <li>Sitio publicado de la Práctica Calificada 3: <a href="https://e5gar.github.io/PracticaCalificada03/" target="_blank" rel="noopener">GitHub Pages</a></li>
+                  <li>Práctica Semana 04 (simulador orbital): <a href="https://github.com/stevenhuamanlazo/practica-semana-04-dom-canvas" target="_blank" rel="noopener">github.com/stevenhuamanlazo/practica-semana-04-dom-canvas</a></li>
+                  <li>Sitio publicado del simulador: <a href="https://stevenhuamanlazo.github.io/practica-semana-04-dom-canvas/" target="_blank" rel="noopener">GitHub Pages</a></li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem04/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+                  <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica Calificada 3 · Aula virtual: ruleta y sorteo (teoría)</span><span class="ex-count">7 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 1">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p1_01_inicio.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p1_01_inicio.png" alt="Página de inicio del aula virtual: integrantes del equipo y dos tarjetas que abren la ruleta y el sorteo de equipos." loading="lazy" /></a>
+                    <figcaption>Página de inicio del aula virtual: integrantes del equipo y dos tarjetas que abren la ruleta y el sorteo de equipos.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p1_02_ruleta.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p1_02_ruleta.png" alt="Ruleta: lienzo dividido en sectores con 5 colores que se repiten, triángulo rojo, caja RESPUESTA y lista editable." loading="lazy" /></a>
+                    <figcaption>Ruleta: lienzo dividido en sectores con 5 colores que se repiten, triángulo rojo, caja RESPUESTA y lista editable.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p1_03_ruleta_resultado.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p1_03_ruleta_resultado.png" alt="Ruleta después de girar con la tecla Espacio: el sector bajo el triángulo rojo aparece en RESPUESTA." loading="lazy" /></a>
+                    <figcaption>Ruleta después de girar con la tecla Espacio: el sector bajo el triángulo rojo aparece en RESPUESTA.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p1_06_ruleta_oculta.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p1_06_ruleta_oculta.png" alt="Tecla S: el último elemento sorteado se resalta en gris en la lista y desaparece de la ruleta." loading="lazy" /></a>
+                    <figcaption>Tecla S: el último elemento sorteado se resalta en gris en la lista y desaparece de la ruleta.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p1_07_ruleta_edicion.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p1_07_ruleta_edicion.png" alt="Tecla E: edición del textarea con datos nuevos; la ruleta se actualiza al escribir." loading="lazy" /></a>
+                    <figcaption>Tecla E: edición del textarea con datos nuevos; la ruleta se actualiza al escribir.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p1_04_sorteo.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p1_04_sorteo.png" alt="Sorteo de equipos (mi parte): textarea de participantes con contador, modo de división, selector y título." loading="lazy" /></a>
+                    <figcaption>Sorteo de equipos (mi parte): textarea de participantes con contador, modo de división, selector y título.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p1_05_sorteo_resultado.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p1_05_sorteo_resultado.png" alt="Pantalla de resultados con 8 participantes de prueba: cada equipo en un rectángulo con su subtítulo y los 3 botones inferiores." loading="lazy" /></a>
+                    <figcaption>Pantalla de resultados con 8 participantes de prueba: cada equipo en un rectángulo con su subtítulo y los 3 botones inferiores.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica Semana 04 · Simulador orbital con DOM y Canvas</span><span class="ex-count">7 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 2">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p2_00_inicio.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p2_00_inicio.png" alt="Simulador Orbital Interactivo: título animado y pestañas para los 5 pasos de la guía." loading="lazy" /></a>
+                    <figcaption>Simulador Orbital Interactivo: título animado y pestañas para los 5 pasos de la guía.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p2_01_paso1_html_canvas.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p2_01_paso1_html_canvas.png" alt="Paso 1: estructura HTML con controles (Play, Pause, Reset, nombre y velocidad) y un canvas con el sol y un planeta." loading="lazy" /></a>
+                    <figcaption>Paso 1: estructura HTML con controles (Play, Pause, Reset, nombre y velocidad) y un canvas con el sol y un planeta.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p2_01b_paso1_nombre.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p2_01b_paso1_nombre.png" alt="Paso 1 con el nombre del astro cambiado a STEVEN: el input actualiza el texto dibujado en el canvas." loading="lazy" /></a>
+                    <figcaption>Paso 1 con el nombre del astro cambiado a STEVEN: el input actualiza el texto dibujado en el canvas.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p2_02_paso2_closure.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p2_02_paso2_closure.png" alt="Paso 2: estado encapsulado en un closure; contadores de órbitas e impulsos y estado Acelerado tras 3 impulsos." loading="lazy" /></a>
+                    <figcaption>Paso 2: estado encapsulado en un closure; contadores de órbitas e impulsos y estado Acelerado tras 3 impulsos.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p2_03_paso3_dom.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p2_03_paso3_dom.png" alt="Paso 3: manipulación del DOM con classList.toggle; el planeta de demostración en modo neón y con efecto pulsar." loading="lazy" /></a>
+                    <figcaption>Paso 3: manipulación del DOM con classList.toggle; el planeta de demostración en modo neón y con efecto pulsar.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p2_04_paso4_canvas_dt.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p2_04_paso4_canvas_dt.png" alt="Paso 4: animación en canvas con requestAnimationFrame y delta time, con 3 satélites añadidos al sistema." loading="lazy" /></a>
+                    <figcaption>Paso 4: animación en canvas con requestAnimationFrame y delta time, con 3 satélites añadidos al sistema.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem04/s4_p2_05_paso5_rendimiento.png" target="_blank" rel="noopener"><img src="assets/Sem04/s4_p2_05_paso5_rendimiento.png" alt="Paso 5: monitor de rendimiento con FPS, heap, listeners y fugas; se simuló una fuga y se registró el análisis en la consola." loading="lazy" /></a>
+                    <figcaption>Paso 5: monitor de rendimiento con FPS, heap, listeners y fugas; se simuló una fuga y se registró el análisis en la consola.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                </div>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+                    <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Sorteo de equipos (mi parte) y giro de la ruleta</span><span class="ex-count">3 fragmentos</span></div>
+                    <figure class="code-file"><p class="file-name">sorteoequipos/main.js (reparto, mezcla y generación)</p>
+<pre><code>function calcularTamanosEquipos(total, modo, valor) {
+  const tamanos = [];
+
+  if (modo === 'cantidadEquipos') {
+    const numeroEquipos = Math.max(1, Math.min(valor, total));
+    const base = Math.floor(total / numeroEquipos);
+    let resto = total % numeroEquipos;
+    for (let i = 0; i &lt; numeroEquipos; i++) {
+      tamanos.push(base + (resto &gt; 0 ? 1 : 0));
+      if (resto &gt; 0) resto--;
+    }
+  } else {
+    const tamanoEquipo = Math.max(1, Math.min(valor, total));
+    let restante = total;
+    while (restante &gt; 0) {
+      const actual = Math.min(tamanoEquipo, restante);
+      tamanos.push(actual);
+      restante -= actual;
+    }
+  }
+
+  return tamanos;
+}
+
+function mezclarArreglo(arreglo) {
+  const copia = [...arreglo];
+  for (let i = copia.length - 1; i &gt; 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
+}
+
+function generarEquipos() {
+  const participantes = obtenerListaParticipantes();
+  const validacion = validarParticipantes(participantes);
+  if (!validacion.valido) {
+    alert(validacion.mensaje);
+    return;
+  }
+
+  const modo = obtenerModoDivision();
+  const valor = parseInt(selectValorDivision.value, 10);
+  const tamanos = calcularTamanosEquipos(participantes.length, modo, valor);
+  const mezclados = mezclarArreglo(participantes);
+
+  const equipos = [];
+  let indice = 0;
+  for (const tamano of tamanos) {
+    equipos.push(mezclados.slice(indice, indice + tamano));
+    indice += tamano;
+  }
+
+  equiposGenerados = equipos;
+  mostrarPantallaResultados(equipos);
+}</code></pre></figure><figure class="code-file"><p class="file-name">sorteoequipos/main.js (pantalla de resultados, integrantes uno a uno)</p>
+<pre><code>function crearTarjetasEquipos(equipos) {
+  contenedorEquipos.innerHTML = '';
+  const listas = [];
+
+  equipos.forEach((equipo, i) =&gt; {
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'equipo-tarjeta';
+
+    const subtitulo = document.createElement('h3');
+    subtitulo.className = 'equipo-subtitulo';
+    subtitulo.textContent = `Equipo ${i + 1}`;
+
+    const lista = document.createElement('ul');
+    lista.className = 'lista-integrantes';
+
+    tarjeta.append(subtitulo, lista);
+    contenedorEquipos.appendChild(tarjeta);
+    listas.push(lista);
+  });
+
+  return listas;
+}
+
+function revelarIntegrantesSecuencialmente(equipos, listas) {
+  const RETRASO_MS = 180;
+  let equipoActual = 0;
+  let integranteActual = 0;
+
+  function revelarSiguiente() {
+    if (equipoActual &gt;= equipos.length) return;
+
+    const integrantes = equipos[equipoActual];
+    if (integranteActual &gt;= integrantes.length) {
+      equipoActual++;
+      integranteActual = 0;
+      revelarSiguiente();
+      return;
+    }
+
+    const item = document.createElement('li');
+    item.className = 'integrante';
+    item.textContent = integrantes[integranteActual];
+    listas[equipoActual].appendChild(item);
+
+    integranteActual++;
+    setTimeout(revelarSiguiente, RETRASO_MS);
+  }
+
+  revelarSiguiente();
+}
+
+function mostrarPantallaResultados(equipos) {
+  pantallaConfiguracion.hidden = true;
+  pantallaResultados.hidden = false;
+  tituloResultados.textContent = inputTituloEquipos.value.trim() || 'Resultado del Sorteo';
+
+  const listas = crearTarjetasEquipos(equipos);
+  revelarIntegrantesSecuencialmente(equipos, listas);
+}
+
+function volverAConfiguracion() {</code></pre></figure><figure class="code-file"><p class="file-name">ruleta/main.js (giro de la ruleta, parte del equipo)</p>
+<pre><code>function girarRuleta() {
+  if (estaGirando || elementosRuleta.length === 0) {
+    return;
+  }
+
+  estaGirando = true;
+
+  avisoGirar.hidden = true;
+
+  cajaRespuesta.textContent = "Girando...";
+
+  const anguloInicial = anguloActual;
+
+  const vueltasAleatorias = 5 + Math.random() * 5;
+
+  const anguloFinal = anguloInicial + vueltasAleatorias * 2 * Math.PI;
+
+  const duracionGiro = 4000;
+
+  const tiempoInicio = performance.now();
+
+  function animarGiro(tiempoActual) {
+    const progreso = Math.min((tiempoActual - tiempoInicio) / duracionGiro, 1);
+
+    const progresoSuavizado = 1 - Math.pow(1 - progreso, 3);
+
+    anguloActual =
+      anguloInicial + (anguloFinal - anguloInicial) * progresoSuavizado;
+
+    dibujarRuleta();
+
+    if (progreso &lt; 1) {
+      requestAnimationFrame(animarGiro);
+    } else {
+      anguloActual = anguloActual % (2 * Math.PI);
+
+      estaGirando = false;
+
+      mostrarElementoSeleccionado();
+    }
+  }
+
+  requestAnimationFrame(animarGiro);
+}</code></pre></figure>
+                  </div>
+                    <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Simulador orbital · app.js</span><span class="ex-count">3 fragmentos</span></div>
+                    <figure class="code-file"><p class="file-name">app.js (IIFE y estado en closure)</p>
+<pre><code>/**
+ * PASO 2: Patrón IIFE (Immediately Invoked Function Expression)
+ * Encapsula el estado orbital y la lógica de renderizado.
+ */
+const OrbitEngine = (() =&gt; {
+  /**
+   * CLOSURE SCOPE:
+   * Las variables privadas se mantienen vivas en la memoria gracias a los
+   * métodos que retornamos hacia afuera (referencia léxica persistente).
+   */
+  let state = {
+    angle: 0,
+    speedFactor: 0.03,
+    isAnimating: true,
+    astroName: "MIGUEL",
+    orbitsCompleted: 0,
+    impulses: 0,
+    statusText: "Estable",
+    lastTime: performance.now(),
+    frameCount: 0,
+    fps: 60,
+    satellites: [
+      { radius: 70, speedMultiplier: 1, size: 10, color: "#ef4444", selfRotation: 0, hasRings: true },
+      { radius: 45, speedMultiplier: 1.7, size: 7, color: "#38bdf8", selfRotation: 0, hasRings: false }
+    ],
+    stars: [],
+    leakMemoryArray: []
+  };</code></pre></figure><figure class="code-file"><p class="file-name">app.js (bucle de render con delta time)</p>
+<pre><code>  const mainLoop = (currentTime) =&gt; {
+    const dt = (currentTime - state.lastTime) / 1000 || 0;
+    
+    // Cálculo de FPS dinámicos
+    state.frameCount++;
+    if (currentTime - state.lastTime &gt;= 1000) {
+      state.fps = state.frameCount;
+      state.frameCount = 0;
+      const fpsElem = document.getElementById("fpsVal");
+      if (fpsElem) fpsElem.textContent = state.fps;
+
+      // Lectura de memoria Heap si está disponible
+      if (window.performance &amp;&amp; window.performance.memory) {
+        const memMB = (performance.memory.usedJSHeapSize / (1024 * 1024)).toFixed(1);
+        const memElem = document.getElementById("memVal");
+        if (memElem) memElem.textContent = memMB;
+      }
+    }
+    state.lastTime = currentTime;
+
+    if (state.isAnimating) {
+      const previousAngle = state.angle;
+      state.angle += state.speedFactor * dt * 60;
+
+      if (Math.floor(state.angle / (Math.PI * 2)) &gt; Math.floor(previousAngle / (Math.PI * 2))) {
+        state.orbitsCompleted++;
+        const counterElem = document.getElementById("counterOrbits");
+        if (counterElem) counterElem.textContent = state.orbitsCompleted;
+      }
+    }
+
+    drawStep1Canvas(currentTime);
+    drawStep4Canvas(currentTime);
+    ...
+    requestAnimationFrame(mainLoop);
+  };</code></pre></figure><figure class="code-file"><p class="file-name">app.js (eventos del DOM)</p>
+<pre><code>  document.getElementById("btnPlay").addEventListener("click", () =&gt; OrbitEngine.togglePlay(true));
+  document.getElementById("btnPause").addEventListener("click", () =&gt; OrbitEngine.togglePlay(false));
+  document.getElementById("btnReset").addEventListener("click", () =&gt; OrbitEngine.resetPaso1());
+  document.getElementById("inputName").addEventListener("input", (e) =&gt; OrbitEngine.setName(e.target.value));
+  document.getElementById("rangeSpeed").addEventListener("input", (e) =&gt; {
+    document.getElementById("speedDisplay").textContent = e.target.value;
+    OrbitEngine.setSpeed(e.target.value);
+  });
+
+  document.getElementById("btnBoostClosure").addEventListener("click", () =&gt; OrbitEngine.applyBoost());
+
+  const planetBox = document.getElementById("planetDemoBox");
+  document.getElementById("btnToggleTheme").addEventListener("click", () =&gt; planetBox.classList.toggle("neon-mode"));
+  document.getElementById("btnPulseOrbit").addEventListener("click", () =&gt; planetBox.classList.toggle("pulse"));
+  document.getElementById("btnResetPlanet").addEventListener("click", () =&gt; planetBox.className = "demo-box planet-mode");
+
+  document.getElementById("btnStartAnim").addEventListener("click", () =&gt; OrbitEngine.togglePlay(true));
+  document.getElementById("btnStopAnim").addEventListener("click", () =&gt; OrbitEngine.togglePlay(false));
+  document.getElementById("btnAddSatellite").addEventListener("click", () =&gt; OrbitEngine.addSatellite());</code></pre></figure>
+                  </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a manejar el DOM con eventos y clases, a guardar el estado de una aplicación dentro de un closure y a dibujar y animar en un canvas con <code>requestAnimationFrame</code> y delta time. También aprendí a medir el rendimiento (FPS, memoria y fugas) y a guardar datos con <code>localStorage</code>.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>Siguiendo los 5 pasos de la guía y haciendo un commit por paso, y probando cada cambio en Live Server. Hice dos prácticas sobre el mismo tema: en la de teoría trabajé en equipo con una rama por integrante, y en la del laboratorio ordené todo el código con IIFE y closures.</p></div>
+              <div class="reflect-block"><h4>Dificultad y solución</h4><p>Lo que más cuidado me pidió fue repartir a los participantes cuando la división no es exacta y mantener la animación independiente de los FPS. Lo resolví repartiendo el resto entre los primeros equipos y usando delta time en vez de un incremento fijo por cuadro.</p></div>
+            </div>
+          </section>
+        </article>
+      </li>
