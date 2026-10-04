@@ -73,13 +73,12 @@ main.wrap { width: min(1280px, calc(100% - 3rem)); }
 /* ---------- Pestañas del laboratorio ---------- */
 .lab-grid.is-tabs { display: block; margin-top: 0.2rem; }
 .lab-tabs {
-  display: flex; gap: 0.35rem; overflow-x: auto; padding: 0.15rem 0 0.55rem;
-  scrollbar-width: thin; scroll-snap-type: x proximity;
+  display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0.15rem 0 0.7rem;
 }
 .lab-tab {
   flex: 0 0 auto; min-height: 44px; padding: 0 0.8rem; border-radius: 999px; cursor: pointer;
   background: var(--card-bg); color: var(--text-muted); border: 1px solid var(--border-color);
-  font: 600 0.72rem var(--font-mono); white-space: nowrap; scroll-snap-align: start;
+  font: 600 0.72rem var(--font-mono); white-space: nowrap;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 .lab-tab:hover { color: var(--text-dark); border-color: var(--accent-amber); }
