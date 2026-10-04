@@ -45,9 +45,9 @@
                 </div>
               </details>
               <details class="topic">
-                <summary>JavaScript y Git en la práctica de teoría</summary>
+                <summary>Tailwind en una interfaz real y trabajo con Git</summary>
                 <div class="topic-body">
-                  <p>En la Práctica Calificada 03 trabajé el sorteo de equipos con JavaScript: reparto los participantes en grupos y mezclo la lista con un algoritmo de intercambio aleatorio (tipo Fisher-Yates). También vimos que el equipo trabaja con una rama por integrante y que el líder integra los cambios con <em>pull requests</em>.</p>
+                  <p>En la Práctica Calificada 2 usé solo HTML y Tailwind para copiar una interfaz: una bandeja de mensajes en dos versiones (clara y oscura). Aprendí a usar variantes responsivas con valores propios, como <code>min-[701px]:w-1/2</code> y <code>min-[1400px]:w-[60%]</code>, para que la lista cambie de ancho según la pantalla, y estados como <code>hover:</code> y <code>focus-visible:</code>. El equipo trabajó con una rama por integrante y el líder hizo el <em>merge</em> a <code>main</code>.</p>
                 </div>
               </details>
             </div>
@@ -57,17 +57,18 @@
             <h3>2. Ejercicios de laboratorio - Resultados</h3>
             <dl class="lab-grid">
               <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
-                <p><strong>Ejercicio 1:</strong> Práctica Calificada 03 del curso de teoría, en equipo de 4 personas con una rama por integrante: una página de inicio con tarjetas que cargan en un <code>iframe</code> la página de la <strong>ruleta</strong> y la del <strong>sorteo de equipos</strong>. Mi parte fue el sorteo de equipos.</p>
+                <p><strong>Ejercicio 1:</strong> Práctica Calificada 2 del curso de teoría (Dr. Jaime Suasnábar Terrel), en equipo de 3 personas con HTML y Tailwind, repositorio en GitHub con una rama por integrante. El proyecto tiene una página principal con 3 cards que giran 180° y enlazan a <code>Page01</code> (bandeja de mensajes en dos listas), <code>Page02</code> (playas y ciudades del Perú) y <code>Page03</code> (tienda de plantas). Mi parte fue <code>Page01</code>.</p>
                 <p><strong>Ejercicio 2:</strong> Práctica 3 individual del curso práctico (guía de Frameworks CSS): <strong>PatitasHogar</strong>, una página de adopción y venta de perritos con Bootstrap 5 y Tailwind, con un panel que activa y desactiva cada paso de la guía.</p>
                 <p><strong>Ejercicio 3:</strong> Práctica grupal del curso práctico, en pareja: <strong>Huellitas</strong>, tienda virtual de mascotas con HTML5 semántico, Bootstrap 5.3.3 y Tailwind (Play CDN). Yo hice los pasos 4 al 6: grid de tarjetas, formulario con validación y auditoría.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
                 <h4>Ejercicio 1</h4>
                 <ol>
-                  <li>Creé el sorteo en mi rama <code>Huamanlazo-Pariona</code>: un textarea de participantes (hasta 100) con contador y guardado local.</li>
-                  <li>Programé las dos formas de dividir: por cantidad de equipos o por participantes por equipo, con <code>calcularTamanosEquipos</code>.</li>
-                  <li>Mezclé la lista con <code>mezclarArreglo</code> y la repartí en equipos con <code>generarEquipos</code>.</li>
-                  <li>Agregué las acciones sobre el resultado: descargar JPG y copiar al portapapeles (en lista o en columnas).</li>
+                  <li>Trabajé en mi rama <code>Huamanlazo_Pariona</code> el archivo <code>Page01/index.html</code>: un grid de 2 columnas y 1 fila, una lista clara (turquesa) y otra oscura (rosa).</li>
+                  <li>Hice el ancho responsivo de cada lista: 60% de la columna con pantallas mayores a 1400 px, 50% entre 701 y 1399 px y 100% por debajo de 700 px.</li>
+                  <li>Dibujé con SVG los iconos de menú, búsqueda, check y favorito, y completé las 5 entradas de cada lista con asunto en negrita, remitente y vista previa.</li>
+                  <li>Mejoré la accesibilidad: convertí los iconos en botones con <code>aria-label</code>, marqué los avatares como decorativos con <code>aria-hidden</code> y añadí <code>tabindex</code>, <code>role</code> y transición a cada mensaje.</li>
+                  <li>El líder integró las ramas en <code>main</code>.</li>
                 </ol>
                 <h4>Ejercicio 2</h4>
                 <ol>
@@ -86,7 +87,7 @@
                 </ol>
               </dd></div>
               <div class="lab-item span-full"><dt>Resultado</dt><dd>
-                <p><strong>Ejercicio 1:</strong> el sorteo reparte a los participantes en equipos aleatorios, muestra cada equipo en una tarjeta y permite descargar el resultado como imagen o copiarlo.</p>
+                <p><strong>Ejercicio 1:</strong> <code>Page01</code> muestra las dos listas con los anchos pedidos según el tamaño de pantalla, y cada mensaje se puede enfocar con el teclado.</p>
                 <p><strong>Ejercicio 2:</strong> PatitasHogar funciona con los 5 pasos de la guía, que se pueden encender y apagar desde el panel.</p>
                 <p><strong>Ejercicio 3:</strong> Huellitas es responsiva (menú hamburguesa en mobile, grid que pasa de 3 columnas a 1) y su formulario muestra estados de error y de éxito.</p>
                 <h4>Auditoría del Ejercicio 3</h4>
@@ -102,7 +103,7 @@
               </dd></div>
               <div class="lab-item span-full"><dt>Evidencia</dt><dd>
                 <ul>
-                  <li>Práctica Calificada 03 (teoría): <a href="https://github.com/E5gar/PracticaCalificada03" target="_blank" rel="noopener">github.com/E5gar/PracticaCalificada03</a> (mi rama: <code>Huamanlazo-Pariona</code>)</li>
+                  <li>Práctica Calificada 2 (teoría): <a href="https://github.com/saulPariona/PRACTICA-CALIFICADA_2_SUAZNABAR" target="_blank" rel="noopener">github.com/saulPariona/PRACTICA-CALIFICADA_2_SUAZNABAR</a> (mi rama: <code>Huamanlazo_Pariona</code>)</li>
                   <li>Práctica 3 individual, PatitasHogar: <a href="https://github.com/stevenhuamanlazo/PRACTICA3-PETSHOP" target="_blank" rel="noopener">github.com/stevenhuamanlazo/PRACTICA3-PETSHOP</a></li>
                   <li>Práctica grupal, Huellitas: <a href="https://github.com/E5gar/grupo-Gago-Huamanlazo-semana3-web-mascotas" target="_blank" rel="noopener">github.com/E5gar/grupo-Gago-Huamanlazo-semana3-web-mascotas</a> (mi rama: <code>dev/Huamanlazo-Pariona</code>)</li>
                   <li>Sitio publicado de la práctica grupal: <a href="https://e5gar.github.io/grupo-Gago-Huamanlazo-semana3-web-mascotas/" target="_blank" rel="noopener">GitHub Pages</a></li>
@@ -112,27 +113,31 @@
               <div class="lab-item span-full"><dt>Captura</dt><dd>
                 <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
                   <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
-                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica Calificada 03 · Ruleta y sorteo de equipos (teoría)</span><span class="ex-count">5 capturas</span></div>
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica Calificada 2 · HTML y Tailwind (teoría)</span><span class="ex-count">6 capturas</span></div>
                     <ol class="shots" aria-label="Capturas del ejercicio 1">
                     <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem03/s3_p1_01_inicio.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_01_inicio.png" alt="Página de inicio de la práctica: cabecera institucional, integrantes del equipo y dos tarjetas que abren la ruleta y el sorteo de equipos." loading="lazy" /></a>
-                    <figcaption>Página de inicio de la práctica: cabecera institucional, integrantes del equipo y dos tarjetas que abren la ruleta y el sorteo de equipos.</figcaption>
+                    <a class="shot-link" href="assets/Sem03/s3_p1_01_page01_1600.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_01_page01_1600.png" alt="Page01 con pantalla de 1600 px (mayor a 1400): cada lista ocupa el 60% de su columna; a la izquierda la bandeja turquesa y a la derecha la oscura." loading="lazy" /></a>
+                    <figcaption>Page01 con pantalla de 1600 px (mayor a 1400): cada lista ocupa el 60% de su columna; a la izquierda la bandeja turquesa y a la derecha la oscura.</figcaption>
                   </figure></li>
                     <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem03/s3_p1_02_ruleta.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_02_ruleta.png" alt="Página 01, ruleta del aula: lienzo con sectores de colores, lista de elementos editable y atajos de teclado." loading="lazy" /></a>
-                    <figcaption>Página 01, ruleta del aula: lienzo con sectores de colores, lista de elementos editable y atajos de teclado.</figcaption>
+                    <a class="shot-link" href="assets/Sem03/s3_p1_02_page01_1000.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_02_page01_1000.png" alt="Page01 con 1000 px (entre 701 y 1399): cada lista ocupa el 50% de la columna." loading="lazy" /></a>
+                    <figcaption>Page01 con 1000 px (entre 701 y 1399): cada lista ocupa el 50% de la columna.</figcaption>
                   </figure></li>
                     <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem03/s3_p1_03_ruleta_resultado.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_03_ruleta_resultado.png" alt="Ruleta después de girar con la tecla Espacio: el sector que queda bajo la flecha roja se muestra en el recuadro RESPUESTA." loading="lazy" /></a>
-                    <figcaption>Ruleta después de girar con la tecla Espacio: el sector que queda bajo la flecha roja se muestra en el recuadro RESPUESTA.</figcaption>
+                    <a class="shot-link" href="assets/Sem03/s3_p1_03_page01_600.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_03_page01_600.png" alt="Page01 con 600 px (menor a 700): las listas ocupan el 100% del ancho y se apilan." loading="lazy" /></a>
+                    <figcaption>Page01 con 600 px (menor a 700): las listas ocupan el 100% del ancho y se apilan.</figcaption>
                   </figure></li>
                     <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem03/s3_p1_04_sorteo.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_04_sorteo.png" alt="Página 02 (mi parte), sorteo de equipos: textarea de participantes con contador, modo de división, selector y título." loading="lazy" /></a>
-                    <figcaption>Página 02 (mi parte), sorteo de equipos: textarea de participantes con contador, modo de división, selector y título.</figcaption>
+                    <a class="shot-link" href="assets/Sem03/s3_p1_04_page01_foco.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_04_page01_foco.png" alt="Page01 con navegación por teclado: el mensaje enfocado muestra un anillo visible (focus-visible)." loading="lazy" /></a>
+                    <figcaption>Page01 con navegación por teclado: el mensaje enfocado muestra un anillo visible (focus-visible).</figcaption>
                   </figure></li>
                     <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem03/s3_p1_05_sorteo_resultado.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_05_sorteo_resultado.png" alt="Sorteo de equipos generado con 8 participantes de prueba: los equipos aparecen en tarjetas con botones para descargar o copiar." loading="lazy" /></a>
-                    <figcaption>Sorteo de equipos generado con 8 participantes de prueba: los equipos aparecen en tarjetas con botones para descargar o copiar.</figcaption>
+                    <a class="shot-link" href="assets/Sem03/s3_p1_07_index.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_07_index.png" alt="Página principal: tres cards (page1, page2 y page3) que enlazan a cada página." loading="lazy" /></a>
+                    <figcaption>Página principal: tres cards (page1, page2 y page3) que enlazan a cada página.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem03/s3_p1_08_index_giro.png" target="_blank" rel="noopener"><img src="assets/Sem03/s3_p1_08_index_giro.png" alt="Card page1 con el cursor encima: gira 180° y muestra &quot;Ir a Page01&quot; en el dorso." loading="lazy" /></a>
+                    <figcaption>Card page1 con el cursor encima: gira 180° y muestra &quot;Ir a Page01&quot; en el dorso.</figcaption>
                   </figure></li>
                     </ol>
                   </div>
@@ -225,63 +230,141 @@
                 <dd>
                   <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
                     <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
-                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Sorteo de equipos · reparto, mezcla y generación</span><span class="ex-count">1 archivo</span></div>
-                    <figure class="code-file"><p class="file-name">sorteoequipos/main.js</p>
-<pre><code>function calcularTamanosEquipos(total, modo, valor) {
-  const tamanos = [];
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica Calificada 2 · Page01 (mi parte) e index</span><span class="ex-count">4 fragmentos</span></div>
+                    <figure class="code-file"><p class="file-name">Page01/index.html (columna clara: contenedor, cabecera y primer mensaje)</p>
+<pre><code>&lt;body class="m-0 bg-gray-200"&gt;
 
-  if (modo === 'cantidadEquipos') {
-    const numeroEquipos = Math.max(1, Math.min(valor, total));
-    const base = Math.floor(total / numeroEquipos);
-    let resto = total % numeroEquipos;
-    for (let i = 0; i &lt; numeroEquipos; i++) {
-      tamanos.push(base + (resto &gt; 0 ? 1 : 0));
-      if (resto &gt; 0) resto--;
-    }
-  } else {
-    const tamanoEquipo = Math.max(1, Math.min(valor, total));
-    let restante = total;
-    while (restante &gt; 0) {
-      const actual = Math.min(tamanoEquipo, restante);
-      tamanos.push(actual);
-      restante -= actual;
-    }
-  }
+  &lt;div class="grid grid-cols-1 min-[701px]:grid-cols-2 min-h-screen"&gt;
 
-  return tamanos;
+    &lt;!-- ============ COLUMNA A (lista clara / turquesa) ============ --&gt;
+    &lt;div class="flex justify-center"&gt;
+      &lt;div class="w-full min-[701px]:w-1/2 min-[1400px]:w-[60%] bg-white flex flex-col"&gt;
+
+        &lt;!-- Header --&gt;
+        &lt;div class="flex items-center justify-between bg-teal-500 text-white px-4 py-3"&gt;
+          &lt;div class="flex items-center gap-4"&gt;
+            &lt;svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"&gt;
+              &lt;path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /&gt;
+            &lt;/svg&gt;
+            &lt;span class="text-lg font-medium"&gt;Inbox&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;button type="button" aria-label="Buscar" class="p-1 rounded transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white"&gt;
+            &lt;svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"&gt;
+              &lt;path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" /&gt;
+            &lt;/svg&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Sección "Today" --&gt;
+        &lt;p class="px-4 py-2 text-xs font-semibold text-gray-500"&gt;Today&lt;/p&gt;
+
+        &lt;!-- Lista de mensajes --&gt;
+        &lt;ul class="divide-y divide-gray-100"&gt;
+
+          &lt;li tabindex="0" role="button" class="flex gap-3 px-4 py-3 transition-colors hover:bg-gray-50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"&gt;
+            &lt;div aria-hidden="true" class="w-9 h-9 rounded-full bg-pink-300 flex-shrink-0 flex items-center justify-center text-white text-sm font-bold"&gt;A&lt;/div&gt;
+            &lt;div class="min-w-0"&gt;
+              &lt;p class="font-bold text-gray-800 text-sm"&gt;Brunch this weekend?&lt;/p&gt;
+              &lt;p class="text-sm text-gray-600 truncate"&gt;
+                &lt;span class="text-teal-600"&gt;Ali Connors&lt;/span&gt; — I'll be in your neighborhood doing errands this weekend. Do you want to hang out?
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/li&gt;
+
+          &lt;li tabindex="0" role="button" class="flex gap-3 px-4 py-3 transition-colors hover:bg-gray-50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"&gt;
+            &lt;div class="w-9 h-9 rounded-full bg-amber-400 flex-shrink-0 flex items-center justify-center text-white text-sm font-bold"&gt;S&lt;/div&gt;
+            &lt;div class="min-w-0"&gt;
+              &lt;p class="font-bold text-gray-800 text-sm"&gt;Summer BBQ&lt;/p&gt;
+              &lt;p class="text-sm text-gray-600 truncate"&gt;
+                &lt;span class="text-teal-600"&gt;to Alex, Scott, Jennifer&lt;/span&gt; — Wish I could come, but I'm out of town this weekend.</code></pre></figure><figure class="code-file"><p class="file-name">Page01/index.html (columna oscura: cabecera y primer mensaje)</p>
+<pre><code>      &lt;div class="w-full min-[701px]:w-1/2 min-[1400px]:w-[60%] bg-gray-900 flex flex-col"&gt;
+
+        &lt;!-- Header --&gt;
+        &lt;div class="flex items-center justify-between bg-pink-600 text-white px-4 py-3"&gt;
+          &lt;div class="flex items-center gap-4"&gt;
+            &lt;svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"&gt;
+              &lt;path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /&gt;
+            &lt;/svg&gt;
+            &lt;span class="text-lg font-medium"&gt;Inbox&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="flex items-center gap-4"&gt;
+            &lt;button type="button" aria-label="Buscar" class="p-1 rounded transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white"&gt;
+              &lt;svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"&gt;
+                &lt;path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" /&gt;
+              &lt;/svg&gt;
+            &lt;/button&gt;
+            &lt;button type="button" aria-label="Marcar todo como leído" class="p-1 rounded transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white"&gt;
+              &lt;svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"&gt;
+                &lt;path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /&gt;
+              &lt;/svg&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Lista de mensajes --&gt;
+        &lt;ul class="divide-y divide-gray-800"&gt;
+
+          &lt;li tabindex="0" role="button" class="flex items-center justify-between px-4 py-3 transition-colors hover:bg-gray-800/60 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"&gt;
+            &lt;div class="min-w-0"&gt;
+              &lt;p class="text-sm text-gray-200 font-semibold"&gt;Ali Connors&lt;/p&gt;
+              &lt;p class="font-bold text-white text-sm"&gt;Brunch this weekend?&lt;/p&gt;
+              &lt;p class="text-sm text-gray-400 truncate"&gt;I'll be in your neighborhood doing errands this weekend. Do yo...&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="flex flex-col items-end gap-2 pl-3 flex-shrink-0"&gt;</code></pre></figure><figure class="code-file"><p class="file-name">index.html (card que gira)</p>
+<pre><code>
+        &lt;!-- Card 1 --&gt;
+        &lt;a href="Page01/index.html" class="card-container"&gt;
+            &lt;div class="card-inner"&gt;
+                &lt;div class="card-front bg-blue-500 text-white shadow-lg rounded-2xl p-8 flex flex-col items-center justify-center"&gt;
+                    &lt;i data-lucide="layout-dashboard" class="w-12 h-12 mb-4"&gt;&lt;/i&gt;
+                    &lt;span class="text-2xl font-bold tracking-wide"&gt;page1&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="card-back bg-blue-700 text-white shadow-lg rounded-2xl p-8 flex flex-col items-center justify-center"&gt;
+                    &lt;i data-lucide="arrow-right-circle" class="w-12 h-12 mb-4"&gt;&lt;/i&gt;
+                    &lt;span class="text-xl font-bold"&gt;Ir a Page01&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/a&gt;
+
+        &lt;!-- Card 2 --&gt;
+        &lt;a href="Page02/index.html" class="card-container"&gt;
+            &lt;div class="card-inner"&gt;</code></pre></figure><figure class="code-file"><p class="file-name">styles.css</p>
+<pre><code>/* Configuración del contenedor del Card con perspectiva 3D */
+.card-container {
+    perspective: 1000px;
+    width: 260px;
+    height: 260px;
 }
 
-function mezclarArreglo(arreglo) {
-  const copia = [...arreglo];
-  for (let i = copia.length - 1; i &gt; 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copia[i], copia[j]] = [copia[j], copia[i]];
-  }
-  return copia;
+/* Estructura interna del Card para soportar el giro en 3D */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
 }
 
-function generarEquipos() {
-  const participantes = obtenerListaParticipantes();
-  const validacion = validarParticipantes(participantes);
-  if (!validacion.valido) {
-    alert(validacion.mensaje);
-    return;
-  }
+/* Efecto Hover: Giro limpio de 180 grados */
+.card-container:hover .card-inner {
+    transform: rotateY(180deg);
+}
 
-  const modo = obtenerModoDivision();
-  const valor = parseInt(selectValorDivision.value, 10);
-  const tamanos = calcularTamanosEquipos(participantes.length, modo, valor);
-  const mezclados = mezclarArreglo(participantes);
+/* Propiedades comunes de las caras del card */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-  const equipos = [];
-  let indice = 0;
-  for (const tamano of tamanos) {
-    equipos.push(mezclados.slice(indice, indice + tamano));
-    indice += tamano;
-  }
-
-  equiposGenerados = equipos;
-  mostrarPantallaResultados(equipos);
+/* Configuración del dorso orientado correctamente */
+.card-back {
+    transform: rotateY(180deg);
 }</code></pre></figure>
                   </div>
                     <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
