@@ -1,0 +1,468 @@
+<!-- Semana 6: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-6">
+        <div class="week-marker" aria-hidden="true">6</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 6</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Componentes, JSX, estilos, routing y consumo de APIs en React)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>Cómo renderiza React: DOM virtual y reconciliación</summary>
+                <div class="topic-body">
+                  <p>React no modifica la página directamente. Primero crea un <strong>DOM virtual</strong> en memoria; cada vez que un componente cambia genera uno nuevo y lo <strong>compara con el anterior</strong> (<em>diffing</em>). Con esa diferencia, la <strong>reconciliación</strong> actualiza en el DOM real solo las partes que cambiaron. El renderizado se hace sobre un elemento HTML con id <code>root</code>, con <code>ReactDOM.createRoot(...).render(&lt;App /&gt;)</code>.</p><ol class="flow" aria-label="Pasos del renderizado"><li>DOM virtual</li><li>Diffing</li><li>Reconciliación</li><li>DOM real</li></ol>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Componentes: clase y función</summary>
+                <div class="topic-body">
+                  <p>Un <strong>componente</strong> es una unidad de interfaz reutilizable. Se crea en un archivo <code>.jsx</code> o <code>.tsx</code>, su nombre <strong>debe empezar con mayúscula</strong> y se invoca como una etiqueta (<code>&lt;Header /&gt;</code>). Todo componente tiene tres partes: el JavaScript, el HTML (JSX) y el CSS. Existen componentes de <strong>clase</strong> (<code>class X extends React.Component</code> con <code>render()</code>) y de <strong>función</strong>, que se escriben con mucho menos código y son los que usé en las prácticas.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>JSX: expresiones, condicionales y listas</summary>
+                <div class="topic-body">
+                  <p><strong>JSX</strong> mezcla JavaScript con HTML y requiere que un transpilador como Babel lo convierta a JavaScript. Dentro de las llaves <code>{ }</code> puedo insertar variables, atributos y expresiones como <code>{2000 + 24}</code>. Un componente debe devolver <strong>un solo elemento raíz</strong> (un <code>div</code> o un fragmento <code>&lt;&gt;&lt;/&gt;</code>) y todas las etiquetas deben cerrarse, incluso las que no tienen cierre en HTML (<code>&lt;input /&gt;</code>).</p><div class="table-wrap"><table><caption>Renderizado condicional e iterativo</caption><thead><tr><th scope="col">Técnica</th><th scope="col">Cómo se usa</th></tr></thead><tbody><tr><td><code>if</code></td><td>Se escribe fuera del JSX y guarda el resultado en una variable</td></tr><tr><td>Ternario</td><td><code>{x &lt; 10 ? "Hello" : "Goodbye"}</code> elige entre dos valores</td></tr><tr><td><code>&amp;&amp;</code></td><td><code>{error &amp;&amp; &lt;p&gt;...&lt;/p&gt;}</code> muestra algo solo si la condición es verdadera</td></tr><tr><td><code>.map()</code></td><td>Recorre un arreglo y devuelve un componente por elemento; cada uno lleva una <code>key</code> única</td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Props y children</summary>
+                <div class="topic-body">
+                  <p>Las <strong>props</strong> son los datos que un componente padre envía al hijo como atributos; llegan como un objeto y el hijo no debe modificarlas. <strong>Children</strong> es lo que se escribe entre la etiqueta de apertura y cierre del componente (<code>&lt;Hijo&gt;texto&lt;/Hijo&gt;</code>) y el hijo lo recibe con <code>{children}</code>. También se pueden anidar componentes dentro de otros (<code>&lt;App /&gt;</code> contiene a <code>&lt;Padre /&gt;</code>, que contiene a <code>&lt;Hijo /&gt;</code>). Para que un hijo envíe un dato al padre se pasa una función por props.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>TypeScript en componentes</summary>
+                <div class="topic-body">
+                  <p><strong>TypeScript</strong> es JavaScript con tipado estático opcional: detecta errores antes de ejecutar el código. En un componente se define una <code>interface</code> con los tipos de las props y se usa <code>React.FC&lt;Props&gt;</code>; por ejemplo, <code>number: number</code> y <code>setNumber: Dispatch&lt;SetStateAction&lt;number&gt;&gt;</code>. Un archivo con JSX en TypeScript usa la extensión <code>.tsx</code>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Estilos en React</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>Formas de diseñar un componente</caption><thead><tr><th scope="col">Forma</th><th scope="col">Cómo se aplica</th></tr></thead><tbody><tr><td>Hoja de estilos</td><td>Archivo <code>.css</code> importado con <code>import</code> y clases con <code>className</code></td></tr><tr><td>Módulos CSS</td><td>Archivo <code>.module.css</code>; se importa como objeto (<code>estilos.clase1</code>) y el estilo queda local al componente</td></tr><tr><td>Estilo en línea</td><td>Objeto de JavaScript: <code>style={{ color: "red" }}</code>, con propiedades en camelCase</td></tr><tr><td>Tailwind CSS</td><td><code>npm install -D tailwindcss postcss autoprefixer</code>, <code>npx tailwindcss init -p</code>, rutas en <code>content</code> y las tres directivas <code>@tailwind</code> en <code>index.css</code></td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Enrutamiento en el cliente con React Router</summary>
+                <div class="topic-body">
+                  <p>En una SPA el <strong>routing del lado del cliente</strong> cambia la vista sin recargar la página. <code>BrowserRouter</code> envuelve la aplicación, <code>Routes</code> agrupa las rutas y cada <code>Route</code> asocia un <code>path</code> con un componente; la ruta <code>*</code> sirve para la página 404. <code>NavLink</code> reemplaza al <code>&lt;a&gt;</code> y, mediante la función <code>isActive</code> (que sustituye al antiguo <code>activeClassName</code>), permite resaltar el enlace de la página actual.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Consumo de API con axios y async/await</summary>
+                <div class="topic-body">
+                  <p>Con <strong>axios</strong> se crea una instancia con <code>baseURL</code> y <code>timeout</code>, y las peticiones se hacen con <code>async/await</code> dentro de <code>try/catch/finally</code> en lugar de encadenar <code>.then()</code>. En <code>useEffect</code> se manejan tres estados: <em>loading</em>, <em>data</em> y <em>error</em>. El <strong>AbortController</strong> permite cancelar la petición cuando el componente se desmonta (función de limpieza del efecto), así se evitan renders innecesarios. En desarrollo, <code>StrictMode</code> monta el componente dos veces y por eso se ven dos peticiones, la primera cancelada.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Formularios controlados y eventos</summary>
+                <div class="topic-body">
+                  <p>En un <strong>formulario controlado</strong> el valor de cada campo vive en un estado (<code>useState</code>) y se actualiza con <code>onChange</code>, de modo que React siempre sabe qué hay escrito y puede validarlo en tiempo real. En <code>onSubmit</code> se llama a <code>e.preventDefault()</code> para que la página no se recargue. El mismo principio sirve para el buscador de la lista: el texto escrito filtra el arreglo sin volver a pedir datos a la API.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1 (curso teórico):</strong> Actividad de aprendizaje 07A, «Componentes, JSX, TypeScript y Estilos en React». El docente pidió resolver los ejercicios 1 y 2; yo desarrollé los cinco: (1) una aplicación con 7 componentes y diseño responsivo distinto para PC, tablet y móvil en CSS puro; (2) cuatro componentes anidados que se pasan un objeto y lo muestran en un card; (3) un componente padre y un hijo que envía un dato al padre; (4) un padre con dos hijos hermanos que se pasan nombre y apellido; (5) una tabla de 4 estudiantes con estilos CSS.</p>
+                <p><strong>Ejercicio 2 (curso práctico):</strong> <em>Minimarket Fresco</em>, una SPA con React y Vite que consume la API pública de DummyJSON (categoría <code>groceries</code>), con enrutamiento del lado del cliente, buscador y filtros por categoría, formulario controlado con validación en tiempo real y estados de carga y error.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <p><strong>Ejercicio 1:</strong> [Escribe aquí cómo resolviste los ejercicios 1 al 5 de la actividad 07A.]</p>
+                <p><strong>Ejercicio 2</strong>, siguiendo los 5 pasos de la guía:</p>
+                <ol>
+                  <li><strong>Configuración:</strong> creé el proyecto con <code>npm create vite@latest</code> (plantilla React), instalé <code>react-router-dom</code> y <code>axios</code> y armé las carpetas <code>src/pages</code>, <code>src/components</code>, <code>src/services</code> y <code>src/hooks</code>.</li>
+                  <li><strong>Enrutamiento:</strong> envolví <code>App</code> con <code>BrowserRouter</code> en <code>main.jsx</code>, definí las rutas con <code>Routes</code> y <code>Route</code> (Home, List, Form y NotFound) y usé <code>NavLink</code> con <code>isActive</code> para resaltar la ruta activa.</li>
+                  <li><strong>Consumo de API:</strong> instancia de axios en <code>services/api.js</code> y el hook <code>useFetchProducts</code> con <code>async/await</code>, <code>try/catch/finally</code>, <code>AbortController</code> y los estados <code>loading</code>, <code>products</code> y <code>error</code>.</li>
+                  <li><strong>Renderizado y formulario:</strong> lista con <code>.map()</code> y <code>key</code>, renderizado condicional con <code>&amp;&amp;</code> y ternario, buscador y filtros por categoría, y formulario controlado con validación en tiempo real y vista previa.</li>
+                  <li><strong>Integración y auditoría:</strong> comenté en el código cómo se evita el renderizado innecesario tras el fetch y revisé en DevTools (Network) las peticiones a la API.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p><strong>Ejercicio 1:</strong> [Escribe aquí el resultado de los ejercicios 1 al 5.]</p>
+                <p><strong>Ejercicio 2:</strong> la aplicación muestra el catálogo con títulos y descripciones en español, precios en soles (S/) y cada producto con una categoría. Tiene las rutas <code>/</code> (Inicio), <code>/productos</code> (Catálogo), <code>/nuevo-producto</code> (Formulario) y <code>*</code> (404). Los productos registrados en el formulario se guardan en <code>localStorage</code> y aparecen primero en el catálogo.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>En desarrollo, <code>StrictMode</code> monta el componente dos veces, por eso en Network aparecen dos peticiones a <code>groceries</code>: la primera figura como <em>canceled</em> gracias al <code>AbortController</code> y la segunda responde 200. En producción solo habría una.</p>
+                <p>El código fuente de la página solo contiene <code>&lt;div id="root"&gt;&lt;/div&gt;</code> y el script <code>main.jsx</code>: todo lo visible lo construye el navegador (Client Side Rendering).</p>
+                <p>La guía pedía que el 75 % de la estructura de componentes y del paso de datos se escribiera a mano; los usos de IA quedaron comentados en el código con el formato <code>// IA: [problema] → Solución manual: [explicación]</code>.</p>
+                <div class="table-wrap"><table><caption>Registro de uso de IA (comentarios «// IA:» del código)</caption><thead><tr><th scope="col">Archivo</th><th scope="col">Problema</th><th scope="col">Solución manual</th></tr></thead><tbody><tr><td>src/components/ProductCard.jsx</td><td>La descripción en español se cortaba por la altura fija de la tarjeta</td><td>Quitar height/overflow y usar flexGrow dentro de una tarjeta en columna</td></tr><tr><td>src/main.jsx</td><td>Los estilos globales no se aplicaban (fuente serif, fondo blanco)</td><td>Importar index.css en el punto de entrada</td></tr><tr><td>src/pages/List.jsx</td><td>PageContainer existía pero no se usaba, por lo que no había composición con children</td><td>Envolver todo el contenido de la página con &lt;PageContainer&gt;</td></tr><tr><td>src/pages/List.jsx</td><td>El catálogo mezclaba productos de distintos rubros</td><td>Asignar una categoría a cada producto y filtrar con botones</td></tr><tr><td>src/pages/Form.jsx</td><td>El formulario se veía muy simple</td><td>Tarjeta con campos agrupados (Field con children), bordes según la validación y vista previa con ProductCard</td></tr><tr><td>src/pages/Form.jsx</td><td>Los productos nuevos no aparecían en el catálogo</td><td>Guardarlos en localStorage y mostrarlos junto a los de la API</td></tr></tbody></table></div>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Ejercicio 1: <a href="https://github.com/stevenhuamanlazo/lab07" target="_blank" rel="noopener">github.com/stevenhuamanlazo/lab07</a></li>
+                  <li>Ejercicio 2: <a href="https://github.com/stevenhuamanlazo/minimarket-app" target="_blank" rel="noopener">github.com/stevenhuamanlazo/minimarket-app</a></li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem06/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica del curso práctico · Minimarket Fresco (React + Vite)</span><span class="ex-count">22 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 2">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_01_paso1_proyecto.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_01_paso1_proyecto.jpg" alt="Paso 1, VS Code: ProductCard.jsx dentro de src/components y, en el terminal, el commit «chore: inicializar proyecto Vite React con estructura de directorios» subido a GitHub." loading="lazy" /></a>
+                    <figcaption>Paso 1, VS Code: ProductCard.jsx dentro de src/components y, en el terminal, el commit «chore: inicializar proyecto Vite React con estructura de directorios» subido a GitHub.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_02_paso2_main.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_02_paso2_main.jpg" alt="Paso 2, VS Code: main.jsx envuelve App con BrowserRouter dentro de React.StrictMode." loading="lazy" /></a>
+                    <figcaption>Paso 2, VS Code: main.jsx envuelve App con BrowserRouter dentro de React.StrictMode.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_03_paso2_notfound.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_03_paso2_notfound.jpg" alt="Paso 2, VS Code: página NotFound.jsx en src/pages, que atiende la ruta comodín." loading="lazy" /></a>
+                    <figcaption>Paso 2, VS Code: página NotFound.jsx en src/pages, que atiende la ruta comodín.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_04_paso3_api.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_04_paso3_api.jpg" alt="Paso 3, VS Code: services/api.js crea la instancia de axios con baseURL, timeout y headers." loading="lazy" /></a>
+                    <figcaption>Paso 3, VS Code: services/api.js crea la instancia de axios con baseURL, timeout y headers.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_05_paso3_hook.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_05_paso3_hook.jpg" alt="Paso 3, VS Code: hook useFetchProducts con loading, products y error, async/await dentro de try/catch y AbortController con cleanup." loading="lazy" /></a>
+                    <figcaption>Paso 3, VS Code: hook useFetchProducts con loading, products y error, async/await dentro de try/catch y AbortController con cleanup.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_06_paso4_list.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_06_paso4_list.jpg" alt="Paso 4, VS Code: List.jsx con el buscador controlado, el filtro por categoría y el comentario de auditoría." loading="lazy" /></a>
+                    <figcaption>Paso 4, VS Code: List.jsx con el buscador controlado, el filtro por categoría y el comentario de auditoría.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_07_paso4_form.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_07_paso4_form.jpg" alt="Paso 4, VS Code: Form.jsx con handleImagen y el manejo de eventos del formulario." loading="lazy" /></a>
+                    <figcaption>Paso 4, VS Code: Form.jsx con handleImagen y el manejo de eventos del formulario.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_08_paso4_validacion.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_08_paso4_validacion.jpg" alt="Paso 4, VS Code: inicio de Form.jsx con la función validate, el estado inicial del formulario y el componente Field que recibe children." loading="lazy" /></a>
+                    <figcaption>Paso 4, VS Code: inicio de Form.jsx con la función validate, el estado inicial del formulario y el componente Field que recibe children.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_09_paso5_npm_dev.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_09_paso5_npm_dev.jpg" alt="Paso 5, VS Code: servidor de desarrollo con npm run dev (Vite en http://localhost:5173/) y control de cambios con los commits." loading="lazy" /></a>
+                    <figcaption>Paso 5, VS Code: servidor de desarrollo con npm run dev (Vite en http://localhost:5173/) y control de cambios con los commits.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_10_paso5_network.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_10_paso5_network.jpg" alt="Paso 5, DevTools, pestaña Network (Fetch/XHR): la petición a groceries aparece dos veces; la primera está cancelada (3 ms) y la segunda responde 200 (6.7 kB, 223 ms)." loading="lazy" /></a>
+                    <figcaption>Paso 5, DevTools, pestaña Network (Fetch/XHR): la petición a groceries aparece dos veces; la primera está cancelada (3 ms) y la segunda responde 200 (6.7 kB, 223 ms).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_11_inicio.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_11_inicio.jpg" alt="Figura 1. Inicio (ruta /): bienvenida y barra de navegación con «Inicio» resaltado por NavLink." loading="lazy" /></a>
+                    <figcaption>Figura 1. Inicio (ruta /): bienvenida y barra de navegación con «Inicio» resaltado por NavLink.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_12_catalogo.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_12_catalogo.jpg" alt="Figura 2. Catálogo (ruta /productos): productos de la API con .map() y key única. Mostrando 27 de 27." loading="lazy" /></a>
+                    <figcaption>Figura 2. Catálogo (ruta /productos): productos de la API con .map() y key única. Mostrando 27 de 27.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_13_filtro.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_13_filtro.jpg" alt="Figura 3. Filtro por categoría «Bebidas»: se muestran 4 de 27 productos." loading="lazy" /></a>
+                    <figcaption>Figura 3. Filtro por categoría «Bebidas»: se muestran 4 de 27 productos.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_14_buscador.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_14_buscador.jpg" alt="Figura 4. Buscador controlado con el término «leche»: la lista se filtra en tiempo real (1 de 27)." loading="lazy" /></a>
+                    <figcaption>Figura 4. Buscador controlado con el término «leche»: la lista se filtra en tiempo real (1 de 27).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_15_form_errores.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_15_form_errores.jpg" alt="Figura 5. Formulario controlado con validación en tiempo real: nombre de menos de 3 caracteres y precio igual a 0." loading="lazy" /></a>
+                    <figcaption>Figura 5. Formulario controlado con validación en tiempo real: nombre de menos de 3 caracteres y precio igual a 0.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_16_form_vista_previa.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_16_form_vista_previa.jpg" alt="Figura 6. Formulario completo con imagen y vista previa en vivo con ProductCard (Palta Hass 1kg, S/ 9.50)." loading="lazy" /></a>
+                    <figcaption>Figura 6. Formulario completo con imagen y vista previa en vivo con ProductCard (Palta Hass 1kg, S/ 9.50).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_17_form_exito.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_17_form_exito.jpg" alt="Figura 7. Registro exitoso con onSubmit: mensaje de confirmación con enlace al catálogo y formulario limpio." loading="lazy" /></a>
+                    <figcaption>Figura 7. Registro exitoso con onSubmit: mensaje de confirmación con enlace al catálogo y formulario limpio.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_18_catalogo_nuevo.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_18_catalogo_nuevo.jpg" alt="Figura 8. El producto nuevo aparece primero en el catálogo (28 de 28), guardado en localStorage." loading="lazy" /></a>
+                    <figcaption>Figura 8. El producto nuevo aparece primero en el catálogo (28 de 28), guardado en localStorage.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_19_error_red.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_19_error_red.jpg" alt="Figura 9. Estado de error de red: «Error al obtener datos» mostrado por el manejo explícito con try/catch." loading="lazy" /></a>
+                    <figcaption>Figura 9. Estado de error de red: «Error al obtener datos» mostrado por el manejo explícito con try/catch.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_20_404.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_20_404.jpg" alt="Figura 10. Ruta inexistente (/nuevo-producto/xyz): la ruta * muestra la página 404." loading="lazy" /></a>
+                    <figcaption>Figura 10. Ruta inexistente (/nuevo-producto/xyz): la ruta * muestra la página 404.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_21_csr_codigo_fuente.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_21_csr_codigo_fuente.jpg" alt="Figura 11. Código fuente de la página: el HTML solo trae &lt;div id=&quot;root&quot;&gt; y el script main.jsx; todo lo demás lo construye React en el navegador (CSR)." loading="lazy" /></a>
+                    <figcaption>Figura 11. Código fuente de la página: el HTML solo trae &lt;div id=&quot;root&quot;&gt; y el script main.jsx; todo lo demás lo construye React en el navegador (CSR).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p2_22_github.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_22_github.jpg" alt="Repositorio minimarket-app en GitHub con la estructura de carpetas y los commits." loading="lazy" /></a>
+                    <figcaption>Repositorio minimarket-app en GitHub con la estructura de carpetas y los commits.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                </div>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+                    <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Minimarket Fresco · fragmentos del código</span><span class="ex-count">9 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">src/main.jsx (BrowserRouter)</p>
+<pre><code>import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+// IA: los estilos globales no se aplicaban (fuente serif, fondo blanco) → Solución manual: importar index.css en el punto de entrada
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  &lt;React.StrictMode&gt;
+    &lt;BrowserRouter&gt;
+      &lt;App /&gt;
+    &lt;/BrowserRouter&gt;
+  &lt;/React.StrictMode&gt;
+);</code></pre></figure><figure class="code-file"><p class="file-name">src/App.jsx (rutas)</p>
+<pre><code>import { Routes, Route } from 'react-router-dom';
+import { Navbar } from './components/Navbar';
+import { Home } from './pages/Home';
+import { List } from './pages/List';
+import { Form } from './pages/Form';
+import { NotFound } from './pages/NotFound';
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Navbar /&gt;
+      &lt;main&gt;
+        &lt;Routes&gt;
+          &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+          &lt;Route path="/productos" element={&lt;List /&gt;} /&gt;
+          &lt;Route path="/nuevo-producto" element={&lt;Form /&gt;} /&gt;
+          &lt;Route path="*" element={&lt;NotFound /&gt;} /&gt;
+        &lt;/Routes&gt;
+      &lt;/main&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre></figure><figure class="code-file"><p class="file-name">src/components/Navbar.jsx (NavLink con isActive)</p>
+<pre><code>import { NavLink } from 'react-router-dom';
+import { theme, APP_NAME } from '../theme';
+
+// Estilo del enlace: en React Router v6+ NavLink recibe una función con isActive
+// (reemplaza al antiguo activeClassName) para dar feedback visual de la ruta activa.
+const linkStyle = ({ isActive }) =&gt; ({
+  color: isActive ? theme.accent : '#fff',
+  fontWeight: isActive ? 'bold' : 'normal',
+  textDecoration: 'none',
+});
+
+export function Navbar() {
+...
+      &lt;NavLink to="/productos" style={linkStyle}&gt;
+        Productos
+      &lt;/NavLink&gt;</code></pre></figure><figure class="code-file"><p class="file-name">src/services/api.js (instancia de axios)</p>
+<pre><code>import axios from 'axios';
+
+// Instancia global de Axios para centralizar la configuración de peticiones
+const api = axios.create({
+  baseURL: 'https://dummyjson.com',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export default api;</code></pre></figure><figure class="code-file"><p class="file-name">src/hooks/useFetchProducts.js (async/await, AbortController)</p>
+<pre><code>import { useState, useEffect } from 'react';
+import axios from 'axios';
+import api from '../services/api';
+import { adaptarProducto } from '../utils/productos';
+
+export const useFetchProducts = () =&gt; {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // StrictMode (solo en desarrollo) monta, desmonta y vuelve a montar el componente:
+  // por eso verás 2 peticiones en la pestaña Network y la primera aparece como
+  // "cancelled" gracias al AbortController. En producción solo hay una petición.
+  useEffect(() =&gt; {
+    // Instancia de AbortController para cancelar peticiones al desmontar el componente
+    const controller = new AbortController();
+
+    const fetchProducts = async () =&gt; {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Consumo de API: categoría "groceries" (productos de minimarket)
+        const response = await api.get('/products/category/groceries', {
+          signal: controller.signal,
+        });
+
+        // Se adaptan al contexto local: textos en español y precios en soles.
+        // Así el buscador también filtra por el nombre en español.
+        setProducts(response.data.products.map(adaptarProducto));
+      } catch (err) {
+        if (axios.isCancel(err)) {
+          console.log('Petición abortada correctamente por el controlador');
+        } else {
+          setError(err.message || 'Error al obtener el catálogo del minimarket');
+        }
+      } finally {
+        // Si la petición fue abortada, el nuevo efecto sigue cargando:
+        // no se apaga loading para evitar un parpadeo de "sin productos".
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchProducts();
+
+    // Cleanup del useEffect para evitar memory leaks o renders innecesarios
+    return () =&gt; {
+      controller.abort();
+    };
+  }, []);
+
+  return { products, loading, error };
+};</code></pre></figure><figure class="code-file"><p class="file-name">src/pages/List.jsx (estado, filtro y .map con key)</p>
+<pre><code>export function List() {
+  const { products, loading, error } = useFetchProducts();
+
+  // Input controlado: el valor del buscador vive en el estado de React
+  const [busqueda, setBusqueda] = useState('');
+  const [categoria, setCategoria] = useState('Todas');
+
+  // Productos registrados desde el formulario (se leen una sola vez al montar la página)
+  const [locales] = useState(getLocalProducts);
+
+  // Documentación de auditoría (Paso 5 de la guía):
+  // Se evita el re-renderizado innecesario aislando el estado del fetch en el custom hook
+  // con AbortController, y el filtro se calcula en cada render a partir del estado
+  // (sin segundo estado ni segunda petición a la API al escribir en el buscador).
+  const todos = [...locales, ...products];
+  const filtrados = todos.filter(
+    (product) =&gt;
+      (categoria === 'Todas' || product.category === categoria) &amp;&amp;
+      product.title.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
+  // IA: PageContainer existía pero no se usaba, así que no había composición con children → Solución manual: envolver todo el contenido de la página con &lt;PageContainer&gt;
+  // IA: el catálogo mezclaba productos de distintos rubros (comida, mascotas, hogar) → Solución manual: asignar una categoría a cada producto y filtrar con botones
+  return (
+...
+        &lt;p style={{ color: theme.error, marginTop: '1rem' }}&gt;Error al obtener datos: {error}&lt;/p&gt;
+      )}
+
+      {/* Renderizado Iterativo + condicional con ternario */}
+      {!loading &amp;&amp; !error &amp;&amp; (
+        &lt;&gt;
+          &lt;p style={{ color: theme.muted, fontSize: '0.85rem', marginTop: '1rem' }}&gt;
+            Mostrando {filtrados.length} de {todos.length} productos
+          &lt;/p&gt;
+          &lt;div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '0.75rem' }}&gt;
+            {filtrados.length &gt; 0 ? (
+              filtrados.map((product) =&gt; &lt;ProductCard key={product.id} product={product} /&gt;)
+            ) : (
+              &lt;p&gt;No se encontraron productos{busqueda &amp;&amp; ` para "${busqueda}"`}.&lt;/p&gt;
+            )}
+          &lt;/div&gt;
+        &lt;/&gt;
+      )}</code></pre></figure><figure class="code-file"><p class="file-name">src/pages/Form.jsx (validación y Field con children)</p>
+<pre><code>
+// Validación de un campo: devuelve el mensaje de error o '' si es válido
+const validate = (name, value) =&gt; {
+  if (name === 'title') {
+    return value.trim().length &lt; 3 ? 'El nombre debe tener al menos 3 caracteres' : '';
+  }
+  if (name === 'price') {
+    return Number(value) &lt;= 0 ? 'El precio debe ser mayor a 0' : '';
+  }
+  return '';
+};
+
+const initialData = { title: '', price: '', category: CATEGORIAS[3], description: '' };
+
+// Campo reutilizable: etiqueta + control (children) + mensaje de error o ayuda
+function Field({ id, label, required, error, hint, children }) {
+  const message = { display: 'block', marginTop: '0.3rem', fontSize: '0.82rem' };
+  return (
+    &lt;div&gt;
+      &lt;label
+        htmlFor={id}
+        style={{ display: 'block', marginBottom: '0.35rem', fontWeight: 600, fontSize: '0.9rem', color: theme.text }}
+      &gt;
+        {label} {required &amp;&amp; &lt;span style={{ color: theme.error }}&gt;*&lt;/span&gt;}
+      &lt;/label&gt;
+      {children}
+      {error ? (
+        &lt;small style={{ ...message, color: theme.error }}&gt;⚠ {error}&lt;/small&gt;
+      ) : (
+        hint &amp;&amp; &lt;small style={{ ...message, color: theme.muted }}&gt;{hint}&lt;/small&gt;
+      )}
+    &lt;/div&gt;
+  );
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/pages/Form.jsx (handleSubmit)</p>
+<pre><code>  const handleSubmit = (e) =&gt; {
+    e.preventDefault();
+
+    const newErrors = {
+      title: validate('title', formData.title),
+      price: validate('price', formData.price),
+    };
+    setErrors(newErrors);
+
+    if (newErrors.title || newErrors.price) {
+      return;
+    }
+
+    const nuevo = {
+      id: `local-${Date.now()}`, // id único y estable (no se usa el índice como key)
+      title: formData.title.trim(),
+      description: formData.description.trim() || 'Producto agregado desde el panel del minimarket.',
+      price: Number(formData.price),
+      category: formData.category,
+      thumbnail: imagen,
+    };
+
+    const guardado = addLocalProduct(nuevo);
+    console.log('Nuevo Producto Registrado:', nuevo);
+
+    setSuccess(
+      guardado
+        ? `Producto "${nuevo.title}" (${nuevo.category}) agregado al catálogo.`
+        : `Producto "${nuevo.title}" registrado, pero no se pudo guardar (almacenamiento lleno).`
+    );
+    setFormData(initialData);
+    setErrors({});
+    quitarImagen();
+  };</code></pre></figure><figure class="code-file"><p class="file-name">src/components/PageContainer.jsx (children)</p>
+<pre><code>import { theme } from '../theme';
+
+// Composición con children: envuelve el contenido de cada página
+export function PageContainer({ title, children }) {
+  return (
+    &lt;section style={{ padding: '1.5rem' }}&gt;
+      {title &amp;&amp; &lt;h2 style={{ color: theme.primary }}&gt;{title}&lt;/h2&gt;}
+      {children}
+    &lt;/section&gt;
+  );
+}</code></pre></figure>
+                  </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí cómo React actualiza la página con el DOM virtual, el diffing y la reconciliación, y a construir interfaces con componentes de función escritos en JSX, pasando datos con props y children. Entendí cómo se muestra contenido de forma condicional (<code>&amp;&amp;</code>, ternario) y en listas con <code>.map()</code> y una <code>key</code> única, y las formas de dar estilos: hojas CSS, módulos, estilos en línea y Tailwind. En la práctica aprendí a crear una SPA con rutas del lado del cliente usando <code>BrowserRouter</code> y <code>NavLink</code>, a consumir una API con axios y <code>async/await</code> manejando los estados de carga y error, y a cancelar peticiones con <code>AbortController</code>. También comprendí cómo funciona un formulario controlado con validación en tiempo real y por qué el HTML de una SPA llega casi vacío (CSR).</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>Combiné la actividad 07A del curso teórico con la práctica guiada del curso práctico: primero leí la teoría de cada concepto y luego lo apliqué paso a paso en el proyecto Minimarket Fresco, probándolo en el navegador y revisando la pestaña Network de DevTools. Los errores me enseñaron más: por ejemplo, ver dos peticiones en desarrollo me llevó a entender <code>StrictMode</code> y el <code>AbortController</code>, y que los productos nuevos no aparecieran en el catálogo me llevó a guardarlos en <code>localStorage</code>. Cuando usé IA para resolver un problema de estilos o de props, lo dejé documentado en un comentario con la solución que apliqué a mano.</p></div>
+            </div>
+          </section>
+        </article>
+      </li>
