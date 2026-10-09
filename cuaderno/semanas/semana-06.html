@@ -76,7 +76,16 @@
                 <p><strong>Ejercicio 2 (curso práctico):</strong> <em>Minimarket Fresco</em>, una SPA con React y Vite que consume la API pública de DummyJSON (categoría <code>groceries</code>), con enrutamiento del lado del cliente, buscador y filtros por categoría, formulario controlado con validación en tiempo real y estados de carga y error.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
-                <p><strong>Ejercicio 1:</strong> [Escribe aquí cómo resolviste los ejercicios 1 al 5 de la actividad 07A.]</p>
+                <p><strong>Ejercicio 1:</strong></p>
+                <ol>
+                  <li>Creé el proyecto <code>lab07</code> con Vite (plantilla React + TypeScript) y organicé un componente por sección en <code>src/components/ej1</code> a <code>ej5</code>, con una hoja de estilos CSS por ejercicio en <code>src/css</code>.</li>
+                  <li><strong>Ej. 1:</strong> siete componentes (Cabecera, Navegacion, Seccion, Articulo1, Articulo2, Aside y Pie) con CSS puro; el diseño base es el de PC y dos <code>@media</code> (hasta 992 px y hasta 600 px) lo adaptan a tablet y móvil.</li>
+                  <li><strong>Ej. 2:</strong> cuatro componentes anidados; el Componente1 define el objeto <code>persona</code> y lo pasa por props hasta el Componente4, que lo muestra en un card. Tipé el objeto con una <code>interface Persona</code>.</li>
+                  <li><strong>Ej. 3:</strong> el padre guarda el dato en un estado y le pasa al hijo la función <code>setDato</code> como prop; el hijo la llama al pulsar el botón.</li>
+                  <li><strong>Ej. 4:</strong> el padre tiene el estado de nombre y apellido; el Hermano 1 lo envía al padre con una función y el padre se lo pasa al Hermano 2 por props.</li>
+                  <li><strong>Ej. 5:</strong> un arreglo de estudiantes recorrido con <code>.map()</code> y <code>key={e.id}</code>, con un componente <code>Fila</code> y estilos CSS en la tabla.</li>
+                  <li>Para pasar de un ejercicio a otro agregué un menú con <code>useState</code> en <code>App.tsx</code>, de modo que los cinco ejercicios se ven en una sola aplicación.</li>
+                </ol>
                 <p><strong>Ejercicio 2</strong>, siguiendo los 5 pasos de la guía:</p>
                 <ol>
                   <li><strong>Configuración:</strong> creé el proyecto con <code>npm create vite@latest</code> (plantilla React), instalé <code>react-router-dom</code> y <code>axios</code> y armé las carpetas <code>src/pages</code>, <code>src/components</code>, <code>src/services</code> y <code>src/hooks</code>.</li>
@@ -87,10 +96,11 @@
                 </ol>
               </dd></div>
               <div class="lab-item span-full"><dt>Resultado</dt><dd>
-                <p><strong>Ejercicio 1:</strong> [Escribe aquí el resultado de los ejercicios 1 al 5.]</p>
+                <p><strong>Ejercicio 1:</strong> los cinco ejercicios funcionan en una sola aplicación con un menú de navegación. El diseño del ejercicio 1 cambia correctamente entre PC, tablet y móvil; el objeto del ejercicio 2 llega al Componente4 y se muestra en un card; en el ejercicio 3 el padre muestra el dato escrito en el hijo; en el 4 el Hermano 2 muestra el nombre y apellido escritos en el Hermano 1; y la tabla del 5 muestra a los 4 estudiantes. El proyecto compila sin errores con <code>npm run build</code> (<code>tsc -b &amp;&amp; vite build</code>).</p>
                 <p><strong>Ejercicio 2:</strong> la aplicación muestra el catálogo con títulos y descripciones en español, precios en soles (S/) y cada producto con una categoría. Tiene las rutas <code>/</code> (Inicio), <code>/productos</code> (Catálogo), <code>/nuevo-producto</code> (Formulario) y <code>*</code> (404). Los productos registrados en el formulario se guardan en <code>localStorage</code> y aparecen primero en el catálogo.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>En el ejercicio 1 la clave del diseño responsivo fue usar <code>flex-direction: column</code> en el <code>section</code> para tablet y móvil. En los ejercicios 3 y 4 los datos solo viajan por props: del hijo al padre mediante una función recibida por props, y entre hermanos subiendo el estado al padre.</p>
                 <p>En desarrollo, <code>StrictMode</code> monta el componente dos veces, por eso en Network aparecen dos peticiones a <code>groceries</code>: la primera figura como <em>canceled</em> gracias al <code>AbortController</code> y la segunda responde 200. En producción solo habría una.</p>
                 <p>El código fuente de la página solo contiene <code>&lt;div id="root"&gt;&lt;/div&gt;</code> y el script <code>main.jsx</code>: todo lo visible lo construye el navegador (Client Side Rendering).</p>
                 <p>La guía pedía que el 75 % de la estructura de componentes y del paso de datos se escribiera a mano; los usos de IA quedaron comentados en el código con el formato <code>// IA: [problema] → Solución manual: [explicación]</code>.</p>
@@ -105,21 +115,50 @@
               </dd></div>
               <div class="lab-item span-full"><dt>Captura</dt><dd>
                 <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+                  <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Actividad 07A · Ejercicios 1 al 5 (React + TypeScript)</span><span class="ex-count">9 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 1">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p1_01_ej1_pc.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p1_01_ej1_pc.jpg" alt="Ejercicio 1 en PC (diseño base): sección naranja, nav azul, section verde con dos article y un aside, y el footer negro." loading="lazy" /></a>
+                    <figcaption>Ejercicio 1 en PC (diseño base): sección naranja, nav azul, section verde con dos article y un aside, y el footer negro.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p1_02_ej1_tablet.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p1_02_ej1_tablet.jpg" alt="Ejercicio 1 en tablet (hasta 992 px): el aside pasa debajo de los artículos y se reducen las alturas." loading="lazy" /></a>
+                    <figcaption>Ejercicio 1 en tablet (hasta 992 px): el aside pasa debajo de los artículos y se reducen las alturas.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p1_03_ej1_movil.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p1_03_ej1_movil.jpg" alt="Ejercicio 1 en móvil (hasta 600 px): artículos al 100 % de ancho, letra y alturas más pequeñas." loading="lazy" /></a>
+                    <figcaption>Ejercicio 1 en móvil (hasta 600 px): artículos al 100 % de ancho, letra y alturas más pequeñas.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p1_04_ej2_anidados.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p1_04_ej2_anidados.jpg" alt="Ejercicio 2: Componente1 contiene a 2, 3 y 4; el objeto {nombre, dirección, ciudad} llega hasta el Componente4, que lo muestra en un card." loading="lazy" /></a>
+                    <figcaption>Ejercicio 2: Componente1 contiene a 2, 3 y 4; el objeto {nombre, dirección, ciudad} llega hasta el Componente4, que lo muestra en un card.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p1_05_ej3_inicio.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p1_05_ej3_inicio.jpg" alt="Ejercicio 3: componente padre con su hijo; todavía no hay dato recibido." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3: componente padre con su hijo; todavía no hay dato recibido.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p1_06_ej3_enviado.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p1_06_ej3_enviado.jpg" alt="Ejercicio 3: al pulsar «Enviar al padre», el dato escrito en el hijo se muestra en el padre." loading="lazy" /></a>
+                    <figcaption>Ejercicio 3: al pulsar «Enviar al padre», el dato escrito en el hijo se muestra en el padre.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p1_07_ej4_inicio.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p1_07_ej4_inicio.jpg" alt="Ejercicio 4: padre con dos hermanos; el Hermano 1 tiene los campos Nombre y Apellido." loading="lazy" /></a>
+                    <figcaption>Ejercicio 4: padre con dos hermanos; el Hermano 1 tiene los campos Nombre y Apellido.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p1_08_ej4_enviado.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p1_08_ej4_enviado.jpg" alt="Ejercicio 4: el Hermano 2 muestra «Steven Huamanlazo», recibido a través del padre." loading="lazy" /></a>
+                    <figcaption>Ejercicio 4: el Hermano 2 muestra «Steven Huamanlazo», recibido a través del padre.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem06/s6_p1_09_ej5_tabla.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p1_09_ej5_tabla.jpg" alt="Ejercicio 5: tabla con los 4 estudiantes (Id, Name, City y botón Ver) y estilos CSS." loading="lazy" /></a>
+                    <figcaption>Ejercicio 5: tabla con los 4 estudiantes (Id, Name, City y botón Ver) y estilos CSS.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
                   <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
-                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica del curso práctico · Minimarket Fresco (React + Vite)</span><span class="ex-count">22 capturas</span></div>
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica del curso práctico · Minimarket Fresco (React + Vite)</span><span class="ex-count">18 capturas</span></div>
                     <ol class="shots" aria-label="Capturas del ejercicio 2">
-                    <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem06/s6_p2_01_paso1_proyecto.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_01_paso1_proyecto.jpg" alt="Paso 1, VS Code: ProductCard.jsx dentro de src/components y, en el terminal, el commit «chore: inicializar proyecto Vite React con estructura de directorios» subido a GitHub." loading="lazy" /></a>
-                    <figcaption>Paso 1, VS Code: ProductCard.jsx dentro de src/components y, en el terminal, el commit «chore: inicializar proyecto Vite React con estructura de directorios» subido a GitHub.</figcaption>
-                  </figure></li>
-                    <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem06/s6_p2_02_paso2_main.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_02_paso2_main.jpg" alt="Paso 2, VS Code: main.jsx envuelve App con BrowserRouter dentro de React.StrictMode." loading="lazy" /></a>
-                    <figcaption>Paso 2, VS Code: main.jsx envuelve App con BrowserRouter dentro de React.StrictMode.</figcaption>
-                  </figure></li>
-                    <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem06/s6_p2_03_paso2_notfound.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_03_paso2_notfound.jpg" alt="Paso 2, VS Code: página NotFound.jsx en src/pages, que atiende la ruta comodín." loading="lazy" /></a>
-                    <figcaption>Paso 2, VS Code: página NotFound.jsx en src/pages, que atiende la ruta comodín.</figcaption>
-                  </figure></li>
                     <li><figure class="shot-card">
                     <a class="shot-link" href="assets/Sem06/s6_p2_04_paso3_api.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_04_paso3_api.jpg" alt="Paso 3, VS Code: services/api.js crea la instancia de axios con baseURL, timeout y headers." loading="lazy" /></a>
                     <figcaption>Paso 3, VS Code: services/api.js crea la instancia de axios con baseURL, timeout y headers.</figcaption>
@@ -139,10 +178,6 @@
                     <li><figure class="shot-card">
                     <a class="shot-link" href="assets/Sem06/s6_p2_08_paso4_validacion.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_08_paso4_validacion.jpg" alt="Paso 4, VS Code: inicio de Form.jsx con la función validate, el estado inicial del formulario y el componente Field que recibe children." loading="lazy" /></a>
                     <figcaption>Paso 4, VS Code: inicio de Form.jsx con la función validate, el estado inicial del formulario y el componente Field que recibe children.</figcaption>
-                  </figure></li>
-                    <li><figure class="shot-card">
-                    <a class="shot-link" href="assets/Sem06/s6_p2_09_paso5_npm_dev.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_09_paso5_npm_dev.jpg" alt="Paso 5, VS Code: servidor de desarrollo con npm run dev (Vite en http://localhost:5173/) y control de cambios con los commits." loading="lazy" /></a>
-                    <figcaption>Paso 5, VS Code: servidor de desarrollo con npm run dev (Vite en http://localhost:5173/) y control de cambios con los commits.</figcaption>
                   </figure></li>
                     <li><figure class="shot-card">
                     <a class="shot-link" href="assets/Sem06/s6_p2_10_paso5_network.jpg" target="_blank" rel="noopener"><img src="assets/Sem06/s6_p2_10_paso5_network.jpg" alt="Paso 5, DevTools, pestaña Network (Fetch/XHR): la petición a groceries aparece dos veces; la primera está cancelada (3 ms) y la segunda responde 200 (6.7 kB, 223 ms)." loading="lazy" /></a>
@@ -204,6 +239,241 @@
                 <dt>Código de la Práctica</dt>
                 <dd>
                   <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+                    <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Actividad 07A · fragmentos del código (React + TypeScript)</span><span class="ex-count">8 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">src/App.tsx (menú con useState y los 5 ejercicios)</p>
+<pre><code>import './css/menu.css'
+
+const ejercicios = [
+  {
+    id: 1,
+    titulo: 'Ejercicio 1: Responsivo',
+    vista: (
+      &lt;div className="ej1"&gt;
+        &lt;Cabecera /&gt;
+        &lt;Navegacion /&gt;
+        &lt;Seccion /&gt;
+        &lt;Pie /&gt;
+      &lt;/div&gt;
+    ),
+  },
+  { id: 2, titulo: 'Ejercicio 2: Anidados', vista: &lt;Componente1 /&gt; },
+  { id: 3, titulo: 'Ejercicio 3: Hijo a Padre', vista: &lt;Padre3 /&gt; },
+  { id: 4, titulo: 'Ejercicio 4: Hermanos', vista: &lt;Padre4 /&gt; },
+  { id: 5, titulo: 'Ejercicio 5: Tabla', vista: &lt;Tabla /&gt; },
+]
+
+const App = () =&gt; {
+  const [actual, setActual] = useState(1)
+  const ejercicio = ejercicios.find((e) =&gt; e.id === actual)
+
+  return (
+    &lt;&gt;
+      &lt;nav className="menu"&gt;
+        {ejercicios.map((e) =&gt; (
+          &lt;button
+            key={e.id}
+            className={e.id === actual ? 'activo' : ''}
+            onClick={() =&gt; setActual(e.id)}
+          &gt;
+            {e.titulo}
+          &lt;/button&gt;
+        ))}
+      &lt;/nav&gt;
+      &lt;div className="vista"&gt;{ejercicio?.vista}&lt;/div&gt;
+    &lt;/&gt;
+  )
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/components/ej1/Seccion.tsx (componente del ejercicio 1)</p>
+<pre><code>import Articulo1 from './Articulo1'
+import Articulo2 from './Articulo2'
+import Aside from './Aside'
+
+const Seccion = () =&gt; {
+  return (
+    &lt;div className="seccion"&gt;
+      &lt;section className="seccion-articulos"&gt;
+        &lt;p className="etiqueta-seccion"&gt;&amp;lt;section&amp;gt;&lt;/p&gt;
+        &lt;Articulo1 /&gt;
+        &lt;Articulo2 /&gt;
+        &lt;p className="etiqueta-seccion"&gt;&amp;lt;/section&amp;gt;&lt;/p&gt;
+      &lt;/section&gt;
+      &lt;Aside /&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default Seccion</code></pre></figure><figure class="code-file"><p class="file-name">src/css/layout.css (diseño responsivo: tablet y móvil)</p>
+<pre><code>  justify-content: center;
+}
+
+/* ===== TABLET (hasta 992px) ===== */
+@media (max-width: 992px) {
+  .cabecera {
+    height: 90px;
+  }
+  .seccion {
+    flex-direction: column;
+  }
+  .articulo {
+    width: 90%;
+  }
+  .aside {
+    min-height: 100px;
+  }
+}
+
+/* ===== MÓVIL (hasta 600px) ===== */
+@media (max-width: 600px) {
+  .ej1 {
+    padding: 5px;
+    font-size: 11px;
+  }
+  .cabecera {
+    height: 60px;
+  }
+  .articulo {
+    width: 100%;
+    height: 45px;
+  }
+  .aside {
+    min-height: 70px;
+  }
+  .pie {
+    height: 45px;
+  }</code></pre></figure><figure class="code-file"><p class="file-name">src/components/ej2/Componente4.tsx (tipo Persona y card)</p>
+<pre><code>export interface Persona {
+  nombre: string
+  direccion: string
+  ciudad: string
+}
+
+interface Props {
+  persona: Persona
+}
+
+const Componente4 = ({ persona }: Props) =&gt; {
+  return (
+    &lt;div className="c4"&gt;
+      &lt;p className="etiqueta"&gt;Componente4&lt;/p&gt;
+      &lt;div className="card"&gt;
+        &lt;h3&gt;{persona.nombre}&lt;/h3&gt;
+        &lt;p&gt;{persona.direccion}&lt;/p&gt;
+        &lt;p&gt;{persona.ciudad}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default Componente4</code></pre></figure><figure class="code-file"><p class="file-name">src/components/ej3/Padre.tsx (recibe el dato del hijo)</p>
+<pre><code>import { useState } from 'react'
+import Hijo from './Hijo'
+
+const Padre = () =&gt; {
+  const [dato, setDato] = useState('')
+
+  return (
+    &lt;div className="padre"&gt;
+      &lt;h2&gt;Componente Padre&lt;/h2&gt;
+      &lt;p&gt;
+        Dato recibido del hijo: &lt;strong&gt;{dato}&lt;/strong&gt;
+      &lt;/p&gt;
+      &lt;Hijo enviar={setDato} /&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default Padre</code></pre></figure><figure class="code-file"><p class="file-name">src/components/ej3/Hijo.tsx (envía el dato al padre)</p>
+<pre><code>import { useState } from 'react'
+
+interface Props {
+  enviar: (valor: string) =&gt; void
+}
+
+const Hijo = ({ enviar }: Props) =&gt; {
+  const [texto, setTexto] = useState('')
+
+  return (
+    &lt;div className="hijo"&gt;
+      &lt;h3&gt;Componente Hijo&lt;/h3&gt;
+      &lt;input
+        placeholder="Escribe un dato"
+        value={texto}
+        onChange={(e) =&gt; setTexto(e.target.value)}
+      /&gt;
+      &lt;button onClick={() =&gt; enviar(texto)}&gt;Enviar al padre&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default Hijo</code></pre></figure><figure class="code-file"><p class="file-name">src/components/ej4/Padre.tsx (estado compartido por los hermanos)</p>
+<pre><code>import { useState } from 'react'
+import Hermano1 from './Hermano1'
+import Hermano2 from './Hermano2'
+
+const Padre = () =&gt; {
+  const [nombre, setNombre] = useState('')
+  const [apellido, setApellido] = useState('')
+
+  const recibir = (n: string, a: string) =&gt; {
+    setNombre(n)
+    setApellido(a)
+  }
+
+  return (
+    &lt;div className="padre4"&gt;
+      &lt;h2&gt;Componente Padre&lt;/h2&gt;
+      &lt;Hermano1 enviar={recibir} /&gt;
+      &lt;Hermano2 nombre={nombre} apellido={apellido} /&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default Padre</code></pre></figure><figure class="code-file"><p class="file-name">src/components/ej5/Tabla.tsx (tabla de estudiantes con map y key)</p>
+<pre><code>interface Estudiante {
+  id: number
+  name: string
+  city: string
+}
+
+const estudiantes: Estudiante[] = [
+  { id: 1, name: 'Jose Lazo', city: 'Huancayo' },
+  { id: 2, name: 'Ana Trelles', city: 'Lima' },
+  { id: 3, name: 'Pedro Gonzales', city: 'Arequipa' },
+  { id: 4, name: 'Rosa Soto', city: 'Trujillo' },
+]
+
+const Fila = ({ id, name, city }: Estudiante) =&gt; (
+  &lt;tr&gt;
+    &lt;td&gt;{id}&lt;/td&gt;
+    &lt;td&gt;{name}&lt;/td&gt;
+    &lt;td&gt;{city}&lt;/td&gt;
+    &lt;td&gt;&lt;button&gt;Ver&lt;/button&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+)
+
+const Tabla = () =&gt; (
+  &lt;&gt;
+    &lt;h2&gt;Lista de estudiantes&lt;/h2&gt;
+    &lt;table className="tabla"&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Id&lt;/th&gt;
+          &lt;th&gt;Name&lt;/th&gt;
+          &lt;th&gt;City&lt;/th&gt;
+          &lt;th&gt;Action&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        {estudiantes.map((e) =&gt; (
+          &lt;Fila key={e.id} {...e} /&gt;
+        ))}
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/&gt;
+)
+
+export default Tabla</code></pre></figure>
+                  </div>
                     <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
                     <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Minimarket Fresco · fragmentos del código</span><span class="ex-count">9 archivos</span></div>
                     <figure class="code-file"><p class="file-name">src/main.jsx (BrowserRouter)</p>
