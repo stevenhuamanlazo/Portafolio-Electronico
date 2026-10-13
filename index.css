@@ -114,3 +114,61 @@ html[data-theme="dark"] .reflect-weeks .wk { color: #0e1014; }
 
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .cv-facts dd a{overflow-wrap:anywhere;font-size:.85em;color:inherit}
+
+
+/* ==========================================================================
+   Portada sobria — azul marino, bordes rectos, detalles de código
+   ========================================================================== */
+
+/* Acento único: azul profundo (sin lila ni cian en modo claro) */
+html:not([data-theme="dark"]) {
+  --terracota: #1d4ed8;
+  --accent-amber: #0b2a6f;
+  --bg-crema: #eef1f6;
+  --net-rgb: 29, 78, 216;
+  --net-rgb2: 11, 42, 111;
+}
+
+/* Fondos: manchas de color casi imperceptibles */
+html:not([data-theme="dark"]) .bg-glow { opacity: 0.22; }
+html:not([data-theme="dark"]) .bg-glow-1 { background: #9db4e6; }
+html:not([data-theme="dark"]) .bg-glow-2 { background: #b8c4d9; }
+html:not([data-theme="dark"]) .blob {
+  background: linear-gradient(135deg, #0b2a6f, #1d4ed8);
+  opacity: 0.16;
+}
+html:not([data-theme="dark"]) .hero-photo-card { background: #0b1226; }
+
+/* Nombre: degradado azul marino, sin violeta */
+html:not([data-theme="dark"]) .underlined .nm {
+  background: linear-gradient(90deg, #0b2a6f, #1d4ed8, #0b2a6f);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Insignia de bienvenida: etiqueta oscura con letra monoespaciada */
+.badge-sub {
+  background: #0a1020;
+  color: #e8eefc;
+  border: 0;
+  border-left: 3px solid #38bdf8;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+html[data-theme="dark"] .badge-sub { background: #131c30; }
+
+/* Bordes más rectos en botones, navegación y datos */
+.btn { border-radius: 10px; }
+.main-nav { border-radius: 14px; }
+.hero-meta li { border-radius: 8px; font-family: var(--font-mono); font-size: 0.74rem; }
+
+/* Tarjetas flotantes de la foto: más técnicas */
+.badge-float { border-radius: 10px; border-left: 3px solid var(--terracota); }
+
+/* Subtítulo y descripción: más firmes y legibles */
+.hero-subtitle { font-weight: 600; letter-spacing: -0.02em; }
+.hero-desc { color: var(--text-dark); opacity: 0.78; }
