@@ -4,10 +4,8 @@ Portafolio profesional y cuaderno de la asignatura **Desarrollo de Aplicaciones 
 
 ## 🌐 Ver el portafolio
 
-**https://stevenhuamanlazo.github.io/Portafolio-Electronico/**
-
-- Portafolio (portada, trayectoria, trabajos, reflexión y bibliografía): https://stevenhuamanlazo.github.io/Portafolio-Electronico/
-- Cuaderno semanal: https://stevenhuamanlazo.github.io/Portafolio-Electronico/cuaderno.html
+- **Portafolio:** https://stevenhuamanlazo.github.io/Portafolio-Electronico/
+- **Cuaderno semanal:** https://stevenhuamanlazo.github.io/Portafolio-Electronico/cuaderno.html
 
 ## Contenido
 
