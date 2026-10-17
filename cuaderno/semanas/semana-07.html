@@ -1,0 +1,1153 @@
+<!-- Semana 7: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-7">
+        <div class="week-marker" aria-hidden="true">7</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 7</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(React Hooks: estado, efectos, contexto, optimización y hooks personalizados)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>Ciclo de render, StrictMode y Profiler</summary>
+                <div class="topic-body">
+                  <p>Un <strong>render</strong> ocurre cada vez que React vuelve a ejecutar la función de un componente porque cambió su estado o sus props. Cuando hay varios cambios seguidos, React los agrupa en un solo render (<em>batch updates</em>) y después hace el <strong>commit</strong> al DOM. En desarrollo, <code>React.StrictMode</code> ejecuta cada render dos veces y monta, desmonta y vuelve a montar los componentes para detectar efectos impuros; por eso el contador de renders de mi práctica avanzaba de 2 en 2. Para medir no se usa <code>console.log</code>: se graba una interacción en el <strong>Profiler</strong> de React DevTools y se miran los commits y qué componente causó cada uno.</p>
+                  <ol class="flow" aria-label="Ciclo de render"><li>Evento o cambio de estado</li><li>Render</li><li>Commit al DOM</li><li>useEffect</li></ol>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>useState y useRef: dos formas de guardar valores</summary>
+                <div class="topic-body">
+                  <p><code>useState</code> guarda un valor y, al cambiarlo, <strong>dispara un re-render</strong>. <code>useRef</code> guarda un valor en <code>.current</code> que se conserva entre renders pero <strong>no provoca ninguno</strong> al modificarse, y también sirve para llegar a un nodo del DOM, por ejemplo <code>inputRef.current.focus()</code>. Una ref se modifica dentro de eventos o efectos, no durante el render; la regla <code>react-hooks/refs</code> de ESLint avisa cuando se hace lo contrario.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>useEffect: dependencias, limpieza y AbortController</summary>
+                <div class="topic-body">
+                  <p><code>useEffect</code> sirve para los efectos secundarios (pedir datos, timers, escuchar eventos, escribir en <code>localStorage</code>) y se ejecuta después de pintar. El <strong>array de dependencias</strong> decide cuándo se vuelve a ejecutar. Aprendí que <code>[]</code> significa «al montar», no «una sola vez»: en StrictMode corre dos veces. La función que devuelve el efecto es la <strong>limpieza (cleanup)</strong>: cancela el timer, quita el listener o aborta la petición con <code>AbortController</code>, y así se evitan fugas de memoria y condiciones de carrera. Para usar <code>async/await</code> se declara una función interna dentro del efecto, porque el callback de <code>useEffect</code> no puede ser <code>async</code>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>useContext y la Context API</summary>
+                <div class="topic-body">
+                  <p>Un <strong>Provider</strong> comparte datos con cualquier componente hijo sin pasarlos por props (evita el <em>prop drilling</em>). Conviene <strong>separar los contextos por dominio</strong> (tema, pedido) para que un cambio en uno no vuelva a renderizar a los consumidores del otro, y memorizar el <code>value</code> con <code>useMemo</code>. No es buena idea para valores que cambian muy seguido, porque re-renderiza a todos los consumidores.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>useReducer: estado complejo con acciones</summary>
+                <div class="topic-body">
+                  <p>Cuando el estado tiene varios sub-valores o cada cambio depende del estado anterior, <code>useReducer</code> es mejor que varios <code>useState</code>. El <strong>reducer</strong> es una función pura <code>(estado, acción) → estado nuevo</code> que no muta nada: usa <code>spread</code>, <code>filter</code> y <code>map</code>. En el dashboard las acciones fueron <code>ADD</code>, <code>REMOVE</code>, <code>TOGGLE</code>, <code>FILTER</code> y <code>SORT</code>. Como <code>dispatch</code> es estable, los handlers con <code>useCallback</code> pueden tener las dependencias vacías.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>useMemo, useCallback y React.memo</summary>
+                <div class="topic-body">
+                  <p>En JavaScript una función u objeto nuevo es distinto al anterior aunque tenga el mismo contenido (<strong>igualdad referencial</strong>). <code>React.memo</code> se salta el render de un hijo si sus props no cambiaron, pero si le paso una función nueva en cada render nunca lo logra; por eso se combina con <code>useCallback</code>. <code>useMemo</code> evita recalcular filtros, orden y totales. También aprendí a no abusar: no memoricé botones nativos porque estabilizar su función no evita ningún render, y todo se valida con el Profiler antes y después.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Hooks personalizados y reglas de los Hooks</summary>
+                <div class="topic-body">
+                  <p>Un <strong>hook personalizado</strong> es una función que empieza con <code>use</code> y reúne lógica repetida con otros hooks: <code>useFetch(url)</code> devuelve <code>data</code>, <code>cargando</code> y <code>error</code>; <code>useLocalStorage(clave, valor)</code> funciona como <code>useState</code> pero persiste; <code>useDebounce(valor, ms)</code> retrasa un valor hasta que se deja de escribir. Las <strong>reglas de los Hooks</strong> dicen que solo se llaman en el nivel superior (nunca en loops, condiciones o funciones anidadas) y solo desde componentes o desde otros hooks; <code>eslint-plugin-react-hooks</code> las revisa, incluida <code>exhaustive-deps</code>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Componentes reutilizables y formularios validados (examen parcial)</summary>
+                <div class="topic-body">
+                  <p>En el examen armé una librería de piezas en <code>src/components/ui</code> (Input, Select, Button, Card, Badge, Modal y DataTable) con props tipadas en TypeScript. El <code>Input</code> asocia su etiqueta con <code>htmlFor</code> y <code>useId</code> y marca el error con <code>aria-invalid</code> y <code>aria-describedby</code>, de modo que un lector de pantalla lo anuncia. Los formularios usan <strong>react-hook-form</strong>: <code>register</code> con reglas (<code>required</code>, <code>validate</code>, <code>min</code>), <code>handleSubmit</code> y <code>errors</code>; si el servicio rechaza un ISBN repetido, <code>setError</code> lo muestra en ese campo.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Comprobante en PDF y persistencia en localStorage</summary>
+                <div class="topic-body">
+                  <p>Con <strong>jsPDF</strong> el navegador genera el PDF sin servidor: se crea el documento, se escribe con <code>doc.text</code>, se dibujan líneas con <code>doc.line</code> y se descarga con <code>doc.save</code>. El código único del préstamo mezcla la hora en base 36 con un fragmento aleatorio. Los datos (usuarios, libros, préstamos y comprobantes) se guardan en <code>localStorage</code> a través de servicios (<code>storage.ts</code>, <code>bookService.ts</code>, <code>receiptService.ts</code>), por eso la aplicación no necesita base de datos.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Trabajo en equipo con ramas y pull requests</summary>
+                <div class="topic-body">
+                  <p>En el examen cada integrante trabajó en su propia rama (<code>Gago-Uribe</code> y <code>Huamanlazo-Pariona</code>) y solo modificó sus archivos para evitar conflictos; los avances llegaron a <code>main</code> mediante pull requests. Hice un commit pequeño por cada componente y cada funcionalidad, de modo que el historial cuenta lo que se hizo y en qué orden.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1 (curso teórico):</strong> Evaluación parcial en equipo con React, Vite y TypeScript: un <em>Sistema de Gestión de Biblioteca Universitaria</em> para administrar el préstamo de libros a estudiantes y docentes, con dos tipos de usuario (administrador y usuario) y toda la información guardada en el navegador. Trabajé con Edgar Gago Uribe; mi parte fue (S1) las piezas reutilizables de la interfaz, (S2) la gestión de categorías y libros y (S3) el comprobante digital de préstamo en PDF, 9 de los 20 puntos de historia del equipo.</p>
+                <p><strong>Ejercicio 2 (curso práctico, Parte 1):</strong> Guía práctica de la Semana 07 sobre React Hooks. Desarrollé <em>Sabores del Perú</em>, una SPA con React + Vite que muestra una carta de 12 platos de Costa, Sierra y Selva, permite buscar y filtrar, armar «Mi menú» con el total en soles y alternar entre tema claro y oscuro. Cada uno de los 5 pasos de la guía (ciclo de render, useEffect, useContext, optimización y hook personalizado) quedó en su propio commit.</p>
+                <p><strong>Ejercicio 3 (curso práctico, Parte 2):</strong> <em>Dashboard de Gestión con Estado Complejo</em>, un gestor de tareas que debía integrar <code>useReducer</code> (agregar, eliminar, filtrar, ordenar) con <code>useState</code>, <code>useContext</code> para el tema, <code>useEffect</code> con limpieza y <code>localStorage</code>, <code>useMemo</code> y <code>useCallback</code>, <code>useRef</code> y un hook personalizado reutilizable, además de validarlo con ESLint y el Profiler.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <p><strong>Ejercicio 1:</strong></p>
+                <ol>
+                  <li>Con mi compañero repartimos el backlog en dos ramas (<code>Gago-Uribe</code> y <code>Huamanlazo-Pariona</code>), cada uno con sus propios archivos, y unimos el trabajo a <code>main</code> con pull requests.</li>
+                  <li><strong>S1, piezas reutilizables:</strong> creé en <code>src/components/ui</code> los componentes <code>Input</code> (etiqueta, error y accesibilidad), <code>Select</code>, <code>Button</code>, <code>Card</code>, <code>Badge</code>, <code>Modal</code> (se cierra con la tecla Esc o al pulsar el fondo) y un <code>DataTable</code> genérico con filas y acciones, un commit por componente.</li>
+                  <li><strong>S2, categorías y libros:</strong> hice <code>CategoriesPage</code> y <code>CategoryForm</code> y luego <code>BooksPage</code> y <code>BookForm</code> con react-hook-form: alta, edición y eliminación, con validación de título, autor, ISBN de 10 o 13 dígitos, categoría obligatoria y stock entero no negativo. Si el ISBN ya existe, el error aparece en ese campo.</li>
+                  <li><strong>S3, comprobante digital:</strong> <code>ReceiptPage</code> y <code>ReceiptView</code> muestran el nombre del usuario, el libro, la fecha de préstamo, la fecha límite de devolución y un código único; <code>receiptPdf.ts</code> genera el PDF con jsPDF y el comprobante se guarda en <code>localStorage</code>.</li>
+                  <li>Después corregí los estilos que estaban intercambiados entre <code>Button</code> y <code>Badge</code> y ordené las categorías alfabéticamente. Edgar dejó el despliegue en GitHub Pages con GitHub Actions y el README con el backlog.</li>
+                </ol>
+                <p><strong>Ejercicio 2</strong>, siguiendo los pasos de la guía:</p>
+                <ol>
+                  <li><strong>Paso 0, repositorio y base:</strong> creé el repositorio <code>sabores-del-peru</code>, generé el proyecto con <code>npm create vite@latest</code> (plantilla React), lo conecté con <code>git remote add origin</code> y resolví un conflicto de historiales con el README inicial usando <code>git pull origin main --allow-unrelated-histories</code> antes del primer <code>push</code>.</li>
+                  <li><strong>Paso 1, ciclo de render:</strong> comprobé que <code>main.jsx</code> usa <code>StrictMode</code> y creé <code>PlatosProbados</code>, que compara <code>useState</code> (re-render) con <code>useRef</code> (sin re-render) y muestra cuántas veces se renderizó; lo medí con el Profiler.</li>
+                  <li><strong>Paso 2, useEffect:</strong> cargué <code>public/platos.json</code> con <code>fetch</code> dentro de <code>useEffect</code>, con <code>async/await</code>, manejo de errores y limpieza con <code>AbortController</code>; en Network vi la primera petición cancelada y la segunda completa.</li>
+                  <li><strong>Paso 3, useContext:</strong> separé el estado global en dos contextos, <code>ThemeContext</code> (tema claro u oscuro) y un contexto de los platos del menú con <code>useReducer</code>, y los consumí con hooks propios, sin prop drilling.</li>
+                  <li><strong>Paso 4, optimización:</strong> envolví el filtro por nombre y región en <code>useMemo</code>, estabilicé los handlers con <code>useCallback</code>, envolví <code>TarjetaPlato</code> en <code>React.memo</code> y usé <code>useRef</code> para enfocar el buscador sin re-render.</li>
+                  <li><strong>Paso 5, hook personalizado:</strong> extraje la carga de datos a <code>useFetch(url)</code> y <code>ListaPlatos</code> pasó de más de 25 líneas de lógica a una sola línea de consumo; ejecuté <code>npm run lint</code> sin errores.</li>
+                  <li>Terminé con el diseño final (cabecera con degradado, fotografías de los platos, panel «Mi menú» con total) y publiqué la demo en GitHub Pages.</li>
+                </ol>
+                <p><strong>Ejercicio 3</strong>, por fases según los roles técnicos de la guía:</p>
+                <ol>
+                  <li><strong>Preparación:</strong> creé el repositorio <code>semana07-practica2-react-hook</code>, lo cloné en mi equipo y generé el proyecto con Vite eligiendo ESLint como linter, porque la validación final pide revisar <code>react-hooks/exhaustive-deps</code>.</li>
+                  <li><strong>Arquitecto de Estado:</strong> completé <code>tasksReducer</code> con las acciones <code>ADD</code>, <code>REMOVE</code>, <code>TOGGLE</code>, <code>FILTER</code> y <code>SORT</code>, con actualizaciones inmutables; el <code>id</code> se genera fuera del reducer para mantenerlo puro.</li>
+                  <li><strong>Ingeniero de Efectos y Contexto:</strong> escribí <code>useLocalStorage</code> (inicialización perezosa, <code>try/catch</code> y sincronización entre pestañas) y <code>ThemeContext</code>, que usa ese hook, aplica la clase al <code>body</code> con limpieza y memoriza el <code>value</code>.</li>
+                  <li><strong>Optimizador de Rendimiento:</strong> primero guardé la versión sin memoización con el tag <code>baseline-sin-memo</code> para poder medirla; después apliqué <code>React.memo</code>, <code>useMemo</code> y <code>useCallback</code> en <code>TaskList</code>, <code>TaskForm</code> y <code>TaskItem</code>.</li>
+                  <li><strong>Interfaz y hooks propios:</strong> mejoré la interfaz, agregué la búsqueda con <code>useDebounce</code> y un componente <code>Clock</code> con <code>setInterval</code> y su <code>clearInterval</code> para comprobar la limpieza.</li>
+                  <li><strong>QA y validación:</strong> ejecuté <code>npm run lint</code>, grabé el Profiler antes y después de memoizar, comprobé el cleanup del reloj en la consola y verifiqué la persistencia en Local Storage.</li>
+                  <li><strong>Entrega:</strong> el README lleva el diagrama de flujo del estado y la justificación de cada hook; subí el proyecto a GitHub y el <code>.rar</code> al ADESA.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p><strong>Ejercicio 1:</strong> una aplicación de biblioteca con inicio de sesión por código universitario, rutas según el rol, gestión de usuarios, categorías y libros, catálogo con préstamo y control de stock (baja al prestar y sube al devolver), historial y comprobante digital descargable en PDF. El equipo reunió 20 puntos de historia: 11 de Edgar y 9 míos (S1 de apoyo, S2 con 6 y S3 con 3).</p>
+                <p><strong>Ejercicio 2:</strong> la SPA <em>Sabores del Perú</em> carga los 12 platos desde <code>platos.json</code>, filtra por nombre y región, acumula el total de «Mi menú» (por ejemplo S/ 76 con Ceviche, Lomo saltado y Ají de gallina) y cambia de tema claro a oscuro desde un contexto global. <code>npm run lint</code> terminó sin errores y la aplicación está publicada en GitHub Pages.</p>
+                <p><strong>Ejercicio 3:</strong> el dashboard agrega, elimina, marca, filtra, ordena y busca tareas; el tema y la lista se conservan al recargar. <code>npm run lint</code> no mostró advertencias y el Profiler confirmó que, tras memoizar, <code>TaskList</code> y los <code>TaskItem</code> ya no se re-renderizan al cambiar el tema ni con el tic del reloj.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>En desarrollo, <code>StrictMode</code> ejecuta los efectos dos veces; por eso en Network aparecen dos peticiones a <code>platos.json</code> (una cancelada por el <code>AbortController</code>) y en la consola del reloj los mensajes de inicio y de limpieza salen repetidos. En producción esto no ocurre.</p>
+                <p>Medición del Profiler en el dashboard (cambio de tema, 6 commits en cada grabación). Los tiempos son muy pequeños y varían entre grabaciones, por eso la evidencia principal es cualitativa: la cantidad de commits es la misma, pero en cada uno se re-renderizan menos componentes.</p>
+                <div class="table-wrap"><table><caption>Profiler antes y después de memoizar</caption><thead><tr><th scope="col">Aspecto</th><th scope="col">Antes (sin memoización)</th><th scope="col">Después (memo, useMemo, useCallback)</th></tr></thead><tbody><tr><td>Causa del commit 1</td><td>ThemeProvider (cambio de tema)</td><td>ThemeProvider (cambio de tema)</td></tr><tr><td>Dashboard</td><td>Se re-renderiza</td><td>Se re-renderiza</td></tr><tr><td>TaskList</td><td>Se re-renderiza</td><td>No se re-renderiza (Memo)</td></tr><tr><td>TaskItem (3)</td><td>Se re-renderizan</td><td>No se re-renderizan</td></tr><tr><td>Tiempo de render del commit</td><td>3.7 ms</td><td>2.8 ms</td></tr></tbody></table></div>
+                <p>No usé <code>useCallback</code> en los botones nativos porque un <code>button</code> no está memoizado: estabilizar su función no evita ningún render. Apliqué la memoización solo donde un componente con <code>React.memo</code> recibe la función, para no caer en la sobre-optimización.</p>
+                <p>La guía pedía escribir a mano el 80 % de los hooks; las intervenciones de IA quedaron comentadas en el código con el formato <code>// IA: [problema] → Solución manual: [explicación]</code>.</p>
+                <div class="table-wrap"><table><caption>Registro de uso de IA en Sabores del Perú</caption><thead><tr><th scope="col">Archivo</th><th scope="col">Problema</th><th scope="col">Solución manual</th></tr></thead><tbody><tr><td>PlatosProbados.jsx</td><td>El contador de renders con useRef lo marcaba la regla react-hooks/refs</td><td>Se justificó con un <code>eslint-disable-next-line</code> documentado, por ser una demostración didáctica del render doble</td></tr><tr><td>ThemeContext.jsx</td><td>El objeto <code>value</code> se creaba en cada render y re-renderizaba a todos los consumidores</td><td>Se memorizó con <code>useMemo</code> para que cambie solo cuando cambia el tema</td></tr></tbody></table></div>
+                <div class="table-wrap"><table><caption>Problemas encontrados en Sabores del Perú y cómo los resolví</caption><thead><tr><th scope="col">Problema</th><th scope="col">Causa</th><th scope="col">Solución</th></tr></thead><tbody><tr><td><code>git push</code> rechazado</td><td>El repositorio remoto ya tenía un README distinto (historiales no relacionados)</td><td><code>git pull --allow-unrelated-histories</code>, resolver el conflicto del README y repetir el push</td></tr><tr><td>Errores de parseo en PlatosProbados.jsx</td><td>El autocompletado del editor insertó una línea sobrante en el JSX</td><td>Reemplazar el archivo completo y desactivar las sugerencias automáticas durante la práctica</td></tr><tr><td>ESLint: react-hooks/refs y react-hooks/immutability</td><td>Lectura de una ref durante el render y reasignación de una variable local</td><td>El contador pasó a un <code>useRef</code> modificado en un evento; la lectura se justificó con <code>eslint-disable</code> documentado</td></tr><tr><td>«Unexpected end of JSON input»</td><td><code>platos.json</code> se guardó vacío</td><td>Pegar el contenido completo y guardar con Ctrl + S</td></tr></tbody></table></div>
+                <p>Después de la guía amplié <em>Sabores del Perú</em> con la vista de pedido (cantidades con límites según el número de personas), un formulario de pago validado con un hook <code>useForm</code> propio y pruebas de las reglas; el detalle está en el README del repositorio.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Ejercicio 1: <a href="https://github.com/E5gar/EvaluacionParcialSemana7" target="_blank" rel="noopener">github.com/E5gar/EvaluacionParcialSemana7</a> (repositorio del equipo; mis aportes están en la rama <code>Huamanlazo-Pariona</code> y en el README)</li>
+                  <li>Ejercicio 2: <a href="https://github.com/stevenhuamanlazo/sabores-del-peru" target="_blank" rel="noopener">github.com/stevenhuamanlazo/sabores-del-peru</a> · demo en <a href="https://stevenhuamanlazo.github.io/sabores-del-peru/" target="_blank" rel="noopener">stevenhuamanlazo.github.io/sabores-del-peru</a></li>
+                  <li>Ejercicio 3: <a href="https://github.com/stevenhuamanlazo/semana07-practica2-react-hook" target="_blank" rel="noopener">github.com/stevenhuamanlazo/semana07-practica2-react-hook</a> (README con diagrama y justificación de hooks, historial con un commit por fase)</li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem07/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Sabores del Perú · pasos 0 al 5 y resultado final</span><span class="ex-count">20 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 2">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_01_vite_ejecucion.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_01_vite_ejecucion.jpg" alt="Paso 0: proyecto Vite + React en ejecución en http://localhost:5173/ desde la terminal de Visual Studio Code." loading="lazy" /></a>
+                    <figcaption>Paso 0: proyecto Vite + React en ejecución en http://localhost:5173/ desde la terminal de Visual Studio Code.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_02_github_repo.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_02_github_repo.jpg" alt="Paso 0: repositorio público sabores-del-peru en GitHub con el primer commit." loading="lazy" /></a>
+                    <figcaption>Paso 0: repositorio público sabores-del-peru en GitHub con el primer commit.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_03_p1_codigo.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_03_p1_codigo.jpg" alt="Paso 1: código de PlatosProbados.jsx (useState frente a useRef); la pestaña Problems muestra 0 problemas." loading="lazy" /></a>
+                    <figcaption>Paso 1: código de PlatosProbados.jsx (useState frente a useRef); la pestaña Problems muestra 0 problemas.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_04_p1_profiler.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_04_p1_profiler.jpg" alt="Paso 1: contador funcionando y React DevTools Profiler con los commits grabados." loading="lazy" /></a>
+                    <figcaption>Paso 1: contador funcionando y React DevTools Profiler con los commits grabados.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_05_p1_profiler_causa.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_05_p1_profiler_causa.jpg" alt="Paso 1: el Profiler indica que PlatosProbados es la causa de cada actualización (commit)." loading="lazy" /></a>
+                    <figcaption>Paso 1: el Profiler indica que PlatosProbados es la causa de cada actualización (commit).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_06_p2_useeffect.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_06_p2_useeffect.jpg" alt="Paso 2: useEffect con async/await, AbortController y función de limpieza (cleanup)." loading="lazy" /></a>
+                    <figcaption>Paso 2: useEffect con async/await, AbortController y función de limpieza (cleanup).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_07_p2_carta.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_07_p2_carta.jpg" alt="Paso 2: la carta con los 12 platos cargados desde platos.json." loading="lazy" /></a>
+                    <figcaption>Paso 2: la carta con los 12 platos cargados desde platos.json.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_08_p2_network.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_08_p2_network.jpg" alt="Paso 2: pestaña Network; la primera petición figura como canceled por el cleanup y la segunda se completa." loading="lazy" /></a>
+                    <figcaption>Paso 2: pestaña Network; la primera petición figura como canceled por el cleanup y la segunda se completa.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_09_p3_contextos.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_09_p3_contextos.jpg" alt="Paso 3: estructura de contextos en el explorador y App.jsx usando la nueva Cabecera." loading="lazy" /></a>
+                    <figcaption>Paso 3: estructura de contextos en el explorador y App.jsx usando la nueva Cabecera.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_10_p3_tema_claro.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_10_p3_tema_claro.jpg" alt="Paso 3: aplicación en tema claro." loading="lazy" /></a>
+                    <figcaption>Paso 3: aplicación en tema claro.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_11_p3_tema_oscuro.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_11_p3_tema_oscuro.jpg" alt="Paso 3: aplicación en tema oscuro tras pulsar el botón de tema (useContext)." loading="lazy" /></a>
+                    <figcaption>Paso 3: aplicación en tema oscuro tras pulsar el botón de tema (useContext).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_12_p4_codigo.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_12_p4_codigo.jpg" alt="Paso 4: código con useMemo, useCallback y useRef." loading="lazy" /></a>
+                    <figcaption>Paso 4: código con useMemo, useCallback y useRef.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_13_p4_buscador.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_13_p4_buscador.jpg" alt="Paso 4: buscador filtrando el texto «cu» (resultado: Cuy chactado)." loading="lazy" /></a>
+                    <figcaption>Paso 4: buscador filtrando el texto «cu» (resultado: Cuy chactado).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_14_p5_usefetch.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_14_p5_usefetch.jpg" alt="Paso 5: hook personalizado useFetch.js." loading="lazy" /></a>
+                    <figcaption>Paso 5: hook personalizado useFetch.js.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_15_p5_listaplatos.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_15_p5_listaplatos.jpg" alt="Paso 5: ListaPlatos.jsx refactorizado con useFetch (ya sin useEffect)." loading="lazy" /></a>
+                    <figcaption>Paso 5: ListaPlatos.jsx refactorizado con useFetch (ya sin useEffect).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_16_p5_lint.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_16_p5_lint.jpg" alt="Paso 5: npm run lint finalizó sin errores tras el commit del paso 5." loading="lazy" /></a>
+                    <figcaption>Paso 5: npm run lint finalizó sin errores tras el commit del paso 5.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_17_final_oscuro.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_17_final_oscuro.jpg" alt="Resultado final: modo oscuro con la cabecera, el contador de platos probados y el panel Mi menú." loading="lazy" /></a>
+                    <figcaption>Resultado final: modo oscuro con la cabecera, el contador de platos probados y el panel Mi menú.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_18_final_total91.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_18_final_total91.jpg" alt="Resultado final: tres platos agregados a Mi menú con el total calculado (S/ 91)." loading="lazy" /></a>
+                    <figcaption>Resultado final: tres platos agregados a Mi menú con el total calculado (S/ 91).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_19_final_total76.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_19_final_total76.jpg" alt="Resultado final: Ceviche, Lomo saltado y Ají de gallina en Mi menú, total S/ 76." loading="lazy" /></a>
+                    <figcaption>Resultado final: Ceviche, Lomo saltado y Ají de gallina en Mi menú, total S/ 76.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p2_20_final_claro.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p2_20_final_claro.jpg" alt="Resultado final: versión con barra de navegación, modo claro y tarjetas con fotografía de cada plato." loading="lazy" /></a>
+                    <figcaption>Resultado final: versión con barra de navegación, modo claro y tarjetas con fotografía de cada plato.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                  <div class="subgroup" data-ex="3" data-label="Ejercicio 3" data-short="Ej. 3">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 3</span><span class="ex-title">Dashboard de Gestión con Estado Complejo · fases, validaciones y entrega</span><span class="ex-count">21 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 3">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_01_crear_proyecto.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_01_crear_proyecto.jpg" alt="Creación del proyecto con create-vite (plantilla React) y ESLint como linter." loading="lazy" /></a>
+                    <figcaption>Creación del proyecto con create-vite (plantilla React) y ESLint como linter.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_02_github_primer_commit.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_02_github_primer_commit.jpg" alt="Repositorio semana07-practica2-react-hook en GitHub con el primer commit del proyecto base." loading="lazy" /></a>
+                    <figcaption>Repositorio semana07-practica2-react-hook en GitHub con el primer commit del proyecto base.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_03_reducer.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_03_reducer.jpg" alt="useTasksReducer.js con las acciones ADD, REMOVE, TOGGLE, FILTER y SORT, subido a GitHub (commit b13cf35)." loading="lazy" /></a>
+                    <figcaption>useTasksReducer.js con las acciones ADD, REMOVE, TOGGLE, FILTER y SORT, subido a GitHub (commit b13cf35).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_04_themecontext_lint.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_04_themecontext_lint.jpg" alt="ThemeContext.jsx con useLocalStorage y npm run lint sin advertencias." loading="lazy" /></a>
+                    <figcaption>ThemeContext.jsx con useLocalStorage y npm run lint sin advertencias.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_05_commit_efectos.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_05_commit_efectos.jpg" alt="Commit y push de useLocalStorage y ThemeContext (bf160fe)." loading="lazy" /></a>
+                    <figcaption>Commit y push de useLocalStorage y ThemeContext (bf160fe).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_06_tag_baseline.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_06_tag_baseline.jpg" alt="Commit de la versión base y creación del tag baseline-sin-memo para medirla con el Profiler." loading="lazy" /></a>
+                    <figcaption>Commit de la versión base y creación del tag baseline-sin-memo para medirla con el Profiler.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_07_commit_optimizado.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_07_commit_optimizado.jpg" alt="Commit de la versión optimizada con React.memo, useMemo y useCallback." loading="lazy" /></a>
+                    <figcaption>Commit de la versión optimizada con React.memo, useMemo y useCallback.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_08_dashboard_claro.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_08_dashboard_claro.jpg" alt="Dashboard en tema claro, con filtros, orden, búsqueda, reloj y estadísticas." loading="lazy" /></a>
+                    <figcaption>Dashboard en tema claro, con filtros, orden, búsqueda, reloj y estadísticas.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_09_dashboard_oscuro.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_09_dashboard_oscuro.jpg" alt="Dashboard en tema oscuro; el campo «Nueva tarea» aparece enfocado al cargar (useRef + useEffect)." loading="lazy" /></a>
+                    <figcaption>Dashboard en tema oscuro; el campo «Nueva tarea» aparece enfocado al cargar (useRef + useEffect).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_10_busqueda_debounce.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_10_busqueda_debounce.jpg" alt="Búsqueda de «hacer» con useDebounce: la lista queda con una sola tarea; el panel muestra Local Storage." loading="lazy" /></a>
+                    <figcaption>Búsqueda de «hacer» con useDebounce: la lista queda con una sola tarea; el panel muestra Local Storage.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_11_eslint.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_11_eslint.jpg" alt="Ejecución de npm run lint (eslint .) sin errores ni advertencias." loading="lazy" /></a>
+                    <figcaption>Ejecución de npm run lint (eslint .) sin errores ni advertencias.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_12_problems.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_12_problems.jpg" alt="Pestaña Problems de VS Code: «No problems have been detected in the workspace»." loading="lazy" /></a>
+                    <figcaption>Pestaña Problems de VS Code: «No problems have been detected in the workspace».</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_13_profiler_antes.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_13_profiler_antes.jpg" alt="Profiler ANTES (sin memoización): en el cambio de tema se re-renderizan Dashboard, TaskList y los tres TaskItem." loading="lazy" /></a>
+                    <figcaption>Profiler ANTES (sin memoización): en el cambio de tema se re-renderizan Dashboard, TaskList y los tres TaskItem.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_14_profiler_despues.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_14_profiler_despues.jpg" alt="Profiler DESPUÉS (React.memo + useMemo + useCallback): TaskList (Memo) y los TaskItem aparecen rayados, no se re-renderizaron." loading="lazy" /></a>
+                    <figcaption>Profiler DESPUÉS (React.memo + useMemo + useCallback): TaskList (Memo) y los TaskItem aparecen rayados, no se re-renderizaron.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_15_profiler_reloj.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_15_profiler_reloj.jpg" alt="Un commit causado por Clock (reloj): TaskList (Memo) no se re-renderiza con el tic del reloj." loading="lazy" /></a>
+                    <figcaption>Un commit causado por Clock (reloj): TaskList (Memo) no se re-renderiza con el tic del reloj.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_16_cleanup_consola.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_16_cleanup_consola.jpg" alt="Consola tras ocultar y volver a mostrar el reloj: mensajes de cleanup (clearInterval) e inicio del intervalo." loading="lazy" /></a>
+                    <figcaption>Consola tras ocultar y volver a mostrar el reloj: mensajes de cleanup (clearInterval) e inicio del intervalo.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_17_localstorage_claro.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_17_localstorage_claro.jpg" alt="Local Storage con el tema en «light» y la lista de tareas guardada (3 elementos)." loading="lazy" /></a>
+                    <figcaption>Local Storage con el tema en «light» y la lista de tareas guardada (3 elementos).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_18_localstorage_oscuro.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_18_localstorage_oscuro.jpg" alt="Local Storage después de cambiar el tema: la clave «theme» pasa a «dark»." loading="lazy" /></a>
+                    <figcaption>Local Storage después de cambiar el tema: la clave «theme» pasa a «dark».</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_19_git_push_readme.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_19_git_push_readme.jpg" alt="Commit y push del README con el diagrama de flujo y la justificación de los hooks (6943996)." loading="lazy" /></a>
+                    <figcaption>Commit y push del README con el diagrama de flujo y la justificación de los hooks (6943996).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_20_github_final.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_20_github_final.jpg" alt="Repositorio en GitHub con el último commit, la carpeta evidencias, public y src." loading="lazy" /></a>
+                    <figcaption>Repositorio en GitHub con el último commit, la carpeta evidencias, public y src.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem07/s7_p3_21_adesa.jpg" target="_blank" rel="noopener"><img src="assets/Sem07/s7_p3_21_adesa.jpg" alt="Entrega en el ADESA: archivo .rar adjuntado en Práctica Semana 07 - 2° Parte." loading="lazy" /></a>
+                    <figcaption>Entrega en el ADESA: archivo .rar adjuntado en Práctica Semana 07 - 2° Parte.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                </div>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+                    <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Evaluación parcial · Biblioteca Universitaria (mis archivos)</span><span class="ex-count">4 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">src/components/ui/Input.tsx (campo accesible con etiqueta y error)</p>
+<pre><code>import { useId, type ComponentProps } from 'react'
+import styles from './Input.module.css'
+
+interface InputProps extends ComponentProps&lt;'input'&gt; {
+  label: string
+  error?: string
+}
+
+export default function Input({ label, error, className = '', id, ...props }: InputProps) {
+  const generatedId = useId()
+  const inputId = id ?? generatedId
+  const errorId = `${inputId}-error`
+
+  return (
+    &lt;div className={`${styles.campo} ${className}`}&gt;
+      &lt;label className={`${styles.etiquetaCampo} label`} htmlFor={inputId}&gt;
+        {label}
+      &lt;/label&gt;
+      &lt;input
+        id={inputId}
+        className={styles.control}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errorId : undefined}
+        {...props}
+      /&gt;
+      {error &amp;&amp; (
+        &lt;p id={errorId} className={styles.mensajeError}&gt;
+          {error}
+        &lt;/p&gt;
+      )}
+    &lt;/div&gt;
+  )
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/components/ui/Modal.tsx (cierre con Esc y useEffect con limpieza)</p>
+<pre><code>import { useEffect, type ReactNode } from 'react'
+import styles from './Modal.module.css'
+
+interface ModalProps {
+  open: boolean
+  onClose: () =&gt; void
+  title: string
+  children: ReactNode
+}
+
+export default function Modal({ open, onClose, title, children }: ModalProps) {
+  useEffect(() =&gt; {
+    if (!open) return
+    const handleKeyDown = (event: KeyboardEvent) =&gt; {
+      if (event.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () =&gt; document.removeEventListener('keydown', handleKeyDown)
+  }, [open, onClose])
+
+  if (!open) return null
+
+  return (
+    &lt;div className={styles.fondoModal} onClick={onClose}&gt;
+      &lt;div
+        className={styles.panel}
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        onClick={(event) =&gt; event.stopPropagation()}
+      &gt;
+        &lt;div className={styles.cabecera}&gt;
+          &lt;h2 className="heading-xs"&gt;{title}&lt;/h2&gt;
+          &lt;button type="button" className={styles.cerrar} onClick={onClose} aria-label="Cerrar"&gt;
+            ×
+          &lt;/button&gt;
+        &lt;/div&gt;
+        {children}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  )
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/features/books/BookForm.tsx (react-hook-form y validación de ISBN)</p>
+<pre><code>import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import Button from '../../components/ui/Button'
+import Input from '../../components/ui/Input'
+import Select from '../../components/ui/Select'
+import { addBook, updateBook } from '../../services/bookService'
+import { getCategories } from '../../services/categoryService'
+import type { Book } from '../../types'
+import styles from './BookForm.module.css'
+
+interface BookFormValues {
+  title: string
+  author: string
+  isbn: string
+  categoryId: string
+  stock: number
+}
+
+interface BookFormProps {
+  book?: Book
+  onSaved: () =&gt; void
+  onCancel: () =&gt; void
+}
+
+function buildCategoryOptions() {
+  return [
+    { value: '', label: 'Seleccione una categoría' },
+    ...getCategories().map((category) =&gt; ({ value: category.id, label: category.name })),
+  ]
+}
+
+function isValidIsbn(value: string): boolean {
+  const digits = value.replace(/[-\s]/g, '')
+  return /^(\d{9}[\dXx]|\d{13})$/.test(digits)
+}
+
+export default function BookForm({ book, onSaved, onCancel }: BookFormProps) {
+  const [categoryOptions] = useState(buildCategoryOptions)
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm&lt;BookFormValues&gt;({
+    defaultValues: {
+      title: book?.title ?? '',
+      author: book?.author ?? '',
+      isbn: book?.isbn ?? '',
+      categoryId: book?.categoryId ?? '',
+      stock: book?.stock ?? 1,
+    },
+  })
+
+  function onSubmit(values: BookFormValues) {
+    try {
+      if (book) {
+        updateBook(book.id, values)
+      } else {
+        addBook(values)
+      }
+      onSaved()
+    } catch (error) {
+      setError('isbn', {
+        message: error instanceof Error ? error.message : 'No se pudo guardar el libro',
+      })
+    }
+  }
+
+  return (
+    &lt;form className={styles.formulario} onSubmit={handleSubmit(onSubmit)} noValidate&gt;
+      &lt;div className={styles.completo}&gt;
+        &lt;Input
+          label="Título"
+          error={errors.title?.message}
+          {...register('title', {
+            required: 'El título es obligatorio',
+            validate: (value) =&gt; value.trim().length &gt;= 2 || 'Mínimo 2 caracteres',
+          })}
+        /&gt;
+      &lt;/div&gt;
+      &lt;Input
+        label="Autor"
+        error={errors.author?.message}
+        {...register('author', {
+          required: 'El autor es obligatorio',
+          validate: (value) =&gt; value.trim().length &gt;= 3 || 'Mínimo 3 caracteres',
+        })}
+      /&gt;
+      &lt;Input
+        label="ISBN"
+        error={errors.isbn?.message}
+        {...register('isbn', {
+          required: 'El ISBN es obligatorio',
+          validate: (value) =&gt; isValidIsbn(value) || 'ISBN no válido (10 o 13 dígitos)',
+        })}
+      /&gt;
+      &lt;Select
+        label="Categoría"
+        options={categoryOptions}
+        error={errors.categoryId?.message}
+        {...register('categoryId', { required: 'Selecciona una categoría' })}
+      /&gt;
+      &lt;Input
+        label="Stock disponible"
+        type="number"
+        min={0}
+        step={1}
+        error={errors.stock?.message}
+        {...register('stock', {
+          required: 'El stock es obligatorio',
+          valueAsNumber: true,
+          min: { value: 0, message: 'El stock no puede ser negativo' },
+          validate: (value) =&gt; Number.isInteger(value) || 'Debe ser un número entero',
+        })}
+      /&gt;
+      &lt;div className={styles.acciones}&gt;
+        &lt;Button type="submit" variant="acento"&gt;
+          {book ? 'Guardar cambios' : 'Registrar'}
+        &lt;/Button&gt;
+        &lt;Button type="button" variant="contorno" onClick={onCancel}&gt;
+          Cancelar
+        &lt;/Button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  )
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/utils/receiptPdf.ts (comprobante en PDF con jsPDF)</p>
+<pre><code>import { jsPDF } from 'jspdf'
+import type { Receipt } from '../types'
+import { formatDate } from './dates'
+
+const MARGIN_X = 20
+const PAGE_WIDTH = 210
+const RIGHT_X = PAGE_WIDTH - MARGIN_X
+const VALUE_X = 80
+const VALUE_WIDTH = RIGHT_X - VALUE_X
+const LINE_HEIGHT = 6
+const THIN_LINE = 0.2
+
+export function downloadReceiptPdf(receipt: Receipt): void {
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' })
+  const rows: [string, string][] = [
+    ['Usuario', receipt.userName],
+    ['Libro prestado', receipt.bookTitle],
+    ['Fecha de préstamo', formatDate(receipt.loanDate)],
+    ['Fecha límite de devolución', formatDate(receipt.dueDate)],
+  ]
+
+  doc.setDrawColor(0, 0, 0)
+  doc.setTextColor(0, 0, 0)
+  doc.setLineWidth(THIN_LINE)
+
+  doc.setFont('helvetica', 'normal')
+  doc.setFontSize(10)
+  doc.text('BIBLIOTECA UNIVERSITARIA', MARGIN_X, 25)
+  doc.text('COMPROBANTE DE PRÉSTAMO', MARGIN_X, 31)
+  doc.line(MARGIN_X, 36, RIGHT_X, 36)
+
+  doc.setFont('helvetica', 'bold')
+  doc.setFontSize(26)
+  doc.text(receipt.loanCode, MARGIN_X, 56)
+  doc.line(MARGIN_X, 64, RIGHT_X, 64)
+
+  doc.setFontSize(11)
+  let y = 76
+  rows.forEach(([label, value]) =&gt; {
+    const lines: string[] = doc.splitTextToSize(value, VALUE_WIDTH)
+    doc.setFont('helvetica', 'normal')
+    doc.text(label, MARGIN_X, y)
+    doc.setFont('helvetica', 'bold')
+    doc.text(lines, VALUE_X, y)
+    const bottom = y + (lines.length - 1) * LINE_HEIGHT + 4
+    doc.line(MARGIN_X, bottom, RIGHT_X, bottom)
+    y = bottom + 10
+  })
+
+  doc.save(`comprobante-${receipt.loanCode}.pdf`)
+}</code></pre></figure>
+                    </div>
+                    <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Sabores del Perú · fragmentos del código (React + Vite)</span><span class="ex-count">6 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">src/components/PlatosProbados.jsx (paso 1: useState frente a useRef)</p>
+<pre><code>import { useState, useRef } from 'react'
+
+export default function PlatosProbados({ total }) {
+  // useState: al cambiar, dispara un re-render
+  const [probados, setProbados] = useState(0)
+
+  // useRef: guarda un valor entre renders sin provocar uno.
+  // Se modifica solo dentro de eventos (permitido por ESLint).
+  const clicksSinRender = useRef(0)
+
+  // Contador de renders (solo para la demo didáctica)
+  const renders = useRef(0)
+  // eslint-disable-next-line react-hooks/refs -- Demo didáctica: contar renders con useRef a propósito para mostrar el doble render de StrictMode. La medición real se hace con el Profiler.
+  renders.current += 1
+
+  const sumarSinRender = () =&gt; {
+    clicksSinRender.current += 1
+    console.log('Clicks sin re-render:', clicksSinRender.current)
+  }
+
+  // eslint-disable-next-line react-hooks/refs -- Demo didáctica: mostrar el número de renders en pantalla
+  const totalRenders = renders.current
+
+  return (
+    &lt;section className="panel"&gt;
+      &lt;h2&gt;🍽️ Platos probados: {probados}&lt;/h2&gt;
+      &lt;button onClick={() =&gt; setProbados(p =&gt; Math.min(p + 1, total))} disabled={probados &gt;= total}&gt;Probar un plato&lt;/button&gt;
+      &lt;button onClick={sumarSinRender}&gt;Sumar a useRef (no re-renderiza)&lt;/button&gt;
+      &lt;button onClick={() =&gt; setProbados(0)}&gt;Reset&lt;/button&gt;
+      {probados &gt;= total &amp;&amp; &lt;p className="nota"&gt;🎉 ¡Probaste toda la carta!&lt;/p&gt;}
+      &lt;p&gt;Renders de este componente: {totalRenders}&lt;/p&gt;
+    &lt;/section&gt;
+  )
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/hooks/useFetch.js (pasos 2 y 5: useEffect, AbortController y hook propio)</p>
+<pre><code>import { useState, useEffect } from 'react'
+
+export function useFetch(url) {
+  const [data, setData] = useState(null)
+  const [cargando, setCargando] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() =&gt; {
+    const controller = new AbortController()
+    const cargar = async () =&gt; {
+      try {
+        const res = await fetch(url, { signal: controller.signal })
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        setData(await res.json())
+        setCargando(false)
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          setError(err.message)
+          setCargando(false)
+        }
+      }
+    }
+    cargar()
+    return () =&gt; controller.abort()
+  }, [url])
+
+  return { data, cargando, error }
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/context/ThemeContext.jsx (paso 3: contexto del tema)</p>
+<pre><code>import { createContext, useContext, useEffect, useMemo, useCallback } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+
+const ThemeContext = createContext(null)
+
+export function ThemeProvider({ children }) {
+  const [tema, setTema] = useLocalStorage('tema', 'claro')
+  useEffect(() =&gt; {
+    document.documentElement.dataset.theme = tema
+  }, [tema])
+  const alternar = useCallback(() =&gt; setTema(t =&gt; (t === 'claro' ? 'oscuro' : 'claro')), [setTema])
+
+  // IA: [el objeto value se creaba en cada render del Provider y re-renderizaba a todos los consumidores]
+  // → Solución manual: memorizar value con useMemo para que solo cambie cuando cambia el tema
+  const value = useMemo(() =&gt; ({ tema, setTema, alternar }), [tema, setTema, alternar])
+
+  return &lt;ThemeContext.Provider value={value}&gt;{children}&lt;/ThemeContext.Provider&gt;
+}
+
+// eslint-disable-next-line react-refresh/only-export-components -- hook de consumo junto a su Provider
+export const useTema = () =&gt; useContext(ThemeContext)</code></pre></figure><figure class="code-file"><p class="file-name">src/context/PedidoContext.jsx (paso 3: useReducer y useMemo en el contexto)</p>
+<pre><code>import { createContext, useContext, useReducer, useEffect, useMemo } from 'react'
+import { ESTADO_INICIAL, contarUnidades, limitesPara, reducerPedido, sanearPedido } from '../utils/reglasPedido'
+
+const PedidoContext = createContext(null)
+const CLAVE = 'pedido-v3'
+
+// Inicializador perezoso: recupera el pedido guardado y lo sanea
+function cargarPedido() {
+  try {
+    return sanearPedido(JSON.parse(localStorage.getItem(CLAVE)))
+  } catch {
+    return ESTADO_INICIAL
+  }
+}
+
+export function PedidoProvider({ children }) {
+  const [estado, dispatch] = useReducer(reducerPedido, undefined, cargarPedido)
+
+  useEffect(() =&gt; {
+    try {
+      localStorage.setItem(CLAVE, JSON.stringify(estado))
+    } catch {
+      // Sin almacenamiento disponible: el pedido vive solo en memoria
+    }
+  }, [estado])
+
+  // dispatch es estable; value solo cambia cuando cambia el pedido
+  const value = useMemo(() =&gt; ({
+    items: estado.items,
+    personas: estado.personas,
+    unidades: contarUnidades(estado.items),
+    ...limitesPara(estado.personas),
+    dispatch,
+  }), [estado])
+
+  return &lt;PedidoContext.Provider value={value}&gt;{children}&lt;/PedidoContext.Provider&gt;
+}
+
+// eslint-disable-next-line react-refresh/only-export-components -- hook de consumo junto a su Provider
+export const usePedido = () =&gt; useContext(PedidoContext)</code></pre></figure><figure class="code-file"><p class="file-name">src/components/ListaPlatos.jsx (paso 4: useMemo, useCallback y useRef)</p>
+<pre><code>import { useState, useMemo, useCallback, useRef } from 'react'
+import { usePedido } from '../context/PedidoContext'
+import TarjetaPlato from './TarjetaPlato'
+import SelectorPersonas from './SelectorPersonas'
+
+const REGIONES = ['Todas', 'Costa', 'Sierra', 'Selva']
+
+// Ignora mayúsculas y tildes: "aji" encuentra "Ají de gallina"
+const normalizar = texto =&gt; texto.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim()
+
+export default function ListaPlatos({ platos }) {
+  const [busqueda, setBusqueda] = useState('')
+  const [region, setRegion] = useState('Todas')
+  const inputRef = useRef(null)
+  const { items, unidades, personas, maxUnidades, maxPorPlato, dispatch } = usePedido()
+  const lleno = unidades &gt;= maxUnidades
+
+  // useMemo: solo recalcula si cambian platos, búsqueda o región
+  const filtrados = useMemo(() =&gt; {
+    const termino = normalizar(busqueda)
+    return platos.filter(p =&gt;
+      normalizar(p.nombre).includes(termino) &amp;&amp;
+      (region === 'Todas' || p.region === region))
+  }, [platos, busqueda, region])
+
+  // useCallback: las mismas funciones entre renders, así memo funciona
+  const agregar = useCallback(id =&gt; dispatch({ type: 'AGREGAR', id }), [dispatch])
+  const restar = useCallback(id =&gt; dispatch({ type: 'RESTAR', id }), [dispatch])
+
+  const limpiarFiltros = () =&gt; {
+    setBusqueda('')
+    setRegion('Todas')
+    inputRef.current.focus()
+  }
+
+  return (
+    &lt;section className="panel"&gt;
+      &lt;h2&gt;📖 Carta ({filtrados.length} {filtrados.length === 1 ? 'plato' : 'platos'})&lt;/h2&gt;
+      &lt;input ref={inputRef} value={busqueda} maxLength={40} onChange={e =&gt; setBusqueda(e.target.value)} placeholder="Buscar plato..." /&gt;
+      &lt;button onClick={() =&gt; inputRef.current.focus()}&gt;🔍 Enfocar&lt;/button&gt;
+      &lt;div&gt;
+        {REGIONES.map(r =&gt; (
+          &lt;button key={r} className={r === region ? 'chip activo' : 'chip'} onClick={() =&gt; setRegion(r)}&gt;{r}&lt;/button&gt;
+        ))}
+      &lt;/div&gt;
+      &lt;SelectorPersonas /&gt;
+      {lleno &amp;&amp; &lt;p className="alerta"&gt;⚠️ Ya tienes {maxUnidades} platos para {personas} {personas === 1 ? 'persona' : 'personas'}. Si son más, aumenta el número de personas.&lt;/p&gt;}
+      {filtrados.length === 0
+        ? (
+          &lt;div className="vacio"&gt;
+            &lt;p&gt;No encontramos platos con “{busqueda.trim()}”{region !== 'Todas' &amp;&amp; ` en ${region}`}.&lt;/p&gt;
+            &lt;button onClick={limpiarFiltros}&gt;Limpiar filtros&lt;/button&gt;
+          &lt;/div&gt;
+        )
+        : (
+          &lt;ul className="grid"&gt;
+            {filtrados.map(p =&gt; (
+              &lt;TarjetaPlato key={p.id} plato={p} cantidad={items[p.id] ?? 0} maxPorPlato={maxPorPlato} bloqueado={lleno} onAgregar={agregar} onRestar={restar} /&gt;
+            ))}
+          &lt;/ul&gt;
+        )}
+    &lt;/section&gt;
+  )
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/components/TarjetaPlato.jsx (React.memo)</p>
+<pre><code>import { memo } from 'react'
+
+function TarjetaPlato({ plato, cantidad, maxPorPlato, bloqueado, onAgregar, onRestar }) {
+  const limitePlato = cantidad &gt;= maxPorPlato
+  return (
+    &lt;li className="card"&gt;
+      &lt;img className="foto" src={`${import.meta.env.BASE_URL}img/${plato.id}.jpg`} alt={plato.nombre} loading="lazy" /&gt;
+      &lt;h3&gt;{plato.emoji} {plato.nombre}&lt;/h3&gt;
+      &lt;span className={`badge ${plato.region}`}&gt;{plato.region}&lt;/span&gt;
+      &lt;p&gt;&lt;small&gt;{plato.descripcion}&lt;/small&gt;&lt;/p&gt;
+      &lt;p className="precio"&gt;S/ {plato.precio}&lt;/p&gt;
+      {cantidad === 0
+        ? &lt;button onClick={() =&gt; onAgregar(plato.id)} disabled={bloqueado}&gt;🛒 Agregar al pedido&lt;/button&gt;
+        : (
+          &lt;div className="contador"&gt;
+            &lt;button onClick={() =&gt; onRestar(plato.id)} aria-label={`Quitar un ${plato.nombre}`}&gt;−&lt;/button&gt;
+            &lt;span&gt;{cantidad}&lt;/span&gt;
+            &lt;button onClick={() =&gt; onAgregar(plato.id)} disabled={bloqueado || limitePlato} aria-label={`Agregar un ${plato.nombre}`}&gt;+&lt;/button&gt;
+          &lt;/div&gt;
+        )}
+      {limitePlato &amp;&amp; &lt;small className="aviso"&gt;Máximo {maxPorPlato} (uno por persona)&lt;/small&gt;}
+    &lt;/li&gt;
+  )
+}
+
+export default memo(TarjetaPlato)</code></pre></figure>
+                    </div>
+                    <div class="subgroup" data-ex="3" data-label="Ejercicio 3" data-short="Ej. 3">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 3</span><span class="ex-title">Dashboard de Gestión · fragmentos del código (React + Vite)</span><span class="ex-count">8 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">src/hooks/useTasksReducer.js (useReducer con acciones inmutables)</p>
+<pre><code>// Tipos de acción: evitan errores de tipeo en strings sueltos
+export const ACTIONS = {
+  ADD: 'ADD',
+  REMOVE: 'REMOVE',
+  TOGGLE: 'TOGGLE',
+  FILTER: 'FILTER',
+  SORT: 'SORT',
+}
+
+export const initialState = { items: [], filter: 'all', sort: 'asc' }
+
+function tasksReducer(state, action) {
+  switch (action.type) {
+    case ACTIONS.ADD:
+      // Inmutabilidad: nuevo array, nunca push sobre state.items
+      return {
+        ...state,
+        items: [
+          ...state.items,
+          { id: action.payload.id, title: action.payload.title, completed: false },
+        ],
+      }
+
+    case ACTIONS.REMOVE:
+      return {
+        ...state,
+        items: state.items.filter((task) =&gt; task.id !== action.payload),
+      }
+
+    case ACTIONS.TOGGLE:
+      return {
+        ...state,
+        items: state.items.map((task) =&gt;
+          task.id === action.payload ? { ...task, completed: !task.completed } : task
+        ),
+      }
+
+    case ACTIONS.FILTER:
+      return { ...state, filter: action.payload } // 'all' | 'pending' | 'completed'
+
+    case ACTIONS.SORT:
+      return { ...state, sort: action.payload } // 'asc' | 'desc'
+
+    default:
+      return state
+  }
+}
+
+export default tasksReducer</code></pre></figure><figure class="code-file"><p class="file-name">src/hooks/useLocalStorage.js (hook propio con limpieza)</p>
+<pre><code>import { useState, useEffect } from 'react'
+
+// Hook reutilizable: sincroniza un estado con localStorage.
+// Recibe key y defaultValue, retorna [value, setValue].
+export const useLocalStorage = (key, defaultValue) =&gt; {
+  // Inicialización perezosa: la función solo corre en el primer render
+  const [value, setValue] = useState(() =&gt; {
+    try {
+      const saved = localStorage.getItem(key)
+      return saved !== null ? JSON.parse(saved) : defaultValue
+    } catch {
+      return defaultValue // JSON corrupto o localStorage bloqueado
+    }
+  })
+
+  // Persistir cada vez que cambie la clave o el valor
+  useEffect(() =&gt; {
+    try {
+      localStorage.setItem(key, JSON.stringify(value))
+    } catch {
+      // Almacenamiento lleno o no disponible: se ignora sin romper la app
+    }
+  }, [key, value])
+
+  // Cleanup: sincroniza entre pestañas y evita listeners duplicados
+  useEffect(() =&gt; {
+    const onStorage = (e) =&gt; {
+      if (e.key === key &amp;&amp; e.newValue !== null) {
+        setValue(JSON.parse(e.newValue))
+      }
+    }
+    window.addEventListener('storage', onStorage)
+    return () =&gt; window.removeEventListener('storage', onStorage)
+  }, [key])
+
+  return [value, setValue]
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/hooks/useDebounce.js (hook propio con clearTimeout)</p>
+<pre><code>import { useEffect, useState } from 'react'
+
+// Devuelve el valor solo después de que deja de cambiar por `delay` ms
+export const useDebounce = (value, delay = 300) =&gt; {
+  const [debounced, setDebounced] = useState(value)
+
+  useEffect(() =&gt; {
+    const id = setTimeout(() =&gt; setDebounced(value), delay)
+    return () =&gt; clearTimeout(id) // cleanup: cancela el timer anterior
+  }, [value, delay])
+
+  return debounced
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/contexts/ThemeContext.jsx (useContext, useCallback y useMemo)</p>
+<pre><code>/* eslint-disable react-refresh/only-export-components */
+import { createContext, useCallback, useContext, useEffect, useMemo } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+
+export const ThemeContext = createContext(null)
+
+export const ThemeProvider = ({ children }) =&gt; {
+  // Reemplaza el useState('light') del código base: ahora persiste
+  const [theme, setTheme] = useLocalStorage('theme', 'light')
+
+  // Aplica la clase al &lt;body&gt; y limpia la anterior
+  useEffect(() =&gt; {
+    document.body.classList.add(theme)
+    return () =&gt; document.body.classList.remove(theme)
+  }, [theme])
+
+  const toggleTheme = useCallback(() =&gt; {
+    setTheme((prev) =&gt; (prev === 'light' ? 'dark' : 'light'))
+  }, [setTheme])
+
+  // Valor memoizado: si no, el objeto nuevo re-renderiza a todos los consumidores
+  const value = useMemo(() =&gt; ({ theme, toggleTheme }), [theme, toggleTheme])
+
+  return &lt;ThemeContext.Provider value={value}&gt;{children}&lt;/ThemeContext.Provider&gt;
+}
+
+// Hook de consumo con validación
+export const useTheme = () =&gt; {
+  const ctx = useContext(ThemeContext)
+  if (!ctx) throw new Error('useTheme debe usarse dentro de ThemeProvider')
+  return ctx
+}</code></pre></figure><figure class="code-file"><p class="file-name">src/components/Clock.jsx (cleanup de setInterval)</p>
+<pre><code>import { useEffect, useState } from 'react'
+
+const Clock = () =&gt; {
+  const [now, setNow] = useState(() =&gt; new Date())
+
+  useEffect(() =&gt; {
+    console.log('Clock: intervalo iniciado')
+    const id = setInterval(() =&gt; setNow(new Date()), 1000)
+    return () =&gt; {
+      clearInterval(id)
+      console.log('Clock: cleanup ejecutado, intervalo limpiado')
+    }
+  }, [])
+
+  return &lt;p className="clock"&gt;🕒 {now.toLocaleTimeString('es-PE')}&lt;/p&gt;
+}
+
+export default Clock</code></pre></figure><figure class="code-file"><p class="file-name">src/components/TaskList.jsx (React.memo y useMemo)</p>
+<pre><code>import { memo, useMemo } from 'react'
+import TaskItem from './TaskItem'
+
+const TaskList = ({ tasks, filter, sort, query = '', onRemove, onToggle }) =&gt; {
+  console.log('render TaskList')
+
+  // Solo se recalcula si cambian tareas, filtro, orden o búsqueda
+  const processedTasks = useMemo(() =&gt; {
+    const text = query.trim().toLowerCase()
+    const filtered = tasks.filter((t) =&gt; {
+      const matchesFilter =
+        filter === 'all' ? true : filter === 'completed' ? t.completed : !t.completed
+      return matchesFilter &amp;&amp; t.title.toLowerCase().includes(text)
+    })
+    // filter() devuelve un array nuevo, así que sort() no muta el estado
+    return filtered.sort((a, b) =&gt;
+      sort === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
+    )
+  }, [tasks, filter, sort, query])
+
+  return (
+    &lt;&gt;
+      {tasks.length &gt; 0 &amp;&amp; processedTasks.length === 0 &amp;&amp; (
+        &lt;p className="empty"&gt;Sin resultados.&lt;/p&gt;
+      )}
+      &lt;ul&gt;
+        {processedTasks.map((task) =&gt; (
+          &lt;TaskItem key={task.id} task={task} onRemove={onRemove} onToggle={onToggle} /&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/&gt;
+  )
+}
+
+export default memo(TaskList)</code></pre></figure><figure class="code-file"><p class="file-name">src/components/TaskForm.jsx (useRef para el foco)</p>
+<pre><code>import { memo, useEffect, useRef, useState } from 'react'
+const TaskForm = ({ onAdd }) =&gt; {
+  const inputRef = useRef(null)
+  const [title, setTitle] = useState('') // UI local
+
+  // Auto-focus al montar
+  useEffect(() =&gt; {
+    inputRef.current.focus()
+  }, [])
+
+  const handleSubmit = (e) =&gt; {
+    e.preventDefault()
+    const clean = title.trim()
+    if (!clean) return
+    onAdd(clean)
+    setTitle('')
+    inputRef.current.focus() // vuelve el foco sin provocar re-render
+  }
+
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;input
+        ref={inputRef}
+        value={title}
+        onChange={(e) =&gt; setTitle(e.target.value)}
+        placeholder="Nueva tarea..."
+      /&gt;
+      &lt;button type="submit"&gt;Agregar&lt;/button&gt;
+    &lt;/form&gt;
+  )
+}
+
+export default memo(TaskForm)</code></pre></figure><figure class="code-file"><p class="file-name">src/App.jsx (useReducer, useCallback, useMemo y useDebounce)</p>
+<pre><code>import { useCallback, useEffect, useMemo, useReducer, useState } from 'react'
+import tasksReducer, { ACTIONS, initialState } from './hooks/useTasksReducer'
+import { useDebounce } from './hooks/useDebounce'
+import { ThemeProvider, useTheme } from './contexts/ThemeContext'
+import TaskList from './components/TaskList'
+import TaskForm from './components/TaskForm'
+import Clock from './components/Clock'
+import './App.css'
+
+// Estado inicial: lee las tareas guardadas en localStorage
+const init = (base) =&gt; {
+  try {
+    const saved = JSON.parse(localStorage.getItem('tasks'))
+    return Array.isArray(saved) ? { ...base, items: saved } : base
+  } catch {
+    return base
+  }
+}
+
+// Etiquetas visibles en español (los valores internos siguen en inglés)
+const FILTER_LABELS = { all: 'Todas', pending: 'Pendientes', completed: 'Completadas' }
+
+const Dashboard = () =&gt; {
+  const [state, dispatch] = useReducer(tasksReducer, initialState, init)
+  const { theme, toggleTheme } = useTheme()
+
+  // UI local
+  const [showStats, setShowStats] = useState(false)
+  const [showClock, setShowClock] = useState(false)
+  const [search, setSearch] = useState('')
+  const debouncedSearch = useDebounce(search, 300)
+
+  // Persistir tareas
+  useEffect(() =&gt; {
+    localStorage.setItem('tasks', JSON.stringify(state.items))
+  }, [state.items])
+
+  // dispatch es estable, por eso las dependencias están vacías
+  const handleAdd = useCallback(
+    (title) =&gt; dispatch({ type: ACTIONS.ADD, payload: { id: crypto.randomUUID(), title } }),
+    []
+  )
+  const handleRemove = useCallback((id) =&gt; dispatch({ type: ACTIONS.REMOVE, payload: id }), [])
+  const handleToggle = useCallback((id) =&gt; dispatch({ type: ACTIONS.TOGGLE, payload: id }), [])
+
+  const done = useMemo(() =&gt; state.items.filter((t) =&gt; t.completed).length, [state.items])
+
+  return (
+    &lt;div className={`dashboard ${theme}`}&gt;
+      &lt;header className="dashboard-header"&gt;
+        &lt;h1&gt;Gestor de Tareas&lt;/h1&gt;
+        &lt;button onClick={toggleTheme}&gt;
+          {theme === 'light' ? '🌙 Modo oscuro' : '☀️ Modo claro'}
+        &lt;/button&gt;
+      &lt;/header&gt;
+
+      &lt;TaskForm onAdd={handleAdd} /&gt;
+
+      &lt;div className="controls"&gt;
+        {Object.entries(FILTER_LABELS).map(([value, label]) =&gt; (
+          &lt;button
+            key={value}
+            className={state.filter === value ? 'active' : ''}
+            onClick={() =&gt; dispatch({ type: ACTIONS.FILTER, payload: value })}
+          &gt;
+            {label}
+          &lt;/button&gt;
+        ))}
+        &lt;button
+          onClick={() =&gt;
+            dispatch({ type: ACTIONS.SORT, payload: state.sort === 'asc' ? 'desc' : 'asc' })
+          }
+        &gt;
+          Orden: {state.sort === 'asc' ? 'A → Z' : 'Z → A'}
+        &lt;/button&gt;
+        &lt;button onClick={() =&gt; setShowStats((s) =&gt; !s)}&gt;
+          {showStats ? 'Ocultar' : 'Mostrar'} estadísticas
+        &lt;/button&gt;
+        &lt;button onClick={() =&gt; setShowClock((s) =&gt; !s)}&gt;
+          {showClock ? 'Ocultar' : 'Mostrar'} reloj
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;input
+        className="search"
+        type="search"
+        placeholder="Buscar tarea..."
+        value={search}
+        onChange={(e) =&gt; setSearch(e.target.value)}
+      /&gt;
+
+      {showClock &amp;&amp; &lt;Clock /&gt;}
+
+      {showStats &amp;&amp; (
+        &lt;p className="stats"&gt;
+          &lt;span&gt;Total: &lt;strong&gt;{state.items.length}&lt;/strong&gt;&lt;/span&gt;
+          &lt;span&gt;Completadas: &lt;strong&gt;{done}&lt;/strong&gt;&lt;/span&gt;
+          &lt;span&gt;Pendientes: &lt;strong&gt;{state.items.length - done}&lt;/strong&gt;&lt;/span&gt;
+        &lt;/p&gt;
+      )}
+
+      {state.items.length === 0 &amp;&amp; (
+        &lt;p className="empty"&gt;Aún no hay tareas. ¡Agrega la primera!&lt;/p&gt;
+      )}
+
+      &lt;TaskList
+        tasks={state.items}
+        filter={state.filter}
+        sort={state.sort}
+        query={debouncedSearch}
+        onRemove={handleRemove}
+        onToggle={handleToggle}
+      /&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default function App() {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;Dashboard /&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}</code></pre></figure>
+                    </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a controlar cuándo y por qué React vuelve a renderizar: la diferencia entre guardar un valor con <code>useState</code> (hay re-render) y con <code>useRef</code> (no lo hay), que <code>StrictMode</code> duplica renders y efectos en desarrollo y que <code>[]</code> en <code>useEffect</code> quiere decir «al montar», no «una sola vez». Entendí que toda petición, timer o listener necesita su <strong>limpieza</strong> (<code>AbortController</code>, <code>clearInterval</code>, <code>removeEventListener</code>) para evitar fugas de memoria. También aprendí a repartir el estado: contextos separados por dominio, <code>useReducer</code> cuando hay varias acciones sobre una misma lista, y <code>useMemo</code>, <code>useCallback</code> y <code>React.memo</code> solo donde se comprueba una mejora, porque memoizar todo es sobre-optimizar. Escribí tres hooks propios (<code>useFetch</code>, <code>useLocalStorage</code> y <code>useDebounce</code>) y comprobé las reglas de los Hooks con ESLint y el Profiler. En el examen aprendí a construir una librería de componentes reutilizables y accesibles, a validar formularios con react-hook-form y a generar un comprobante en PDF con jsPDF.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>Combiné la evaluación parcial del curso teórico con las dos guías del curso práctico. En las guías avancé paso a paso y guardé un commit por paso, así podía volver atrás y comparar; para medir el efecto de la memoización guardé primero una versión base con un tag y la grabé en el Profiler antes y después. Los errores me enseñaron más que la teoría: ver dos peticiones en Network me llevó a entender <code>StrictMode</code> y el <code>AbortController</code>, un aviso de <code>react-hooks/refs</code> me hizo separar el valor que va en un evento del que se lee al renderizar, y un <code>platos.json</code> guardado vacío me recordó guardar con Ctrl + S y revisar el archivo. En el examen aprendí a trabajar en equipo con una rama por integrante y pull requests, sin pisarnos los archivos. Dificultad y solución: al memoizar, <code>React.memo</code> no funcionaba hasta que estabilicé las funciones con <code>useCallback</code>; lo confirmé con el Profiler, donde <code>TaskList</code> y los <code>TaskItem</code> pasaron a verse rayados (sin render).</p></div>
+            </div>
+          </section>
+        </article>
+      </li>
