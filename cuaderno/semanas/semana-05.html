@@ -59,6 +59,12 @@
                   <div class="table-wrap"><table><caption>Formas de aplicar estilos</caption><thead><tr><th scope="col">Estilo</th><th scope="col">Alcance</th><th scope="col">Característica</th></tr></thead><tbody><tr><td>Inline</td><td>Un solo elemento</td><td>Objeto JS (camelCase); sin pseudoclases ni media queries</td></tr><tr><td>Style Sheet</td><td>Global</td><td>CSS normal; las clases de distintos componentes pueden solaparse</td></tr><tr><td>Style Module</td><td>Local al componente</td><td>Archivos <code>.module.css</code> con nombres únicos</td></tr><tr><td>Styled Components</td><td>Local al componente</td><td>CSS dentro de JS, cambia según las props</td></tr><tr><td>Framework CSS</td><td>Global por clases</td><td>Bootstrap o Tailwind, con NPM o CDN</td></tr></tbody></table></div>
                 </div>
               </details>
+              <details class="topic">
+                <summary>CSS Modules, key en listas y validación de CSR</summary>
+                <div class="topic-body">
+                  <p>Los <strong>CSS Modules</strong> renombran cada clase con un hash único (por ejemplo <code>_card_x7k2p_1</code>), por eso la clase <code>.card</code> de un componente no choca con una clase global; se comprueba inspeccionando el elemento en DevTools. Al recorrer listas con <code>map</code> cada elemento lleva una propiedad <code>key</code> única, para evitar la advertencia <em>Missing key prop</em>. Para validar el <strong>CSR</strong> se compara <em>Ver código fuente</em> (Ctrl + U), donde el <code>div#root</code> aparece vacío, con DevTools (Elements), donde ya contiene el DOM creado por JavaScript.</p>
+                </div>
+              </details>
             </div>
           </section>
 
@@ -67,8 +73,10 @@
             <dl class="lab-grid">
               <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
                 <p><strong>Ejercicio 1:</strong> Práctica individual del curso práctico: crear 3 proyectos React desde la terminal, cada uno con una herramienta distinta (<strong>Create React App</strong>, <strong>Vite</strong> y <strong>Next.js</strong>), ejecutarlos en local y comparar la estructura de carpetas que genera cada una.</p>
+                <p><strong>Ejercicio 2:</strong> Segunda práctica del curso práctico (guía de la semana 05, 90 minutos): <strong>Huancayo Explorer</strong>, un panel turístico de la ciudad de Huancayo hecho con React y Vite, organizado en componentes con JSX, que pasa datos con <strong>props</strong> y <strong>children</strong>, aplica tres estrategias de estilado (CSS Modules, inline y CSS global) y valida el comportamiento del <strong>Client-Side Rendering</strong>.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <p><strong>Ejercicio 1</strong></p>
                 <ol>
                   <li>Desarrollo de las clases en la hora de teoría y en la hora de práctica.</li>
                   <li>Instalación de Node.js en su versión LTS y comprobación con <code>node -v</code>.</li>
@@ -77,18 +85,34 @@
                   <li>Revisión de las carpetas y archivos de cada proyecto en Visual Studio Code.</li>
                   <li>Actualización del cuaderno de la asignatura.</li>
                 </ol>
+                <p><strong>Ejercicio 2</strong></p>
+                <ol>
+                  <li>Creación del repositorio público en GitHub con README y <code>.gitignore</code> de Node, y clonación en el equipo local.</li>
+                  <li>Scaffold del proyecto con <code>npm create vite@latest . -- --template react</code>, instalación con <code>npm install</code> y ejecución con <code>npm run dev</code> (sin Create React App, que está obsoleto).</li>
+                  <li>Limpieza del código de ejemplo y organización de <code>src</code> en <code>components</code>, <code>pages</code>, <code>data</code> y <code>styles</code>, dejando <code>App.jsx</code> solo como orquestador.</li>
+                  <li>Patrón props y children: <code>Dashboard</code> como contenedor y <code>MetricCard</code> con props (icono, título, valor, unidad), documentados con JSDoc y con <code>key</code> en cada lista.</li>
+                  <li>Estrategias de estilado: CSS Modules, estilos inline y CSS global, y comprobación de la colisión de estilos en DevTools.</li>
+                  <li>Validación de CSR comparando Ctrl + U con DevTools (Elements) y revisando los módulos cargados en la pestaña Network.</li>
+                  <li>Despliegue en GitHub Pages con GitHub Actions y actualización del cuaderno.</li>
+                </ol>
               </dd></div>
               <div class="lab-item span-full"><dt>Resultado</dt><dd>
                 <p>Los tres proyectos se ejecutaron correctamente en local. Create React App tiene las carpetas <code>node_modules</code>, <code>public</code> y <code>src</code>, y su <code>index.html</code> está dentro de <code>public</code>. Vite pone el <code>index.html</code> en la raíz y agrega <code>vite.config.js</code> y <code>eslint.config.js</code>. Next.js organiza la aplicación en la carpeta <code>app</code>, genera la carpeta <code>.next</code> al compilar y, durante la instalación, permite elegir opciones como Tailwind CSS.</p>
+                <p><strong>Ejercicio 2:</strong> la aplicación Huancayo Explorer funciona en local y está publicada en GitHub Pages. Tiene cuatro pestañas (Panel, Componentes, Estilado y CSR) que cambian con un único <code>useState</code> en <code>App.jsx</code>. En el Paso 3 no se usó state, como pedía la guía. Se comprobó que <code>.card</code> de CSS Modules se renderiza con un nombre con hash y que en CSR el <code>div#root</code> del código fuente está vacío mientras que en DevTools contiene el DOM completo.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Observaciones</dt><dd>
                 <p>Los tres proyectos usan React 19: Create React App con <code>react-scripts</code> 5.0.1, Vite con su servidor de desarrollo y Next.js 16 con TypeScript y Tailwind CSS 4.</p>
                 <p>En la estructura comparada se nota que Create React App y Vite usan <code>src</code> como carpeta de código, mientras que Next.js usa <code>app</code>, y que solo Vite lleva el <code>index.html</code> en la raíz.</p>
                 <p>El proyecto de Next.js generó además los archivos <code>AGENTS.md</code> y <code>CLAUDE.md</code>.</p>
+                <p><strong>Ejercicio 2:</strong> la práctica usó Vite 8 con React 19. Aparecieron dos problemas: un error de acceso al renombrar la carpeta del proyecto, que resolví dejando el nombre local y cambiando solo el remoto con <code>git remote set-url</code>, y una pantalla en blanco por imports a archivos que no existían, que resolví revisando la consola y la terminal, restaurando <code>App.jsx</code> y recreando los archivos faltantes. Las distancias y precios de la aplicación son referenciales.</p>
+                <p>Se usó un asistente de IA como apoyo para explicar conceptos y resolver errores de entorno; la estructura de componentes, el paso de datos y los estilos fueron revisados, escritos y probados por mí.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Evidencia</dt><dd>
                 <ul>
                   <li>Repositorio de la práctica: <a href="https://github.com/stevenhuamanlazo/DAW_PRACTICA_SEM05" target="_blank" rel="noopener">github.com/stevenhuamanlazo/DAW_PRACTICA_SEM05</a> (carpetas <code>proyecto01</code>, <code>proyecto02</code> y <code>proyecto03</code>)</li>
+                  <li>Repositorio del Ejercicio 2: <a href="https://github.com/stevenhuamanlazo/practica-05-react-huancayo-explorer" target="_blank" rel="noopener">github.com/stevenhuamanlazo/practica-05-react-huancayo-explorer</a></li>
+                  <li>Demo en vivo del Ejercicio 2: <a href="https://stevenhuamanlazo.github.io/practica-05-react-huancayo-explorer/" target="_blank" rel="noopener">stevenhuamanlazo.github.io/practica-05-react-huancayo-explorer</a></li>
+                  <li>Informe de la práctica: <em>Informe de la guía práctica semana 05 · Huancayo Explorer</em></li>
                   <li>Archivos de evidencia: carpeta <code>assets/Sem05/</code></li>
                 </ul>
               </dd></div>
@@ -112,6 +136,39 @@
                     <li><figure class="shot-card">
                     <a class="shot-link" href="assets/Sem05/s5_04_estructuras.png" target="_blank" rel="noopener"><img src="assets/Sem05/s5_04_estructuras.png" alt="Comparación de las carpetas y archivos que generó cada herramienta (sin node_modules ni .next)." loading="lazy" /></a>
                     <figcaption>Comparación de las carpetas y archivos que generó cada herramienta (sin node_modules ni .next).</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Huancayo Explorer · Panel turístico con React y Vite</span><span class="ex-count">7 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 2">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_p2_01_lugares_y_platos.jpg" target="_blank" rel="noopener"><img src="assets/Sem05/s5_p2_01_lugares_y_platos.jpg" alt="Figura 1 del informe: collage con los lugares (Torre Torre, Convento de Ocopa, Laguna de Paca) y los platos (papa a la huancaína, pachamanca, cuy colorado) incluidos en la aplicación." loading="lazy" /></a>
+                    <figcaption>Figura 1 del informe: collage con los lugares (Torre Torre, Convento de Ocopa, Laguna de Paca) y los platos (papa a la huancaína, pachamanca, cuy colorado) incluidos en la aplicación.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_p2_02_vscode_estructura.jpg" target="_blank" rel="noopener"><img src="assets/Sem05/s5_p2_02_vscode_estructura.jpg" alt="Explorador de VS Code con la estructura de carpetas del proyecto y el servidor de Vite ejecutándose en el puerto 5173; la vista previa aún aparece en blanco por los imports a archivos que todavía no existían." loading="lazy" /></a>
+                    <figcaption>Explorador de VS Code con la estructura de carpetas del proyecto y el servidor de Vite ejecutándose en el puerto 5173; la vista previa aún aparece en blanco por los imports a archivos que todavía no existían.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_p2_03_tarjetas_metricas.jpg" target="_blank" rel="noopener"><img src="assets/Sem05/s5_p2_03_tarjetas_metricas.jpg" alt="Navegador con las tarjetas de métricas (altitud, lugares, platos y temperatura) renderizadas con los componentes Dashboard y MetricCard." loading="lazy" /></a>
+                    <figcaption>Navegador con las tarjetas de métricas (altitud, lugares, platos y temperatura) renderizadas con los componentes Dashboard y MetricCard.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_p2_04_app_final.jpg" target="_blank" rel="noopener"><img src="assets/Sem05/s5_p2_04_app_final.jpg" alt="Aplicación con portada, barra de navegación por pestañas (Panel, Componentes, Estilado y CSR) y tarjetas estilizadas." loading="lazy" /></a>
+                    <figcaption>Aplicación con portada, barra de navegación por pestañas (Panel, Componentes, Estilado y CSR) y tarjetas estilizadas.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_p2_05_view_source_csr.jpg" target="_blank" rel="noopener"><img src="assets/Sem05/s5_p2_05_view_source_csr.jpg" alt="Ver código fuente (Ctrl + U): el elemento div#root está vacío porque el HTML inicial no contiene la interfaz (Client-Side Rendering)." loading="lazy" /></a>
+                    <figcaption>Ver código fuente (Ctrl + U): el elemento div#root está vacío porque el HTML inicial no contiene la interfaz (Client-Side Rendering).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_p2_06_devtools_elements.jpg" target="_blank" rel="noopener"><img src="assets/Sem05/s5_p2_06_devtools_elements.jpg" alt="DevTools (Elements): el mismo div#root ya contiene el DOM inyectado por JavaScript en el navegador." loading="lazy" /></a>
+                    <figcaption>DevTools (Elements): el mismo div#root ya contiene el DOM inyectado por JavaScript en el navegador.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem05/s5_p2_07_network_modulos.jpg" target="_blank" rel="noopener"><img src="assets/Sem05/s5_p2_07_network_modulos.jpg" alt="Pestaña Network de DevTools: módulos JS (main.jsx, App.jsx, Dashboard.jsx, MetricCard.jsx, lugares.js) cargados por Vite." loading="lazy" /></a>
+                    <figcaption>Pestaña Network de DevTools: módulos JS (main.jsx, App.jsx, Dashboard.jsx, MetricCard.jsx, lugares.js) cargados por Vite.</figcaption>
                   </figure></li>
                     </ol>
                   </div>
@@ -194,6 +251,291 @@ export default function RootLayout({ children }: LayoutProps&lt;"/"&gt;) {
   );
 }</code></pre></figure>
                   </div>
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Huancayo Explorer · Archivos principales del proyecto</span><span class="ex-count">8 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">App.jsx (orquestador con un único useState)</p>
+<pre><code>import { useState } from 'react'
+import Hero from './components/Hero'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Panel from './pages/Panel'
+import Componentes from './pages/Componentes'
+import Estilado from './pages/Estilado'
+import Csr from './pages/Csr'
+
+const secciones = [
+  { id: 'panel', texto: '📊 Panel' },
+  { id: 'componentes', texto: '🧩 Componentes' },
+  { id: 'estilado', texto: '🎨 Estilado' },
+  { id: 'csr', texto: '⚡ CSR' },
+]
+
+const vistas = { panel: Panel, componentes: Componentes, estilado: Estilado, csr: Csr }
+
+function App() {
+  const [activa, setActiva] = useState('panel')
+  const Vista = vistas[activa]
+
+  return (
+    &lt;&gt;
+      &lt;Hero
+        titulo="🏔️ Huancayo Explorer"
+        subtitulo="Descubre la Ciudad Incontrastable: lugares, sabores y datos del valle del Mantaro."
+      &gt;
+        &lt;span&gt;⛰️ 3 259 msnm&lt;/span&gt;
+        &lt;span&gt;📍 Valle del Mantaro&lt;/span&gt;
+        &lt;span&gt;🍲 Gastronomía andina&lt;/span&gt;
+      &lt;/Hero&gt;
+      &lt;Navbar secciones={secciones} activa={activa} onCambiar={setActiva} /&gt;
+      &lt;main&gt;
+        &lt;Vista /&gt;
+      &lt;/main&gt;
+      &lt;Footer&gt;
+        &lt;p&gt;🏔️ Huancayo Explorer · Práctica 05 · Desarrollo de Aplicaciones Web (IS093A)&lt;/p&gt;
+        &lt;p&gt;Universidad Nacional del Centro del Perú · React + Vite&lt;/p&gt;
+      &lt;/Footer&gt;
+    &lt;/&gt;
+  )
+}
+
+export default App</code></pre></figure><figure class="code-file"><p class="file-name">Dashboard.jsx (contenedor con children y estilos inline)</p>
+<pre><code>const estiloSeccion = {
+  maxWidth: '1000px',
+  margin: '0 auto',
+  padding: '32px 24px 8px',
+}
+
+const estiloTitulo = {
+  margin: '0 0 20px',
+  paddingLeft: '14px',
+  borderLeft: '6px solid #d97706',
+  color: '#431407',
+  fontSize: '1.6rem',
+}
+
+const estiloGrid = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+  gap: '20px',
+}
+
+/**
+ * Contenedor principal del panel (estilos inline).
+ * @param {Object} props
+ * @param {string} props.titulo - Título de la sección
+ * @param {React.ReactNode} props.children - Tarjetas u otro contenido
+ */
+function Dashboard({ titulo, children }) {
+  return (
+    &lt;section style={estiloSeccion}&gt;
+      &lt;h2 style={estiloTitulo}&gt;{titulo}&lt;/h2&gt;
+      &lt;div style={estiloGrid}&gt;{children}&lt;/div&gt;
+    &lt;/section&gt;
+  )
+}
+
+export default Dashboard</code></pre></figure><figure class="code-file"><p class="file-name">MetricCard.jsx (props, children y JSDoc)</p>
+<pre><code>import styles from './MetricCard.module.css'
+
+const base = import.meta.env.BASE_URL
+
+/**
+ * Tarjeta que muestra una métrica turística.
+ * @param {Object} props
+ * @param {string} props.icono - Emoji de la métrica
+ * @param {string} props.titulo - Nombre de la métrica
+ * @param {number|string} props.valor - Valor numérico
+ * @param {string} props.unidad - Unidad de medida
+ * @param {string} [props.imagen] - Ruta de una imagen opcional (carpeta public)
+ * @param {React.ReactNode} [props.children] - Contenido anidado opcional
+ */
+function MetricCard({ icono, titulo, valor, unidad, imagen, children }) {
+  return (
+    &lt;article className={styles.card}&gt;
+      {imagen &amp;&amp; (
+        &lt;img
+          className={styles.imagen}
+          src={`${base}${imagen.replace(/^\//, '')}`}
+          alt={titulo}
+          loading="lazy"
+        /&gt;
+      )}
+      &lt;div className={styles.cuerpo}&gt;
+        &lt;span className={styles.icono}&gt;{icono}&lt;/span&gt;
+        &lt;h3 className={styles.titulo}&gt;{titulo}&lt;/h3&gt;
+        &lt;p className={styles.valor}&gt;
+          &lt;strong&gt;{valor}&lt;/strong&gt; {unidad}
+        &lt;/p&gt;
+        &lt;div className={styles.nota}&gt;{children}&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  )
+}
+
+export default MetricCard</code></pre></figure><figure class="code-file"><p class="file-name">MetricCard.module.css (CSS Modules)</p>
+<pre><code>.card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-top: 5px solid #c2410c;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(124, 45, 18, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(124, 45, 18, 0.18);
+}
+
+.imagen {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.card:hover .imagen {
+  transform: scale(1.06);
+}
+
+.cuerpo {
+  padding: 20px;
+}
+
+.icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.7rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffedd5, #fde68a);
+}
+
+.titulo {
+  margin: 12px 0 4px;
+  color: #78716c;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.valor {
+  margin: 0;
+  color: #57534e;
+  font-size: 0.95rem;
+}
+
+.valor strong {
+  color: #9a3412;
+  font-size: 2.2rem;
+  line-height: 1.1;
+}
+
+.nota {
+  margin-top: 10px;
+  color: #78716c;
+  font-size: 0.9rem;
+}
+
+.nota p {
+  margin: 0 0 6px;
+}
+
+.nota ul {
+  margin: 0;
+  padding-left: 18px;
+}</code></pre></figure><figure class="code-file"><p class="file-name">data/lugares.js (datos de lugares, platos y métricas)</p>
+<pre><code>export const lugares = [
+  { id: 1, icono: '🏞️', nombre: 'Torre Torre', distanciaKm: 3.4, imagen: '/img/torre-torre.jpg', descripcion: 'Formaciones rocosas con mirador sobre la ciudad. En línea recta está a unos 3 km.', actividades: ['Caminata', 'Fotografía', 'Mirador'] },
+  { id: 2, icono: '⛪', nombre: 'Convento de Ocopa', distanciaKm: 24, imagen: '/img/convento-ocopa.jpg', descripcion: 'Convento franciscano en Concepción, con biblioteca y museo. Unos 35 a 45 minutos en colectivo o auto.', actividades: ['Visita guiada', 'Museo', 'Biblioteca'] },
+  { id: 3, icono: '🌊', nombre: 'Laguna de Paca', distanciaKm: 40, imagen: '/img/laguna-paca.jpg', descripcion: 'Laguna en Jauja rodeada de restaurantes y paseos en bote. Aproximadamente 1 hora a 1 hora y 15 minutos en colectivo o auto.', actividades: ['Paseo en bote', 'Gastronomía', 'Descanso'] },
+]
+
+export const platos = [
+  { id: 1, icono: '🥔', nombre: 'Papa a la huancaína', precio: 12, imagen: '/img/papa-huancaina.jpg', descripcion: 'Papas con crema de ají amarillo y queso.', ingredientes: ['Papa', 'Ají amarillo', 'Queso fresco'] },
+  { id: 2, icono: '🍖', nombre: 'Pachamanca', precio: 22, imagen: '/img/pachamanca.jpg', descripcion: 'Carnes y tubérculos cocidos bajo tierra con piedras calientes.', ingredientes: ['Carnes', 'Papa', 'Habas', 'Hierbas'] },
+  { id: 3, icono: '🍲', nombre: 'Cuy colorado', precio: 22, imagen: '/img/cuy-colorado.jpg', descripcion: 'Cuy en salsa de ají panca y maní.', ingredientes: ['Cuy', 'Ají panca', 'Maní'] },
+  { id: 4, icono: '🥣', nombre: 'Patasca', precio: 12, imagen: '/img/patasca.jpg', descripcion: 'Caldo de mondongo con mote, plato tradicional del valle.', ingredientes: ['Mondongo', 'Mote', 'Carne'] },
+  { id: 5, icono: '🍖', nombre: 'Carnero al palo', precio: 20, imagen: '/img/carnero-al-palo.jpg', descripcion: 'Carnero preparado al palo, servido con papa y choclo.', ingredientes: ['Carnero', 'Papa', 'Choclo'] },
+  { id: 6, icono: '🐟', nombre: 'Trucha frita', precio: 18, imagen: '/img/trucha-frita.jpg', descripcion: 'Trucha frita con arroz, papa, choclo y ensalada criolla.', ingredientes: ['Trucha', 'Arroz', 'Papa', 'Choclo'] },
+]
+
+export const metricas = [
+  { id: 1, icono: '⛰️', titulo: 'Altitud', valor: 3259, unidad: 'msnm', nota: 'Plaza Constitución. El casco urbano varía entre 3 250 y 3 260 m.' },
+  { id: 2, icono: '🌡️', titulo: 'Temperatura media', valor: 11.7, unidad: '°C', nota: 'Rango típico de 11 a 12 °C (registros SENAMHI e IGP).' },
+  { id: 3, icono: '☀️', titulo: 'Máxima media', valor: '18–20', unidad: '°C', nota: 'Puede llegar a 22–23 °C en días despejados.' },
+  { id: 4, icono: '❄️', titulo: 'Mínima media', valor: '4–5', unidad: '°C', nota: 'Cerca de 0 °C entre junio y agosto.' },
+  { id: 5, icono: '📍', titulo: 'Lugares destacados', valor: lugares.length, unidad: 'sitios' },
+  { id: 6, icono: '🍲', titulo: 'Platos emblemáticos', valor: platos.length, unidad: 'platos' },
+]</code></pre></figure><figure class="code-file"><p class="file-name">index.html (div root vacío, viewport y description)</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;link rel="icon" type="image/svg+xml" href="/favicon.svg" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;meta name="description" content="Huancayo Explorer: panel turístico de Huancayo hecho con React" /&gt;
+    &lt;title&gt;Huancayo Explorer&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="root"&gt;&lt;/div&gt;
+    &lt;script type="module" src="/src/main.jsx"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></figure><figure class="code-file"><p class="file-name">vite.config.js (base para GitHub Pages)</p>
+<pre><code>import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// En GitHub Pages la app vive en /nombre-del-repo/. En local se sirve en la raíz.
+export default defineConfig({
+  plugins: [react()],
+  base: process.env.GITHUB_ACTIONS ? '/practica-05-react-huancayo-explorer/' : '/',
+})</code></pre></figure><figure class="code-file"><p class="file-name">.github/workflows/deploy.yml (despliegue en GitHub Pages)</p>
+<pre><code>name: Deploy a GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4</code></pre></figure>
+                  </div>
                   </div>
                 </dd>
               </div>
@@ -203,8 +545,8 @@ export default function RootLayout({ children }: LayoutProps&lt;"/"&gt;) {
           <section class="section-block">
             <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
             <div class="entry">
-              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a diferenciar una librería de un framework a partir de la inversión de control, y entendí que React es técnicamente una librería pero con sus herramientas se emplea como un framework. Comprendí cómo funciona el Client Side Rendering, donde el navegador construye la interfaz a partir de un HTML con un único div root, y su diferencia con el Server Side Rendering de Next.js. Conocí el rol de Node.js y NPM en la gestión de dependencias con <code>package.json</code> y <code>node_modules</code>, y las herramientas de cada etapa: Babel para transpilar, Webpack para compilar y ESLint para la calidad del código. Entendí cómo los componentes dividen la interfaz en piezas reutilizables escritas en JSX, y cómo las props y children pasan datos y contenido del padre al hijo. También aprendí a crear 3 proyectos con Create React App, Vite y Next.js comparando sus estructuras, y las formas de aplicar estilos en React: inline, style sheets, style modules, styled components y frameworks CSS.</p></div>
-              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>En la hora de teoría se explicaron los fundamentos de React, las herramientas del entorno y los conceptos de componentes, JSX, props, children y estilos. En la hora de práctica instalé Node.js LTS y comprobé que funcionara desde la terminal. Luego creé los 3 proyectos con sus respectivos comandos, los ejecuté en local para verificar su funcionamiento y, finalmente, revisé las carpetas y archivos de cada uno en Visual Studio Code.</p></div>
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a diferenciar una librería de un framework a partir de la inversión de control, y entendí que React es técnicamente una librería pero con sus herramientas se emplea como un framework. Comprendí cómo funciona el Client Side Rendering, donde el navegador construye la interfaz a partir de un HTML con un único div root, y su diferencia con el Server Side Rendering de Next.js. Conocí el rol de Node.js y NPM en la gestión de dependencias con <code>package.json</code> y <code>node_modules</code>, y las herramientas de cada etapa: Babel para transpilar, Webpack para compilar y ESLint para la calidad del código. Entendí cómo los componentes dividen la interfaz en piezas reutilizables escritas en JSX, y cómo las props y children pasan datos y contenido del padre al hijo. También aprendí a crear 3 proyectos con Create React App, Vite y Next.js comparando sus estructuras, y las formas de aplicar estilos en React: inline, style sheets, style modules, styled components y frameworks CSS. En la segunda práctica, Huancayo Explorer, apliqué todo junto: organicé una aplicación en componentes, pasé datos con props y contenido con children, usé CSS Modules, estilos inline y CSS global, y comprobé en DevTools por qué el <code>div#root</code> está vacío en el código fuente (CSR).</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>En la hora de teoría se explicaron los fundamentos de React, las herramientas del entorno y los conceptos de componentes, JSX, props, children y estilos. En la hora de práctica instalé Node.js LTS y comprobé que funcionara desde la terminal. Luego creé los 3 proyectos con sus respectivos comandos, los ejecuté en local para verificar su funcionamiento y, finalmente, revisé las carpetas y archivos de cada uno en Visual Studio Code. En la segunda práctica seguí la guía por pasos: creé el proyecto con Vite, ordené las carpetas, construí Dashboard y MetricCard, probé las estrategias de estilado y validé el CSR en el navegador. Cuando apareció una pantalla en blanco revisé la consola y la terminal para encontrar los imports que fallaban, y usé un asistente de IA solo como apoyo para explicar conceptos.</p></div>
             </div>
           </section>
         </article>
