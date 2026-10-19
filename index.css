@@ -172,3 +172,6 @@ html[data-theme="dark"] .badge-sub { background: #131c30; }
 /* Subtítulo y descripción: más firmes y legibles */
 .hero-subtitle { font-weight: 600; letter-spacing: -0.02em; }
 .hero-desc { color: var(--text-dark); opacity: 0.78; }
+
+/* Segundo apellido: más pequeño que el nombre para no romper el título */
+.hero-title .hero-ap { font-size: 0.42em; font-weight: 600; letter-spacing: 0; color: var(--text-muted, #64748b); margin-left: 0.35em; vertical-align: 0.15em; }
