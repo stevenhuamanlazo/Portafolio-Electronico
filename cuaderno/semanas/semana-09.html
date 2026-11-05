@@ -1,0 +1,662 @@
+<!-- Semana 9: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-9">
+        <div class="week-marker" aria-hidden="true">9</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 9</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Tecnología web backend, arquitectura cliente-servidor, servidores web, PHP y JSP, ciclo de vida y despliegue)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>Backend web y arquitectura cliente-servidor</summary>
+                <div class="topic-body">
+                  <p>El <strong>backend</strong> es la parte de una aplicación web que corre en el servidor: recibe los datos del formulario, los valida, usa la sesión y arma la respuesta que se devuelve al navegador. En la arquitectura <strong>cliente-servidor</strong> el navegador (cliente) envía una petición a un puerto donde escucha un servidor, y el servidor responde con un código de estado, cabeceras y un cuerpo, normalmente HTML.</p>
+                  <p>El recorrido completo de una petición es: cliente → DNS → TCP/IP → petición HTTP → servidor web → backend (PHP o JSP) → respuesta HTTP → renderizado en el navegador. En local, <code>localhost</code> se resuelve a <code>127.0.0.1</code> y el servidor atiende en el puerto que se configuró.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Servidores web y puertos: Apache con XAMPP y Tomcat</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>Un servidor para cada tecnología</caption><thead><tr><th scope="col">Servidor</th><th scope="col">Atiende</th><th scope="col">Carpeta de publicación</th><th scope="col">Puerto</th></tr></thead><tbody><tr><td>Apache (XAMPP)</td><td>PHP</td><td><code>htdocs</code></td><td>80 por defecto (8081 en la práctica individual)</td></tr><tr><td>Apache Tomcat 10.1</td><td>JSP y servlets (Jakarta)</td><td><code>webapps</code></td><td>8080</td></tr></tbody></table></div>
+                  <p>Dos programas no pueden escuchar en el mismo puerto, por eso un conflicto aparece en el log de arranque. Tomcat 10 usa los paquetes <code>jakarta.*</code> y necesita un JDK reciente con <code>JAVA_HOME</code> configurado.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Ciclo solicitud-respuesta HTTP y códigos de estado</summary>
+                <div class="topic-body">
+                  <p>HTTP no guarda estado: cada petición es independiente y para recordar al usuario se usa una <strong>sesión</strong> identificada por una cookie (<code>PHPSESSID</code> en PHP y <code>JSESSIONID</code> en JSP). Los códigos de estado indican qué pasó con la petición.</p>
+                  <div class="table-wrap"><table><caption>Códigos de estado usados en la práctica</caption><thead><tr><th scope="col">Código</th><th scope="col">Cuándo se produjo</th></tr></thead><tbody><tr><td>200</td><td>La página se entrega correctamente (resultado tras redirigir, o registros guardados en el ejercicio grupal)</td></tr><tr><td>302</td><td>Redirección después de un POST válido hacia la página de resultado</td></tr><tr><td>400</td><td>El formulario llegó con datos inválidos (práctica individual)</td></tr><tr><td>405</td><td>Se abrió <code>procesar</code> con un método distinto de POST, con la cabecera <code>Allow: POST</code></td></tr><tr><td>422</td><td>Datos inválidos en el ejercicio grupal</td></tr><tr><td>500</td><td>Falla del servidor, por ejemplo al iniciar la sesión</td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>PHP: ciclo de vida, superglobales y sesiones</summary>
+                <div class="topic-body">
+                  <p>En <strong>PHP</strong> cada petición ejecuta el script desde cero: se analiza, se compila a opcodes, se ejecuta, se envía la salida y se libera la memoria (modelo <em>share-nothing</em>). OPcache permite reutilizar los opcodes entre peticiones.</p>
+                  <p>Los datos llegan en las superglobales <code>$_POST</code> y <code>$_GET</code>; en las prácticas se leyeron con <code>filter_input()</code>. La sesión se abre con <code>session_start()</code> y se guarda en <code>$_SESSION</code>, y la cookie se protege con <code>HttpOnly</code> y <code>SameSite</code>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>JSP: ciclo de vida, EL y JSTL</summary>
+                <div class="topic-body">
+                  <p>Un <strong>JSP</strong> se traduce a un servlet <code>.java</code>, se compila a <code>.class</code> y se instancia una sola vez; después cada petición se atiende en <code>_jspService()</code> sobre la misma instancia. Las fases son: traducción, compilación, instanciación, <code>jspInit()</code>, <code>_jspService()</code> y <code>jspDestroy()</code>.</p>
+                  <p>Para mostrar datos se usan el lenguaje de expresiones <strong>EL</strong> (<code>${sessionScope.usuario.nombre}</code>) y las etiquetas <strong>JSTL</strong> como <code>&lt;c:out&gt;</code>, <code>&lt;c:forEach&gt;</code>, <code>&lt;c:if&gt;</code> y <code>&lt;c:redirect&gt;</code>. Tomcat no incluye JSTL, por lo que los <code>.jar</code> van en <code>WEB-INF/lib</code>, y el descriptor <code>WEB-INF/web.xml</code> configura la codificación, el archivo de bienvenida y la sesión.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Seguridad básica: validación, XSS y patrón PRG</summary>
+                <div class="topic-body">
+                  <ul>
+                    <li><strong>Validar en el servidor:</strong> la validación del navegador se puede saltar, por eso el formulario se probó con <code>novalidate</code> y el servidor respondió con sus propios errores.</li>
+                    <li><strong>Evitar XSS:</strong> toda salida se escapa con <code>htmlspecialchars()</code> en PHP y con <code>&lt;c:out&gt;</code> en JSP.</li>
+                    <li><strong>Aceptar solo POST:</strong> cualquier otro método recibe 405.</li>
+                    <li><strong>Patrón PRG (Post/Redirect/Get):</strong> tras un POST válido se redirige con 302 para que recargar la página no reenvíe el formulario.</li>
+                  </ul>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Comparación de PHP y JSP</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>PHP (Apache y XAMPP) frente a JSP (Tomcat)</caption><thead><tr><th scope="col">Aspecto</th><th scope="col">PHP</th><th scope="col">JSP</th></tr></thead><tbody><tr><td>Ciclo de vida</td><td>En cada petición se ejecuta el script desde cero y se libera todo</td><td>Se traduce y compila una vez, se instancia y luego atiende cada petición con <code>_jspService()</code></td></tr><tr><td>Concurrencia y memoria</td><td>Cada petición se ejecuta aislada</td><td>Una instancia atiende varios hilos; las variables de <code>&lt;%! %&gt;</code> no son seguras entre hilos</td></tr><tr><td>Estado</td><td>Sesión en archivos del servidor, cookie <code>PHPSESSID</code></td><td>Sesión en la memoria de la JVM, cookie <code>JSESSIONID</code></td></tr><tr><td>Despliegue</td><td>Copiar archivos a <code>htdocs</code></td><td>Carpeta o <code>.war</code> en <code>webapps</code>, con <code>WEB-INF</code></td></tr><tr><td>Vista</td><td>Etiquetas <code>&lt;?php ?&gt;</code> mezcladas con HTML</td><td>Scriptlets, EL y JSTL; lo recomendado es un servlet como controlador y el JSP como vista</td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Uso responsable de herramientas de IA</summary>
+                <div class="topic-body">
+                  <p>La regla del laboratorio pide que la mayor parte del trabajo sea manual y que cada uso de IA quede registrado con el formato <code>/* IA: [problema] → Solución manual: [explicación] */</code>. En la práctica individual usé Claude para entender el conflicto del puerto 80, la incompatibilidad de Java 8 con Tomcat 10.1, la ubicación de los <code>.jar</code> de JSTL y la comparación del ciclo de vida, y apliqué y comprobé cada solución a mano.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1:</strong> Práctica individual (28.10.2026) del curso práctico: desplegar en local una aplicación PHP en <strong>Apache (XAMPP)</strong> y otra JSP en <strong>Apache Tomcat 10.1</strong>, ambas con un formulario de registro (nombre, email y edad) que se valida en el servidor, usa sesión y sigue el patrón PRG.</p>
+                <p><strong>Ejercicio 2:</strong> Práctica grupal (29.10.2026) con Gago Uribe Edgar Robert: <strong>Sistema de Registro de Contacto</strong> para consultas médicas del Hospital Nacional Ramiro Prialé, implementado en PHP y en JSP, con documentación del ciclo HTTP y una matriz comparativa PHP vs JSP. En el reparto de roles del equipo, Edgar se encargó de la aplicación PHP, el ciclo HTTP y el README, y yo de la aplicación JSP y la matriz comparativa.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <ol>
+                  <li>Desarrollo de las clases en la hora de teoría y en la hora de práctica.</li>
+                  <li><strong>Ejercicio 1:</strong> instalación de XAMPP 8.2.12 y diagnóstico del conflicto del puerto 80 (PID 4); cambio de <code>Listen</code> y <code>ServerName</code> a 8081 en <code>httpd.conf</code>.</li>
+                  <li><strong>Ejercicio 1:</strong> verificación de Java (el equipo tenía Java 8), instalación de Eclipse Temurin JDK 25 con <code>JAVA_HOME</code>, descompresión de Tomcat 10.1.61 e inicio con <code>startup.bat</code>.</li>
+                  <li><strong>Ejercicio 1:</strong> creación de la aplicación PHP en <code>htdocs/lab09</code> y de la aplicación JSP en <code>webapps/lab09</code>, con las librerías JSTL en <code>WEB-INF/lib</code>.</li>
+                  <li><strong>Ejercicio 1:</strong> pruebas con el navegador, DevTools y <code>curl</code>, y revisión de <code>access.log</code>, de la carpeta <code>work</code> de Tomcat y del log con <code>jspInit()</code>.</li>
+                  <li><strong>Ejercicio 2:</strong> despliegue de <code>php-app</code> y <code>jsp-app</code> con enlaces (<code>mklink /J</code>) hacia <code>htdocs</code> y <code>webapps</code>, y trabajo en equipo mediante el repositorio de GitHub.</li>
+                  <li><strong>Ejercicio 2:</strong> pruebas del formulario, de la respuesta 200 y del error 405, y captura de los logs de acceso y de error.</li>
+                  <li>Actualización del cuaderno de la asignatura.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p><strong>Ejercicio 1.</strong> Las dos aplicaciones funcionaron: PHP en <code>localhost:8081</code> y JSP en <code>localhost:8080</code>. Las pruebas dieron los resultados esperados en ambas:</p>
+                <div class="table-wrap"><table><caption>Pruebas HTTP del Ejercicio 1</caption><thead><tr><th scope="col">Caso de prueba</th><th scope="col">Esperado</th><th scope="col">PHP</th><th scope="col">JSP</th></tr></thead><tbody><tr><td>Método distinto de POST en procesar</td><td>405</td><td>Implementado, con <code>Allow: POST</code></td><td>Implementado con <code>sendError(405)</code> y <code>Allow: POST</code></td></tr><tr><td>POST con datos inválidos</td><td>400</td><td>400</td><td>400</td></tr><tr><td>POST con datos válidos</td><td>302</td><td>302 hacia <code>resultado.php</code></td><td>302 hacia <code>resultado.jsp</code></td></tr><tr><td>Página de resultado tras redirigir</td><td>200</td><td>200</td><td>200</td></tr></tbody></table></div>
+                <p>En DevTools se vio la secuencia <code>index.html</code> 200 → <code>procesar.php</code> 302 → <code>resultado.php</code> 200. En <code>access.log</code> de Apache quedaron registrados <code>POST /lab09/procesar.php</code> 302, <code>GET /lab09/resultado.php</code> 200 y <code>POST /lab09/procesar.php</code> 400. En la carpeta <code>work</code> de Tomcat aparecieron <code>index_jsp.java</code>, <code>procesar_jsp.java</code> y <code>resultado_jsp.java</code> con sus <code>.class</code>, y el log de Tomcat registró <code>[lab09] jspInit index.jsp</code> en la primera petición después del reinicio.</p>
+                <p><strong>Ejercicio 2.</strong> El sistema de registro funcionó en PHP (<code>http://localhost/php-app/</code>) y en JSP (<code>http://localhost:8080/jsp-app/</code>): el formulario valida nombre y correo, guarda cada registro en la sesión y devuelve la tabla de registros almacenados. Una petición sin POST a <code>procesar</code> devuelve la página de error 405, y los datos inválidos devuelven 422.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>Se usó Tomcat 10.1.61 y no el módulo de Tomcat que trae XAMPP, porque esa versión es anterior y usa <code>javax.*</code>, mientras que la guía exige <code>jakarta.*</code>.</p>
+                <p>En la práctica individual los scriptlets se usaron solo para aprender; en un proyecto real la lógica iría en un servlet y el JSP quedaría como vista. En el ejercicio grupal el ciclo HTTP se documentó en <code>docs/ciclo-http.md</code> y la comparación en <code>docs/matriz-comparativa.md</code>.</p>
+                <p>Los problemas del entorno (puerto 80 ocupado, Java 8 y la ubicación de los <code>.jar</code> de JSTL) se resolvieron revisando los logs del panel de XAMPP y de Tomcat.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Repositorio del Ejercicio 1: <a href="https://github.com/stevenhuamanlazo/DAW_PRACTICA_SEM09" target="_blank" rel="noopener">github.com/stevenhuamanlazo/DAW_PRACTICA_SEM09</a> (carpetas <code>php/lab09</code>, <code>jsp/lab09</code> y <code>docs</code>)</li>
+                  <li>Repositorio del Ejercicio 2: <a href="https://github.com/E5gar/GuiaPracticaGrupalSemana09" target="_blank" rel="noopener">github.com/E5gar/GuiaPracticaGrupalSemana09</a> (carpetas <code>php-app</code>, <code>jsp-app</code> y <code>docs</code>)</li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem09/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+                  <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica individual · Aplicaciones PHP (Apache) y JSP (Tomcat)</span><span class="ex-count">23 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 1">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_01_instalacion.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_01_instalacion.jpg" alt="Instalación de XAMPP 8.2.12 en Windows." loading="lazy" /></a>
+                    <figcaption>Instalación de XAMPP 8.2.12 en Windows.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_02_puertos.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_02_puertos.jpg" alt="XAMPP Control Panel: el log de arranque indica que el puerto 80 está en uso (PID 4)." loading="lazy" /></a>
+                    <figcaption>XAMPP Control Panel: el log de arranque indica que el puerto 80 está en uso (PID 4).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_03_apache_mysql.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_03_apache_mysql.jpg" alt="Apache (443, 8081) y MySQL (3306) iniciados después de cambiar el puerto." loading="lazy" /></a>
+                    <figcaption>Apache (443, 8081) y MySQL (3306) iniciados después de cambiar el puerto.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_04_dashboard.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_04_dashboard.jpg" alt="Dashboard de XAMPP 8.2.12 respondiendo en localhost:8081." loading="lazy" /></a>
+                    <figcaption>Dashboard de XAMPP 8.2.12 respondiendo en localhost:8081.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_05_java8.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_05_java8.jpg" alt="Verificación de Java: el equipo tenía Java 8, insuficiente para Tomcat 10.1." loading="lazy" /></a>
+                    <figcaption>Verificación de Java: el equipo tenía Java 8, insuficiente para Tomcat 10.1.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_06_tomcat_log.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_06_tomcat_log.jpg" alt="Arranque de Tomcat: conector http-nio-8080 y Server startup in [674] ms." loading="lazy" /></a>
+                    <figcaption>Arranque de Tomcat: conector http-nio-8080 y Server startup in [674] ms.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_07_tomcat_home.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_07_tomcat_home.jpg" alt="Página de bienvenida de Apache Tomcat 10.1.61 en localhost:8080." loading="lazy" /></a>
+                    <figcaption>Página de bienvenida de Apache Tomcat 10.1.61 en localhost:8080.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_08_estructura_php.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_08_estructura_php.jpg" alt="Estructura del proyecto PHP en htdocs/lab09." loading="lazy" /></a>
+                    <figcaption>Estructura del proyecto PHP en htdocs/lab09.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_09_form_php.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_09_form_php.jpg" alt="Formulario PHP (index.html)." loading="lazy" /></a>
+                    <figcaption>Formulario PHP (index.html).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_10_error_php.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_10_error_php.jpg" alt="Validación en el servidor PHP: respuesta con la lista de errores." loading="lazy" /></a>
+                    <figcaption>Validación en el servidor PHP: respuesta con la lista de errores.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_11_resultado_php.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_11_resultado_php.jpg" alt="Respuesta PHP con los datos de la sesión (resultado.php)." loading="lazy" /></a>
+                    <figcaption>Respuesta PHP con los datos de la sesión (resultado.php).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_12_estructura_jsp.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_12_estructura_jsp.jpg" alt="Estructura del proyecto JSP y reinicio de Tomcat con JRE_HOME apuntando al JDK 25." loading="lazy" /></a>
+                    <figcaption>Estructura del proyecto JSP y reinicio de Tomcat con JRE_HOME apuntando al JDK 25.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_13_form_jsp.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_13_form_jsp.jpg" alt="Formulario JSP (index.jsp)." loading="lazy" /></a>
+                    <figcaption>Formulario JSP (index.jsp).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_14_error_jsp.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_14_error_jsp.jpg" alt="Validación en el servidor JSP: respuesta con la lista de errores." loading="lazy" /></a>
+                    <figcaption>Validación en el servidor JSP: respuesta con la lista de errores.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_15_resultado_jsp.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_15_resultado_jsp.jpg" alt="Respuesta JSP con los datos de la sesión (resultado.jsp)." loading="lazy" /></a>
+                    <figcaption>Respuesta JSP con los datos de la sesión (resultado.jsp).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_16_work.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_16_work.jpg" alt="Carpeta work de Tomcat: cada JSP traducido a .java y compilado a .class." loading="lazy" /></a>
+                    <figcaption>Carpeta work de Tomcat: cada JSP traducido a .java y compilado a .class.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_17_index_jsp_java.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_17_index_jsp_java.jpg" alt="Servlet index_jsp.java generado por Jasper, que extiende HttpJspBase." loading="lazy" /></a>
+                    <figcaption>Servlet index_jsp.java generado por Jasper, que extiende HttpJspBase.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_18_log_jspinit.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_18_log_jspinit.jpg" alt="Registro de jspInit() en el log de Tomcat." loading="lazy" /></a>
+                    <figcaption>Registro de jspInit() en el log de Tomcat.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_19_devtools.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_19_devtools.jpg" alt="DevTools, pestaña Network: procesar.php responde 302 y resultado.php responde 200." loading="lazy" /></a>
+                    <figcaption>DevTools, pestaña Network: procesar.php responde 302 y resultado.php responde 200.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_20_curl_php.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_20_curl_php.jpg" alt="curl a procesar.php: respuestas 400 y 302 con las cabeceras de sesión." loading="lazy" /></a>
+                    <figcaption>curl a procesar.php: respuestas 400 y 302 con las cabeceras de sesión.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_21_curl_jsp.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_21_curl_jsp.jpg" alt="curl a procesar.jsp: respuestas 400 y 302 con Location y JSESSIONID." loading="lazy" /></a>
+                    <figcaption>curl a procesar.jsp: respuestas 400 y 302 con Location y JSESSIONID.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_22_access_log.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_22_access_log.jpg" alt="Log de acceso de Apache (access.log)." loading="lazy" /></a>
+                    <figcaption>Log de acceso de Apache (access.log).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p1_23_repo.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p1_23_repo.jpg" alt="Repositorio DAW_PRACTICA_SEM09 en GitHub con las carpetas php/lab09, jsp/lab09 y docs." loading="lazy" /></a>
+                    <figcaption>Repositorio DAW_PRACTICA_SEM09 en GitHub con las carpetas php/lab09, jsp/lab09 y docs.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica grupal · Sistema de Registro de Contacto</span><span class="ex-count">9 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 2">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p2_01_cabecera.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p2_01_cabecera.jpg" alt="Cabecera del sistema de registro de contacto del Hospital Nacional Ramiro Prialé." loading="lazy" /></a>
+                    <figcaption>Cabecera del sistema de registro de contacto del Hospital Nacional Ramiro Prialé.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p2_02_formulario.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p2_02_formulario.jpg" alt="Formulario de registro de contacto." loading="lazy" /></a>
+                    <figcaption>Formulario de registro de contacto.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p2_03_footer.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p2_03_footer.jpg" alt="Pie de página con el mapa de ubicación." loading="lazy" /></a>
+                    <figcaption>Pie de página con el mapa de ubicación.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p2_04_registros.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p2_04_registros.jpg" alt="Registros almacenados en la sesión, con los datos de los dos integrantes." loading="lazy" /></a>
+                    <figcaption>Registros almacenados en la sesión, con los datos de los dos integrantes.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p2_05_headers_200.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p2_05_headers_200.jpg" alt="Cabeceras de la respuesta HTTP 200 OK vistas en DevTools." loading="lazy" /></a>
+                    <figcaption>Cabeceras de la respuesta HTTP 200 OK vistas en DevTools.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p2_06_error_405.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p2_06_error_405.jpg" alt="Respuesta 405 al abrir procesar.php sin método POST." loading="lazy" /></a>
+                    <figcaption>Respuesta 405 al abrir procesar.php sin método POST.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p2_07_carpetas.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p2_07_carpetas.jpg" alt="Estructura de carpetas de php-app y jsp-app en Visual Studio Code." loading="lazy" /></a>
+                    <figcaption>Estructura de carpetas de php-app y jsp-app en Visual Studio Code.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p2_08_logs_acceso.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p2_08_logs_acceso.jpg" alt="Logs de acceso del servidor." loading="lazy" /></a>
+                    <figcaption>Logs de acceso del servidor.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem09/s9_p2_09_logs_error.jpg" target="_blank" rel="noopener"><img src="assets/Sem09/s9_p2_09_logs_error.jpg" alt="Logs de error del servidor." loading="lazy" /></a>
+                    <figcaption>Logs de error del servidor.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                </div>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+                    <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Aplicación PHP y aplicación JSP del laboratorio 09</span><span class="ex-count">7 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">php/lab09/config.php</p>
+<pre><code>&lt;?php
+declare(strict_types=1);
+
+// Solo en desarrollo: mostrar errores
+ini_set('display_errors', '1');
+error_reporting(E_ALL);
+
+// Sesión con cookie protegida
+session_start([
+    'cookie_httponly' =&gt; true,
+    'cookie_samesite' =&gt; 'Strict',
+]);
+
+// Escapa la salida para evitar XSS
+function e(string $valor): string {
+    return htmlspecialchars($valor, ENT_QUOTES, 'UTF-8');
+}</code></pre></figure><figure class="code-file"><p class="file-name">php/lab09/procesar.php</p>
+<pre><code>&lt;?php
+require_once __DIR__ . '/config.php';
+
+// 1. Solo se acepta POST -&gt; 405
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    header('Allow: POST');
+    exit('405 - Método no permitido. Use el formulario.');
+}
+
+// 2. Leer datos con filter_input (nunca register_globals)
+$nombre = trim((string) filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW));
+$email  = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+$edad   = filter_input(INPUT_POST, 'edad', FILTER_VALIDATE_INT,
+            ['options' =&gt; ['min_range' =&gt; 1, 'max_range' =&gt; 120]]);
+
+// 3. Validar
+$errores = [];
+if ($nombre === '' || strlen($nombre) &gt; 60) $errores[] = 'El nombre es obligatorio (máx. 60 caracteres).';
+if (!$email)                                $errores[] = 'El email no es válido.';
+if ($edad === false || $edad === null)      $errores[] = 'La edad debe ser un número entre 1 y 120.';
+
+// 4. Con errores -&gt; 400
+if ($errores) {
+    http_response_code(400);
+    echo '&lt;h1&gt;Errores de validación&lt;/h1&gt;&lt;ul&gt;';
+    foreach ($errores as $err) {
+        echo '&lt;li&gt;' . e($err) . '&lt;/li&gt;';
+    }
+    echo '&lt;/ul&gt;&lt;a href="index.html"&gt;Volver&lt;/a&gt;';
+    exit;
+}
+
+// 5. Datos válidos -&gt; guardar en sesión y redirigir con 302 (patrón PRG)
+$_SESSION['usuario'] = ['nombre' =&gt; $nombre, 'email' =&gt; $email, 'edad' =&gt; $edad];
+header('Location: resultado.php', true, 302);
+exit;</code></pre></figure><figure class="code-file"><p class="file-name">php/lab09/resultado.php</p>
+<pre><code>&lt;?php
+require_once __DIR__ . '/config.php';
+
+if (empty($_SESSION['usuario'])) {
+    header('Location: index.html', true, 302);
+    exit;
+}
+$u = $_SESSION['usuario'];
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Resultado PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Datos recibidos correctamente&lt;/h1&gt;
+  &lt;p&gt;&lt;strong&gt;Nombre:&lt;/strong&gt; &lt;?= e($u['nombre']) ?&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; &lt;?= e($u['email']) ?&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Edad:&lt;/strong&gt; &lt;?= e((string) $u['edad']) ?&gt;&lt;/p&gt;
+  &lt;a href="index.html"&gt;Nuevo registro&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure><figure class="code-file"><p class="file-name">jsp/lab09/index.jsp (con jspInit y jspDestroy)</p>
+<pre><code>&lt;%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %&gt;
+&lt;%!
+  // Ciclo de vida: se ejecuta UNA sola vez cuando Tomcat crea el servlet
+  public void jspInit()    { getServletContext().log("[lab09] jspInit index.jsp"); }
+  public void jspDestroy() { getServletContext().log("[lab09] jspDestroy index.jsp"); }
+%&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Lab 09 - JSP&lt;/title&gt;
+  &lt;link rel="stylesheet" href="estilos.css"&gt;
+&lt;/head&gt;
+&lt;body class="jsp"&gt;
+  &lt;main class="tarjeta"&gt;
+    &lt;header class="cabecera"&gt;
+      &lt;span class="etiqueta"&gt;JSP · Tomcat&lt;/span&gt;
+      &lt;h1&gt;Registro de estudiante&lt;/h1&gt;
+      &lt;p class="subtitulo"&gt;Completa tus datos y envíalos al servidor.&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;section class="contenido"&gt;
+      &lt;form action="procesar.jsp" method="POST" novalidate&gt;
+        &lt;div class="campo"&gt;
+          &lt;label for="nombre"&gt;Nombre completo&lt;/label&gt;
+          &lt;input type="text" id="nombre" name="nombre" maxlength="60" placeholder="Ej. Steven Luis"&gt;
+        &lt;/div&gt;
+        &lt;div class="campo"&gt;
+          &lt;label for="email"&gt;Correo electrónico&lt;/label&gt;
+          &lt;input type="email" id="email" name="email" placeholder="nombre@correo.com"&gt;
+        &lt;/div&gt;
+        &lt;div class="campo"&gt;
+          &lt;label for="edad"&gt;Edad&lt;/label&gt;
+          &lt;input type="number" id="edad" name="edad" placeholder="Entre 1 y 120"&gt;
+        &lt;/div&gt;
+        &lt;button type="submit" class="boton"&gt;Enviar datos&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/section&gt;
+
+    &lt;footer class="pie"&gt;Lab 09 · IS093A · Servidor Tomcat en localhost:8080&lt;/footer&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure><figure class="code-file"><p class="file-name">jsp/lab09/procesar.jsp</p>
+<pre><code>&lt;%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %&gt;
+&lt;%@ page import="java.util.*" %&gt;
+&lt;%@ taglib prefix="c" uri="jakarta.tags.core" %&gt;
+&lt;%
+  // 1. Solo POST -&gt; 405
+  if (!"POST".equalsIgnoreCase(request.getMethod())) {
+      response.setHeader("Allow", "POST");
+      response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+      return;
+  }
+
+  // 2. Leer parámetros
+  String nombre  = request.getParameter("nombre");
+  String email   = request.getParameter("email");
+  String edadStr = request.getParameter("edad");
+  nombre = (nombre == null) ? "" : nombre.trim();
+
+  // 3. Validar
+  List&lt;String&gt; errores = new ArrayList&lt;&gt;();
+  if (nombre.isEmpty() || nombre.length() &gt; 60) errores.add("El nombre es obligatorio (máx. 60 caracteres).");
+  if (email == null || !email.matches("^[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+$")) errores.add("El email no es válido.");
+  int edad = 0;
+  try {
+      edad = Integer.parseInt(edadStr);
+      if (edad &lt; 1 || edad &gt; 120) errores.add("La edad debe estar entre 1 y 120.");
+  } catch (NumberFormatException ex) {
+      errores.add("La edad debe ser un número entero.");
+  }
+
+  // 4. Datos válidos -&gt; sesión + 302
+  if (errores.isEmpty()) {
+      Map&lt;String, Object&gt; usuario = new HashMap&lt;&gt;();
+      usuario.put("nombre", nombre);
+      usuario.put("email", email);
+      usuario.put("edad", edad);
+      session.setAttribute("usuario", usuario);
+      response.sendRedirect("resultado.jsp");
+      return;
+  }
+
+  // 5. Con errores -&gt; 400
+  response.setStatus(400);
+  request.setAttribute("errores", errores);
+%&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Errores - JSP&lt;/title&gt;
+  &lt;link rel="stylesheet" href="estilos.css"&gt;
+&lt;/head&gt;
+&lt;body class="jsp"&gt;
+  &lt;main class="tarjeta"&gt;
+    &lt;header class="cabecera"&gt;
+      &lt;span class="etiqueta"&gt;JSP · HTTP 400&lt;/span&gt;
+      &lt;h1&gt;Revisa tus datos&lt;/h1&gt;
+      &lt;p class="subtitulo"&gt;El servidor rechazó el formulario.&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;section class="contenido"&gt;
+      &lt;div class="alerta error"&gt;
+        &lt;strong&gt;Se encontraron ${errores.size()} error(es):&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;c:forEach var="err" items="${errores}"&gt;
+            &lt;li&gt;&lt;c:out value="${err}"/&gt;&lt;/li&gt;
+          &lt;/c:forEach&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;a href="index.jsp" class="boton"&gt;Volver al formulario&lt;/a&gt;
+    &lt;/section&gt;
+
+    &lt;footer class="pie"&gt;Lab 09 · IS093A · Validación con request.getParameter() y JSTL&lt;/footer&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure><figure class="code-file"><p class="file-name">jsp/lab09/resultado.jsp</p>
+<pre><code>&lt;%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %&gt;
+&lt;%@ taglib prefix="c" uri="jakarta.tags.core" %&gt;
+&lt;c:if test="${empty sessionScope.usuario}"&gt;
+  &lt;c:redirect url="index.jsp"/&gt;
+&lt;/c:if&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Resultado - JSP&lt;/title&gt;
+  &lt;link rel="stylesheet" href="estilos.css"&gt;
+&lt;/head&gt;
+&lt;body class="jsp"&gt;
+  &lt;main class="tarjeta"&gt;
+    &lt;header class="cabecera"&gt;
+      &lt;span class="etiqueta"&gt;JSP · HTTP 200&lt;/span&gt;
+      &lt;h1&gt;Registro exitoso&lt;/h1&gt;
+      &lt;p class="subtitulo"&gt;Datos leídos desde la sesión con EL (sessionScope).&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;section class="contenido"&gt;
+      &lt;div class="alerta ok"&gt;&lt;strong&gt;Datos recibidos correctamente.&lt;/strong&gt;&lt;/div&gt;
+      &lt;dl class="datos"&gt;
+        &lt;div&gt;&lt;dt&gt;Nombre&lt;/dt&gt;&lt;dd&gt;&lt;c:out value="${sessionScope.usuario.nombre}"/&gt;&lt;/dd&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;dt&gt;Email&lt;/dt&gt;&lt;dd&gt;&lt;c:out value="${sessionScope.usuario.email}"/&gt;&lt;/dd&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;dt&gt;Edad&lt;/dt&gt;&lt;dd&gt;&lt;c:out value="${sessionScope.usuario.edad}"/&gt;&lt;/dd&gt;&lt;/div&gt;
+      &lt;/dl&gt;
+      &lt;a href="index.jsp" class="boton secundario"&gt;Nuevo registro&lt;/a&gt;
+    &lt;/section&gt;
+
+    &lt;footer class="pie"&gt;Lab 09 · IS093A · Sesión JSESSIONID activa&lt;/footer&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure><figure class="code-file"><p class="file-name">jsp/lab09/WEB-INF/web.xml</p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0"&gt;
+  &lt;display-name&gt;Lab 09 - JSP&lt;/display-name&gt;
+  &lt;request-character-encoding&gt;UTF-8&lt;/request-character-encoding&gt;
+  &lt;response-character-encoding&gt;UTF-8&lt;/response-character-encoding&gt;
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+  &lt;session-config&gt;
+    &lt;session-timeout&gt;15&lt;/session-timeout&gt;
+    &lt;cookie-config&gt;&lt;http-only&gt;true&lt;/http-only&gt;&lt;/cookie-config&gt;
+  &lt;/session-config&gt;
+&lt;/web-app&gt;</code></pre></figure>
+                  </div>
+                    <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Sistema de Registro de Contacto · lógica de procesamiento</span><span class="ex-count">3 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">php-app/procesar.php (lógica, antes del HTML de la tabla)</p>
+<pre><code>&lt;?php
+date_default_timezone_set('America/Lima');
+
+function e(string $texto): string
+{
+    return htmlspecialchars($texto, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+function fallar(int $codigo, string $titulo, string $detalle): never
+{
+    require __DIR__ . '/error.php';
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Allow: POST');
+    fallar(405, 'Método no permitido', 'Esta página solo recibe datos enviados desde el formulario de registro.');
+}
+
+if (!session_start(['cookie_httponly' =&gt; true, 'cookie_samesite' =&gt; 'Lax'])) {
+    fallar(500, 'Error del servidor', 'No se pudo iniciar la sesión. Inténtalo nuevamente en unos minutos.');
+}
+
+$nombre = trim((string) filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW));
+$nombre = preg_replace('/\s+/u', ' ', $nombre) ?? '';
+$correo = trim((string) filter_input(INPUT_POST, 'correo', FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW));
+
+$errores = [];
+
+$largo = mb_strlen($nombre, 'UTF-8');
+if ($largo &lt; 2 || $largo &gt; 60 || !preg_match('/^[\p{L}][\p{L}\s.\'-]*$/u', $nombre)) {
+    $errores[] = 'El nombre debe tener entre 2 y 60 caracteres y contener solo letras, espacios, puntos, apóstrofes o guiones.';
+}
+
+if (strlen($correo) &gt; 120 || filter_var($correo, FILTER_VALIDATE_EMAIL) === false) {
+    $errores[] = 'El correo electrónico no tiene un formato válido.';
+}
+
+if ($errores) {
+    fallar(422, 'Datos inválidos', implode(' ', $errores));
+}
+
+if (!isset($_SESSION['registros']) || !is_array($_SESSION['registros'])) {
+    $_SESSION['registros'] = [];
+}
+
+$_SESSION['registros'][] = [
+    'nombre' =&gt; $nombre,
+    'correo' =&gt; $correo,
+    'fecha' =&gt; date('d/m/Y H:i'),
+];
+
+$registros = $_SESSION['registros'];
+?&gt;</code></pre></figure><figure class="code-file"><p class="file-name">jsp-app/procesar.jsp (lógica, antes del HTML de la tabla)</p>
+<pre><code>&lt;%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*,java.time.*,java.time.format.DateTimeFormatter" %&gt;
+&lt;%@ taglib prefix="c" uri="jakarta.tags.core" %&gt;
+&lt;%
+  request.setCharacterEncoding("UTF-8");
+
+  if (!"POST".equals(request.getMethod())) {
+    response.setHeader("Allow", "POST");
+    response.sendError(405);
+    return;
+  }
+
+  String nombre = request.getParameter("nombre");
+  String correo = request.getParameter("correo");
+  nombre = nombre == null ? "" : nombre.replaceAll("\\p{Cntrl}", "").trim().replaceAll("\\s+", " ");
+  correo = correo == null ? "" : correo.replaceAll("\\p{Cntrl}", "").trim();
+
+  List&lt;String&gt; errores = new ArrayList&lt;&gt;();
+  int largo = nombre.codePointCount(0, nombre.length());
+  if (largo &lt; 2 || largo &gt; 60 || !nombre.matches("^\\p{L}[\\p{L}\\s.'-]*$")) {
+    errores.add("El nombre debe tener entre 2 y 60 caracteres y contener solo letras, espacios, puntos, apóstrofes o guiones.");
+  }
+  if (correo.length() &gt; 120 || !correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.[A-Za-z]{2,}$")) {
+    errores.add("El correo electrónico no tiene un formato válido.");
+  }
+  if (!errores.isEmpty()) {
+    request.setAttribute("detalleError", String.join(" ", errores));
+    response.sendError(422);
+    return;
+  }
+
+  try {
+    List&lt;Map&lt;String, String&gt;&gt; registros = (List&lt;Map&lt;String, String&gt;&gt;) session.getAttribute("registros");
+    if (registros == null) {
+      registros = new ArrayList&lt;&gt;();
+    }
+    String fecha = LocalDateTime.now(ZoneId.of("America/Lima")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+    registros.add(Map.of("nombre", nombre, "correo", correo, "fecha", fecha));
+    session.setAttribute("registros", registros);
+    request.setAttribute("registros", registros);
+    request.setAttribute("nombreNuevo", nombre);
+  } catch (Exception e) {
+    response.sendError(500);
+    return;
+  }
+%&gt;</code></pre></figure><figure class="code-file"><p class="file-name">jsp-app/WEB-INF/web.xml</p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0"&gt;
+  &lt;display-name&gt;Consultas Médicas HNRPP&lt;/display-name&gt;
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+  &lt;session-config&gt;
+    &lt;cookie-config&gt;
+      &lt;http-only&gt;true&lt;/http-only&gt;
+    &lt;/cookie-config&gt;
+  &lt;/session-config&gt;
+  &lt;error-page&gt;
+    &lt;error-code&gt;404&lt;/error-code&gt;
+    &lt;location&gt;/error.jsp&lt;/location&gt;
+  &lt;/error-page&gt;
+  &lt;error-page&gt;
+    &lt;error-code&gt;405&lt;/error-code&gt;
+    &lt;location&gt;/error.jsp&lt;/location&gt;
+  &lt;/error-page&gt;
+  &lt;error-page&gt;
+    &lt;error-code&gt;422&lt;/error-code&gt;
+    &lt;location&gt;/error.jsp&lt;/location&gt;
+  &lt;/error-page&gt;
+  &lt;error-page&gt;
+    &lt;error-code&gt;500&lt;/error-code&gt;
+    &lt;location&gt;/error.jsp&lt;/location&gt;
+  &lt;/error-page&gt;
+  &lt;error-page&gt;
+    &lt;exception-type&gt;java.lang.Throwable&lt;/exception-type&gt;
+    &lt;location&gt;/error.jsp&lt;/location&gt;
+  &lt;/error-page&gt;
+&lt;/web-app&gt;</code></pre></figure>
+                  </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí cómo se atiende una petición en el servidor y la diferencia entre PHP y JSP: PHP ejecuta el script desde cero en cada petición, mientras que un JSP se traduce a un servlet, se compila y se instancia una sola vez. Lo comprobé en la carpeta <code>work</code> de Tomcat y en el log con <code>jspInit()</code>. También entendí que HTTP no guarda estado y que la sesión con su cookie lo resuelve, que el servidor debe validar siempre los datos, que la salida se escapa para evitar XSS y que el patrón PRG con un 302 evita reenvíos del formulario.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>En la hora de teoría se explicaron la arquitectura cliente-servidor, los servidores y el ciclo de vida de PHP y JSP. En la hora de práctica instalé XAMPP y Tomcat y tuve que resolver problemas reales: el puerto 80 ocupado por un servicio de Windows, que resolví pasando Apache al 8081, y el Java 8 incompatible con Tomcat 10.1, que resolví instalando JDK 25. También tuve que colocar los <code>.jar</code> de JSTL en el Tomcat correcto. Probé cada caso con el navegador, DevTools y <code>curl</code>, y revisé los logs. En la práctica grupal trabajamos con un repositorio de GitHub: Edgar desarrolló la aplicación PHP y yo la aplicación JSP y la matriz comparativa.</p></div>
+            </div>
+          </section>
+        </article>
+      </li>

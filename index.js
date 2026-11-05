@@ -15,6 +15,8 @@
     { t: "React y su entorno", d: "Tres proyectos con Create React App, Vite y Next.js, y Huancayo Explorer", r: "<strong>React.</strong> Comprendí la diferencia entre librería y framework y cómo cada herramienta organiza un proyecto. Después construí Huancayo Explorer con Vite: componentes con props y children, CSS Modules frente a estilos inline y global, y la comprobación de que en CSR el div root llega vacío al navegador." },
     { t: "Componentes, routing y APIs en React", d: "JSX, props, React Router, axios y Minimarket Fresco", r: "<strong>Componentes y APIs.</strong> Aprendí a pasar datos con props y children, a crear rutas con React Router y a consumir una API con axios y async/await." },
     { t: "React Hooks y estado complejo", d: "Examen parcial, Sabores del Perú y Dashboard de tareas", r: "<strong>React Hooks.</strong> Aprendí a controlar cuándo renderiza React, a limpiar los efectos con AbortController y clearInterval, a repartir el estado con useContext y useReducer, y a memoizar solo lo que el Profiler demuestra que mejora." },
+    null,
+    { t: "Backend web: PHP y JSP", d: "Apache, Tomcat, ciclo HTTP, sesiones y registro de contacto", r: "<strong>Backend.</strong> Comprendí cómo se atiende una petición en el servidor, la diferencia entre el ciclo de vida de PHP y el de JSP, y por qué hay que validar en el servidor y escapar la salida." },
   ];
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
