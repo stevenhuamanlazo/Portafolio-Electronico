@@ -1,0 +1,559 @@
+<!-- Semana 10: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-10">
+        <div class="week-marker" aria-hidden="true">10</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 10</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Lenguaje Python: sintaxis, estructuras de control, POO, excepciones y módulos)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>Sintaxis de Python y PEP 8</summary>
+                <div class="topic-body">
+                  <p>Python marca los bloques con la <strong>indentación</strong>, que es de 4 espacios y no se deben mezclar tabs con espacios. <strong>PEP 8</strong> es la guía de estilo del lenguaje; <code>black</code> formatea el código automáticamente y <code>flake8</code> o <code>pylint</code> detectan malas prácticas. Los tipos compuestos más usados son las listas y los diccionarios, y las estructuras de control son <code>if</code>, <code>for</code> y <code>while</code>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Clases, constructor y destructor</summary>
+                <div class="topic-body">
+                  <p>Una clase agrupa atributos y métodos. <code>__init__</code> inicializa el estado del objeto cuando se crea. <code>__del__</code> se llama cuando el recolector de basura elimina el objeto, pero no se sabe exactamente cuándo, por lo que para liberar recursos es más seguro usar <code>try/finally</code> o <code>contextlib</code>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Encapsulamiento con atributos protegidos y @property</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>Niveles de acceso en Python</caption><thead><tr><th scope="col">Forma</th><th scope="col">Significado</th></tr></thead><tbody><tr><td><code>_atributo</code></td><td>Protegido por convención: indica que no se debe usar desde fuera</td></tr><tr><td><code>__atributo</code></td><td>Privado con <em>name-mangling</em>: Python cambia el nombre interno de la variable</td></tr><tr><td><code>@property</code></td><td>Permite leer y asignar un atributo como si fuera público, y validar el valor en el setter sin cambiar la forma de usar la clase</td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Herencia, herencia múltiple, mixins y MRO</summary>
+                <div class="topic-body">
+                  <p>Con la <strong>herencia</strong> una clase hija reutiliza lo de su clase padre y se llama al padre con <code>super()</code>. En la <strong>herencia múltiple</strong> Python decide el orden de búsqueda de los métodos con el algoritmo de linealización <strong>C3</strong>, llamado <strong>MRO</strong> (orden de resolución de métodos), y <code>super()</code> sigue ese orden y no solo la clase padre directa. Un <strong>mixin</strong> es una clase pequeña que aporta una capacidad a otras clases sin ser su tipo principal, y conviene evitar los diamantes sin un diseño explícito.</p>
+                  <p>Se elige herencia cuando existe una relación <em>es un</em> (un libro es un producto) y composición cuando una clase solo usa a otra.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Polimorfismo y duck typing</summary>
+                <div class="topic-body">
+                  <p>El <strong>polimorfismo</strong> permite que un mismo método se comporte distinto según la clase del objeto: cada clase derivada sobrescribe <code>calcular_precio_final()</code> y <code>__str__</code>. Python es dinámico y no necesita interfaces explícitas: si el objeto tiene el método, se ejecuta (<em>duck typing</em>). El decorador <code>@override</code> de <code>typing</code> (Python 3.12 o superior) ayuda a detectar errores al sobrescribir.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Excepciones: try, except, else y finally</summary>
+                <div class="topic-body">
+                  <ul>
+                    <li><code>try</code>: bloque donde puede ocurrir el error.</li>
+                    <li><code>except</code>: captura y maneja el error.</li>
+                    <li><code>else</code>: se ejecuta solo si no hubo error.</li>
+                    <li><code>finally</code>: se ejecuta siempre.</li>
+                  </ul>
+                  <p>No se debe capturar <code>Exception</code> de forma genérica sin volver a lanzar el error o registrarlo. Para el dominio de la aplicación se crea una <strong>jerarquía de excepciones propias</strong>, como <code>ValidationError</code> y <code>NotFoundError</code>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Módulos y paquetes</summary>
+                <div class="topic-body">
+                  <p>Un <strong>módulo</strong> es un archivo <code>.py</code> y un <strong>paquete</strong> es una carpeta con <code>__init__.py</code>. La aplicación se ordena en <code>main.py</code> como orquestador, <code>models/</code> con las clases y <code>utils/</code> con las validaciones y las excepciones, y el archivo <code>requirements.txt</code> lista las dependencias.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1:</strong> Práctica grupal (04.11.2026) del curso práctico, con Gago Uribe Edgar Robert: un <strong>Sistema de Gestión de Productos por línea de comandos (CLI)</strong> en Python, con una clase base <code>Producto</code>, las clases derivadas <code>Electronico</code> y <code>Libro</code>, el mixin <code>DescuentoMixin</code>, encapsulamiento con <code>@property</code>, polimorfismo en <code>calcular_precio_final()</code>, excepciones propias y una estructura modular. El equipo lo planteó como un marketplace de material didáctico e instrumental para estudiantes de la Facultad.</p>
+                <p>En el reparto de roles del README, Edgar fue Arquitecto POO y Desarrollador Frontend, y yo Ingeniero de Excepciones, QA y Documentador. En el repositorio, yo agregué la suite de pruebas, el README con el diagrama UML y la explicación del MRO, y las capturas de ejecución.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <ol>
+                  <li>Desarrollo de las clases en la hora de teoría y en la hora de práctica.</li>
+                  <li>Diseño de la jerarquía <code>Producto</code> → <code>Electronico</code> y <code>Libro</code>, ambas con <code>DescuentoMixin</code>, y comprobación del MRO.</li>
+                  <li>Implementación de los atributos protegidos con <code>@property</code> y de sus validaciones en los setters, con el SKU, el precio y el stock en rangos definidos.</li>
+                  <li>Creación de <code>ValidationError</code> y <code>NotFoundError</code> a partir de <code>MarketplaceError</code>, y del menú de <code>main.py</code> que las captura.</li>
+                  <li>Organización en <code>main.py</code>, <code>models/</code> y <code>utils/</code> con sus <code>__init__.py</code>.</li>
+                  <li>Escritura de las pruebas con <code>unittest</code> y ejecución con <code>python -m unittest discover tests/</code>.</li>
+                  <li>Captura del caso exitoso y de las dos excepciones, y redacción del README con el diagrama de clases.</li>
+                  <li>Actualización del cuaderno de la asignatura.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p>El CLI funcionó con sus seis opciones (registrar, listar, calcular el precio final, despachar, sincronizar con la web y salir). El catálogo de ejemplo muestra el polimorfismo: cada tipo de producto calcula su precio final de forma distinta.</p>
+                <div class="table-wrap"><table><caption>Precio final por tipo de producto</caption><thead><tr><th scope="col">Producto</th><th scope="col">Base</th><th scope="col">Final</th></tr></thead><tbody><tr><td>Electrónico ELEC-101, calculadora programable</td><td>S/ 940.00</td><td>S/ 1009.08</td></tr><tr><td>Electrónico ELEC-103, kit FPGA y osciloscopio</td><td>S/ 2150.00</td><td>S/ 2562.00</td></tr><tr><td>Libro LIB-201, universitario</td><td>S/ 180.00</td><td>S/ 142.56</td></tr><tr><td>Libro LIB-203, literatura</td><td>S/ 140.00</td><td>S/ 133.00</td></tr></tbody></table></div>
+                <p>Una prueba con un SKU de formato incorrecto (<code>cod-invalido</code>) lanzó <code>ValidationError</code>, y consultar un SKU inexistente (<code>ELEC-999</code>) lanzó <code>NotFoundError</code>; en los dos casos el programa mostró el mensaje y volvió al menú. Las 13 pruebas automatizadas pasaron (<code>Ran 13 tests ... OK</code>), entre ellas las del MRO, el polimorfismo, las validaciones y el stock insuficiente. Además, el catálogo se exporta a <code>web/productos.json</code> y se muestra en una página web hecha por Edgar.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>El MRO de las dos clases derivadas es <code>(Electronico, Producto, DescuentoMixin, object)</code> y <code>(Libro, Producto, DescuentoMixin, object)</code>. Se usó herencia para <code>Producto</code> porque un libro y un electrónico son productos, y un mixin para los descuentos porque aporta una capacidad sin ser el tipo del objeto.</p>
+                <p>El atributo del tipo de libro es privado (<code>__tipo_libro</code>) con name-mangling y solo admite <code>universitario</code> o <code>literatura</code>. El programa usa <code>typing.override</code>, por lo que necesita Python 3.12 o superior.</p>
+                <p>En <code>main.py</code> las excepciones se capturan de la más específica a la más general: <code>ValidationError</code>, <code>NotFoundError</code>, <code>MarketplaceError</code> y, al final, <code>Exception</code>.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Repositorio de la práctica: <a href="https://github.com/E5gar/GuiaPracticaGrupalSemana10" target="_blank" rel="noopener">github.com/E5gar/GuiaPracticaGrupalSemana10</a> (<code>main.py</code>, <code>models/</code>, <code>utils/</code>, <code>tests/</code>, <code>web/</code> y <code>README.md</code>)</li>
+                  <li>README con el diagrama de clases, el MRO y las capturas: <a href="https://github.com/E5gar/GuiaPracticaGrupalSemana10/blob/main/README.md" target="_blank" rel="noopener">README.md</a></li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem10/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+                  <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica grupal · Sistema de Gestión de Productos (CLI)</span><span class="ex-count">5 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 1">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p1_01_pagina_web.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p1_01_pagina_web.jpg" alt="Página web del marketplace servida en localhost, con la vista del catálogo de material educativo." loading="lazy" /></a>
+                    <figcaption>Página web del marketplace servida en localhost, con la vista del catálogo de material educativo.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p1_02_cli_ejecucion.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p1_02_cli_ejecucion.jpg" alt="Command Line Interface: ejecución de main.py desde Visual Studio Code con el registro de un producto." loading="lazy" /></a>
+                    <figcaption>Command Line Interface: ejecución de main.py desde Visual Studio Code con el registro de un producto.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p1_03_validation_error.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p1_03_validation_error.jpg" alt="Captura de ValidationError: SKU con formato inválido (cod-invalido)." loading="lazy" /></a>
+                    <figcaption>Captura de ValidationError: SKU con formato inválido (cod-invalido).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p1_04_notfound_error.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p1_04_notfound_error.jpg" alt="Captura de NotFoundError: búsqueda del SKU inexistente ELEC-999." loading="lazy" /></a>
+                    <figcaption>Captura de NotFoundError: búsqueda del SKU inexistente ELEC-999.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p1_05_caso_exitoso.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p1_05_caso_exitoso.jpg" alt="Caso exitoso (ruta feliz): listado del catálogo y liquidación polimórfica." loading="lazy" /></a>
+                    <figcaption>Caso exitoso (ruta feliz): listado del catálogo y liquidación polimórfica.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                </div>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+                    <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Modelos, excepciones, validaciones y pruebas</span><span class="ex-count">5 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">models/descuento.py</p>
+<pre><code>class DescuentoMixin:
+    def aplicar_descuento_semestre(self, precio: float, porcentaje: float = 15.0) -&gt; float:
+        if porcentaje &lt; 0 or porcentaje &gt; 100:
+            return precio
+        monto_descuento = precio * (porcentaje / 100.0)
+        return max(0.0, precio - monto_descuento)
+
+    def obtener_beneficio_estudiantil(self) -&gt; str:
+        return "Bono de Ciclo Académico: Envío de instrumental asegurado y garantía extendida de laboratorio."</code></pre></figure><figure class="code-file"><p class="file-name">models/producto.py</p>
+<pre><code>from __future__ import annotations
+from typing import override
+from utils.validators import validar_sku, validar_texto, validar_numero, validar_tipo_libro
+from utils.exceptions import ValidationError
+from .descuento import DescuentoMixin
+
+
+class Producto:
+    def __init__(self, sku: str, nombre: str, precio_base: float, stock: int, imagen_url: str = ""):
+        self.sku = sku
+        self.nombre = nombre
+        self.precio_base = precio_base
+        self.stock = stock
+        self.imagen_url = imagen_url
+
+    @property
+    def sku(self) -&gt; str:
+        return self._sku
+
+    @sku.setter
+    def sku(self, valor: str):
+        self._sku = validar_sku(valor)
+
+    @property
+    def nombre(self) -&gt; str:
+        return self._nombre
+
+    @nombre.setter
+    def nombre(self, valor: str):
+        self._nombre = validar_texto(valor, campo="nombre", min_len=3, max_len=100)
+
+    @property
+    def precio_base(self) -&gt; float:
+        return self._precio_base
+
+    @precio_base.setter
+    def precio_base(self, valor: float):
+        self._precio_base = float(validar_numero(valor, tipo=float, min_val=0.5, max_val=25000.0, campo="precio_base"))
+
+    @property
+    def stock(self) -&gt; int:
+        return self._stock
+
+    @stock.setter
+    def stock(self, valor: int):
+        self._stock = int(validar_numero(valor, tipo=int, min_val=0, max_val=10000, campo="stock"))
+
+    @property
+    def imagen_url(self) -&gt; str:
+        return self._imagen_url
+
+    @imagen_url.setter
+    def imagen_url(self, valor: str):
+        self._imagen_url = valor.strip() if valor else "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"
+
+    def reducir_stock(self, cantidad: int = 1):
+        if cantidad &gt; self._stock:
+            raise ValidationError(f"Stock insuficiente ({self._stock} disponible) para despachar {cantidad} unidades", campo="stock")
+        self._stock -= cantidad
+
+    def calcular_precio_final(self) -&gt; float:
+        raise NotImplementedError("Las clases derivadas deben implementar calcular_precio_final()")
+
+    def to_dict(self) -&gt; dict:
+        return {
+            "sku": self.sku,
+            "nombre": self.nombre,
+            "tipo": self.__class__.__name__,
+            "precio_base": self.precio_base,
+            "stock": self.stock,
+            "imagen_url": self.imagen_url,
+            "precio_final": self.calcular_precio_final()
+        }
+
+    def __str__(self) -&gt; str:
+        return f"[{self.__class__.__name__}] {self._sku} - {self._nombre} | Base: S/ {self._precio_base:.2f} | Stock: {self._stock}"
+
+    def __del__(self):
+        pass
+
+
+class Electronico(Producto, DescuentoMixin):
+    def __init__(self, sku: str, nombre: str, precio_base: float, stock: int, garantia_meses: int, garantia_estudiantil: bool = True, imagen_url: str = ""):
+        super().__init__(sku, nombre, precio_base, stock, imagen_url)
+        self.garantia_meses = garantia_meses
+        self._garantia_estudiantil = bool(garantia_estudiantil)
+
+    @property
+    def garantia_meses(self) -&gt; int:
+        return self._garantia_meses
+
+    @garantia_meses.setter
+    def garantia_meses(self, valor: int):
+        self._garantia_meses = int(validar_numero(valor, tipo=int, min_val=0, max_val=60, campo="garantia_meses"))
+
+    @property
+    def garantia_estudiantil(self) -&gt; bool:
+        return self._garantia_estudiantil
+
+    def calcular_costo_envio(self) -&gt; float:
+        if self._stock &lt;= 5:
+            return 25.0
+        return 12.0
+
+    @override
+    def calcular_precio_final(self) -&gt; float:
+        igv = self.precio_base * 0.18
+        costo_base_con_impuesto = self.precio_base + igv
+        costo_envio = self.calcular_costo_envio()
+        
+        precio_acumulado = costo_base_con_impuesto + costo_envio
+        
+        if self._garantia_estudiantil:
+            precio_acumulado = self.aplicar_descuento_semestre(precio_acumulado, porcentaje=10.0)
+            
+        if self._stock &gt; 30:
+            precio_acumulado -= (self.precio_base * 0.05)
+            
+        return round(precio_acumulado, 2)
+
+    @override
+    def to_dict(self) -&gt; dict:
+        data = super().to_dict()
+        data.update({
+            "garantia_meses": self.garantia_meses,
+            "garantia_estudiantil": self._garantia_estudiantil,
+            "costo_envio": self.calcular_costo_envio()
+        })
+        return data
+
+    @override
+    def __str__(self) -&gt; str:
+        base_str = super().__str__()
+        promo = "Garantía Académica Activa" if self._garantia_estudiantil else "Garantía Regular"
+        return f"{base_str} | {self._garantia_meses} meses ({promo}) | Final: S/ {self.calcular_precio_final():.2f}"
+
+
+class Libro(Producto, DescuentoMixin):
+    def __init__(self, sku: str, nombre: str, precio_base: float, stock: int, autor: str, tipo_libro: str = "universitario", imagen_url: str = ""):
+        super().__init__(sku, nombre, precio_base, stock, imagen_url)
+        self.autor = autor
+        self.__tipo_libro = validar_tipo_libro(tipo_libro)
+
+    @property
+    def autor(self) -&gt; str:
+        return self._autor
+
+    @autor.setter
+    def autor(self, valor: str):
+        self._autor = validar_texto(valor, campo="autor", min_len=3, max_len=80)
+
+    @property
+    def tipo_libro(self) -&gt; str:
+        return self.__tipo_libro
+
+    @tipo_libro.setter
+    def tipo_libro(self, valor: str):
+        self.__tipo_libro = validar_tipo_libro(valor)
+
+    @override
+    def calcular_precio_final(self) -&gt; float:
+        subtotal = self.precio_base
+        if self.__tipo_libro == "universitario":
+            subtotal = subtotal * 0.90
+            subtotal = self.aplicar_descuento_semestre(subtotal, porcentaje=12.0)
+        else:
+            subtotal = self.aplicar_descuento_semestre(subtotal, porcentaje=5.0)
+        return round(subtotal, 2)
+
+    @override
+    def to_dict(self) -&gt; dict:
+        data = super().to_dict()
+        data.update({
+            "autor": self.autor,
+            "tipo_libro": self.__tipo_libro
+        })
+        return data
+
+    @override
+    def __str__(self) -&gt; str:
+        base_str = super().__str__()
+        return f"{base_str} | Autor: {self._autor} | Cat: {self.__tipo_libro.capitalize()} | Final: S/ {self.calcular_precio_final():.2f}"</code></pre></figure><figure class="code-file"><p class="file-name">utils/exceptions.py</p>
+<pre><code>class MarketplaceError(Exception):
+    def __init__(self, mensaje: str, codigo_error: str = "ERR_GENERAL"):
+        super().__init__(mensaje)
+        self.codigo_error = codigo_error
+        self.mensaje = mensaje
+
+    def __str__(self) -&gt; str:
+        return f"[{self.codigo_error}] {self.mensaje}"
+
+
+class ValidationError(MarketplaceError):
+    def __init__(self, mensaje: str, campo: str = "desconocido"):
+        super().__init__(mensaje, codigo_error="ERR_VALIDACION")
+        self.campo = campo
+
+    def __str__(self) -&gt; str:
+        return f"[{self.codigo_error}] Campo '{self.campo}': {self.mensaje}"
+
+
+class NotFoundError(MarketplaceError):
+    def __init__(self, entidad: str, identificador: str | int):
+        mensaje = f"No se encontró {entidad} con identificador '{identificador}'"
+        super().__init__(mensaje, codigo_error="ERR_NO_ENCONTRADO")
+        self.entidad = entidad
+        self.identificador = identificador</code></pre></figure><figure class="code-file"><p class="file-name">utils/validators.py</p>
+<pre><code>import re
+from .exceptions import ValidationError
+
+
+def validar_numero(valor: str | float | int, tipo: type = float, min_val: float = 0, max_val: float | None = None, campo: str = "número") -&gt; float | int:
+    try:
+        num = tipo(valor)
+    except (ValueError, TypeError):
+        raise ValidationError(f"El valor '{valor}' debe ser de tipo numérico ({tipo.__name__})", campo=campo)
+
+    if num &lt; min_val:
+        raise ValidationError(f"El valor {num} no puede ser menor a {min_val}", campo=campo)
+    if max_val is not None and num &gt; max_val:
+        raise ValidationError(f"El valor {num} no puede superar el límite de {max_val}", campo=campo)
+    return num
+
+
+def validar_texto(valor: str, campo: str, min_len: int = 2, max_len: int = 120) -&gt; str:
+    if not isinstance(valor, str):
+        raise ValidationError("El valor proporcionado debe ser una cadena de texto", campo=campo)
+    texto = valor.strip()
+    if len(texto) &lt; min_len:
+        raise ValidationError(f"Debe contener al menos {min_len} caracteres", campo=campo)
+    if len(texto) &gt; max_len:
+        raise ValidationError(f"No puede exceder los {max_len} caracteres", campo=campo)
+    return texto
+
+
+def validar_sku(sku: str) -&gt; str:
+    sku_limpio = validar_texto(sku, campo="SKU", min_len=4, max_len=15).upper()
+    patron = r"^[A-Z]{2,4}-\d{3,6}$"
+    if not re.match(patron, sku_limpio):
+        raise ValidationError(f"Formato inválido. Debe seguir el patrón 'PRE-1234' (Ej: ELEC-101, LIB-204)", campo="SKU")
+    return sku_limpio
+
+
+def validar_categoria(categoria: str) -&gt; str:
+    cat_normalizada = validar_texto(categoria, campo="categoría").lower()
+    categorias_validas = {"electronico", "libro"}
+    if cat_normalizada not in categorias_validas:
+        raise ValidationError(f"Categoría '{cat_normalizada}' no admitida. Opciones: {list(categorias_validas)}", campo="categoría")
+    return cat_normalizada
+
+
+def validar_tipo_libro(tipo: str) -&gt; str:
+    tipo_normalizado = validar_texto(tipo, campo="tipo_libro").lower()
+    tipos_validos = {"universitario", "literatura"}
+    if tipo_normalizado not in tipos_validos:
+        raise ValidationError(f"Tipo de libro inválido. Debe ser 'universitario' o 'literatura'", campo="tipo_libro")
+    return tipo_normalizado</code></pre></figure><figure class="code-file"><p class="file-name">tests/test_marketplace.py</p>
+<pre><code>import unittest
+from models.producto import Producto, Electronico, Libro
+from models.descuento import DescuentoMixin
+from utils.exceptions import ValidationError, NotFoundError
+
+
+class TestMarketplacePOO(unittest.TestCase):
+
+    def test_creacion_electronico_ruta_feliz(self):
+        item = Electronico(
+            sku="ELEC-880",
+            nombre="Osciloscopio Digital de Laboratorio",
+            precio_base=1200.0,
+            stock=10,
+            garantia_meses=24,
+            garantia_estudiantil=True
+        )
+        self.assertEqual(item.sku, "ELEC-880")
+        self.assertEqual(item.precio_base, 1200.0)
+        self.assertEqual(item.stock, 10)
+        self.assertEqual(item.garantia_meses, 24)
+        self.assertTrue(item.garantia_estudiantil)
+
+    def test_polimorfismo_precio_final_electronico(self):
+        item = Electronico(
+            sku="ELEC-881",
+            nombre="Calculadora Programable Avanzada",
+            precio_base=100.0,
+            stock=10,
+            garantia_meses=12,
+            garantia_estudiantil=True
+        )
+        precio_esperado = round((118.0 + 12.0) * 0.90, 2)
+        self.assertEqual(item.calcular_precio_final(), precio_esperado)
+
+    def test_polimorfismo_precio_final_libro_universitario(self):
+        libro = Libro(
+            sku="LIB-301",
+            nombre="Compiladores: Principios, Técnicas y Herramientas",
+            precio_base=200.0,
+            stock=20,
+            autor="Aho, Lam, Sethi, Ullman",
+            tipo_libro="universitario"
+        )
+        precio_esperado = round((200.0 * 0.90) * 0.88, 2)
+        self.assertEqual(libro.calcular_precio_final(), precio_esperado)
+
+    def test_polimorfismo_precio_final_libro_literatura(self):
+        libro = Libro(
+            sku="LIB-302",
+            nombre="Ensayo sobre la Ceguera",
+            precio_base=100.0,
+            stock=15,
+            autor="José Saramago",
+            tipo_libro="literatura"
+        )
+        precio_esperado = round(100.0 * 0.95, 2)
+        self.assertEqual(libro.calcular_precio_final(), precio_esperado)
+
+    def test_validacion_sku_formato_erroneo(self):
+        with self.assertRaises(ValidationError) as ctx:
+            Electronico(
+                sku="invalido123",
+                nombre="Gadget",
+                precio_base=50.0,
+                stock=5,
+                garantia_meses=12
+            )
+        self.assertEqual(ctx.exception.campo, "SKU")
+
+    def test_validacion_precio_negativo(self):
+        with self.assertRaises(ValidationError) as ctx:
+            Libro(
+                sku="LIB-303",
+                nombre="Física Universitaria",
+                precio_base=-15.0,
+                stock=5,
+                autor="Sears Zemansky"
+            )
+        self.assertEqual(ctx.exception.campo, "precio_base")
+
+    def test_validacion_stock_negativo(self):
+        with self.assertRaises(ValidationError) as ctx:
+            Electronico(
+                sku="ELEC-882",
+                nombre="Tablet",
+                precio_base=500.0,
+                stock=-2,
+                garantia_meses=12
+            )
+        self.assertEqual(ctx.exception.campo, "stock")
+
+    def test_validacion_garantia_excesiva(self):
+        with self.assertRaises(ValidationError) as ctx:
+            Electronico(
+                sku="ELEC-883",
+                nombre="Tablet Pro",
+                precio_base=500.0,
+                stock=10,
+                garantia_meses=99
+            )
+        self.assertEqual(ctx.exception.campo, "garantia_meses")
+
+    def test_despacho_stock_insuficiente(self):
+        item = Libro(
+            sku="LIB-304",
+            nombre="Manual de Laboratorio",
+            precio_base=40.0,
+            stock=3,
+            autor="UNCP"
+        )
+        with self.assertRaises(ValidationError):
+            item.reducir_stock(5)
+
+    def test_mro_jerarquia_c3(self):
+        mro_electronico = [cls.__name__ for cls in Electronico.__mro__]
+        self.assertEqual(mro_electronico, ["Electronico", "Producto", "DescuentoMixin", "object"])
+
+        mro_libro = [cls.__name__ for cls in Libro.__mro__]
+        self.assertEqual(mro_libro, ["Libro", "Producto", "DescuentoMixin", "object"])
+
+    def test_excepcion_clase_base_directa(self):
+        prod = Producto(sku="BASE-001", nombre="Producto Abstracto", precio_base=10.0, stock=1)
+        with self.assertRaises(NotImplementedError):
+            prod.calcular_precio_final()
+
+    def test_mixin_heredado_por_derivadas(self):
+        self.assertTrue(issubclass(Electronico, DescuentoMixin))
+        self.assertTrue(issubclass(Libro, DescuentoMixin))
+        self.assertEqual(DescuentoMixin().aplicar_descuento_semestre(100.0, 150.0), 100.0)
+
+    def test_not_found_error_mensaje(self):
+        with self.assertRaises(NotFoundError) as ctx:
+            raise NotFoundError(entidad="Material Didáctico", identificador="ELEC-999")
+        self.assertEqual(ctx.exception.codigo_error, "ERR_NO_ENCONTRADO")
+        self.assertIn("ELEC-999", str(ctx.exception))
+
+
+if __name__ == "__main__":
+    unittest.main()</code></pre></figure>
+                  </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a diseñar una jerarquía de clases en Python con una clase base, clases derivadas y un mixin, y a comprobar su MRO. También aprendí a proteger los atributos con <code>@property</code> y a validar los valores en los setters, a sobrescribir métodos para lograr polimorfismo y a crear excepciones propias para que el programa responda a los errores sin cerrarse. Con la suite de <code>unittest</code> vi que cada regla del dominio se puede comprobar de forma automática.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>En la hora de teoría se explicaron la sintaxis de Python, la POO, las excepciones y los módulos. En la hora de práctica trabajé en equipo con Edgar mediante un repositorio de GitHub: él desarrolló los modelos, el CLI y la página web, y yo escribí las pruebas, documenté el diseño con el diagrama UML y el MRO, y capturé la ejecución del caso exitoso y de las dos excepciones. Al escribir las pruebas tuve que leer a fondo el código de los modelos y de las validaciones.</p></div>
+            </div>
+          </section>
+        </article>
+      </li>
