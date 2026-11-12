@@ -17,7 +17,7 @@
     { t: "React Hooks y estado complejo", d: "Examen parcial, Sabores del Perú y Dashboard de tareas", r: "<strong>React Hooks.</strong> Aprendí a controlar cuándo renderiza React, a limpiar los efectos con AbortController y clearInterval, a repartir el estado con useContext y useReducer, y a memoizar solo lo que el Profiler demuestra que mejora." },
     null,
     { t: "Backend web: PHP y JSP", d: "Apache, Tomcat, ciclo HTTP, sesiones y registro de contacto", r: "<strong>Backend.</strong> Comprendí cómo se atiende una petición en el servidor, la diferencia entre el ciclo de vida de PHP y el de JSP, y por qué hay que validar en el servidor y escapar la salida." },
-    { t: "Python y programación orientada a objetos", d: "Clases, herencia, polimorfismo, excepciones y gestión de productos", r: "<strong>Python y POO.</strong> Aprendí a diseñar clases con herencia y mixins, a comprobar el MRO, a validar con @property y a crear excepciones propias, y a probar las reglas con unittest." },
+    { t: "Python, POO y API REST con Node.js", d: "Gestión de productos en Python, y TechParts Admin con Express y MySQL", r: "<strong>Python y backend.</strong> Aprendí a diseñar clases con herencia y mixins, a validar con @property y a crear excepciones propias. También a armar una API REST con Express y MySQL usando pool de conexiones, consultas preparadas y los códigos de estado correctos." },
   ];
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

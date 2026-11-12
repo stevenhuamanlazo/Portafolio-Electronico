@@ -9,7 +9,7 @@
 
           <section class="section-block">
             <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
-            <p class="hint">(Lenguaje Python: sintaxis, estructuras de control, POO, excepciones y módulos)</p>
+            <p class="hint">(Lenguaje Python: sintaxis, POO, excepciones y módulos; servidor backend con Node.js, Express y MySQL)</p>
             <div class="entry">
               <details class="topic" open>
                 <summary>Sintaxis de Python y PEP 8</summary>
@@ -60,6 +60,31 @@
                   <p>Un <strong>módulo</strong> es un archivo <code>.py</code> y un <strong>paquete</strong> es una carpeta con <code>__init__.py</code>. La aplicación se ordena en <code>main.py</code> como orquestador, <code>models/</code> con las clases y <code>utils/</code> con las validaciones y las excepciones, y el archivo <code>requirements.txt</code> lista las dependencias.</p>
                 </div>
               </details>
+              <details class="topic">
+                <summary>Servidor backend con Node.js y Express</summary>
+                <div class="topic-body">
+                  <p><strong>Node.js</strong> ejecuta JavaScript fuera del navegador y <strong>Express</strong> es el framework que recibe las peticiones HTTP y las dirige a la función que corresponde. El proyecto se organiza con el patrón <strong>MVC</strong>: las rutas (<code>routes</code>) reciben la petición, los controladores (<code>controllers</code>) ejecutan la lógica y la configuración (<code>config</code>) conecta con la base de datos. Las credenciales no se escriben en el código, sino en un archivo <code>.env</code> que se lee con <code>dotenv</code> y se agrega al <code>.gitignore</code>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>API REST, verbos HTTP y códigos de estado</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>Endpoints RESTful del recurso productos</caption><thead><tr><th scope="col">Verbo</th><th scope="col">Uso</th><th scope="col">Éxito</th><th scope="col">Errores</th></tr></thead><tbody><tr><td>GET</td><td>Listar o consultar</td><td>200</td><td>404, 500</td></tr><tr><td>POST</td><td>Crear un recurso</td><td>201</td><td>400, 409, 500</td></tr><tr><td>PUT</td><td>Actualizar, total o parcial</td><td>200</td><td>400, 404, 409, 500</td></tr><tr><td>DELETE</td><td>Eliminar</td><td>200</td><td>404, 500</td></tr></tbody></table></div>
+                  <p>Los datos llegan en <code>req.body</code> y <code>req.params</code> y la respuesta se envía con <code>res.status(codigo).json(...)</code>. Los errores se devuelven como JSON, sin enviar el <em>stack trace</em>, y la eliminación puede ser <strong>lógica</strong> (se marca el registro como inactivo) o física.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>MySQL, pool de conexiones y consultas preparadas</summary>
+                <div class="topic-body">
+                  <p>Un <strong>pool de conexiones</strong> reutiliza conexiones abiertas en lugar de crear una nueva por cada petición. Se usa <code>mysql2/promise</code> con <code>async/await</code> y no la versión con callbacks. Las <strong>consultas preparadas</strong> (<code>execute</code> con <code>?</code>) separan la consulta de los datos y previenen la inyección SQL.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Pruebas de una API con Thunder Client</summary>
+                <div class="topic-body">
+                  <p>Una herramienta como <strong>Thunder Client</strong>, que funciona dentro de Visual Studio Code, permite enviar peticiones GET, POST, PUT y DELETE y revisar el código de estado, los headers (<code>Content-Type: application/json</code>) y el cuerpo de la respuesta. No se debe asumir que todo es 200: cada caso se prueba con su código esperado.</p>
+                </div>
+              </details>
             </div>
           </section>
 
@@ -69,16 +94,22 @@
               <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
                 <p><strong>Ejercicio 1:</strong> Práctica grupal (04.11.2026) del curso práctico, con Gago Uribe Edgar Robert: un <strong>Sistema de Gestión de Productos por línea de comandos (CLI)</strong> en Python, con una clase base <code>Producto</code>, las clases derivadas <code>Electronico</code> y <code>Libro</code>, el mixin <code>DescuentoMixin</code>, encapsulamiento con <code>@property</code>, polimorfismo en <code>calcular_precio_final()</code>, excepciones propias y una estructura modular. El equipo lo planteó como un marketplace de material didáctico e instrumental para estudiantes de la Facultad.</p>
                 <p>En el reparto de roles del README, Edgar fue Arquitecto POO y Desarrollador Frontend, y yo Ingeniero de Excepciones, QA y Documentador. En el repositorio, yo agregué la suite de pruebas, el README con el diagrama UML y la explicación del MRO, y las capturas de ejecución.</p>
+                <p><strong>Ejercicio 2:</strong> Práctica individual (05.11.2026) del curso práctico: <strong>TechParts Admin</strong>, una API REST para un e-commerce de componentes de PC y hardware, con <strong>Node.js</strong>, <strong>Express</strong> y <strong>MySQL</strong> (<code>db_lab10</code>), con endpoints GET, POST, PUT y DELETE sobre el recurso <code>productos</code>, pool de conexiones <code>mysql2/promise</code>, manejo de errores HTTP y pruebas con Thunder Client. Además, agregué un panel web que Express sirve desde la carpeta <code>public</code> y consume los mismos endpoints.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
                 <ol>
                   <li>Desarrollo de las clases en la hora de teoría y en la hora de práctica.</li>
-                  <li>Diseño de la jerarquía <code>Producto</code> → <code>Electronico</code> y <code>Libro</code>, ambas con <code>DescuentoMixin</code>, y comprobación del MRO.</li>
-                  <li>Implementación de los atributos protegidos con <code>@property</code> y de sus validaciones en los setters, con el SKU, el precio y el stock en rangos definidos.</li>
-                  <li>Creación de <code>ValidationError</code> y <code>NotFoundError</code> a partir de <code>MarketplaceError</code>, y del menú de <code>main.py</code> que las captura.</li>
-                  <li>Organización en <code>main.py</code>, <code>models/</code> y <code>utils/</code> con sus <code>__init__.py</code>.</li>
-                  <li>Escritura de las pruebas con <code>unittest</code> y ejecución con <code>python -m unittest discover tests/</code>.</li>
-                  <li>Captura del caso exitoso y de las dos excepciones, y redacción del README con el diagrama de clases.</li>
+                  <li><strong>Ejercicio 1:</strong> Diseño de la jerarquía <code>Producto</code> → <code>Electronico</code> y <code>Libro</code>, ambas con <code>DescuentoMixin</code>, y comprobación del MRO.</li>
+                  <li><strong>Ejercicio 1:</strong> Implementación de los atributos protegidos con <code>@property</code> y de sus validaciones en los setters, con el SKU, el precio y el stock en rangos definidos.</li>
+                  <li><strong>Ejercicio 1:</strong> Creación de <code>ValidationError</code> y <code>NotFoundError</code> a partir de <code>MarketplaceError</code>, y del menú de <code>main.py</code> que las captura.</li>
+                  <li><strong>Ejercicio 1:</strong> Organización en <code>main.py</code>, <code>models/</code> y <code>utils/</code> con sus <code>__init__.py</code>.</li>
+                  <li><strong>Ejercicio 1:</strong> Escritura de las pruebas con <code>unittest</code> y ejecución con <code>python -m unittest discover tests/</code>.</li>
+                  <li><strong>Ejercicio 1:</strong> Captura del caso exitoso y de las dos excepciones, y redacción del README con el diagrama de clases.</li>
+                  <li><strong>Ejercicio 2:</strong> verificación de Node.js (v24.11.1), npm y Git, inicio de MySQL desde XAMPP y creación del repositorio en GitHub.</li>
+                  <li><strong>Ejercicio 2:</strong> inicialización del proyecto con <code>npm init</code>, instalación de <code>express</code>, <code>mysql2</code>, <code>cors</code>, <code>dotenv</code> y <code>nodemon</code>, y creación de las carpetas <code>src/config</code>, <code>src/controllers</code>, <code>src/routes</code>, <code>public</code> y <code>sql</code>, con <code>.env</code> en el <code>.gitignore</code>.</li>
+                  <li><strong>Ejercicio 2:</strong> creación de la base de datos <code>db_lab10</code> y la tabla <code>productos</code> con <code>sql/schema.sql</code> (21 productos de ejemplo en 8 categorías) y del pool de conexiones en <code>src/config/db.js</code>, comprobado con <code>src/test-db.js</code>.</li>
+                  <li><strong>Ejercicio 2:</strong> implementación de las rutas y del controlador con el CRUD completo, consultas preparadas y errores 400, 404, 409 y 500.</li>
+                  <li><strong>Ejercicio 2:</strong> pruebas de los cuatro verbos con Thunder Client, desarrollo del panel web y publicación de una demo estática en GitHub Pages.</li>
                   <li>Actualización del cuaderno de la asignatura.</li>
                 </ol>
               </dd></div>
@@ -86,16 +117,23 @@
                 <p>El CLI funcionó con sus seis opciones (registrar, listar, calcular el precio final, despachar, sincronizar con la web y salir). El catálogo de ejemplo muestra el polimorfismo: cada tipo de producto calcula su precio final de forma distinta.</p>
                 <div class="table-wrap"><table><caption>Precio final por tipo de producto</caption><thead><tr><th scope="col">Producto</th><th scope="col">Base</th><th scope="col">Final</th></tr></thead><tbody><tr><td>Electrónico ELEC-101, calculadora programable</td><td>S/ 940.00</td><td>S/ 1009.08</td></tr><tr><td>Electrónico ELEC-103, kit FPGA y osciloscopio</td><td>S/ 2150.00</td><td>S/ 2562.00</td></tr><tr><td>Libro LIB-201, universitario</td><td>S/ 180.00</td><td>S/ 142.56</td></tr><tr><td>Libro LIB-203, literatura</td><td>S/ 140.00</td><td>S/ 133.00</td></tr></tbody></table></div>
                 <p>Una prueba con un SKU de formato incorrecto (<code>cod-invalido</code>) lanzó <code>ValidationError</code>, y consultar un SKU inexistente (<code>ELEC-999</code>) lanzó <code>NotFoundError</code>; en los dos casos el programa mostró el mensaje y volvió al menú. Las 13 pruebas automatizadas pasaron (<code>Ran 13 tests ... OK</code>), entre ellas las del MRO, el polimorfismo, las validaciones y el stock insuficiente. Además, el catálogo se exporta a <code>web/productos.json</code> y se muestra en una página web hecha por Edgar.</p>
+                <p><strong>Ejercicio 2.</strong> El servidor Express se conectó a <code>db_lab10</code> y <code>src/test-db.js</code> confirmó la conexión con 21 productos activos. La API respondió con el contrato definido:</p>
+                <div class="table-wrap"><table><caption>Endpoints de TechParts Admin</caption><thead><tr><th scope="col">Método</th><th scope="col">Ruta</th><th scope="col">Éxito</th><th scope="col">Errores</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/productos</code> (filtros <code>?categoria=</code> y <code>?buscar=</code>)</td><td>200</td><td>500</td></tr><tr><td>GET</td><td><code>/api/productos/:id</code></td><td>200</td><td>404, 500</td></tr><tr><td>POST</td><td><code>/api/productos</code></td><td>201</td><td>400, 409, 500</td></tr><tr><td>PUT</td><td><code>/api/productos/:id</code></td><td>200</td><td>400, 404, 409, 500</td></tr><tr><td>DELETE</td><td><code>/api/productos/:id</code></td><td>200</td><td>404, 500</td></tr></tbody></table></div>
+                <p>Las pruebas con Thunder Client cubrieron el listado, la consulta por id (200 y 404), el POST (201, 400 y 409), el PUT (200), el DELETE (200 y 404) y un 500 provocado al detener MySQL. El panel <strong>TechParts Admin</strong> en <code>localhost:3000</code> muestra el inventario con indicadores, búsqueda, filtro por categoría, formulario para crear y editar, y confirmación al eliminar.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Observaciones</dt><dd>
                 <p>El MRO de las dos clases derivadas es <code>(Electronico, Producto, DescuentoMixin, object)</code> y <code>(Libro, Producto, DescuentoMixin, object)</code>. Se usó herencia para <code>Producto</code> porque un libro y un electrónico son productos, y un mixin para los descuentos porque aporta una capacidad sin ser el tipo del objeto.</p>
                 <p>El atributo del tipo de libro es privado (<code>__tipo_libro</code>) con name-mangling y solo admite <code>universitario</code> o <code>literatura</code>. El programa usa <code>typing.override</code>, por lo que necesita Python 3.12 o superior.</p>
                 <p>En <code>main.py</code> las excepciones se capturan de la más específica a la más general: <code>ValidationError</code>, <code>NotFoundError</code>, <code>MarketplaceError</code> y, al final, <code>Exception</code>.</p>
+                <p>En el Ejercicio 2 las credenciales están en <code>.env</code>, que no se sube al repositorio: solo se incluye <code>.env.example</code>. Todas las consultas usan <code>execute</code> con <code>?</code> y, en el PUT, los nombres de columna salen de una lista blanca de campos editables. La eliminación es lógica (<code>activo = 0</code>), por lo que un producto eliminado ya no aparece en el listado y devuelve 404 si se consulta.</p>
+                <p>GitHub Pages solo aloja archivos estáticos, por lo que la demo en línea simula la API en el navegador con los datos reales de la base de datos y sus cambios no se guardan; la versión completa con Express y MySQL se ejecuta en local con <code>npm run dev</code>.</p>
               </dd></div>
               <div class="lab-item span-full"><dt>Evidencia</dt><dd>
                 <ul>
                   <li>Repositorio de la práctica: <a href="https://github.com/E5gar/GuiaPracticaGrupalSemana10" target="_blank" rel="noopener">github.com/E5gar/GuiaPracticaGrupalSemana10</a> (<code>main.py</code>, <code>models/</code>, <code>utils/</code>, <code>tests/</code>, <code>web/</code> y <code>README.md</code>)</li>
                   <li>README con el diagrama de clases, el MRO y las capturas: <a href="https://github.com/E5gar/GuiaPracticaGrupalSemana10/blob/main/README.md" target="_blank" rel="noopener">README.md</a></li>
+                  <li>Repositorio del Ejercicio 2: <a href="https://github.com/stevenhuamanlazo/DAW_PRACTICA_SEM10" target="_blank" rel="noopener">github.com/stevenhuamanlazo/DAW_PRACTICA_SEM10</a> (carpetas <code>src</code>, <code>public</code>, <code>sql</code> y <code>docs</code>; el archivo <code>.env</code> no está subido)</li>
+                  <li>Demo en línea del Ejercicio 2: <a href="https://stevenhuamanlazo.github.io/DAW_PRACTICA_SEM10/" target="_blank" rel="noopener">stevenhuamanlazo.github.io/DAW_PRACTICA_SEM10</a></li>
                   <li>Archivos de evidencia: carpeta <code>assets/Sem10/</code></li>
                 </ul>
               </dd></div>
@@ -126,6 +164,63 @@
                   </figure></li>
                     </ol>
                   </div>
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica individual · TechParts Admin (API REST con Node.js, Express y MySQL)</span><span class="ex-count">13 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 2">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_01_versiones.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_01_versiones.jpg" alt="Versiones instaladas: Node.js v24.11.1, npm 11.6.2 y Git 2.51.2." loading="lazy" /></a>
+                    <figcaption>Versiones instaladas: Node.js v24.11.1, npm 11.6.2 y Git 2.51.2.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_02_xampp_mysql.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_02_xampp_mysql.jpg" alt="XAMPP con el módulo MySQL en ejecución (puerto 3306)." loading="lazy" /></a>
+                    <figcaption>XAMPP con el módulo MySQL en ejecución (puerto 3306).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_03_repo_github.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_03_repo_github.jpg" alt="Repositorio DAW_PRACTICA_SEM10 creado en GitHub." loading="lazy" /></a>
+                    <figcaption>Repositorio DAW_PRACTICA_SEM10 creado en GitHub.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_04_estructura_npm.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_04_estructura_npm.jpg" alt="Estructura inicial del proyecto, package.json con dependencias e instalación con npm." loading="lazy" /></a>
+                    <figcaption>Estructura inicial del proyecto, package.json con dependencias e instalación con npm.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_05_git_status.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_05_git_status.jpg" alt="git status: el archivo .env y node_modules no aparecen para ser subidos." loading="lazy" /></a>
+                    <figcaption>git status: el archivo .env y node_modules no aparecen para ser subidos.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_06_primer_commit.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_06_primer_commit.jpg" alt="Primer commit y push al repositorio de GitHub." loading="lazy" /></a>
+                    <figcaption>Primer commit y push al repositorio de GitHub.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_07_archivos_db.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_07_archivos_db.jpg" alt="Archivos de base de datos creados: sql/schema.sql, src/config/db.js y src/test-db.js." loading="lazy" /></a>
+                    <figcaption>Archivos de base de datos creados: sql/schema.sql, src/config/db.js y src/test-db.js.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_08_phpmyadmin_datos.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_08_phpmyadmin_datos.jpg" alt="phpMyAdmin: tabla productos de db_lab10 con los datos cargados." loading="lazy" /></a>
+                    <figcaption>phpMyAdmin: tabla productos de db_lab10 con los datos cargados.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_09_phpmyadmin_estructura.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_09_phpmyadmin_estructura.jpg" alt="phpMyAdmin: estructura de la tabla productos." loading="lazy" /></a>
+                    <figcaption>phpMyAdmin: estructura de la tabla productos.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_10_db_js_conexion.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_10_db_js_conexion.jpg" alt="db.js y prueba de conexión exitosa a db_lab10 (21 productos activos)." loading="lazy" /></a>
+                    <figcaption>db.js y prueba de conexión exitosa a db_lab10 (21 productos activos).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_11_get_productos.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_11_get_productos.jpg" alt="GET /api/productos devolviendo el listado de productos en JSON." loading="lazy" /></a>
+                    <figcaption>GET /api/productos devolviendo el listado de productos en JSON.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_12_panel_admin.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_12_panel_admin.jpg" alt="Panel TechParts Admin en http://localhost:3000, conectado a la API." loading="lazy" /></a>
+                    <figcaption>Panel TechParts Admin en http://localhost:3000, conectado a la API.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem10/s10_p2_13_estructura_final.jpg" target="_blank" rel="noopener"><img src="assets/Sem10/s10_p2_13_estructura_final.jpg" alt="Estructura final del proyecto e historial de commits subido a GitHub." loading="lazy" /></a>
+                    <figcaption>Estructura final del proyecto e historial de commits subido a GitHub.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
                 </div>
               </dd></div>
               <div class="lab-item span-full">
@@ -134,413 +229,314 @@
                   <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
                     <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
                     <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Modelos, excepciones, validaciones y pruebas</span><span class="ex-count">5 archivos</span></div>
-                    <figure class="code-file"><p class="file-name">models/descuento.py</p>
-<pre><code>class DescuentoMixin:
-    def aplicar_descuento_semestre(self, precio: float, porcentaje: float = 15.0) -&gt; float:
-        if porcentaje &lt; 0 or porcentaje &gt; 100:
-            return precio
-        monto_descuento = precio * (porcentaje / 100.0)
-        return max(0.0, precio - monto_descuento)
-
-    def obtener_beneficio_estudiantil(self) -&gt; str:
-        return "Bono de Ciclo Académico: Envío de instrumental asegurado y garantía extendida de laboratorio."</code></pre></figure><figure class="code-file"><p class="file-name">models/producto.py</p>
-<pre><code>from __future__ import annotations
-from typing import override
-from utils.validators import validar_sku, validar_texto, validar_numero, validar_tipo_libro
-from utils.exceptions import ValidationError
-from .descuento import DescuentoMixin
-
-
-class Producto:
-    def __init__(self, sku: str, nombre: str, precio_base: float, stock: int, imagen_url: str = ""):
-        self.sku = sku
-        self.nombre = nombre
-        self.precio_base = precio_base
-        self.stock = stock
-        self.imagen_url = imagen_url
-
-    @property
-    def sku(self) -&gt; str:
-        return self._sku
-
-    @sku.setter
-    def sku(self, valor: str):
-        self._sku = validar_sku(valor)
-
-    @property
-    def nombre(self) -&gt; str:
-        return self._nombre
-
-    @nombre.setter
-    def nombre(self, valor: str):
-        self._nombre = validar_texto(valor, campo="nombre", min_len=3, max_len=100)
-
-    @property
-    def precio_base(self) -&gt; float:
-        return self._precio_base
-
-    @precio_base.setter
-    def precio_base(self, valor: float):
-        self._precio_base = float(validar_numero(valor, tipo=float, min_val=0.5, max_val=25000.0, campo="precio_base"))
-
-    @property
-    def stock(self) -&gt; int:
-        return self._stock
-
-    @stock.setter
-    def stock(self, valor: int):
-        self._stock = int(validar_numero(valor, tipo=int, min_val=0, max_val=10000, campo="stock"))
-
-    @property
-    def imagen_url(self) -&gt; str:
-        return self._imagen_url
-
-    @imagen_url.setter
-    def imagen_url(self, valor: str):
-        self._imagen_url = valor.strip() if valor else "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"
-
-    def reducir_stock(self, cantidad: int = 1):
-        if cantidad &gt; self._stock:
-            raise ValidationError(f"Stock insuficiente ({self._stock} disponible) para despachar {cantidad} unidades", campo="stock")
-        self._stock -= cantidad
-
-    def calcular_precio_final(self) -&gt; float:
-        raise NotImplementedError("Las clases derivadas deben implementar calcular_precio_final()")
-
-    def to_dict(self) -&gt; dict:
-        return {
-            "sku": self.sku,
-            "nombre": self.nombre,
-            "tipo": self.__class__.__name__,
-            "precio_base": self.precio_base,
-            "stock": self.stock,
-            "imagen_url": self.imagen_url,
-            "precio_final": self.calcular_precio_final()
-        }
-
-    def __str__(self) -&gt; str:
-        return f"[{self.__class__.__name__}] {self._sku} - {self._nombre} | Base: S/ {self._precio_base:.2f} | Stock: {self._stock}"
-
-    def __del__(self):
-        pass
-
-
-class Electronico(Producto, DescuentoMixin):
-    def __init__(self, sku: str, nombre: str, precio_base: float, stock: int, garantia_meses: int, garantia_estudiantil: bool = True, imagen_url: str = ""):
-        super().__init__(sku, nombre, precio_base, stock, imagen_url)
-        self.garantia_meses = garantia_meses
-        self._garantia_estudiantil = bool(garantia_estudiantil)
-
-    @property
-    def garantia_meses(self) -&gt; int:
-        return self._garantia_meses
-
-    @garantia_meses.setter
-    def garantia_meses(self, valor: int):
-        self._garantia_meses = int(validar_numero(valor, tipo=int, min_val=0, max_val=60, campo="garantia_meses"))
-
-    @property
-    def garantia_estudiantil(self) -&gt; bool:
-        return self._garantia_estudiantil
-
-    def calcular_costo_envio(self) -&gt; float:
-        if self._stock &lt;= 5:
-            return 25.0
-        return 12.0
-
-    @override
-    def calcular_precio_final(self) -&gt; float:
-        igv = self.precio_base * 0.18
-        costo_base_con_impuesto = self.precio_base + igv
-        costo_envio = self.calcular_costo_envio()
-        
-        precio_acumulado = costo_base_con_impuesto + costo_envio
-        
-        if self._garantia_estudiantil:
-            precio_acumulado = self.aplicar_descuento_semestre(precio_acumulado, porcentaje=10.0)
-            
-        if self._stock &gt; 30:
-            precio_acumulado -= (self.precio_base * 0.05)
-            
-        return round(precio_acumulado, 2)
-
-    @override
-    def to_dict(self) -&gt; dict:
-        data = super().to_dict()
-        data.update({
-            "garantia_meses": self.garantia_meses,
-            "garantia_estudiantil": self._garantia_estudiantil,
-            "costo_envio": self.calcular_costo_envio()
-        })
-        return data
-
-    @override
-    def __str__(self) -&gt; str:
-        base_str = super().__str__()
-        promo = "Garantía Académica Activa" if self._garantia_estudiantil else "Garantía Regular"
-        return f"{base_str} | {self._garantia_meses} meses ({promo}) | Final: S/ {self.calcular_precio_final():.2f}"
-
-
-class Libro(Producto, DescuentoMixin):
-    def __init__(self, sku: str, nombre: str, precio_base: float, stock: int, autor: str, tipo_libro: str = "universitario", imagen_url: str = ""):
-        super().__init__(sku, nombre, precio_base, stock, imagen_url)
-        self.autor = autor
-        self.__tipo_libro = validar_tipo_libro(tipo_libro)
-
-    @property
-    def autor(self) -&gt; str:
-        return self._autor
-
-    @autor.setter
-    def autor(self, valor: str):
-        self._autor = validar_texto(valor, campo="autor", min_len=3, max_len=80)
-
-    @property
-    def tipo_libro(self) -&gt; str:
-        return self.__tipo_libro
-
-    @tipo_libro.setter
-    def tipo_libro(self, valor: str):
-        self.__tipo_libro = validar_tipo_libro(valor)
-
-    @override
-    def calcular_precio_final(self) -&gt; float:
-        subtotal = self.precio_base
-        if self.__tipo_libro == "universitario":
-            subtotal = subtotal * 0.90
-            subtotal = self.aplicar_descuento_semestre(subtotal, porcentaje=12.0)
-        else:
-            subtotal = self.aplicar_descuento_semestre(subtotal, porcentaje=5.0)
-        return round(subtotal, 2)
-
-    @override
-    def to_dict(self) -&gt; dict:
-        data = super().to_dict()
-        data.update({
-            "autor": self.autor,
-            "tipo_libro": self.__tipo_libro
-        })
-        return data
-
-    @override
-    def __str__(self) -&gt; str:
-        base_str = super().__str__()
-        return f"{base_str} | Autor: {self._autor} | Cat: {self.__tipo_libro.capitalize()} | Final: S/ {self.calcular_precio_final():.2f}"</code></pre></figure><figure class="code-file"><p class="file-name">utils/exceptions.py</p>
-<pre><code>class MarketplaceError(Exception):
-    def __init__(self, mensaje: str, codigo_error: str = "ERR_GENERAL"):
-        super().__init__(mensaje)
-        self.codigo_error = codigo_error
-        self.mensaje = mensaje
-
-    def __str__(self) -&gt; str:
-        return f"[{self.codigo_error}] {self.mensaje}"
-
-
-class ValidationError(MarketplaceError):
-    def __init__(self, mensaje: str, campo: str = "desconocido"):
-        super().__init__(mensaje, codigo_error="ERR_VALIDACION")
-        self.campo = campo
-
-    def __str__(self) -&gt; str:
-        return f"[{self.codigo_error}] Campo '{self.campo}': {self.mensaje}"
-
-
-class NotFoundError(MarketplaceError):
-    def __init__(self, entidad: str, identificador: str | int):
-        mensaje = f"No se encontró {entidad} con identificador '{identificador}'"
-        super().__init__(mensaje, codigo_error="ERR_NO_ENCONTRADO")
-        self.entidad = entidad
-        self.identificador = identificador</code></pre></figure><figure class="code-file"><p class="file-name">utils/validators.py</p>
-<pre><code>import re
-from .exceptions import ValidationError
-
-
-def validar_numero(valor: str | float | int, tipo: type = float, min_val: float = 0, max_val: float | None = None, campo: str = "número") -&gt; float | int:
-    try:
-        num = tipo(valor)
-    except (ValueError, TypeError):
-        raise ValidationError(f"El valor '{valor}' debe ser de tipo numérico ({tipo.__name__})", campo=campo)
-
-    if num &lt; min_val:
-        raise ValidationError(f"El valor {num} no puede ser menor a {min_val}", campo=campo)
-    if max_val is not None and num &gt; max_val:
-        raise ValidationError(f"El valor {num} no puede superar el límite de {max_val}", campo=campo)
-    return num
-
-
-def validar_texto(valor: str, campo: str, min_len: int = 2, max_len: int = 120) -&gt; str:
-    if not isinstance(valor, str):
-        raise ValidationError("El valor proporcionado debe ser una cadena de texto", campo=campo)
-    texto = valor.strip()
-    if len(texto) &lt; min_len:
-        raise ValidationError(f"Debe contener al menos {min_len} caracteres", campo=campo)
-    if len(texto) &gt; max_len:
-        raise ValidationError(f"No puede exceder los {max_len} caracteres", campo=campo)
-    return texto
-
-
-def validar_sku(sku: str) -&gt; str:
-    sku_limpio = validar_texto(sku, campo="SKU", min_len=4, max_len=15).upper()
-    patron = r"^[A-Z]{2,4}-\d{3,6}$"
-    if not re.match(patron, sku_limpio):
-        raise ValidationError(f"Formato inválido. Debe seguir el patrón 'PRE-1234' (Ej: ELEC-101, LIB-204)", campo="SKU")
-    return sku_limpio
-
-
-def validar_categoria(categoria: str) -&gt; str:
-    cat_normalizada = validar_texto(categoria, campo="categoría").lower()
-    categorias_validas = {"electronico", "libro"}
-    if cat_normalizada not in categorias_validas:
-        raise ValidationError(f"Categoría '{cat_normalizada}' no admitida. Opciones: {list(categorias_validas)}", campo="categoría")
-    return cat_normalizada
-
-
-def validar_tipo_libro(tipo: str) -&gt; str:
-    tipo_normalizado = validar_texto(tipo, campo="tipo_libro").lower()
-    tipos_validos = {"universitario", "literatura"}
-    if tipo_normalizado not in tipos_validos:
-        raise ValidationError(f"Tipo de libro inválido. Debe ser 'universitario' o 'literatura'", campo="tipo_libro")
-    return tipo_normalizado</code></pre></figure><figure class="code-file"><p class="file-name">tests/test_marketplace.py</p>
-<pre><code>import unittest
-from models.producto import Producto, Electronico, Libro
-from models.descuento import DescuentoMixin
-from utils.exceptions import ValidationError, NotFoundError
-
-
-class TestMarketplacePOO(unittest.TestCase):
-
-    def test_creacion_electronico_ruta_feliz(self):
-        item = Electronico(
-            sku="ELEC-880",
-            nombre="Osciloscopio Digital de Laboratorio",
-            precio_base=1200.0,
-            stock=10,
-            garantia_meses=24,
-            garantia_estudiantil=True
-        )
-        self.assertEqual(item.sku, "ELEC-880")
-        self.assertEqual(item.precio_base, 1200.0)
-        self.assertEqual(item.stock, 10)
-        self.assertEqual(item.garantia_meses, 24)
-        self.assertTrue(item.garantia_estudiantil)
-
-    def test_polimorfismo_precio_final_electronico(self):
-        item = Electronico(
-            sku="ELEC-881",
-            nombre="Calculadora Programable Avanzada",
-            precio_base=100.0,
-            stock=10,
-            garantia_meses=12,
-            garantia_estudiantil=True
-        )
-        precio_esperado = round((118.0 + 12.0) * 0.90, 2)
-        self.assertEqual(item.calcular_precio_final(), precio_esperado)
-
-    def test_polimorfismo_precio_final_libro_universitario(self):
-        libro = Libro(
-            sku="LIB-301",
-            nombre="Compiladores: Principios, Técnicas y Herramientas",
-            precio_base=200.0,
-            stock=20,
-            autor="Aho, Lam, Sethi, Ullman",
-            tipo_libro="universitario"
-        )
-        precio_esperado = round((200.0 * 0.90) * 0.88, 2)
-        self.assertEqual(libro.calcular_precio_final(), precio_esperado)
-
-    def test_polimorfismo_precio_final_libro_literatura(self):
-        libro = Libro(
-            sku="LIB-302",
-            nombre="Ensayo sobre la Ceguera",
-            precio_base=100.0,
-            stock=15,
-            autor="José Saramago",
-            tipo_libro="literatura"
-        )
-        precio_esperado = round(100.0 * 0.95, 2)
-        self.assertEqual(libro.calcular_precio_final(), precio_esperado)
-
-    def test_validacion_sku_formato_erroneo(self):
-        with self.assertRaises(ValidationError) as ctx:
-            Electronico(
-                sku="invalido123",
-                nombre="Gadget",
-                precio_base=50.0,
-                stock=5,
-                garantia_meses=12
-            )
-        self.assertEqual(ctx.exception.campo, "SKU")
-
-    def test_validacion_precio_negativo(self):
-        with self.assertRaises(ValidationError) as ctx:
-            Libro(
-                sku="LIB-303",
-                nombre="Física Universitaria",
-                precio_base=-15.0,
-                stock=5,
-                autor="Sears Zemansky"
-            )
-        self.assertEqual(ctx.exception.campo, "precio_base")
-
-    def test_validacion_stock_negativo(self):
-        with self.assertRaises(ValidationError) as ctx:
-            Electronico(
-                sku="ELEC-882",
-                nombre="Tablet",
-                precio_base=500.0,
-                stock=-2,
-                garantia_meses=12
-            )
-        self.assertEqual(ctx.exception.campo, "stock")
-
-    def test_validacion_garantia_excesiva(self):
-        with self.assertRaises(ValidationError) as ctx:
-            Electronico(
-                sku="ELEC-883",
-                nombre="Tablet Pro",
-                precio_base=500.0,
-                stock=10,
-                garantia_meses=99
-            )
-        self.assertEqual(ctx.exception.campo, "garantia_meses")
-
-    def test_despacho_stock_insuficiente(self):
-        item = Libro(
-            sku="LIB-304",
-            nombre="Manual de Laboratorio",
-            precio_base=40.0,
-            stock=3,
-            autor="UNCP"
-        )
-        with self.assertRaises(ValidationError):
-            item.reducir_stock(5)
-
-    def test_mro_jerarquia_c3(self):
-        mro_electronico = [cls.__name__ for cls in Electronico.__mro__]
-        self.assertEqual(mro_electronico, ["Electronico", "Producto", "DescuentoMixin", "object"])
-
-        mro_libro = [cls.__name__ for cls in Libro.__mro__]
-        self.assertEqual(mro_libro, ["Libro", "Producto", "DescuentoMixin", "object"])
-
-    def test_excepcion_clase_base_directa(self):
-        prod = Producto(sku="BASE-001", nombre="Producto Abstracto", precio_base=10.0, stock=1)
-        with self.assertRaises(NotImplementedError):
-            prod.calcular_precio_final()
-
-    def test_mixin_heredado_por_derivadas(self):
-        self.assertTrue(issubclass(Electronico, DescuentoMixin))
-        self.assertTrue(issubclass(Libro, DescuentoMixin))
-        self.assertEqual(DescuentoMixin().aplicar_descuento_semestre(100.0, 150.0), 100.0)
-
-    def test_not_found_error_mensaje(self):
-        with self.assertRaises(NotFoundError) as ctx:
-            raise NotFoundError(entidad="Material Didáctico", identificador="ELEC-999")
-        self.assertEqual(ctx.exception.codigo_error, "ERR_NO_ENCONTRADO")
-        self.assertIn("ELEC-999", str(ctx.exception))
-
-
-if __name__ == "__main__":
-    unittest.main()</code></pre></figure>
+                    Estructura final del proyecto e historial de commits subido a GitHub.
+                  </div>
+                    <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">TechParts Admin · base de datos, servidor, rutas y controlador</span><span class="ex-count">6 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">sql/schema.sql</p>
+<pre><code>-- =====================================================
+-- db_lab10 · TechParts Admin (E-commerce de hardware)
+-- =====================================================
+CREATE DATABASE IF NOT EXISTS db_lab10
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE db_lab10;
+
+DROP TABLE IF EXISTS productos;
+
+CREATE TABLE productos (
+  id               INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  sku              VARCHAR(30)   NOT NULL,
+  nombre           VARCHAR(150)  NOT NULL,
+  categoria        VARCHAR(50)   NOT NULL,
+  marca            VARCHAR(80)   NOT NULL,
+  precio           DECIMAL(10,2) NOT NULL,
+  stock            INT UNSIGNED  NOT NULL DEFAULT 0,
+  especificaciones VARCHAR(255)  NULL,
+  activo           TINYINT(1)    NOT NULL DEFAULT 1,
+  created_at       TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at       TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_productos_sku (sku),
+  KEY idx_productos_categoria (categoria),
+  CONSTRAINT chk_precio CHECK (precio &gt;= 0)
+) ENGINE=InnoDB;
+
+INSERT INTO productos (sku, nombre, categoria, marca, precio, stock, especificaciones) VALUES
+('CPU-AMD-7600',   'Ryzen 5 7600',                         'Procesadores',      'AMD',      849.00, 14, 'Socket AM5 · 6 núcleos / 12 hilos · hasta 5.1 GHz'),
+('CPU-INT-14400F', 'Core i5-14400F',                       'Procesadores',      'Intel',    799.00, 11, 'Socket LGA1700 · 10 núcleos / 16 hilos · hasta 4.7 GHz'),
+('CPU-AMD-7800X3D','Ryzen 7 7800X3D',                      'Procesadores',      'AMD',     1699.00,  5, 'Socket AM5 · 8 núcleos · 96 MB L3 con 3D V-Cache'),
+('GPU-NV-4060',    'GeForce RTX 4060 8GB',                 'Tarjetas Gráficas', 'NVIDIA',  1349.00,  9, '8 GB GDDR6 · bus 128-bit · DLSS 3'),
+('GPU-AMD-7600XT', 'Radeon RX 7600 XT 16GB',               'Tarjetas Gráficas', 'AMD',     1299.00,  3, '16 GB GDDR6 · bus 128-bit · FSR 3'),
+('GPU-NV-4070S',   'GeForce RTX 4070 Super 12GB',          'Tarjetas Gráficas', 'NVIDIA',  2899.00,  4, '12 GB GDDR6X · bus 192-bit · DLSS 3'),
+('MB-ASU-B650',    'ASUS TUF Gaming B650-Plus WiFi',       'Placas Madre',      'ASUS',     899.00,  7, 'Socket AM5 · ATX · DDR5 · WiFi 6'),
+('MB-MSI-B760',    'MSI PRO B760M-P DDR4',                 'Placas Madre',      'MSI',      459.00, 12, 'Socket LGA1700 · mATX · DDR4'),
+('MB-GIG-Z790',    'Gigabyte Z790 Aorus Elite AX',         'Placas Madre',      'Gigabyte',1189.00,  2, 'Socket LGA1700 · ATX · DDR5 · WiFi 6E'),
+('RAM-COR-16D5',   'Corsair Vengeance 16GB (2x8) DDR5-5600','Memoria RAM',      'Corsair',  289.00, 30, 'DDR5 · 5600 MHz · CL36 · kit 2x8 GB'),
+('RAM-KIN-32D4',   'Kingston Fury Beast 32GB (2x16) DDR4', 'Memoria RAM',       'Kingston', 319.00, 18, 'DDR4 · 3200 MHz · CL16 · kit 2x16 GB'),
+('RAM-GSK-32D5',   'G.Skill Trident Z5 RGB 32GB DDR5-6000','Memoria RAM',       'G.Skill',  579.00,  6, 'DDR5 · 6000 MHz · CL30 · RGB'),
+('SSD-KIN-NV2-1T', 'Kingston NV2 1TB NVMe',                'Almacenamiento',    'Kingston', 229.00, 40, 'M.2 NVMe PCIe 4.0 · hasta 3500 MB/s'),
+('SSD-SAM-990-1T', 'Samsung 990 EVO 1TB NVMe',             'Almacenamiento',    'Samsung',  389.00, 15, 'M.2 NVMe PCIe 4.0/5.0 · hasta 5000 MB/s'),
+('HDD-SEA-2T',     'Seagate Barracuda 2TB',                'Almacenamiento',    'Seagate',  259.00, 20, '3.5" SATA III · 7200 RPM · 256 MB caché'),
+('PSU-COR-RM750E', 'Corsair RM750e 750W',                  'Fuentes de Poder',  'Corsair',  489.00, 10, '80 Plus Gold · full modular · ATX 3.0'),
+('PSU-EVG-600W1',  'EVGA 600 W1 600W',                     'Fuentes de Poder',  'EVGA',     189.00,  1, '80 Plus White · no modular'),
+('COOL-DEE-AK400', 'DeepCool AK400',                       'Refrigeración',     'DeepCool', 119.00, 25, 'Disipador por aire · 4 heatpipes · ventilador 120 mm'),
+('COOL-NZX-K240',  'NZXT Kraken 240',                      'Refrigeración',     'NZXT',     549.00,  0, 'Líquida AIO 240 mm · pantalla LCD'),
+('CASE-COR-4000D', 'Corsair 4000D Airflow',                'Gabinetes',         'Corsair',  379.00,  8, 'Mid Tower ATX · vidrio templado · alto flujo de aire'),
+('CASE-NZX-H5',    'NZXT H5 Flow',                         'Gabinetes',         'NZXT',     349.00,  4, 'Mid Tower ATX · panel frontal perforado');</code></pre></figure><figure class="code-file"><p class="file-name">src/config/db.js</p>
+<pre><code>import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// Pool de conexiones: reutiliza conexiones en lugar de abrir una por petición.
+// Las credenciales vienen del archivo .env (nunca hardcodeadas).
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT) || 3306,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  charset: 'utf8mb4',
+  decimalNumbers: true, // DECIMAL llega como número (no como string) al JSON
+});
+
+export default pool;</code></pre></figure><figure class="code-file"><p class="file-name">src/app.js</p>
+<pre><code>import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import productosRoutes from './routes/productosRoutes.js';
+
+dotenv.config();
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+app.use('/api/productos', productosRoutes);
+
+// Ruta de API inexistente → 404 en JSON
+app.use('/api', (req, res) =&gt; {
+  res.status(404).json({ error: 'Ruta no encontrada' });
+});
+
+// Manejador global de errores (sin stack traces en la respuesta)
+app.use((err, req, res, next) =&gt; {
+  if (err.type === 'entity.parse.failed') {
+    return res.status(400).json({ error: 'JSON inválido en el cuerpo de la petición' });
+  }
+  console.error(err);
+  res.status(500).json({ error: 'Error interno del servidor' });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =&gt; console.log(`🚀 Servidor en http://localhost:${PORT}`));</code></pre></figure><figure class="code-file"><p class="file-name">src/routes/productosRoutes.js</p>
+<pre><code>import { Router } from 'express';
+import {
+  listarProductos,
+  obtenerProducto,
+  crearProducto,
+  actualizarProducto,
+  eliminarProducto,
+} from '../controllers/productosController.js';
+
+const router = Router();
+
+// GET    /api/productos       → lista (admite ?categoria= y ?buscar=)
+router.get('/', listarProductos);
+
+// GET    /api/productos/:id   → un producto por id
+router.get('/:id', obtenerProducto);
+
+// POST   /api/productos       → crea un producto
+router.post('/', crearProducto);
+
+// PUT    /api/productos/:id   → actualiza (total o parcial)
+router.put('/:id', actualizarProducto);
+
+// DELETE /api/productos/:id   → elimina (lógico)
+router.delete('/:id', eliminarProducto);
+
+export default router;</code></pre></figure><figure class="code-file"><p class="file-name">src/controllers/productosController.js</p>
+<pre><code>import pool from '../config/db.js';
+
+// ---------- Utilidades de validación ----------
+const CAMPOS_TEXTO_OBLIGATORIOS = ['sku', 'nombre', 'categoria', 'marca'];
+const CAMPOS_EDITABLES = ['sku', 'nombre', 'categoria', 'marca', 'precio', 'stock', 'especificaciones'];
+
+const vacio = (v) =&gt; v === undefined || v === null || String(v).trim() === '';
+const precioValido = (v) =&gt; !vacio(v) &amp;&amp; Number.isFinite(Number(v)) &amp;&amp; Number(v) &gt;= 0;
+const stockValido = (v) =&gt; !vacio(v) &amp;&amp; Number.isInteger(Number(v)) &amp;&amp; Number(v) &gt;= 0;
+
+// GET /api/productos → 200 + arreglo JSON
+export const listarProductos = async (req, res) =&gt; {
+  try {
+    const { categoria, buscar } = req.query;
+    let sql = 'SELECT * FROM productos WHERE activo = 1';
+    const params = [];
+
+    if (categoria) {
+      sql += ' AND categoria = ?';
+      params.push(categoria);
+    }
+
+    if (buscar) {
+      sql += ' AND (nombre LIKE ? OR marca LIKE ? OR sku LIKE ?)';
+      params.push(`%${buscar}%`, `%${buscar}%`, `%${buscar}%`);
+    }
+
+    sql += ' ORDER BY categoria, nombre';
+
+    const [rows] = await pool.execute(sql, params);
+
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+// GET /api/productos/:id → 200 + objeto | 404
+export const obtenerProducto = async (req, res) =&gt; {
+  try {
+    const { id } = req.params;
+
+    const [rows] = await pool.execute(
+      'SELECT * FROM productos WHERE id = ? AND activo = 1',
+      [id]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+
+    res.json(rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+// POST /api/productos → 201 + producto creado | 400 | 409
+export const crearProducto = async (req, res) =&gt; {
+  try {
+    const { sku, nombre, categoria, marca, precio, stock, especificaciones } = req.body ?? {};
+
+    if ([sku, nombre, categoria, marca].some(vacio)) {
+      return res.status(400).json({ error: 'Faltan campos obligatorios: sku, nombre, categoria y marca' });
+    }
+    if (!precioValido(precio)) {
+      return res.status(400).json({ error: 'El precio debe ser un número mayor o igual a 0' });
+    }
+    if (!stockValido(stock)) {
+      return res.status(400).json({ error: 'El stock debe ser un entero mayor o igual a 0' });
+    }
+
+    const [result] = await pool.execute(
+      `INSERT INTO productos (sku, nombre, categoria, marca, precio, stock, especificaciones)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [sku.trim(), nombre.trim(), categoria.trim(), marca.trim(), Number(precio), Number(stock), especificaciones ?? null]
+    );
+
+    const [rows] = await pool.execute('SELECT * FROM productos WHERE id = ?', [result.insertId]);
+    res.status(201).json(rows[0]);
+  } catch (error) {
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ error: 'El SKU ya existe' });
+    }
+    console.error(error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+// PUT /api/productos/:id → 200 + producto actualizado | 400 | 404 | 409
+// Actualización total o parcial: solo se modifican los campos enviados.
+export const actualizarProducto = async (req, res) =&gt; {
+  try {
+    const { id } = req.params;
+    const body = req.body ?? {};
+
+    const sets = [];
+    const params = [];
+    for (const campo of CAMPOS_EDITABLES) {
+      if (body[campo] !== undefined) {
+        sets.push(`${campo} = ?`);
+        params.push(body[campo]);
+      }
+    }
+
+    if (sets.length === 0) {
+      return res.status(400).json({ error: 'No se enviaron campos para actualizar' });
+    }
+    for (const campo of CAMPOS_TEXTO_OBLIGATORIOS) {
+      if (body[campo] !== undefined &amp;&amp; vacio(body[campo])) {
+        return res.status(400).json({ error: `El campo ${campo} no puede estar vacío` });
+      }
+    }
+    if (body.precio !== undefined &amp;&amp; !precioValido(body.precio)) {
+      return res.status(400).json({ error: 'El precio debe ser un número mayor o igual a 0' });
+    }
+    if (body.stock !== undefined &amp;&amp; !stockValido(body.stock)) {
+      return res.status(400).json({ error: 'El stock debe ser un entero mayor o igual a 0' });
+    }
+
+    const [existe] = await pool.execute(
+      'SELECT id FROM productos WHERE id = ? AND activo = 1',
+      [id]
+    );
+    if (existe.length === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+
+    params.push(id);
+    await pool.execute(`UPDATE productos SET ${sets.join(', ')} WHERE id = ?`, params);
+
+    const [rows] = await pool.execute('SELECT * FROM productos WHERE id = ?', [id]);
+    res.json(rows[0]);
+   } catch (error) {
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ error: 'El SKU ya existe' });
+    }
+    console.error(error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+// DELETE /api/productos/:id → 200 | 404  (eliminación lógica: activo = 0)
+export const eliminarProducto = async (req, res) =&gt; {
+  try {
+    const { id } = req.params;
+
+    const [existe] = await pool.execute(
+      'SELECT id FROM productos WHERE id = ? AND activo = 1',
+      [id]
+    );
+    if (existe.length === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+
+    await pool.execute('UPDATE productos SET activo = 0 WHERE id = ?', [id]);
+    res.json({ mensaje: 'Producto eliminado correctamente', id: Number(id) });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};</code></pre></figure><figure class="code-file"><p class="file-name">.env.example</p>
+<pre><code>PORT=3000
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=db_lab10</code></pre></figure>
                   </div>
                   </div>
                 </dd>
@@ -551,8 +547,8 @@ if __name__ == "__main__":
           <section class="section-block">
             <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
             <div class="entry">
-              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a diseñar una jerarquía de clases en Python con una clase base, clases derivadas y un mixin, y a comprobar su MRO. También aprendí a proteger los atributos con <code>@property</code> y a validar los valores en los setters, a sobrescribir métodos para lograr polimorfismo y a crear excepciones propias para que el programa responda a los errores sin cerrarse. Con la suite de <code>unittest</code> vi que cada regla del dominio se puede comprobar de forma automática.</p></div>
-              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>En la hora de teoría se explicaron la sintaxis de Python, la POO, las excepciones y los módulos. En la hora de práctica trabajé en equipo con Edgar mediante un repositorio de GitHub: él desarrolló los modelos, el CLI y la página web, y yo escribí las pruebas, documenté el diseño con el diagrama UML y el MRO, y capturé la ejecución del caso exitoso y de las dos excepciones. Al escribir las pruebas tuve que leer a fondo el código de los modelos y de las validaciones.</p></div>
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí a diseñar una jerarquía de clases en Python con una clase base, clases derivadas y un mixin, y a comprobar su MRO. También aprendí a proteger los atributos con <code>@property</code> y a validar los valores en los setters, a sobrescribir métodos para lograr polimorfismo y a crear excepciones propias para que el programa responda a los errores sin cerrarse. Con la suite de <code>unittest</code> vi que cada regla del dominio se puede comprobar de forma automática.</p><p>En la parte de backend con Node.js aprendí a estructurar una API REST con Express en rutas y controladores, a conectarla a MySQL con un pool de conexiones y consultas preparadas, a devolver el código de estado correcto en cada caso (200, 201, 400, 404, 409 y 500) y a proteger las credenciales con <code>.env</code>.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>En la hora de teoría se explicaron la sintaxis de Python, la POO, las excepciones y los módulos. En la hora de práctica trabajé en equipo con Edgar mediante un repositorio de GitHub: él desarrolló los modelos, el CLI y la página web, y yo escribí las pruebas, documenté el diseño con el diagrama UML y el MRO, y capturé la ejecución del caso exitoso y de las dos excepciones. Al escribir las pruebas tuve que leer a fondo el código de los modelos y de las validaciones. En la práctica individual de Node.js seguí los cinco pasos de la guía, versioné cada etapa en un commit aparte y probé cada endpoint con Thunder Client.</p></div>
             </div>
           </section>
         </article>
