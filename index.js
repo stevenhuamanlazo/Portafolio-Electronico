@@ -18,6 +18,7 @@
     null,
     { t: "Backend web: PHP y JSP", d: "Apache, Tomcat, ciclo HTTP, sesiones y registro de contacto", r: "<strong>Backend.</strong> Comprendí cómo se atiende una petición en el servidor, la diferencia entre el ciclo de vida de PHP y el de JSP, y por qué hay que validar en el servidor y escapar la salida." },
     { t: "Python, POO y API REST con Node.js", d: "Gestión de productos en Python, y TechParts Admin con Express y MySQL", r: "<strong>Python y backend.</strong> Aprendí a diseñar clases con herencia y mixins, a validar con @property y a crear excepciones propias. También a armar una API REST con Express y MySQL usando pool de conexiones, consultas preparadas y los códigos de estado correctos." },
+    { t: "Introducción a Django", d: "Arquitecturas backend, MTV, rutas, vistas, plantillas, modelos y TechDrop", r: "<strong>Django.</strong> Aprendí el patrón MTV: rutas con include(), vistas FBV y CBV, plantillas con herencia y modelos con el ORM, migraciones y QuerySets lazy, y a dejar la lógica de las consultas en el modelo." },
   ];
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

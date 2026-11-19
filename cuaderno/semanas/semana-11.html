@@ -1,0 +1,558 @@
+<!-- Semana 11: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-11">
+        <div class="week-marker" aria-hidden="true">11</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 11</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <p class="hint">(Desarrollo backend: arquitecturas, lenguajes y gestores de bases de datos; introducción a Django: MTV, URLs, vistas, plantillas y modelos)</p>
+            <div class="entry">
+              <details class="topic" open>
+                <summary>Lenguajes y frameworks para el backend</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><caption>Lenguajes de backend y sus frameworks más usados</caption><thead><tr><th scope="col">Lenguaje</th><th scope="col">Frameworks y herramientas</th></tr></thead><tbody><tr><td>PHP</td><td>Laravel, Symfony, CodeIgniter, CakePHP</td></tr><tr><td>Java</td><td>Spring, Dropwizard</td></tr><tr><td>Python</td><td>Django, Pyramid, web2py, Flask</td></tr></tbody></table></div>
+                  <p>Un <strong>framework</strong> ya trae la estructura del proyecto, el enrutamiento y el acceso a la base de datos, de modo que el desarrollador se concentra en la lógica de su aplicación.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Gestores de bases de datos</summary>
+                <div class="topic-body">
+                  <ul>
+                    <li><strong>Relacionales (SQL):</strong> SQLite, MySQL, MariaDB, PostgreSQL, Microsoft SQL Server y Oracle.</li>
+                    <li><strong>No relacionales (NoSQL):</strong> MongoDB y Cassandra.</li>
+                  </ul>
+                  <p>SQLite guarda toda la base en un solo archivo y no necesita un servidor, por eso es el gestor que Django usa por defecto y el que se empleó en la práctica.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Arquitectura cliente/servidor multicapa (MPA)</summary>
+                <div class="topic-body">
+                  <p>La arquitectura en capas es una técnica del lado del servidor que se usa para separar un sistema muy complejo. En una aplicación de varias páginas (<strong>MPA</strong>) el cliente (navegador) solo pide páginas y las capas del servidor se reparten el trabajo:</p>
+                  <div class="table-wrap"><table><caption>Capas de la arquitectura multicapa</caption><thead><tr><th scope="col">Capa</th><th scope="col">Función</th></tr></thead><tbody><tr><td>Presentación</td><td>Lo que se muestra al usuario (HTML y plantillas)</td></tr><tr><td>Negocio</td><td>Las reglas y la lógica de la aplicación</td></tr><tr><td>Datos</td><td>El acceso a la información</td></tr><tr><td>Base de datos</td><td>Donde se almacena la información</td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Arquitectura hexagonal (puertos y adaptadores)</summary>
+                <div class="topic-body">
+                  <p>En la arquitectura hexagonal el <strong>dominio</strong> (entidades, repositorios y casos de uso) está en el centro y no depende de la tecnología. Alrededor están la capa de aplicación y la de infraestructura, y la comunicación con el exterior se hace mediante <strong>adaptadores</strong>:</p>
+                  <ul>
+                    <li><strong>Adaptadores primarios</strong> (los que llaman a la aplicación): controladores HTTP, endpoints de la API REST y la línea de comandos.</li>
+                    <li><strong>Adaptadores secundarios</strong> (los que la aplicación usa): la base de datos SQL, un sistema de mensajería como RabbitMQ y un servicio de correo.</li>
+                  </ul>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Introducción a Django: MTV, proyecto y app</summary>
+                <div class="topic-body">
+                  <p><strong>Django</strong> es un framework web de Python que sigue el patrón <strong>MTV</strong> (Model-Template-View). Equivale al MVC clásico así: el <strong>Model</strong> es el modelo, el <strong>Template</strong> es lo que en MVC es la vista, y la <strong>View</strong> de Django cumple el papel del controlador.</p>
+                  <div class="table-wrap"><table><caption>Elementos de un proyecto Django</caption><thead><tr><th scope="col">Elemento</th><th scope="col">Función</th></tr></thead><tbody><tr><td><code>venv</code></td><td>Entorno virtual que aísla las dependencias del proyecto</td></tr><tr><td><code>manage.py</code></td><td>Orquesta los comandos: <code>runserver</code>, <code>makemigrations</code>, <code>migrate</code>, <code>check</code>, <code>test</code></td></tr><tr><td><code>startproject</code></td><td>Crea el proyecto con <code>settings.py</code> y el <code>urls.py</code> principal</td></tr><tr><td><code>startapp</code></td><td>Crea una app, que se registra en <code>INSTALLED_APPS</code></td></tr></tbody></table></div>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>URLs y vistas: FBV y CBV</summary>
+                <div class="topic-body">
+                  <p>Las rutas se definen con <code>path()</code> en <code>urls.py</code>. Cada app tiene su propio archivo y el del proyecto lo incluye con <code>include()</code>, lo que desacopla las apps. Cada ruta lleva un <code>name</code> para resolverla en las plantillas con <code>{% url 'nombre' %}</code> en vez de escribir la dirección a mano.</p>
+                  <p>Una <strong>FBV</strong> (vista basada en función) recibe el <code>request</code> y devuelve una respuesta con <code>render()</code>. Una <strong>CBV</strong> (vista basada en clase), como <code>ListView</code> o <code>DetailView</code>, reutiliza el comportamiento de Django y se personaliza con métodos como <code>get_queryset()</code> y <code>get_context_data()</code>. En las dos, la vista arma el contexto y la lógica de negocio se delega al modelo.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Plantillas: herencia, bloques, etiquetas y filtros</summary>
+                <div class="topic-body">
+                  <p>Una plantilla base (<code>base.html</code>) define la estructura común con <code>{% block %}</code> y las demás plantillas la heredan con <code>{% extends %}</code> y rellenan los bloques. Las <strong>etiquetas</strong> (<em>tags</em>) controlan la lógica: <code>{% for %}</code> con <code>{% empty %}</code>, <code>{% if %}</code>, <code>{% include %}</code> y <code>{% url %}</code>. Los <strong>filtros</strong> transforman un valor al mostrarlo, como <code>title</code>, <code>upper</code>, <code>date</code> y <code>truncatechars</code>. Django también permite crear filtros y etiquetas propios.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Modelos, ORM, migraciones y consultas</summary>
+                <div class="topic-body">
+                  <p>Un <strong>modelo</strong> es una clase de Python que representa una tabla, y el <strong>ORM</strong> permite consultar la base sin escribir SQL. Los tipos de campo (<code>CharField</code>, <code>TextField</code>, <code>DecimalField</code>, <code>PositiveIntegerField</code>, <code>DateField</code>, <code>BooleanField</code>) definen las columnas. Los cambios del modelo se aplican con <code>makemigrations</code> y <code>migrate</code>.</p>
+                  <p>Las consultas se hacen con <code>objects.all()</code>, <code>filter()</code>, <code>exclude()</code> y <code>Q</code>. Los <strong>QuerySets son lazy</strong>: no consultan la base hasta que se evalúan (por ejemplo con <code>list()</code> o <code>count()</code>).</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Fixtures, admin de Django y trabajo colaborativo con Git</summary>
+                <div class="topic-body">
+                  <p>Un <strong>fixture</strong> es un archivo JSON con datos de ejemplo que se carga con <code>python manage.py loaddata</code>, lo que permite que todo el equipo tenga la misma base de datos sin subir <code>db.sqlite3</code>. El <strong>admin</strong> de Django se configura registrando el modelo con <code>list_display</code>, <code>list_filter</code> y <code>search_fields</code>. Para trabajar en equipo cada integrante usa su propia rama y sus cambios se integran en <code>main</code> con <em>pull requests</em>.</p>
+                </div>
+              </details>
+              <details class="topic">
+                <summary>Uso responsable de herramientas de IA</summary>
+                <div class="topic-body">
+                  <p>La regla del laboratorio pide escribir manualmente el 75% de la configuración MTV, las vistas y las plantillas, y registrar cada uso de IA con el comentario <code># IA: [problema] → Solución manual: [explicación]</code>. En esta práctica quedaron registrados tres casos: <code>TemplateDoesNotExist</code> en <code>views.py</code>, el 404 en <code>/home</code> en <code>urls.py</code> y <code>no such table</code> en <code>cargar_datos.py</code>.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 1:</strong> Práctica individual (11.11.2026) del curso práctico: construir una aplicación web con <strong>Django 5.2</strong> y SQLite que aplique el patrón MTV, con rutas en <code>urls.py</code>, una vista FBV y una CBV, plantillas con herencia y un modelo <code>Producto</code> con migraciones y consultas ORM. Desarrollé <strong>TechDrop</strong>, un catálogo e inventario de hardware y gadgets para desarrolladores (periféricos, componentes, redes e IoT).</p>
+                <p><strong>Ejercicio 2:</strong> Práctica grupal (12.11.2026) con Gago Uribe Edgar Robert: un <strong>Catálogo de Productos Tecnológicos</strong> con Django, con proyecto y app separados, dos rutas (<code>/</code> con una FBV de bienvenida y <code>/catalogo/</code> con una CBV <code>ListView</code>), plantillas con herencia y un modelo <code>Producto</code> con migraciones y QuerySets. El equipo lo desarrolló como <strong>TechHuancaTI</strong>, un catálogo de equipos de arquitectura de red (routers, firewalls, switches y access points).</p>
+                <p>En el reparto de roles del README, Edgar fue Arquitecto Django y Desarrollador de Vistas, y yo Ingeniero de Plantillas y QA &amp; ORM Validator. En el repositorio, yo escribí el modelo ampliado con su migración, el registro en el admin, el fixture con 15 productos, <code>base.html</code>, <code>catalogo.html</code> y la documentación del README.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <ol>
+                  <li>Desarrollo de las clases en la hora de teoría y en la hora de práctica.</li>
+                  <li><strong>Ejercicio 1:</strong> Paso 1: clonación del repositorio, creación del entorno virtual, instalación de Django 5.2, creación del proyecto <code>config</code> y de la app <code>tienda</code>, aplicación de las migraciones iniciales, prueba con <code>runserver</code> y registro de la app en <code>INSTALLED_APPS</code>.</li>
+                  <li><strong>Ejercicio 1:</strong> Paso 2: rutas en <code>tienda/urls.py</code> con <code>app_name</code> y <code>name</code>, incluidas en <code>config/urls.py</code> con <code>include()</code>.</li>
+                  <li><strong>Ejercicio 1:</strong> Paso 3: modelo <code>Producto</code> y vistas: la FBV <code>home</code> y la CBV <code>CatalogoView</code> (<code>ListView</code>) con <code>get_context_data()</code>.</li>
+                  <li><strong>Ejercicio 1:</strong> Paso 4: plantillas <code>base.html</code> con bloques y <code>catalogo.html</code> con <code>extends</code>, <code>for</code>, <code>if</code> y filtros, con los estilos en un archivo estático.</li>
+                  <li><strong>Ejercicio 1:</strong> Paso 5: <code>check</code>, <code>makemigrations</code> y <code>migrate</code>, carga de productos con el ORM desde el shell y consultas con <code>all()</code> y <code>filter()</code>.</li>
+                  <li><strong>Ejercicio 1:</strong> Mejoras sobre la práctica base: QuerySet propio, filtros, búsqueda, paginación, ficha de producto, panel de inventario solo para el personal, filtros y etiquetas propios y 32 pruebas.</li>
+                  <li><strong>Ejercicio 1:</strong> Un commit con push a GitHub por cada paso.</li>
+                  <li><strong>Ejercicio 2:</strong> reparto de roles y trabajo en ramas separadas (<code>Gago-Uribe</code> y <code>Huamanlazo-Pariona</code>), integradas en <code>main</code> con pull requests.</li>
+                  <li><strong>Ejercicio 2:</strong> yo amplié el modelo <code>Producto</code> con marca, descripción e imagen, creé la migración, registré el modelo en el admin y armé el fixture con 15 productos de red en 5 categorías.</li>
+                  <li><strong>Ejercicio 2:</strong> completé <code>base.html</code> con cabecera, menú con la página activa y pie de página, e implementé <code>catalogo.html</code> con herencia, filtros por categoría y estados de stock.</li>
+                  <li><strong>Ejercicio 2:</strong> validación con <code>check</code>, <code>makemigrations --check</code> y <code>loaddata</code>, prueba de <code>runserver</code> sin errores 404 ni 500 y documentación en el README del diagrama MTV, los QuerySets y la evaluación diferida.</li>
+                  <li>Actualización del cuaderno de la asignatura.</li>
+                </ol>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p>La aplicación funcionó: el servidor de desarrollo mostró la bienvenida de Django, y después de migrar y poblar los datos el catálogo en <code>/catalogo/</code> mostró las tarjetas de los productos con las etiquetas <em>Nuevo drop</em>, <em>Últimas</em> y <em>Agotado</em>. Con el shell comprobé las consultas <code>all()</code>, <code>filter(stock=0)</code>, <code>filter(categoria=...)</code> y <code>filter(es_nuevo=True)</code>, y con <code>print(qs.query)</code> vi el SQL sin ejecutar la consulta, lo que muestra la evaluación diferida. La tabla <code>tienda_producto</code> se inspeccionó con SQLite Viewer y el panel <code>/admin/</code> quedó habilitado.</p>
+                <p><strong>Ejercicio 1.</strong> Resumen de lo construido:</p>
+                <div class="table-wrap"><table><caption>Lo construido en TechDrop</caption><thead><tr><th scope="col">Elemento</th><th scope="col">Contenido</th></tr></thead><tbody><tr><td>Rutas</td><td><code>/</code> (home), <code>/catalogo/</code>, <code>/producto/&lt;id&gt;/</code>, <code>/inventario/</code> y <code>/admin/</code></td></tr><tr><td>Vistas</td><td>FBV <code>home</code> y CBV <code>CatalogoView</code>, <code>DetalleView</code> e <code>InventarioView</code></td></tr><tr><td>Plantillas</td><td><code>base.html</code>, <code>home.html</code>, <code>catalogo.html</code>, <code>detalle.html</code>, <code>inventario.html</code> y las parciales <code>_card.html</code>, <code>_icono.html</code> y <code>_menu_categorias.html</code></td></tr><tr><td>Modelo</td><td><code>Producto</code> con nombre, marca, categoría, especificaciones, precio, stock, fecha de lanzamiento y <code>es_nuevo</code></td></tr><tr><td>Pruebas</td><td>32 pruebas con el test runner de Django: <code>Ran 32 tests ... OK</code></td></tr></tbody></table></div>
+                <p><strong>Ejercicio 2.</strong> TechHuancaTI funcionó con los 15 productos del fixture. La página de inicio (<code>/</code>) muestra estadísticas calculadas desde la base de datos (15 productos registrados, 13 con stock disponible y 5 categorías) y los últimos ingresos con stock. El catálogo (<code>/catalogo/</code>) lista los 15 productos ordenados por precio, con filtros por categoría (el filtro Routers devuelve 3 productos) y las etiquetas de stock <em>Agotado</em>, <em>Quedan N</em> y <em>Disponible</em>. Las validaciones dieron <code>check</code> sin errores, <code>makemigrations --check</code> sin cambios pendientes y <code>loaddata productos</code> con 15 objetos instalados, y el registro de <code>runserver</code> mostró respuestas 200 para <code>/</code>, <code>/catalogo/</code> y <code>/catalogo/?categoria=Routers</code>.</p>
+                <div class="table-wrap"><table><caption>QuerySets utilizados en TechHuancaTI</caption><thead><tr><th scope="col">QuerySet</th><th scope="col">Dónde se usa</th></tr></thead><tbody><tr><td><code>Producto.objects.filter(stock__gt=0)</code></td><td>Vista <code>home</code> (FBV): productos con stock; se reutiliza para los 4 últimos ingresos con <code>.order_by('-creado_en')[:4]</code> y para contar con <code>.count()</code></td></tr><tr><td><code>Producto.objects.order_by('precio')</code></td><td><code>ProductoListView</code> (CBV): catálogo de menor a mayor precio; con <code>?categoria=</code> se encadena <code>.filter(categoria=...)</code></td></tr></tbody></table></div>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>Después de los cinco pasos mejoré el proyecto sin salir del alcance de la guía: el QuerySet propio (<code>disponibles()</code>, <code>agotados()</code>, <code>stock_bajo()</code>, <code>buscar()</code> y <code>estadisticas()</code>) deja la lógica en el modelo y las vistas solo lo llaman; el catálogo tiene filtros por categoría, búsqueda con <code>Q</code>, orden con lista blanca y paginación de 8 productos; la ficha de producto tiene un botón de consulta por WhatsApp con el mensaje ya escrito; y el inventario usa <code>aggregate</code> y <code>annotate</code>. La autenticación, los formularios y las sesiones propias quedan para la Semana 12.</p>
+                <p>El panel de inventario solo lo abre el personal (<code>is_staff</code>) con <code>UserPassesTestMixin</code>: sin sesión redirige al login del admin y con sesión sin permiso responde 403.</p>
+                <div class="table-wrap"><table><caption>Problemas encontrados y cómo se resolvieron</caption><thead><tr><th scope="col">Problema</th><th scope="col">Causa</th><th scope="col">Solución</th></tr></thead><tbody><tr><td>Se instaló Django 6.1.3 y la guía pide Django 5.x</td><td><code>pip</code> instala por defecto la última versión</td><td><code>pip install "django&gt;=5.2,&lt;5.3"</code> y se regeneró el proyecto</td></tr><tr><td><code>TemplateDoesNotExist</code> en <code>/</code></td><td>La vista ya apuntaba a <code>home.html</code> y la plantilla aún no existía</td><td>Se crearon las plantillas en <code>tienda/templates/tienda/</code></td></tr><tr><td>404 al abrir <code>/home</code></td><td>La ruta del inicio es la cadena vacía; <code>home</code> es solo el <code>name</code></td><td>Se abre <code>http://127.0.0.1:8000/</code></td></tr><tr><td><code>OperationalError: no such table</code></td><td>El modelo existía pero no se había migrado</td><td><code>makemigrations tienda</code> y <code>migrate</code></td></tr><tr><td>Aviso de 18 migraciones sin aplicar</td><td>Estaban pendientes las migraciones de admin, auth, contenttypes y sessions</td><td><code>migrate</code>; no se ignoró el aviso</td></tr></tbody></table></div>
+                <p>En el Ejercicio 2, la evaluación diferida se ve en la vista <code>home</code>: el QuerySet <code>disponibles</code> no consulta la base al definirse y luego genera una consulta con <code>LIMIT 4</code> al iterarlo en la plantilla y otra con <code>SELECT COUNT(*)</code> al contar, de modo que cada uso produce su propia consulta. El catálogo incluye también los productos con stock 0, que la plantilla marca como Agotado. El <code>requirements.txt</code> del grupo fija <code>Django==6.1.3</code>, mientras que en la práctica individual usé Django 5.2 como pedía la guía.</p>
+                <p>El archivo <code>db.sqlite3</code> no se sube al repositorio (está en el <code>.gitignore</code>), por eso la base se genera con <code>migrate</code> y se llena con el comando <code>cargar_datos</code>.</p>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Repositorio de la práctica: <a href="https://github.com/stevenhuamanlazo/DAW_PRACTICA_SEM11_TechDrop" target="_blank" rel="noopener">github.com/stevenhuamanlazo/DAW_PRACTICA_SEM11_TechDrop</a> (carpetas <code>config</code>, <code>tienda</code> y <code>docs</code>; sin <code>db.sqlite3</code>)</li>
+                  <li>Repositorio del Ejercicio 2: <a href="https://github.com/E5gar/GuiaPracticaGrupalSemana11" target="_blank" rel="noopener">github.com/E5gar/GuiaPracticaGrupalSemana11</a> (carpetas <code>config</code>, <code>catalogo</code>, <code>templates</code> y <code>static</code>)</li>
+                  <li>README del Ejercicio 2 con el diagrama MTV, los dos QuerySets, la evaluación diferida y las capturas: <a href="https://github.com/E5gar/GuiaPracticaGrupalSemana11/blob/main/README.md" target="_blank" rel="noopener">README.md</a></li>
+                  <li>Archivos de evidencia: carpeta <code>assets/Sem11/</code></li>
+                </ul>
+              </dd></div>
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+                  <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica individual · TechDrop con Django (pasos 1 a 5 y mejoras)</span><span class="ex-count">38 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 1">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_01_clonacion.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_01_clonacion.jpg" alt="Clonación del repositorio DAW_PRACTICA_SEM11_TechDrop desde GitHub." loading="lazy" /></a>
+                    <figcaption>Clonación del repositorio DAW_PRACTICA_SEM11_TechDrop desde GitHub.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_02_vscode_repo.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_02_vscode_repo.jpg" alt="Repositorio abierto en VS Code, con la terminal en la carpeta del proyecto (rama main)." loading="lazy" /></a>
+                    <figcaption>Repositorio abierto en VS Code, con la terminal en la carpeta del proyecto (rama main).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_03_venv_django.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_03_venv_django.jpg" alt="Entorno virtual activo: instalación de Django 5.2.19 y creación del proyecto config y de la app tienda." loading="lazy" /></a>
+                    <figcaption>Entorno virtual activo: instalación de Django 5.2.19 y creación del proyecto config y de la app tienda.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_04_migrate_inicial.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_04_migrate_inicial.jpg" alt="Migraciones iniciales aplicadas con python manage.py migrate." loading="lazy" /></a>
+                    <figcaption>Migraciones iniciales aplicadas con python manage.py migrate.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_05_bienvenida_django.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_05_bienvenida_django.jpg" alt="Servidor de desarrollo funcionando: página de bienvenida de Django 5.2." loading="lazy" /></a>
+                    <figcaption>Servidor de desarrollo funcionando: página de bienvenida de Django 5.2.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_06_installed_apps.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_06_installed_apps.jpg" alt="App tienda registrada en INSTALLED_APPS y push del Paso 1 a GitHub." loading="lazy" /></a>
+                    <figcaption>App tienda registrada en INSTALLED_APPS y push del Paso 1 a GitHub.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_07_tienda_urls.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_07_tienda_urls.jpg" alt="tienda/urls.py: app_name y rutas home y catalogo apuntando a la FBV y a la CBV." loading="lazy" /></a>
+                    <figcaption>tienda/urls.py: app_name y rutas home y catalogo apuntando a la FBV y a la CBV.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_08_config_urls.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_08_config_urls.jpg" alt="config/urls.py con include(&#x27;tienda.urls&#x27;) junto a admin/, y push del Paso 2." loading="lazy" /></a>
+                    <figcaption>config/urls.py con include(&#x27;tienda.urls&#x27;) junto a admin/, y push del Paso 2.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_09_models.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_09_models.jpg" alt="tienda/models.py: clase Producto con sus campos, choices de categoría y __str__." loading="lazy" /></a>
+                    <figcaption>tienda/models.py: clase Producto con sus campos, choices de categoría y __str__.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_10_views.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_10_views.jpg" alt="tienda/views.py: FBV home y CBV CatalogoView con get_context_data()." loading="lazy" /></a>
+                    <figcaption>tienda/views.py: FBV home y CBV CatalogoView con get_context_data().</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_11_template_does_not_exist.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_11_template_does_not_exist.jpg" alt="Ciclo solicitud-respuesta: la URL y la vista se resuelven; falta la plantilla (TemplateDoesNotExist), que se crea en el Paso 4." loading="lazy" /></a>
+                    <figcaption>Ciclo solicitud-respuesta: la URL y la vista se resuelven; falta la plantilla (TemplateDoesNotExist), que se crea en el Paso 4.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_12_push_paso3.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_12_push_paso3.jpg" alt="Push del commit del Paso 3 a GitHub." loading="lazy" /></a>
+                    <figcaption>Push del commit del Paso 3 a GitHub.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_13_base_html.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_13_base_html.jpg" alt="tienda/templates/tienda/base.html: bloques, {% url %} y archivo estático." loading="lazy" /></a>
+                    <figcaption>tienda/templates/tienda/base.html: bloques, {% url %} y archivo estático.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_14_catalogo_html.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_14_catalogo_html.jpg" alt="catalogo.html: extends, for, if/elif y filtros title, upper, date y truncatechars." loading="lazy" /></a>
+                    <figcaption>catalogo.html: extends, for, if/elif y filtros title, upper, date y truncatechars.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_15_show_urls.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_15_show_urls.jpg" alt="Verificación del enrutamiento: Django lista los patrones admin/, la ruta vacía (home) y catalogo/." loading="lazy" /></a>
+                    <figcaption>Verificación del enrutamiento: Django lista los patrones admin/, la ruta vacía (home) y catalogo/.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_16_estructura_plantillas.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_16_estructura_plantillas.jpg" alt="Estructura de plantillas y estáticos, y push del Paso 4 a GitHub." loading="lazy" /></a>
+                    <figcaption>Estructura de plantillas y estáticos, y push del Paso 4 a GitHub.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_17_antes_migrar.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_17_antes_migrar.jpg" alt="Antes de migrar: OperationalError, no existe la tabla tienda_producto." loading="lazy" /></a>
+                    <figcaption>Antes de migrar: OperationalError, no existe la tabla tienda_producto.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_18_check_migraciones.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_18_check_migraciones.jpg" alt="python manage.py check, makemigrations tienda (0001_initial) y migrate." loading="lazy" /></a>
+                    <figcaption>python manage.py check, makemigrations tienda (0001_initial) y migrate.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_19_poblar_datos.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_19_poblar_datos.jpg" alt="Población de datos con Producto.objects.create() desde el shell: 8 productos creados." loading="lazy" /></a>
+                    <figcaption>Población de datos con Producto.objects.create() desde el shell: 8 productos creados.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_20_consultas_orm.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_20_consultas_orm.jpg" alt="Consultas con el ORM: all(), filter(stock=0), filter(categoria=...) y filter(es_nuevo=True)." loading="lazy" /></a>
+                    <figcaption>Consultas con el ORM: all(), filter(stock=0), filter(categoria=...) y filter(es_nuevo=True).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_21_sqlite_viewer.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_21_sqlite_viewer.jpg" alt="SQLite Viewer: tabla tienda_producto con los 8 registros." loading="lazy" /></a>
+                    <figcaption>SQLite Viewer: tabla tienda_producto con los 8 registros.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_22_catalogo_etiquetas.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_22_catalogo_etiquetas.jpg" alt="Catálogo en /catalogo/: tarjetas con las etiquetas Nuevo drop, Últimas y Agotado." loading="lazy" /></a>
+                    <figcaption>Catálogo en /catalogo/: tarjetas con las etiquetas Nuevo drop, Últimas y Agotado.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_23_admin_login.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_23_admin_login.jpg" alt="Panel /admin/ habilitado, listo para la Semana 12." loading="lazy" /></a>
+                    <figcaption>Panel /admin/ habilitado, listo para la Semana 12.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_24_push_paso5.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_24_push_paso5.jpg" alt="Push del commit del Paso 5 (migraciones y datos de prueba)." loading="lazy" /></a>
+                    <figcaption>Push del commit del Paso 5 (migraciones y datos de prueba).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_25_inicio.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_25_inicio.jpg" alt="Página de inicio (FBV home): hero, estadísticas y accesos rápidos." loading="lazy" /></a>
+                    <figcaption>Página de inicio (FBV home): hero, estadísticas y accesos rápidos.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_26_catalogo_fotos.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_26_catalogo_fotos.jpg" alt="Catálogo (ListView) con fotos de producto, filtros y etiquetas; sin enlace Inventario para visitantes." loading="lazy" /></a>
+                    <figcaption>Catálogo (ListView) con fotos de producto, filtros y etiquetas; sin enlace Inventario para visitantes.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_27_catalogo_paginacion.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_27_catalogo_paginacion.jpg" alt="Catálogo con fotos integradas al fondo y paginación." loading="lazy" /></a>
+                    <figcaption>Catálogo con fotos integradas al fondo y paginación.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_28_devtools_network.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_28_devtools_network.jpg" alt="DevTools, pestaña Network: catalogo/ responde 200 y estilos.css se sirve desde caché." loading="lazy" /></a>
+                    <figcaption>DevTools, pestaña Network: catalogo/ responde 200 y estilos.css se sirve desde caché.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_29_ficha_producto.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_29_ficha_producto.jpg" alt="Ficha del producto con foto, especificaciones, stock y botón Consultar por WhatsApp." loading="lazy" /></a>
+                    <figcaption>Ficha del producto con foto, especificaciones, stock y botón Consultar por WhatsApp.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_30_whatsapp.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_30_whatsapp.jpg" alt="Al pulsar el botón se abre WhatsApp con el mensaje del producto ya escrito." loading="lazy" /></a>
+                    <figcaption>Al pulsar el botón se abre WhatsApp con el mensaje del producto ya escrito.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_31_inventario_login.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_31_inventario_login.jpg" alt="Sin sesión, /inventario/ redirige al login del admin (?next=/inventario/)." loading="lazy" /></a>
+                    <figcaption>Sin sesión, /inventario/ redirige al login del admin (?next=/inventario/).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_32_inventario_panel.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_32_inventario_panel.jpg" alt="Con sesión de usuario Admin: panel de inventario calculado con aggregate y annotate." loading="lazy" /></a>
+                    <figcaption>Con sesión de usuario Admin: panel de inventario calculado con aggregate y annotate.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_33_admin_productos.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_33_admin_productos.jpg" alt="Panel /admin/: los 12 productos con stock y es_nuevo editables." loading="lazy" /></a>
+                    <figcaption>Panel /admin/: los 12 productos con stock y es_nuevo editables.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_34_lazy_query.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_34_lazy_query.jpg" alt="Evaluación diferida: print(qs.query) muestra el SQL sin consultar; count() y list() ejecutan la consulta." loading="lazy" /></a>
+                    <figcaption>Evaluación diferida: print(qs.query) muestra el SQL sin consultar; count() y list() ejecutan la consulta.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_35_tests.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_35_tests.jpg" alt="python manage.py test: Ran 32 tests, OK; check sin problemas." loading="lazy" /></a>
+                    <figcaption>python manage.py test: Ran 32 tests, OK; check sin problemas.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_36_comentarios_ia.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_36_comentarios_ia.jpg" alt="Comentarios # IA: [problema] → Solución manual: [explicación] en views.py, urls.py y cargar_datos.py (Select-String)." loading="lazy" /></a>
+                    <figcaption>Comentarios # IA: [problema] → Solución manual: [explicación] en views.py, urls.py y cargar_datos.py (Select-String).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_37_push_final.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_37_push_final.jpg" alt="Commit y push de la última mejora (60965ed)." loading="lazy" /></a>
+                    <figcaption>Commit y push de la última mejora (60965ed).</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p1_38_repo_github.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p1_38_repo_github.jpg" alt="Repositorio público en GitHub con 10 commits." loading="lazy" /></a>
+                    <figcaption>Repositorio público en GitHub con 10 commits.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica grupal · TechHuancaTI, catálogo de equipos de red</span><span class="ex-count">7 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 2">
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p2_01_inicio.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p2_01_inicio.jpg" alt="Página web desarrollada: inicio de TechHuancaTI con estadísticas de la base de datos." loading="lazy" /></a>
+                    <figcaption>Página web desarrollada: inicio de TechHuancaTI con estadísticas de la base de datos.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p2_02_catalogo.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p2_02_catalogo.jpg" alt="Página de catálogo con los 15 productos ordenados por precio." loading="lazy" /></a>
+                    <figcaption>Página de catálogo con los 15 productos ordenados por precio.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p2_03_filtro_routers.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p2_03_filtro_routers.jpg" alt="Catálogo filtrado por la categoría Routers." loading="lazy" /></a>
+                    <figcaption>Catálogo filtrado por la categoría Routers.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p2_04_estados_stock.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p2_04_estados_stock.jpg" alt="Estados de stock en el catálogo: Agotado, Quedan N y Disponible." loading="lazy" /></a>
+                    <figcaption>Estados de stock en el catálogo: Agotado, Quedan N y Disponible.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p2_05_estructura.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p2_05_estructura.jpg" alt="Estructura de carpetas del proyecto: config, catalogo, templates y static." loading="lazy" /></a>
+                    <figcaption>Estructura de carpetas del proyecto: config, catalogo, templates y static.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p2_06_validacion.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p2_06_validacion.jpg" alt="Validación en terminal: check, makemigrations --check y loaddata." loading="lazy" /></a>
+                    <figcaption>Validación en terminal: check, makemigrations --check y loaddata.</figcaption>
+                  </figure></li>
+                    <li><figure class="shot-card">
+                    <a class="shot-link" href="assets/Sem11/s11_p2_07_runserver_200.jpg" target="_blank" rel="noopener"><img src="assets/Sem11/s11_p2_07_runserver_200.jpg" alt="Servidor sin errores 404 ni 500: respuestas 200 en el registro de runserver." loading="lazy" /></a>
+                    <figcaption>Servidor sin errores 404 ni 500: respuestas 200 en el registro de runserver.</figcaption>
+                  </figure></li>
+                    </ol>
+                  </div>
+                </div>
+              </dd></div>
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+                    <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Rutas, vistas, modelo, plantillas y etiquetas propias</span><span class="ex-count">9 archivos</span></div>
+                    Servidor sin errores 404 ni 500: respuestas 200 en el registro de runserver.
+                  </div>
+                    <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">TechHuancaTI · rutas, vistas, modelo, admin y plantillas</span><span class="ex-count">7 archivos</span></div>
+                    <figure class="code-file"><p class="file-name">config/urls.py</p>
+<pre><code># Parte de Gago
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('catalogo.urls')),
+]</code></pre></figure><figure class="code-file"><p class="file-name">catalogo/urls.py</p>
+<pre><code># Parte de Gago
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('catalogo/', views.ProductoListView.as_view(), name='catalogo'),
+]</code></pre></figure><figure class="code-file"><p class="file-name">catalogo/views.py</p>
+<pre><code># Parte de Gago
+from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Producto
+
+
+def home(request):
+    disponibles = Producto.objects.filter(stock__gt=0)
+    contexto = {
+        'destacados': disponibles.order_by('-creado_en')[:4],
+        'total_productos': Producto.objects.count(),
+        'total_disponibles': disponibles.count(),
+        'total_categorias': Producto.objects.order_by().values('categoria').distinct().count(),
+    }
+    return render(request, 'home.html', contexto)
+
+
+class ProductoListView(ListView):
+    model = Producto
+    template_name = 'catalogo.html'
+    context_object_name = 'productos'
+
+    def get_queryset(self):
+        queryset = Producto.objects.order_by('precio')
+        categoria = self.request.GET.get('categoria')
+        if categoria:
+            queryset = queryset.filter(categoria=categoria)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        contexto['categorias'] = (
+            Producto.objects.order_by('categoria')
+            .values_list('categoria', flat=True)
+            .distinct()
+        )
+        contexto['categoria_activa'] = self.request.GET.get('categoria', '')
+        return contexto</code></pre></figure><figure class="code-file"><p class="file-name">catalogo/models.py</p>
+<pre><code># Parte de Huamanlazo
+from django.db import models
+
+class Producto(models.Model):
+    nombre = models.CharField(max_length=100)
+    precio = models.DecimalField(max_digits=8, decimal_places=2)
+    categoria = models.CharField(max_length=50)
+    stock = models.PositiveIntegerField()
+    creado_en = models.DateTimeField(auto_now_add=True)
+    marca = models.CharField(max_length=50, blank=True)
+    descripcion = models.CharField(max_length=200, blank=True)
+    imagen_url = models.URLField(max_length=500, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Productos"
+        ordering = ["-creado_en"]
+
+    def __str__(self):
+        return f"{self.marca} {self.nombre}".strip()</code></pre></figure><figure class="code-file"><p class="file-name">catalogo/admin.py</p>
+<pre><code># Parte de Huamanlazo
+from django.contrib import admin
+from .models import Producto
+
+
+@admin.register(Producto)
+class ProductoAdmin(admin.ModelAdmin):
+    list_display = ("nombre", "marca", "categoria", "precio", "stock")
+    list_filter = ("categoria",)
+    search_fields = ("nombre", "marca")</code></pre></figure><figure class="code-file"><p class="file-name">templates/base.html</p>
+<pre><code>{# Parte de Huamanlazo #} {% load static %}
+&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;title&gt;{% block title %}TechHuancaTI{% endblock %}&lt;/title&gt;
+    &lt;link rel="icon" type="image/png" href="{% static 'img/icon-uncp.png' %}" /&gt;
+    &lt;link rel="stylesheet" href="{% static 'css/styles.css' %}" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;nav&gt;
+        &lt;a class="brand" href="{% url 'home' %}"&gt;
+          &lt;img class="brand__logo" src="{% static 'img/icon-uncp.png' %}" alt="Lorem ipsum dolor" /&gt;
+          &lt;span class="brand__sep"&gt;&lt;/span&gt;
+          &lt;img class="brand__logo" src="{% static 'img/icon-fis.png' %}" alt="Lorem ipsum dolor" /&gt;
+          &lt;span class="brand__mark"&gt;TechHuancaTI&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}&gt;&lt;i data-lucide="house"&gt;&lt;/i&gt; Inicio&lt;/a&gt;
+        &lt;a href="{% url 'catalogo' %}" {% if request.resolver_match.url_name == 'catalogo' %}aria-current="page"{% endif %}&gt;&lt;i data-lucide="server"&gt;&lt;/i&gt; Catálogo&lt;/a&gt;
+        &lt;span class="nav__spacer"&gt;&lt;/span&gt;
+        &lt;a class="btn btn--primary btn--sm" href="{% url 'home' %}#contacto"&gt;&lt;i data-lucide="phone"&gt;&lt;/i&gt; Contacto&lt;/a&gt;
+      &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main&gt;{% block content %}{% endblock %}&lt;/main&gt;
+    &lt;footer&gt;
+      &lt;div class="footer__inner"&gt;
+        &lt;div class="footer__grid"&gt;
+          &lt;div&gt;
+            &lt;p class="footer__title"&gt;TechHuancaTI&lt;/p&gt;
+            &lt;p&gt;Catálogo de equipos de arquitectura de red: routers, firewalls, switches y access points para datacenters y redes corporativas.&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;p class="footer__title"&gt;Navegación&lt;/p&gt;
+            &lt;ul class="footer__list"&gt;
+              &lt;li&gt;&lt;a href="{% url 'home' %}"&gt;&lt;i data-lucide="house"&gt;&lt;/i&gt; Inicio&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="{% url 'catalogo' %}"&gt;&lt;i data-lucide="server"&gt;&lt;/i&gt; Catálogo&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;p class="footer__title"&gt;Contacto&lt;/p&gt;
+            &lt;ul class="footer__list"&gt;
+              &lt;li&gt;&lt;a href="tel:+51931425914"&gt;&lt;i data-lucide="phone"&gt;&lt;/i&gt; +51 931 425 914&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="mailto:contacto@techhuancati.pe"&gt;&lt;i data-lucide="mail"&gt;&lt;/i&gt; contacto@techhuancati.pe&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="footer__legal"&gt;
+          &lt;span&gt;&amp;copy; 2026 FIS UNCP - Django MTV - Desarrollo de Aplicaciones Web - Gago Uribe Edgar Robert - Huamanlazo Pariona Steven Luis&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/footer&gt;
+    &lt;script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      lucide.createIcons();
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></figure><figure class="code-file"><p class="file-name">templates/catalogo.html</p>
+<pre><code>{# Parte de Huamanlazo #}
+{% extends "base.html" %}
+
+{% block title %}Catálogo de Productos{% endblock %}
+
+{% block content %}
+&lt;section class="section"&gt;
+    &lt;div class="section__head"&gt;
+        &lt;h2&gt;Catálogo de equipos de red&lt;/h2&gt;
+        &lt;span class="section__index"&gt;{{ productos|length }} resultados&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class="filterbar"&gt;
+        &lt;a class="chip{% if not categoria_activa %} chip--active{% endif %}" href="{% url 'catalogo' %}"&gt;Todos&lt;/a&gt;
+        {% for c in categorias %}
+        &lt;a class="chip{% if c == categoria_activa %} chip--active{% endif %}" href="{% url 'catalogo' %}?categoria={{ c|urlencode }}"&gt;{{ c }}&lt;/a&gt;
+        {% endfor %}
+    &lt;/div&gt;
+
+    &lt;div class="rack-rule"&gt;&lt;/div&gt;
+
+    &lt;div class="grid"&gt;
+        {% for producto in productos %}
+        &lt;article class="card card--media"&gt;
+            &lt;div class="card__media"&gt;
+                {% if producto.imagen_url %}
+                &lt;img src="{{ producto.imagen_url }}" alt="Lorem ipsum dolor"&gt;
+                {% else %}
+                &lt;i data-lucide="server" class="icon--lg"&gt;&lt;/i&gt;
+                {% endif %}
+                &lt;div class="card__tag"&gt;
+                    &lt;span class="tag tag--lilac"&gt;{{ producto.categoria }}&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="card__body"&gt;
+                &lt;h3&gt;{{ producto.nombre|title }}&lt;/h3&gt;
+                {% if producto.marca %}
+                &lt;p class="u-mono"&gt;{{ producto.marca }}&lt;/p&gt;
+                {% endif %}
+                &lt;p&gt;{{ producto.descripcion|truncatechars:90 }}&lt;/p&gt;
+                &lt;p class="card__price"&gt;S/ {{ producto.precio|floatformat:2 }}&lt;/p&gt;
+                &lt;div class="card__footer"&gt;
+                    {% if producto.stock == 0 %}
+                    &lt;span class="stock stock--out"&gt;Agotado&lt;/span&gt;
+                    {% elif producto.stock &lt; 5 %}
+                    &lt;span class="stock stock--low"&gt;Quedan {{ producto.stock }}&lt;/span&gt;
+                    {% else %}
+                    &lt;span class="stock stock--ok"&gt;Disponible&lt;/span&gt;
+                    {% endif %}
+                    &lt;span class="card__meta"&gt;{{ producto.creado_en|date:"d/m/Y" }}&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/article&gt;
+        {% empty %}
+        &lt;p&gt;No hay productos disponibles.&lt;/p&gt;
+        {% endfor %}
+    &lt;/div&gt;
+&lt;/section&gt;
+{% endblock %}</code></pre></figure>
+                  </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión: ¿Qué aprendí? y ¿Cómo aprendí?</h3>
+            <div class="entry">
+              <div class="reflect-block"><h4>¿Qué aprendí?</h4><p>Aprendí cómo se organiza una aplicación Django con el patrón MTV: el proyecto con su <code>urls.py</code> principal, las apps con sus propias rutas, las vistas FBV y CBV, las plantillas con herencia y los modelos con el ORM. Entendí que las vistas deben armar el contexto y que la lógica de las consultas se guarda en el QuerySet del modelo, que las migraciones son las que crean las tablas y que los QuerySets son lazy. También vi que cuando falta algo, Django muestra el error exacto (<code>TemplateDoesNotExist</code>, 404 o <code>no such table</code>) y que conviene leerlo antes de cambiar el código.</p></div>
+              <div class="reflect-block"><h4>¿Cómo aprendí?</h4><p>En la hora de teoría se explicaron las arquitecturas multicapa y hexagonal, los lenguajes y frameworks de backend, los gestores de bases de datos y los fundamentos de Django. En la hora de práctica seguí los cinco pasos de la guía y los versioné con un commit por paso. Provoqué a propósito los errores de plantilla faltante y de tabla sin migrar para entender su causa, y luego los resolví creando las plantillas y ejecutando <code>makemigrations</code> y <code>migrate</code>. Al final comprobé el proyecto con las 32 pruebas del test runner. En la práctica grupal trabajé con Edgar en ramas separadas de un mismo repositorio: él armó el proyecto, las rutas y las vistas, y yo el modelo, el admin, el fixture de datos, las plantillas y el README, de modo que las partes se integraron con pull requests.</p></div>
+            </div>
+          </section>
+        </article>
+      </li>
