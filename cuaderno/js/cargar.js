@@ -81,6 +81,7 @@
     await cargarScript("cuaderno/js/progreso.js");
     await cargarScript("cuaderno/js/semanas.js");
     await cargarScript("cuaderno/js/vista.js");
+    await cargarScript("cuaderno/js/paginador.js");
     document.documentElement.classList.add("semanas-listas");
   })();
 })();

@@ -1,0 +1,140 @@
+/* ==========================================================================
+   PORTAFOLIO — capa moderna: cristal, degradados y movimiento suave
+   Va AL FINAL, después de index.css. Solo sobrescribe estilos.
+   ========================================================================== */
+:root {
+  --grad: linear-gradient(120deg, #2563eb, #7c3aed 55%, #db2777);
+  --glass: color-mix(in srgb, var(--bg-card) 70%, transparent);
+  --glass-edge: color-mix(in srgb, #fff 65%, transparent);
+  --glass-shadow: 0 12px 40px -14px rgba(37, 60, 140, .3);
+}
+html[data-theme="dark"] {
+  --grad: linear-gradient(120deg, #60a5fa, #a78bfa 55%, #f472b6);
+  --glass: color-mix(in srgb, #111a2e 60%, transparent);
+  --glass-edge: rgba(255, 255, 255, .09);
+  --glass-shadow: 0 16px 44px -16px rgba(0, 0, 0, .75);
+}
+
+/* ---------- Aurora de fondo ---------- */
+body::before {
+  content: ""; position: fixed; inset: -20vmax; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(40vmax 30vmax at 10% 10%, rgba(37,99,235,.18), transparent 60%),
+    radial-gradient(36vmax 30vmax at 90% 30%, rgba(124,58,237,.16), transparent 60%),
+    radial-gradient(34vmax 26vmax at 40% 100%, rgba(219,39,119,.10), transparent 60%);
+  animation: aurora 28s ease-in-out infinite alternate;
+}
+html[data-theme="dark"] body::before {
+  background:
+    radial-gradient(40vmax 30vmax at 10% 10%, rgba(59,130,246,.20), transparent 60%),
+    radial-gradient(36vmax 30vmax at 90% 30%, rgba(139,92,246,.20), transparent 60%),
+    radial-gradient(34vmax 26vmax at 40% 100%, rgba(244,114,182,.09), transparent 60%);
+}
+@keyframes aurora { to { transform: translate3d(3vmax, -2vmax, 0) scale(1.08) rotate(2deg); } }
+main, .site-footer { position: relative; z-index: 1; }
+
+/* ---------- Textos con degradado ---------- */
+.section-title em, .hero-subtitle em, .bento-content em {
+  background: var(--grad); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.spark { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; animation: spark 3.5s ease-in-out infinite; }
+@keyframes spark { 50% { transform: rotate(20deg) scale(1.2); } }
+.section-tag { letter-spacing: .16em; }
+.stat-num, .nb-count > span, .reflect-num {
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Cabecera y menú en cristal ---------- */
+.main-nav, .site-header.scrolled {
+  backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+}
+.main-nav { background: var(--glass); border-color: var(--glass-edge); box-shadow: var(--glass-shadow); }
+
+/* ---------- Botones ---------- */
+.btn-black, .btn-pill-dark, .btn-black-pill {
+  background: var(--grad) !important; color: #fff !important; border-color: transparent !important;
+  background-size: 160% 100% !important; background-position: 0 0 !important;
+  box-shadow: 0 10px 24px -10px rgba(124, 58, 237, .7);
+  transition: background-position .5s ease, transform .2s ease, box-shadow .2s ease;
+}
+.btn-black:hover, .btn-pill-dark:hover, .btn-black-pill:hover {
+  background-position: 100% 0 !important; transform: translateY(-2px);
+  box-shadow: 0 16px 30px -10px rgba(124, 58, 237, .8);
+}
+.btn-outline-circle { background: var(--glass); border-color: var(--glass-edge); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+/* ---------- Tarjetas de cristal ---------- */
+.arch-card, .cv-card, .bento-about-container, .projects-section, .nb-card, .reflect-card,
+.biblio-card, .stat-box, .hero-photo-card, .tech-pill, .area-chip, .badge-float {
+  background: var(--glass) !important; border: 1px solid var(--glass-edge) !important;
+  backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  box-shadow: var(--glass-shadow);
+}
+.arch-card, .cv-card, .bento-about-container, .projects-section, .nb-card, .reflect-card, .biblio-card, .cta-banner {
+  position: relative; overflow: hidden; border-radius: 30px;
+}
+.arch-card::after, .cv-card::after, .bento-about-container::after, .projects-section::after,
+.nb-card::after, .reflect-card::after, .biblio-card::after {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--grad); opacity: .85; pointer-events: none;
+}
+.reflect-card, .biblio-card, .stat-box, .tech-pill, .area-chip { transition: transform .3s ease, box-shadow .3s ease; }
+.reflect-card:hover, .biblio-card:hover, .stat-box:hover { transform: translateY(-5px); box-shadow: 0 22px 44px -16px rgba(124, 58, 237, .45); }
+.tech-pill:hover, .area-chip:hover { transform: translateY(-2px); }
+
+/* Servicios: borde degradado con brillo al pasar */
+.service-card { position: relative; border-radius: 26px; transition: transform .35s ease, box-shadow .35s ease; isolation: isolate; }
+.service-card::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: var(--grad);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: .35; transition: opacity .35s ease; pointer-events: none;
+}
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 26px 50px -18px rgba(124, 58, 237, .55); }
+.service-card:hover::before { opacity: 1; }
+
+/* Proyectos */
+.project-card {
+  border-radius: 22px; background: var(--glass) !important; border: 1px solid var(--glass-edge) !important;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s;
+}
+.project-card:hover { transform: translateY(-6px); box-shadow: 0 24px 46px -18px rgba(124, 58, 237, .5); border-color: color-mix(in srgb, #7c3aed 50%, transparent) !important; }
+.project-thumb { overflow: hidden; border-radius: 14px; }
+.project-thumb img { transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.project-card:hover .project-thumb img { transform: scale(1.06); }
+.proj-filter[aria-pressed="true"], .proj-filter.is-active, .cv-tab[aria-selected="true"] {
+  background: var(--grad) !important; color: #fff !important; border-color: transparent !important;
+}
+
+/* Cuaderno: barra y semanas */
+.nb-bar i { background: var(--grad) !important; box-shadow: 0 0 16px rgba(124, 58, 237, .55); }
+.nb-wk { border-radius: 16px; }
+.nb-wk.is-done { background: color-mix(in srgb, var(--bg-card) 55%, transparent); backdrop-filter: blur(8px); }
+.nb-wk.is-done:hover { border-color: #7c3aed; box-shadow: 0 12px 24px -12px rgba(124, 58, 237, .6); }
+
+/* Reflexión por semana */
+.reflection-section li { transition: transform .25s ease; }
+.reflection-section li:hover { transform: translateX(4px); }
+.reflection-section .wk { background: var(--grad) !important; color: #fff !important; }
+
+/* Contacto */
+.cta-banner {
+  background: linear-gradient(135deg, rgba(37,99,235,.16), rgba(124,58,237,.16) 60%, rgba(219,39,119,.12)) !important;
+  border: 1px solid var(--glass-edge); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Aparición suave */
+.reveal { transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1), filter .8s; }
+
+/* ---------- Accesibilidad ---------- */
+html[data-motion="reduce"] body::before, html[data-motion="reduce"] .spark { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  body::before, .spark { animation: none !important; }
+  .service-card, .project-card, .reflect-card, .biblio-card, .stat-box, .project-thumb img { transition: none; }
+}
+html[data-contrast="high"] body::before { display: none; }
+@media print { body::before { display: none !important; } }
+
+/* La terminal se queda oscura en ambos temas, solo gana el brillo */
+.terminal { border-radius: 20px; box-shadow: 0 24px 50px -20px rgba(37, 60, 140, .55), 0 0 0 1px rgba(124, 58, 237, .25); }
