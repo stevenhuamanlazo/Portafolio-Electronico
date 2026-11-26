@@ -141,6 +141,543 @@
                 </ul>
               </dd></div>
 
+              <div class="lab-item span-full"><dt>Captura</dt><dd>
+                <div class="subgroups" data-default="all" data-label="Filtrar capturas por ejercicio">
+
+                  <!-- ===== TEORÍA ===== -->
+                  <div class="subgroup" data-ex="0" data-label="Teoría" data-short="Teo.">
+                    <div class="subgroup-head"><span class="ex-chip">Teoría</span><span class="ex-title">Curso teórico · JSP y Apache Tomcat 10 (fecha.jsp)</span><span class="ex-count">3 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del curso teórico">
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_teo_01_jsp_teoria.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_teo_01_jsp_teoria.jpg" alt="Diapositivas del curso teórico: elementos JSP (scriptlets, expresiones y comentarios) y arquitectura en Tomcat." loading="lazy" /></a>
+                        <figcaption>Diapositivas teóricas: elementos JSP y arquitectura en Tomcat.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_teo_02_jsp_teoria2.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_teo_02_jsp_teoria2.jpg" alt="Teoría JSP: tipos de etiquetas, ciclo de vida de un JSP y despliegue en webapps de Tomcat 10." loading="lazy" /></a>
+                        <figcaption>Tipos de etiquetas JSP y ciclo de vida del servlet compilado.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_teo_03_jsp_teoria3.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_teo_03_jsp_teoria3.jpg" alt="Práctica teórica: fecha.jsp corriendo en localhost:8080/webap03/fecha.jsp con salida en español." loading="lazy" /></a>
+                        <figcaption>fecha.jsp en localhost:8080/webap03/ mostrando la fecha en español.</figcaption>
+                      </figure></li>
+                    </ol>
+                  </div>
+
+                  <!-- ===== EJERCICIO 1 (BioStock) ===== -->
+                  <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">Práctica individual · BioStock — Inventario de suministros médicos (Django 5)</span><span class="ex-count">21 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 1 BioStock">
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_01_clone_repo.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_01_clone_repo.jpg" alt="Clonación del repositorio DAW-Semana12-BioStock y estructura inicial del proyecto Django." loading="lazy" /></a>
+                        <figcaption>Clonación del repositorio y estructura inicial del proyecto Django.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_02_estructura_migrations.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_02_estructura_migrations.jpg" alt="Estructura de carpetas del proyecto y migraciones iniciales aplicadas." loading="lazy" /></a>
+                        <figcaption>Estructura de carpetas y migraciones iniciales aplicadas.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_03_models_py.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_03_models_py.jpg" alt="models.py: clases Categoria, Proveedor, Producto y MovimientoInventario." loading="lazy" /></a>
+                        <figcaption>models.py: Categoria, Proveedor, Producto (BIO-0000, cadena de frío) y MovimientoInventario.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_04_product_form.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_04_product_form.jpg" alt="ProductoForm con validación del código BIO-0000 en clean_codigo() y sanitize_input." loading="lazy" /></a>
+                        <figcaption>ProductoForm: validación BIO-0000 en clean_codigo() y sanitize_input en el nombre.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_05_vista_crear.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_05_vista_crear.jpg" alt="Vista producto_crear: ciclo is_valid() → cleaned_data → save() → redirect." loading="lazy" /></a>
+                        <figcaption>Vista producto_crear: ciclo is_valid() → cleaned_data → save() → redirect.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_06_formulario_producto.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_06_formulario_producto.jpg" alt="Formulario de nuevo producto en el navegador con token CSRF activo." loading="lazy" /></a>
+                        <figcaption>Formulario de nuevo producto con campos validados y token CSRF activo.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_07_csrf_devtools.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_07_csrf_devtools.jpg" alt="DevTools: csrftoken en las cookies con SameSite Lax." loading="lazy" /></a>
+                        <figcaption>DevTools: csrftoken con SameSite Lax confirmando la protección CSRF.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_08_listado_estados.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_08_listado_estados.jpg" alt="Listado de productos con estados Vigente, Por vencer y Vencido." loading="lazy" /></a>
+                        <figcaption>Listado de productos con estados diferenciados: Vigente, Por vencer y Vencido.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_09_form_movimientos.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_09_form_movimientos.jpg" alt="Formulario de movimiento de inventario con selección de producto, tipo y cantidad." loading="lazy" /></a>
+                        <figcaption>Formulario de movimiento: producto, tipo (entrada/salida) y cantidad.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_10_rechazo_stock.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_10_rechazo_stock.jpg" alt="Rechazo de salida por stock insuficiente: clean() bloquea el registro." loading="lazy" /></a>
+                        <figcaption>clean() del MovimientoForm rechaza la salida por stock insuficiente.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_11_sanitizacion_xss.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_11_sanitizacion_xss.jpg" alt="Sanitización XSS: texto con etiquetas HTML es rechazado por sanitize_input()." loading="lazy" /></a>
+                        <figcaption>Sanitización XSS: texto con etiquetas HTML rechazado por sanitize_input().</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_12_error_validacion.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_12_error_validacion.jpg" alt="Error de validación cruzada __all__ mostrando el mensaje de error global." loading="lazy" /></a>
+                        <figcaption>Error de validación cruzada __all__ con mensaje de error global en el formulario.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_13_sanitize_shell.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_13_sanitize_shell.jpg" alt="Verificación de sanitize_input() desde shell_plus." loading="lazy" /></a>
+                        <figcaption>shell_plus: sanitize_input() elimina HTML, caracteres de control y colapsa espacios.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_14_clean_method.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_14_clean_method.jpg" alt="Método clean() del MovimientoForm con validación cruzada de stock y self.add_error()." loading="lazy" /></a>
+                        <figcaption>clean() del MovimientoForm: validación cruzada de stock con self.add_error().</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_15_django_admin_filtros.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_15_django_admin_filtros.jpg" alt="Django Admin /admin/inventario/producto/: list_display, list_filter y search_fields." loading="lazy" /></a>
+                        <figcaption>Admin de Producto: list_display, list_filter por estado y categoría, search_fields.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_16_accion_masiva.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_16_accion_masiva.jpg" alt="Acción masiva personalizada en el admin." loading="lazy" /></a>
+                        <figcaption>Acción masiva personalizada: selección múltiple y ejecución en el admin.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_17_403_almacenero.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_17_403_almacenero.jpg" alt="Error 403 al intentar acceder al admin con el rol Almacenero." loading="lazy" /></a>
+                        <figcaption>403 al intentar abrir /admin/ con el rol Almacenero (sin permiso is_staff).</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_18_dashboard_jefe_session.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_18_dashboard_jefe_session.jpg" alt="Dashboard del Jefe de laboratorio con sesión activa de 30 min." loading="lazy" /></a>
+                        <figcaption>Dashboard del Jefe de laboratorio: sesión activa con timeout de 30 minutos.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_19_cookies_devtools.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_19_cookies_devtools.jpg" alt="DevTools: sessionid y csrftoken con HttpOnly, SameSite Lax y tiempo de expiración." loading="lazy" /></a>
+                        <figcaption>DevTools Cookies: sessionid y csrftoken con HttpOnly y SameSite Lax.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_20_manage_check.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_20_manage_check.jpg" alt="python manage.py check --deploy sin errores críticos." loading="lazy" /></a>
+                        <figcaption>manage.py check --deploy: sin errores críticos de seguridad.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p1_21_github_commits.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p1_21_github_commits.jpg" alt="Historial de commits del repositorio DAW-Semana12-BioStock en GitHub." loading="lazy" /></a>
+                        <figcaption>Historial de commits de BioStock en GitHub, uno por fase.</figcaption>
+                      </figure></li>
+                    </ol>
+                  </div>
+
+                  <!-- ===== EJERCICIO 2 (Grupal) ===== -->
+                  <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                    <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica grupal · Casos 1, 2 y 3 — Préstamos FIS, Consultas Médicas y Asistencia</span><span class="ex-count">29 capturas</span></div>
+                    <ol class="shots" aria-label="Capturas del ejercicio 2 grupal">
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_01_admin_equipos.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_01_admin_equipos.jpg" alt="Caso 1 — Admin: 10 equipos en 5 laboratorios FIS UNCP." loading="lazy" /></a>
+                        <figcaption>Caso 1 — Admin: 10 equipos distribuidos en 5 laboratorios FIS UNCP.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_02_form_prestamo_valido.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_02_form_prestamo_valido.jpg" alt="Caso 1 — Formulario de Solicitud de Préstamo válido." loading="lazy" /></a>
+                        <figcaption>Caso 1 — Solicitud de préstamo válida: equipo operativo, fechas coherentes.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_03_historial_prestamos.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_03_historial_prestamos.jpg" alt="Caso 1 — Historial de préstamos tras registrar el préstamo #16." loading="lazy" /></a>
+                        <figcaption>Caso 1 — Historial de préstamos con confirmación del registro.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_04_form_invalido.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_04_form_invalido.jpg" alt="Caso 1 — Rechazo del formulario: equipo en mantenimiento, cantidad fuera de rango." loading="lazy" /></a>
+                        <figcaption>Caso 1 — Rechazo del préstamo: equipo en mantenimiento, cantidad inválida.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_05_admin_filtros_acciones.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_05_admin_filtros_acciones.jpg" alt="Caso 1 — Admin de Préstamos: filtros laterales y acción masiva de recordatorio." loading="lazy" /></a>
+                        <figcaption>Caso 1 — Admin Préstamos: filtros laterales y acción masiva «Enviar recordatorio».</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_06_stock_update.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_06_stock_update.jpg" alt="Caso 1 — Stock actualizado atómicamente de 10 a 9 tras el préstamo #16." loading="lazy" /></a>
+                        <figcaption>Caso 1 — Stock actualizado atómicamente de 10 a 9 tras el préstamo.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_07_middleware_logs.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_07_middleware_logs.jpg" alt="Caso 1 — Middleware de auditoría: logs INFO y WARNING de préstamos vencidos." loading="lazy" /></a>
+                        <figcaption>Caso 1 — Middleware: logs INFO de peticiones y WARNING de préstamos vencidos.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_08_login_roles.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_08_login_roles.jpg" alt="Caso 1 — Login con cuentas de prueba por rol (clave: uncp2026)." loading="lazy" /></a>
+                        <figcaption>Caso 1 — Login con panel de cuentas de prueba por rol (clave: uncp2026).</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_09_logout_page.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_09_logout_page.jpg" alt="Caso 1 — Cierre de sesión con notificación." loading="lazy" /></a>
+                        <figcaption>Caso 1 — Cierre de sesión con notificación y retorno al catálogo.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_10_cookies_devtools.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_10_cookies_devtools.jpg" alt="Caso 1 — DevTools Cookies: csrftoken SameSite Lax." loading="lazy" /></a>
+                        <figcaption>Caso 1 — DevTools Cookies: csrftoken SameSite Lax en el sistema de préstamos.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_11_github_branch.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_11_github_branch.jpg" alt="Caso 2 — Rama dev/Huamanlazo-Pariona con ejercicio-2 y ejercicio-3." loading="lazy" /></a>
+                        <figcaption>Caso 2 — Rama dev/Huamanlazo-Pariona: carpetas ejercicio-2 y ejercicio-3.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_12_commits_historia.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_12_commits_historia.jpg" alt="Caso 2 — Historial de commits dividido por funcionalidad." loading="lazy" /></a>
+                        <figcaption>Caso 2 — Historial de commits por funcionalidad en la rama personal.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_13_readme_caso2.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_13_readme_caso2.jpg" alt="Caso 2 — README de ejercicio-2 con cuentas y datos de prueba." loading="lazy" /></a>
+                        <figcaption>Caso 2 — README de ejercicio-2: descripción, cuentas y datos de prueba.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_14_lista_pacientes.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_14_lista_pacientes.jpg" alt="Caso 2 — Lista de 15 pacientes cargados en localStorage." loading="lazy" /></a>
+                        <figcaption>Caso 2 — Lista de 15 pacientes con búsqueda por DNI o nombre.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_15_citas_registradas.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_15_citas_registradas.jpg" alt="Caso 2 — 30 citas registradas con filtro por estado." loading="lazy" /></a>
+                        <figcaption>Caso 2 — 30 citas registradas con filtro por estado y datos de los 8 médicos.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_16_form_agendamiento.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_16_form_agendamiento.jpg" alt="Caso 2 — Formulario de agendamiento de citas." loading="lazy" /></a>
+                        <figcaption>Caso 2 — Formulario de citas: médicos filtrados por especialidad, motivo mínimo 20 chars.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_17_rechazo_horario.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_17_rechazo_horario.jpg" alt="Caso 2 — Middleware de horario rechaza cita a las 20:00." loading="lazy" /></a>
+                        <figcaption>Caso 2 — Middleware de horario rechaza cita fuera del rango permitido.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_18_nomina_empleados.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_18_nomina_empleados.jpg" alt="Caso 3 — Nómina de 12 empleados de TecnoAndes S.A.C." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Nómina de 12 empleados con antigüedad calculada y filtro por área.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_19_reporte_asistencia.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_19_reporte_asistencia.jpg" alt="Caso 3 — Reporte de asistencia diaria con horas extra acumuladas." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Reporte de asistencia: hora entrada/salida, horas extra acumuladas.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_20_form_permiso_invalido.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_20_form_permiso_invalido.jpg" alt="Caso 3 — Rechazo de permiso por saldo insuficiente y motivo corto." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Rechazo de permiso: saldo de vacaciones insuficiente y motivo demasiado corto.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_21_superposicion_fechas.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_21_superposicion_fechas.jpg" alt="Caso 3 — Validación de superposición de fechas entre permisos." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Validación de superposición: rechazo de fechas en conflicto.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_22_flujo_aprobacion.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_22_flujo_aprobacion.jpg" alt="Caso 3 — Solicitud de permiso en estado Pendiente." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Solicitud registrada en estado Pendiente esperando al jefe de área.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_23_jefe_aprobaciones.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_23_jefe_aprobaciones.jpg" alt="Caso 3 — Jefe de Área aprueba o rechaza solicitudes pendientes." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Panel del Jefe de Área: botones Aprobar y Rechazar por solicitud.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_24_auditoria_vista.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_24_auditoria_vista.jpg" alt="Caso 3 — Vista de Auditoría con contadores AUDIT, WARNING e INFO." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Vista de Auditoría con contadores AUDIT, WARNING e INFO.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_25_control_acceso_403.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_25_control_acceso_403.jpg" alt="Caso 3 — 403 al intentar acceder a Aprobaciones sin el permiso." loading="lazy" /></a>
+                        <figcaption>Caso 3 — 403 al acceder a Aprobaciones sin el permiso aprobar_permiso.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_26_diagrama_roles.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_26_diagrama_roles.jpg" alt="Caso 3 — Diagrama de 4 roles jerárquicos con matriz de permisos." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Diagrama de roles: Admin RRHH, Jefe de Área, Empleado y Contador.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_27_cookies_session.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_27_cookies_session.jpg" alt="Caso 3 — DevTools Cookies: ta_sessionid SameSite Strict, timeout 45 min." loading="lazy" /></a>
+                        <figcaption>Caso 3 — DevTools: ta_sessionid SameSite Strict con timeout de 45 minutos.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_28_session_timeout.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_28_session_timeout.jpg" alt="Caso 3 — Sesión expirada por inactividad: redirección al login." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Sesión expirada por inactividad: redirección automática al login.</figcaption>
+                      </figure></li>
+                      <li><figure class="shot-card">
+                        <a class="shot-link" href="assets/Sem12/s12_p2_29_manual_usuario.jpg" target="_blank" rel="noopener"><img src="assets/Sem12/s12_p2_29_manual_usuario.jpg" alt="Caso 3 — Manual de usuario integrado con 6 pasos de uso." loading="lazy" /></a>
+                        <figcaption>Caso 3 — Manual de usuario breve integrado con 6 pasos de uso.</figcaption>
+                      </figure></li>
+                    </ol>
+                  </div>
+
+                </div>
+              </dd></div>
+
+              <div class="lab-item span-full">
+                <dt>Código de la Práctica</dt>
+                <dd>
+                  <div class="subgroups" data-default="first" data-label="Ver código por ejercicio">
+
+                    <div class="subgroup" data-ex="1" data-label="Ejercicio 1" data-short="Ej. 1">
+                      <div class="subgroup-head"><span class="ex-chip">Ejercicio 1</span><span class="ex-title">BioStock · modelos, formularios, middleware y configuración de sesiones</span><span class="ex-count">5 archivos</span></div>
+
+                      <figure class="code-file"><p class="file-name">inventario/models.py</p>
+<pre><code>from django.db import models
+from django.core.validators import RegexValidator
+
+codigo_validator = RegexValidator(
+    r'^BIO-\d{4}$',
+    'El código debe tener el formato BIO-0000'
+)
+
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=80)
+    descripcion = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.nombre
+
+class Proveedor(models.Model):
+    nombre = models.CharField(max_length=100)
+    contacto = models.EmailField()
+
+    def __str__(self):
+        return self.nombre
+
+class Producto(models.Model):
+    ESTADO_CHOICES = [
+        ('vigente', 'Vigente'),
+        ('por_vencer', 'Por vencer'),
+        ('vencido', 'Vencido'),
+    ]
+    codigo = models.CharField(max_length=8, unique=True, validators=[codigo_validator])
+    nombre = models.CharField(max_length=120)
+    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
+    proveedor = models.ForeignKey(Proveedor, on_delete=models.SET_NULL, null=True)
+    estado = models.CharField(max_length=12, choices=ESTADO_CHOICES, default='vigente')
+    cadena_frio = models.BooleanField(default=False)
+    stock = models.PositiveIntegerField(default=0)
+    fecha_vencimiento = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.codigo} — {self.nombre}'
+
+class MovimientoInventario(models.Model):
+    TIPO_CHOICES = [('entrada', 'Entrada'), ('salida', 'Salida')]
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    tipo = models.CharField(max_length=8, choices=TIPO_CHOICES)
+    cantidad = models.PositiveIntegerField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    observacion = models.TextField(blank=True)
+
+    def __str__(self):
+        return f'{self.tipo} · {self.producto.codigo} · {self.cantidad}'</code></pre></figure>
+
+                      <figure class="code-file"><p class="file-name">inventario/forms.py</p>
+<pre><code>import re
+from django import forms
+from .models import Producto, MovimientoInventario
+
+def sanitize_input(text):
+    """Elimina etiquetas HTML, caracteres de control y colapsa espacios."""
+    text = re.sub(r'<[^>]+>', '', text)
+    text = re.sub(r'[\x00-\x1f\x7f]', '', text)
+    return ' '.join(text.split())
+
+class ProductoForm(forms.ModelForm):
+    class Meta:
+        model = Producto
+        fields = ['codigo', 'nombre', 'categoria', 'proveedor',
+                  'estado', 'cadena_frio', 'stock', 'fecha_vencimiento']
+
+    def clean_codigo(self):
+        codigo = self.cleaned_data['codigo']
+        if not re.match(r'^BIO-\d{4}$', codigo):
+            raise forms.ValidationError('El código debe tener el formato BIO-0000.')
+        return codigo
+
+    def clean_nombre(self):
+        return sanitize_input(self.cleaned_data['nombre'])
+
+class MovimientoForm(forms.ModelForm):
+    class Meta:
+        model = MovimientoInventario
+        fields = ['producto', 'tipo', 'cantidad', 'observacion']
+
+    def clean(self):
+        cleaned = super().clean()
+        producto = cleaned.get('producto')
+        tipo = cleaned.get('tipo')
+        cantidad = cleaned.get('cantidad')
+        if producto and tipo == 'salida' and cantidad:
+            if cantidad > producto.stock:
+                self.add_error('cantidad',
+                    f'Stock insuficiente. Disponible: {producto.stock}.')
+        return cleaned</code></pre></figure>
+
+                      <figure class="code-file"><p class="file-name">inventario/middleware.py</p>
+<pre><code>import uuid, logging, time
+from django.utils.deprecation import MiddlewareMixin
+
+logger = logging.getLogger(__name__)
+
+class AuditoriaMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        req_id = str(uuid.uuid4())[:8]
+        usuario = request.user if request.user.is_authenticated else 'anon'
+        inicio = time.time()
+        response = self.get_response(request)
+        duracion = round((time.time() - inicio) * 1000, 2)
+        logger.info(
+            f'[{req_id}] {usuario} | {request.method} {request.path} '
+            f'→ {response.status_code} ({duracion} ms) | IP: {request.META.get("REMOTE_ADDR")}'
+        )
+        return response
+
+class CabecerasSeguridad:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        response['Content-Security-Policy'] = "default-src 'self'"
+        response['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+        response['Permissions-Policy'] = 'geolocation=(), microphone=()'
+        return response</code></pre></figure>
+
+                      <figure class="code-file"><p class="file-name">inventario/admin.py</p>
+<pre><code>from django.contrib import admin
+from .models import Producto, MovimientoInventario
+
+def exportar_seleccion(modeladmin, request, queryset):
+    # Acción masiva: exportar productos seleccionados
+    pass
+exportar_seleccion.short_description = 'Exportar productos seleccionados'
+
+@admin.register(Producto)
+class ProductoAdmin(admin.ModelAdmin):
+    list_display = ('codigo', 'nombre', 'categoria', 'estado',
+                    'stock', 'cadena_frio', 'proveedor')
+    list_filter = ('estado', 'categoria', 'cadena_frio')
+    search_fields = ('codigo', 'nombre')
+    readonly_fields = ('codigo',)
+    list_select_related = ('categoria', 'proveedor')
+    actions = [exportar_seleccion]
+
+    @admin.display(description='¿Cadena de frío?', boolean=True)
+    def requiere_frio(self, obj):
+        return obj.cadena_frio
+
+@admin.register(MovimientoInventario)
+class MovimientoAdmin(admin.ModelAdmin):
+    list_display = ('producto', 'tipo', 'cantidad', 'fecha')
+    list_filter = ('tipo', 'fecha')
+    list_select_related = ('producto',)</code></pre></figure>
+
+                      <figure class="code-file"><p class="file-name">config/settings.py (sesiones y seguridad)</p>
+<pre><code># Sesiones seguras
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_AGE = 60 * 30          # 30 minutos
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SECURE = not DEBUG     # True en producción
+
+# CSRF
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SECURE = not DEBUG
+
+# Middleware (orden importa: petición ↓, respuesta ↑)
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'inventario.middleware.CabecerasSeguridad',   # cabeceras en respuesta
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'inventario.middleware.AuditoriaMiddleware',  # auditoría tras auth
+    'django.contrib.messages.middleware.MessageMiddleware',
+]</code></pre></figure>
+                    </div>
+
+                    <div class="subgroup" data-ex="2" data-label="Ejercicio 2" data-short="Ej. 2">
+                      <div class="subgroup-head"><span class="ex-chip">Ejercicio 2</span><span class="ex-title">Práctica grupal · Caso 1 (préstamos), Caso 2 (consultas) y Caso 3 (asistencia)</span><span class="ex-count">3 archivos</span></div>
+
+                      <figure class="code-file"><p class="file-name">ejercicio-1/prestamos/forms.py — PrestamoSolicitudForm.clean()</p>
+<pre><code>from django import forms
+from .models import Prestamo, Equipo
+
+class PrestamoSolicitudForm(forms.ModelForm):
+    class Meta:
+        model = Prestamo
+        fields = ['equipo', 'cantidad', 'fecha_devolucion', 'observaciones']
+
+    def clean(self):
+        cleaned = super().clean()
+        equipo = cleaned.get('equipo')
+        cantidad = cleaned.get('cantidad')
+        fecha_prestamo = cleaned.get('fecha_prestamo')
+        fecha_devolucion = cleaned.get('fecha_devolucion')
+
+        if equipo:
+            if equipo.estado != 'operativo':
+                self.add_error('equipo',
+                    f'El equipo "{equipo}" no está operativo (estado: {equipo.estado}).')
+            if cantidad and cantidad > equipo.stock_disponible:
+                self.add_error('cantidad',
+                    f'Stock insuficiente. Disponible: {equipo.stock_disponible}.')
+
+        if fecha_prestamo and fecha_devolucion:
+            if fecha_devolucion <= fecha_prestamo:
+                self.add_error('fecha_devolucion',
+                    'La fecha de devolución debe ser posterior a la del préstamo.')
+        return cleaned</code></pre></figure>
+
+                      <figure class="code-file"><p class="file-name">ejercicio-2/js/middleware.js — validación de horario (Consultas Médicas)</p>
+<pre><code">// Middleware-like: valida horario de atención antes de registrar una cita
+// L-V: 08:00 – 18:00 | Sáb: 08:00 – 13:00 | Dom: cerrado
+function validarHorarioCita(fechaHoraStr) {
+  const dt = new Date(fechaHoraStr);
+  const diaSemana = dt.getDay(); // 0=dom, 6=sáb
+  const hora = dt.getHours() + dt.getMinutes() / 60;
+
+  if (diaSemana === 0) {
+    return { valido: false, motivo: 'No se atiende los domingos.' };
+  }
+  if (diaSemana === 6 && (hora < 8 || hora >= 13)) {
+    return { valido: false, motivo: 'Sábados: horario 08:00 – 13:00.' };
+  }
+  if (diaSemana >= 1 && diaSemana <= 5 && (hora < 8 || hora >= 18)) {
+    return { valido: false, motivo: 'Lunes a viernes: horario 08:00 – 18:00.' };
+  }
+  return { valido: true };
+}
+
+// Uso en el formulario de citas
+function registrarCita(datos) {
+  const resultado = validarHorarioCita(datos.fechaHora);
+  if (!resultado.valido) {
+    registrarAuditoria('WARNING', `Intento fuera de horario: ${resultado.motivo}`);
+    mostrarError(resultado.motivo);
+    return;
+  }
+  // Guardar en localStorage y confirmar
+  const citas = JSON.parse(localStorage.getItem('cm_citas') || '[]');
+  citas.push({ ...datos, id: Date.now(), estado: 'programada' });
+  localStorage.setItem('cm_citas', JSON.stringify(citas));
+}</code></pre></figure>
+
+                      <figure class="code-file"><p class="file-name">ejercicio-3/js/sesion.js — timeout de sesión 45 min (Asistencia)</p>
+<pre><code>// Gestión de sesión con timeout de 45 minutos de inactividad
+const SESSION_KEY = 'ta_sessionid';
+const TIMEOUT_MS  = 45 * 60 * 1000; // 45 minutos
+let temporizador;
+
+function renovarSesion() {
+  const expira = Date.now() + TIMEOUT_MS;
+  sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+    usuario: obtenerUsuarioActual(),
+    expira,
+  }));
+  clearTimeout(temporizador);
+  temporizador = setTimeout(cerrarSesionPorInactividad, TIMEOUT_MS);
+}
+
+function cerrarSesionPorInactividad() {
+  sessionStorage.removeItem(SESSION_KEY);
+  registrarAuditoria('WARNING', 'Sesión cerrada por inactividad (45 min).');
+  window.location.href = 'login.html?motivo=timeout';
+}
+
+function verificarSesion() {
+  const raw = sessionStorage.getItem(SESSION_KEY);
+  if (!raw) { window.location.href = 'login.html'; return; }
+  const sesion = JSON.parse(raw);
+  if (Date.now() > sesion.expira) {
+    cerrarSesionPorInactividad();
+  }
+}
+
+// Renovar en cada interacción del usuario
+['click', 'keydown', 'scroll', 'mousemove'].forEach(ev =>
+  document.addEventListener(ev, renovarSesion, { passive: true })
+);</code></pre></figure>
+                    </div>
+
+                  </div>
+                </dd>
+              </div>
+
             </dl>
           </section>
 
