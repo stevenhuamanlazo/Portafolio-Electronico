@@ -1,0 +1,158 @@
+<!-- Semana 12: se carga automáticamente en cuaderno.html (cuaderno/js/cargar.js) -->
+<li class="week-card" id="semana-12">
+        <div class="week-marker" aria-hidden="true">12</div>
+        <article class="card-body">
+          <header class="card-header">
+            <span class="week-label">REGISTRO SEMANAL</span>
+            <h2>Semana 12</h2>
+          </header>
+
+          <section class="section-block">
+            <h3>1. Descripción de temas aprendidos con mis propias palabras</h3>
+            <div class="entry">
+
+              <details class="topic" open>
+                <summary>JSP (JavaServer Pages) — curso teórico</summary>
+                <div class="topic-body">
+                  <p><strong>JSP</strong> es una tecnología Java que permite generar HTML dinámico en el servidor. El archivo <code>.jsp</code> se compila como un servlet y Apache Tomcat lo ejecuta en <code>localhost:8080</code>. Los tres tipos de elemento principales son:</p>
+                  <div class="table-wrap"><table><thead><tr><th>Elemento</th><th>Sintaxis</th><th>Para qué sirve</th></tr></thead><tbody>
+                    <tr><td>Expresión</td><td><code>&lt;%= expr %&gt;</code></td><td>Inserta el resultado de una expresión Java en el HTML</td></tr>
+                    <tr><td>Scriptlet</td><td><code>&lt;% código %&gt;</code></td><td>Ejecuta código Java arbitrario (declaraciones, bucles, lógica)</td></tr>
+                    <tr><td>Comentario</td><td><code>&lt;%-- texto --%&gt;</code></td><td>Comentario que no se envía al navegador</td></tr>
+                  </tbody></table></div>
+                  <p>En la práctica del curso teórico se desarrolló <strong>fecha.jsp</strong> alojada en <code>D:\tomcat10\webapps\webap03\</code>: recibe una fecha <code>dd/MM/yyyy</code> y la muestra en texto largo en español (ej. «miércoles, 19 de noviembre de 2026») usando <code>SimpleDateFormat</code>, <code>Calendar</code> y <code>DateFormatSymbols</code>.</p>
+                </div>
+              </details>
+
+              <details class="topic">
+                <summary>Formularios Django — ModelForm y validación en tres niveles</summary>
+                <div class="topic-body">
+                  <p>Un <strong>ModelForm</strong> genera los campos automáticamente desde el modelo y sigue el ciclo: instanciación → <code>is_valid()</code> → <code>cleaned_data</code> → <code>save()</code> → <code>redirect()</code>. La validación opera en tres niveles:</p>
+                  <div class="table-wrap"><table><thead><tr><th>Nivel</th><th>Dónde</th><th>Ejemplo</th></tr></thead><tbody>
+                    <tr><td>Campo</td><td><code>clean_&lt;campo&gt;()</code> o <code>validators=</code></td><td>Expresión regular para formato BIO-0000</td></tr>
+                    <tr><td>Formulario</td><td><code>clean()</code> con <code>self.add_error()</code></td><td>Cruce de campos: stock disponible, fechas coherentes</td></tr>
+                    <tr><td>Modelo</td><td><code>validators=</code> en el campo del modelo</td><td><code>MinValueValidator</code>, <code>MaxValueValidator</code></td></tr>
+                  </tbody></table></div>
+                  <p>La función <code>sanitize_input()</code> elimina etiquetas HTML (protección XSS), caracteres de control y colapsa espacios antes de guardar cualquier texto libre.</p>
+                </div>
+              </details>
+
+              <details class="topic">
+                <summary>Django Admin personalizado</summary>
+                <div class="topic-body">
+                  <p>El panel <code>/admin/</code> se personaliza en la clase <code>ModelAdmin</code>:</p>
+                  <ul>
+                    <li><code>list_display</code> — columnas visibles en la lista, incluidos campos calculados con <code>@admin.display</code>.</li>
+                    <li><code>list_filter</code> — panel de filtros lateral (por laboratorio, estado, fecha).</li>
+                    <li><code>search_fields</code> — barra de búsqueda sobre los campos indicados.</li>
+                    <li><code>readonly_fields</code> — campos visibles pero no editables.</li>
+                    <li>Acciones masivas personalizadas (ej. «Enviar recordatorio de devolución»).</li>
+                    <li><code>list_select_related</code> — optimiza consultas con FK.</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="topic">
+                <summary>Middleware: patrón, orden y usos</summary>
+                <div class="topic-body">
+                  <p>Un <strong>middleware</strong> envuelve cada petición HTTP. Se define con <code>__init__(self, get_response)</code> y <code>__call__(self, request)</code> y se registra en <code>MIDDLEWARE</code> de <code>settings.py</code>. Se aplican en orden en la petición y en orden inverso en la respuesta (LIFO).</p>
+                  <p>En la práctica se implementaron: <strong>AuditoriaMiddleware</strong> (registra id, usuario, método, ruta, estado, duración e IP de cada request) y <strong>CabecerasSeguridad</strong> (añade CSP, Referrer-Policy y Permissions-Policy a las respuestas).</p>
+                </div>
+              </details>
+
+              <details class="topic">
+                <summary>Sesiones seguras y protección CSRF</summary>
+                <div class="topic-body">
+                  <div class="table-wrap"><table><thead><tr><th>Parámetro</th><th>Valor</th><th>Efecto</th></tr></thead><tbody>
+                    <tr><td><code>SESSION_ENGINE</code></td><td><code>"django.contrib.sessions.backends.db"</code></td><td>Sesión en base de datos, no en cookie</td></tr>
+                    <tr><td><code>SESSION_COOKIE_AGE</code></td><td><code>60*30</code> (30 min)</td><td>Expiración por inactividad</td></tr>
+                    <tr><td><code>SESSION_COOKIE_HTTPONLY</code></td><td><code>True</code></td><td>JavaScript no puede leer la cookie</td></tr>
+                    <tr><td><code>SESSION_COOKIE_SAMESITE</code></td><td><code>"Lax"</code></td><td>Protege contra CSRF cross-site</td></tr>
+                    <tr><td><code>CSRF_COOKIE_SECURE</code></td><td><code>not DEBUG</code></td><td>Solo HTTPS en producción</td></tr>
+                  </tbody></table></div>
+                </div>
+              </details>
+
+              <details class="topic">
+                <summary>Autenticación y autorización con Django</summary>
+                <div class="topic-body">
+                  <ul>
+                    <li><code>@login_required</code> — redirige al login si el usuario no está autenticado.</li>
+                    <li><code>@permission_required('app.permiso')</code> — exige un permiso concreto o devuelve 403.</li>
+                    <li><code>PermissionRequiredMixin</code> — versión CBV del decorador anterior.</li>
+                    <li><code>user.has_perm('app.permiso')</code> — verificación programática en vistas o plantillas.</li>
+                    <li>Los roles se modelan con grupos de Django: Almacenero (solo registrar movimientos), Jefe de laboratorio (dashboard y aprobaciones), Superusuario (acceso total al admin).</li>
+                  </ul>
+                  <p>Flujo: login con <code>authenticate()</code> + <code>login()</code> → sesión en DB → cada petición comprueba CSRF y la firma de la cookie → logout con <code>logout()</code> + <code>flush()</code>.</p>
+                </div>
+              </details>
+
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h3>2. Ejercicios de laboratorio - Resultados</h3>
+            <dl class="lab-grid">
+
+              <div class="lab-item span-full"><dt>Ejercicio</dt><dd>
+                <p><strong>Ejercicio 0 (teórico):</strong> Práctica del curso teórico con JSP y Apache Tomcat 10 — desarrollo de <strong>fecha.jsp</strong> que convierte una fecha <code>dd/MM/yyyy</code> a texto largo en español.</p>
+                <p><strong>Ejercicio 1 — Práctica individual BioStock:</strong> Aplicación Django 5 de gestión de inventario de suministros médicos y reactivos de laboratorio. Modelos: <code>Categoria</code>, <code>Proveedor</code>, <code>Producto</code> (código BIO-0000, estados Vigente/Por vencer/Vencido, cadena de frío) y <code>MovimientoInventario</code>. Roles: Almacenero, Jefe de laboratorio y Superusuario.</p>
+                <p><strong>Ejercicio 2 — Práctica grupal (con Gago Uribe Edgar Robert):</strong> Tres casos en un repositorio compartido. Caso 1 (Edgar): Sistema de Gestión de Préstamos de Equipos FIS UNCP en Django (5 laboratorios, 10 equipos, 4 roles). Caso 2 (Steven): Plataforma de Gestión de Consultas Médicas en HTML/CSS/JS con localStorage (15 pacientes, 8 médicos, 30 citas, 4 grupos). Caso 3 (Steven): Sistema de Control de Asistencia y Permisos de Empleados en HTML/CSS/JS con localStorage (12 empleados, 55 asistencias, 10 permisos, 4 roles).</p>
+              </dd></div>
+
+              <div class="lab-item span-full"><dt>Procedimiento</dt><dd>
+                <ol>
+                  <li>Sesión de teoría: JSP y Apache Tomcat; práctica de <code>fecha.jsp</code> en <code>webap03</code>.</li>
+                  <li><strong>BioStock — Fase 1:</strong> clonación del repo, entorno virtual, instalación de Django 5.2, modelos y migraciones.</li>
+                  <li><strong>BioStock — Fase 2:</strong> <code>ProductoForm</code> con validación de código BIO-0000, <code>MovimientoForm</code> con validación cruzada de stock, y <code>sanitize_input()</code> para eliminar HTML y caracteres de control.</li>
+                  <li><strong>BioStock — Fase 3:</strong> Django Admin con <code>list_display</code>, <code>list_filter</code>, <code>search_fields</code>, <code>@admin.display</code>, <code>list_select_related</code> y acción masiva.</li>
+                  <li><strong>BioStock — Fase 4:</strong> <code>AuditoriaMiddleware</code> y <code>CabecerasSeguridad</code>; sesiones con <code>SESSION_COOKIE_AGE = 60*30</code>, <code>HTTPONLY</code> y <code>SAMESITE = Lax</code>.</li>
+                  <li><strong>BioStock — Fase 5:</strong> decoradores <code>@login_required</code> y <code>@permission_required</code>, mixin <code>PermissionRequiredMixin</code> y roles por grupo; verificación con <code>manage.py check --deploy</code>.</li>
+                  <li><strong>Grupal — Caso 1 (Edgar):</strong> modelos Equipo y Préstamo con validaciones cruzadas; admin personalizado; middleware con alertas de préstamos vencidos; fixture con 5 laboratorios y 10 equipos.</li>
+                  <li><strong>Grupal — Caso 2 (Steven):</strong> frontend puro; datos en localStorage; sessionStorage para la sesión; middleware-like de horario (L-V 8-18h, Sáb 8-13h); 4 grupos con matrices de permisos; timeout 20 min.</li>
+                  <li><strong>Grupal — Caso 3 (Steven):</strong> frontend puro; localStorage (12 empleados, 55 asistencias, 10 permisos); roles jerárquicos; flujo de aprobación Pendiente → Aprobado/Rechazado; timeout 45 min.</li>
+                  <li>Integración a <code>main</code> mediante Pull Request #3 desde <code>dev/Huamanlazo-Pariona</code> (54 commits, +4 294 líneas).</li>
+                </ol>
+              </dd></div>
+
+              <div class="lab-item span-full"><dt>Resultado</dt><dd>
+                <p><strong>BioStock</strong> quedó operativo: validación de stock insuficiente y de texto con HTML funcionan; el admin muestra filtros, búsqueda y acciones masivas; el log de auditoría registra cada request; <code>manage.py check --deploy</code> no reporta errores críticos.</p>
+                <p><strong>Grupal Caso 1:</strong> el sistema de préstamos valida equipo operativo, stock disponible y fechas coherentes; el middleware lanza alertas de préstamos vencidos; control de acceso por rol activo.</p>
+                <p><strong>Grupal Caso 2:</strong> la plataforma de consultas valida horarios, genera logs de auditoría, controla 4 grupos con restricciones de permisos y maneja timeout de sesión de 20 min.</p>
+                <p><strong>Grupal Caso 3:</strong> el sistema de asistencia maneja marcación con validación horaria, solicitud y aprobación jerárquica de permisos, notificaciones al empleado y registro de auditoría.</p>
+              </dd></div>
+
+              <div class="lab-item span-full"><dt>Observaciones</dt><dd>
+                <p>El mayor desafío en BioStock fue la validación cruzada de stock dentro del formulario (<code>MovimientoForm.clean()</code>), ya que debe consultar el stock actual del producto antes de guardar la salida. Hacerlo en el formulario —no en la vista— garantiza que la validación ocurra independientemente de cómo se llame a <code>form.save()</code>.</p>
+                <p>En el Caso 2 grupal, simular middleware, sesiones, cookies y permisos con solo HTML/CSS/JS fue el mayor reto: las cookies reales <code>HttpOnly</code> no se pueden crear desde JavaScript, así que se documentó esa limitación en el README y se simularon con <code>sessionStorage</code>.</p>
+                <p>En el Caso 3 el flujo de aprobación jerárquica exigió que los datos de permisos y sus estados se leyeran y escribieran en localStorage de forma cuidadosa para evitar inconsistencias al recargar. El timeout de 45 min se implementó con un temporizador que se renueva en cada acción del usuario.</p>
+                <div class="table-wrap"><table><caption>Repositorios de la semana 12</caption><thead><tr><th>Práctica</th><th>Repositorio</th></tr></thead><tbody>
+                  <tr><td>Individual BioStock</td><td><a href="https://github.com/stevenhuamanlazo/DAW-Semana12-BioStock" target="_blank" rel="noopener">stevenhuamanlazo/DAW-Semana12-BioStock</a></td></tr>
+                  <tr><td>Grupal (Casos 1, 2 y 3)</td><td><a href="https://github.com/E5gar/GuiaPracticaGrupalSemana12" target="_blank" rel="noopener">E5gar/GuiaPracticaGrupalSemana12</a></td></tr>
+                </tbody></table></div>
+              </dd></div>
+
+              <div class="lab-item span-full"><dt>Evidencia</dt><dd>
+                <ul>
+                  <li>Repositorio individual: <a href="https://github.com/stevenhuamanlazo/DAW-Semana12-BioStock" target="_blank" rel="noopener">github.com/stevenhuamanlazo/DAW-Semana12-BioStock</a></li>
+                  <li>Repositorio grupal: <a href="https://github.com/E5gar/GuiaPracticaGrupalSemana12" target="_blank" rel="noopener">github.com/E5gar/GuiaPracticaGrupalSemana12</a></li>
+                  <li>Documentación individual (PDF): <a href="assets/Sem12/BioStock_Individual.pdf" target="_blank" rel="noopener">BioStock — Documentación completa</a></li>
+                  <li>Guía práctica grupal (PDF): <a href="assets/Sem12/GuiaPracticaGrupal.pdf" target="_blank" rel="noopener">Práctica Grupal — Guía e instrucciones</a></li>
+                  <li>Entrega grupal (PDF): <a href="assets/Sem12/EntregaGrupal.pdf" target="_blank" rel="noopener">Práctica Grupal — Evidencia de entrega</a></li>
+                </ul>
+              </dd></div>
+
+            </dl>
+          </section>
+
+          <section class="section-block">
+            <h3>3. Reflexión</h3>
+            <div class="entry">
+              <p>Esta semana fue la más intensa del ciclo porque todo lo anterior convergió en un solo punto: la seguridad no como capa adicional, sino como parte del diseño. Al implementar el middleware de auditoría en BioStock comprendí que registrar cada petición con usuario, IP, ruta y duración no es burocracia, es la única forma de saber qué pasó cuando algo sale mal. Del mismo modo, la validación en tres niveles me enseñó que cada capa tiene su rol: el campo valida el formato, el formulario valida la coherencia entre campos y el modelo garantiza la integridad antes de llegar a la base de datos.</p>
+              <p>En la práctica grupal, desarrollar los Casos 2 y 3 con solo HTML, CSS y JavaScript me puso en una situación real que los frameworks suelen ocultar: las cookies <code>HttpOnly</code> no pueden crearse desde JS, los permisos no se "aplican solos" sin un servidor que valide cada petición, y la superposición de fechas hay que calcularla manualmente sin ORM. Eso me hizo apreciar más Django, porque sus herramientas de sesiones, decoradores de permisos y middleware están ahí precisamente para que no haya que reinventar estas soluciones.</p>
+              <p>Trabajar en ramas separadas con commits por funcionalidad y un Pull Request para integrar a <code>main</code> resultó ser la parte más ordenada del proceso: el historial quedó legible, era fácil identificar el aporte de cada integrante y no hubo conflictos de merge porque cada uno mantuvo su carpeta. El flujo colaborativo no es un trámite, es lo que hace posible que dos personas trabajen en paralelo sin pisarse el código.</p>
+            </div>
+          </section>
+
+        </article>
+</li>
